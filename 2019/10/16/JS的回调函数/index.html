@@ -16,8 +16,10 @@
 <meta property="og:site_name" content="渡口迷津">
 <meta property="og:description" content="前言学而不思则罔，思而不学则殆。 一.异步(async)与同步(sync)举个梨子：1.早上起床你可以一边先洗脸刷牙，洗漱完了再去烧个水，这些事情都是一件一件完成后才能接着下一件。 2.换种方式，你在刷牙洗脸的时候，也可以烧水喝，不用等着洗刷完，这二者之间就是异步的。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-18T11:51:03.231Z">
+<meta property="og:image" content="d:%5CWorkSpace%5Chexo%5Csource_posts%5Cimages%5C1577188684965.png">
+<meta property="og:updated_time" content="2019-12-24T12:06:14.947Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:%5CWorkSpace%5Chexo%5Csource_posts%5Cimages%5C1577188684965.png">
   
     <link rel="alternative" href="/atom.xml" title="渡口迷津" type="application/atom+xml">
   
@@ -178,12 +180,65 @@
 <p>2.换种方式，你在刷牙洗脸的时候，也可以烧水喝，不用等着洗刷完，这二者之间就是异步的。</p>
 <a id="more"></a>
 
-<p>代码演示：</p>
+<p>同步代码演示：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var a=0</span><br><span class="line">function acc()&#123;</span><br><span class="line">	a=1</span><br><span class="line">&#125;</span><br><span class="line">function bcc()&#123;</span><br><span class="line">console.log(a)</span><br><span class="line">&#125;</span><br><span class="line">acc()</span><br><span class="line">bcc()</span><br></pre></td></tr></table></figure>
 
-<p>结果为1</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function a()&#123;</span><br><span class="line">console.log(&amp;quot;a完成了&amp;quot;)</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">	console.log(&amp;quot;我真难，现在才完成&amp;quot;)</span><br><span class="line">&#125;,1000)</span><br><span class="line">&#125;</span><br><span class="line">function b()&#123;</span><br><span class="line">	console.log(&amp;quot;b完成了&amp;quot;)</span><br><span class="line">&#125;</span><br><span class="line">a()</span><br><span class="line">b()</span><br></pre></td></tr></table></figure>
+<p>结果为1。</p>
+<p>print函数会等change函数完成之后去执行，所以结构输出为1，因为change函数修改了全局变量a的值，change执行之后才执行的print函数。</p>
+<hr>
+<p>异步代码演示：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">function a()&#123;</span><br><span class="line">console.log("a完成了")</span><br><span class="line">setTimeout(function()&#123;</span><br><span class="line">	console.log("我真难，现在才完成")</span><br><span class="line">&#125;,1000)</span><br><span class="line">&#125;</span><br><span class="line">function b()&#123;</span><br><span class="line">	console.log("b完成了")</span><br><span class="line">&#125;</span><br><span class="line">a()</span><br><span class="line">b()</span><br></pre></td></tr></table></figure>
 
+<p>运行结果：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> a完成了</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> b完成了</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> 我真难，现在才完成</span></span><br></pre></td></tr></table></figure>
+
+<p>以上代码会先执行函数a,而且不会等到a中的延迟函数执行完才执行函数b, 在延迟函数被触发的过程中就执行了函数b,当js引擎的event 队列空闲时才会去执行队列里等待的setTimeout的回调函数，这就是一个异步的例子。</p>
+<blockquote>
+<p>调用 setTimeout 函数会在一个时间段过去后在队列中添加一个消息。这个时间段作为函数的第二个参数被传入。如果队列中没有其它消息，消息会被马上处理。但是，如果有其它消息，setTimeout 消息必须等待其它消息处理完。因此第二个参数仅仅表示最少的时间 而非确切的时间。</p>
+</blockquote>
+<p><strong>所以即使，时间设置为0，也是会照样先执行函数b</strong></p>
+<h3 id="二-回调函数到底是啥子"><a href="#二-回调函数到底是啥子" class="headerlink" title="二.回调函数到底是啥子"></a>二.回调函数到底是啥子</h3><p>来看几个经典的回调函数代码，从代码中体会概念</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//异步请求的回调</span></span><br><span class="line">$.<span class="keyword">get</span>('ajax/test.html',function(data)&#123;</span><br><span class="line">	$(<span class="string">'.result'</span>).html(data)</span><br><span class="line">	alert(<span class="string">'回调完成'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//点击事件的回调函数</span></span><br><span class="line">$(<span class="string">'#target'</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">'点击后执行的回调函数'</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组遍历中每一项调用的回调函数</span></span><br><span class="line"><span class="keyword">this</span>.tabs.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">tab,index</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(tab.selected)&#123;</span><br><span class="line">       <span class="keyword">this</span>.focustab = <span class="keyword">this</span>.tabs[index]</span><br><span class="line">       &#125;</span><br><span class="line">&#125;.bind(<span class="keyword">this</span>))</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getNodes</span>(<span class="params">parms,callpack</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> list = <span class="built_in">JSON</span>.stringify(parms)</span><br><span class="line">    <span class="keyword">typeof</span>(callback) === <span class="string">'function'</span>&amp;&amp;callback(list)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">getNodes(<span class="string">'[1,2,3]'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">nodes</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//获取到nodes后做的操作</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>所以回调与同步、异步并没有直接的联系，回调只是一种实现方式，既可以有同步回调</strong>，<strong>也可以有异步回调</strong>，<strong>还可以有事件处理回调和延迟函数回调，这些在我们工作中有很多的使用场景</strong></p>
+<h3 id="三-为啥要用回调函数"><a href="#三-为啥要用回调函数" class="headerlink" title="三.为啥要用回调函数"></a>三.为啥要用回调函数</h3><p><strong>1.关于回调函数和js单线程以及js异步机制</strong></p>
+<p>我们都知道js是单线程的，这种设计模式给我们带来了很多的方便之处，我们不需要考虑各个线程之间的通信，也不需要写很多烧脑的代码，也就是说js的引擎只能一件一件事的去完成和执行相关的操作，所以所有需要执行的事情都像排队一样，等待着被触发和执行，可是如果这样的话，如果在队列中有一件事情需要花费很多的时间，那么后面的任务都将处于一种等待状态，有时甚至会出现浏览器假死现象，例如其中有一件正在执行的一个任务是一个死循环，那么会导致后续其他的任务无法正常执行，所以<strong>js在同步机制的缺陷下设计出了异步模式。</strong></p>
+<p>在异步执行的模式下，每一个异步的任务都有其自己一个或着多个回调函数，这样当前在执行的异步任务执行完之后，不会马上执行事件队列中的下一项任务，而是执行它的回调函数，而下一项任务也不会等当前这个回调函数执行完，因为它也不能确定当前的回调合适执行完毕，只要引它被触发就会执行。</p>
+<p>举个例子：</p>
+<p>我要购买一个东西，当我点进物品的详情页之后，图片资源还未请求完毕，而此时我就可以点击add to cart, 发起另一个请求，js任务列表中的添加购物车事件就会开始执行，它的执行也不会干扰到图片资源的请求任务，这也是异步执行机制的妙处，不会影响用户的操作。</p>
+<p><strong>2.js的单线程浏览器内核的多线程</strong></p>
+<p>说到js的单线程，顺便再了解一下关于浏览器内核的多线程，关于浏览器工作原理此处不做讲解，因为自己研究的不深入，等待研究学习研究透彻再分享。</p>
+<p><img src="D:%5CWorkSpace%5Chexo%5Csource_posts%5Cimages%5C1577188684965.png" alt="1577188684965"></p>
+<p>1.<font face="微软雅黑" color="#8470FF">GUI渲染线程</font></p>
+<p> 　　<code>GUI渲染线程</code>负责渲染浏览器界面HTML元素，解析HTML，CSS，构建DOM树和RenderObject树，布局和绘制等。</p>
+<p>　　当界面需要重绘(Repaint)或由于某种操作引发回流(重排)(reflow)时,该线程就会执行。</p>
+<p>　　在Javascript引擎运行脚本期间,GUI渲染线程都是处于挂起状态的,也就是说被”冻结”了，GUI更新会被保存在一个队列中等到JS引擎空闲时立即被执行。</p>
+<p>2.<font face="微软雅黑" color="#87CEFA">JavaScript引擎线程</font></p>
+<p>　　JavaScript<code>引擎</code>，也可以称为JS内核，主要负责处理Javascript脚本程序，例如V8引擎。</p>
+<p>　　JS引擎一直等待着任务队列中任务的到来，然后加以处理，一个Tab页（renderer进程）中无论什么时候都只有一个JS线程在运行JS程序（单线程）。</p>
+<p>　　注意⚠️：GUI渲染线程和JavaScript引擎线程互斥！</p>
+<p>　　由于JavaScript是可操纵DOM的，如果在修改这些元素属性同时渲染界面（即JavaScript线程和UI线程同时运行），那么渲染线程前后获得的元素数据就可能不一致了。</p>
+<p>　　因此为了防止渲染出现不可预期的结果，浏览器设置GUI渲染线程与JavaScript引擎为互斥的关系，当JavaScript引擎执行时GUI线程会被挂起，GUI更新会被保存在一个队列中等到引擎线程空闲时立即被执行。</p>
+<p>　　如果JS执行的时间过长，这样就会造成页面的渲染不连贯，导致页面渲染加载阻塞的感觉。</p>
+<p>3.<font face="微软雅黑" color="#20B2AA">事件触发线程</font></p>
+<p>　　当一个事件被触发时该线程会把事件添加到待处理队列的队尾，等待JS引擎的处理。</p>
+<p>　　这些事件可以是当前执行的代码块如定时任务、也可来自浏览器内核的其他线程如鼠标点击、AJAX异步请求等，但由于JS的单线程关系所有这些事件都得排队等待JS引擎处理。</p>
+<p>4.<font face="微软雅黑" color="#ADD8E6">定时触发器线程</font></p>
+<p>　　<code>setInterval</code>与<code>setTimeout</code>所在线程</p>
+<p>　　浏览器定时计数器并不是由JavaScript引擎计数的, 因为JavaScript引擎是单线程的, 如果处于阻塞线程状态就会影响记计时的准确。</p>
+<p>　　通过单独线程来计时并触发定时（计时完毕后，添加到事件队列中，等待JS引擎空闲后执行）</p>
+<p>　　注意，W3C在HTML标准中规定，规定要求setTimeout中低于4ms的时间间隔算为4ms。</p>
+<p>5.<font face="微软雅黑" color="#48D1CC">异步http请求线程</font></p>
+<p>　　在XMLHttpRequest在连接后是通过浏览器新开一个线程请求。</p>
+<p>　　将检测到状态变更时，如果设置有回调函数，异步线程就产生状态变更事件，将这个回调再放入事件队列中，再由JavaScript引擎执行。</p>
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p>回调函数：<a href="https://www.cnblogs.com/moxiaowohuwei/p/8438236.html" target="_blank" rel="noopener">https://www.cnblogs.com/moxiaowohuwei/p/8438236.html</a></p>
+<p>多线程：<a href="https://www.cnblogs.com/gg-qq/p/11125652.html" target="_blank" rel="noopener">https://www.cnblogs.com/gg-qq/p/11125652.html</a></p>
 
       
 
@@ -342,7 +397,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2019 Tiger
+    		&copy; 2020 Tiger
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -425,6 +480,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
@@ -437,11 +496,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -450,6 +509,18 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
               </li>
             
             <div class="clearfix"></div>
