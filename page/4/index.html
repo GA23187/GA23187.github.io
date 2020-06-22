@@ -151,303 +151,6 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-JS之select选中option触发事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/26/JS%E4%B9%8Bselect%E9%80%89%E4%B8%ADoption%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6/">JS之select选中option触发事件</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/26/JS%E4%B9%8Bselect%E9%80%89%E4%B8%ADoption%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2019-12-26T13:57:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在做一个二级联动选择框时，想要获取到当前点击的option的值，发现给option绑定click事件没得用，给select添加呢，又会发现还没点option就已经触发了。</p>
-<p>百度来的说option没有可以触发的事件,需要在select中加onchange事件。</p>
-<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>onchange事件的触发，是改变了option选项时，如果是一直选择某一个这个事件不会触发。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">"myselect"</span>&gt;</span><br><span class="line">  &lt;option value=<span class="string">"opt1"</span>&gt;选项<span class="number">1</span>&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">  &lt;option value="opt2"&gt;选项2&lt;/</span>option&gt;</span><br><span class="line">  &lt;option value=<span class="string">"opt3"</span>&gt;选项<span class="number">3</span>&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>select&gt;</span><br><span class="line">$(<span class="string">"#myselect"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>)<span class="comment">//这里的this不是当前jq对象，而是select这个dom对象。</span></span><br><span class="line">  <span class="keyword">var</span> opt=$(<span class="string">"#myselect"</span>).val()<span class="comment">//获取的是当前选择的option的value</span></span><br><span class="line">  <span class="keyword">var</span> opt=$(<span class="string">"#myselect"</span>).text()<span class="comment">//获取的是选项1，2，3</span></span><br><span class="line">  <span class="keyword">var</span> opt=$(<span class="string">"#myselect"</span>).html()<span class="comment">//获取的是整个标签&lt;select&gt;&lt;/select&gt;</span></span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>  <strong>一. 使用原生js获取select标签下属性有selected的option项。</strong></p>
-<ul>
-<li><p>先写一个select标签如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectBox"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"value-aaa"</span> <span class="attr">selected</span>&gt;</span></span><br><span class="line">              aaaaa</span><br><span class="line">     <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"value-bbb"</span>&gt;</span></span><br><span class="line">              bbbbb</span><br><span class="line">     <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>原生js获取select标签这个 <strong>对象</strong> :</p>
-<p> var selectTest = document.getElementById(“selectBox”);</p>
-</li>
-<li><p>然后找到 <strong>selected</strong> 的option标签的 <strong>索引值:</strong> </p>
-<p>var selectIndex = selectTest.selectedIndex;</p>
-</li>
-<li><p>这样就可以通过索引来获取选中项的 <strong>选中值和文本值:</strong> </p>
-<p>var selectValue = selectTest.options[selectIndex].value;<br>var selectText = selectTest.options[selectIndex].text;</p>
-<blockquote>
-<p>注意：不能获取到自定义属性的值，或者是标签具有的属性但是没有直接在标签上书写属性值（即通过js添加的方式）。</p>
-<p>需要借助getAttrbute和setAttrbute方法二个原生DOM方法的。或者是jq的attr()方法。</p>
-</blockquote>
-</li>
-</ul>
-<p>详情可见：JS之自定义属性的几种方式[xxxxxx]</p>
-<hr>
-<p><strong>二. 当然这样写可能会比较麻烦，jquery为我们提供了更加方便的方法</strong></p>
-<ul>
-<li>主要是用到了jquery中的 <strong>选择器:</strong> </li>
-</ul>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selectedOption = $(<span class="string">"#selectBox option: selected"</span>);</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>然后直接使用val() 和 text() 方法：</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">console</span><span class="selector-class">.log</span>(<span class="selector-tag">selectedOption</span><span class="selector-class">.val</span>(), <span class="selector-tag">selectedOption</span><span class="selector-class">.text</span>()  );</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>注意使用jQuery的方法，记得 <strong>引入jquery库文件</strong>。</li>
-</ul>
-<p>在jQuery中选择select标签的方法有：</p>
-<p>$(“#selectId”) 和 $(“select[name=’selectName’]”)</p>
-<p><strong>1.获取select选择的值</strong>,选择了select之后直接用val()：</p>
-<p>例如：$(“#selectId”).val()或者$(“select[name=’selectName’]”).val();</p>
-<p><strong>2.获取select的文本值</strong>，选择了select之后，用find()：</p>
-<p>例如：$(“#selectId”).find(“option:selected”).text();或者$(“select[name=’selectName’]”).find(“option:selected”).text();</p>
-<p><strong>3.获取select选中的索引</strong></p>
-<p>例如：$(“#selectId”).get(0).selectedindex;</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/26/JS%E4%B9%8Bselect%E9%80%89%E4%B8%ADoption%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-js数组方法/forEach" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/26/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/forEach/">js数组方法/forEach</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/26/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/forEach/" class="archive-article-date">
-  	<time datetime="2019-12-26T13:02:47.739Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>forEach与each用法比较</title>
-    <script src="https://cdn.bootcss.com/jquery/1.12.1/jquery.js" type="text/javascript"></script>  <!-- 需要引入jq -->
-</head>
-<body>
-<div>
-    <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-    </ul>
-</div>
-<script>
-    var group = [1,3,5,7,9];
-    //forEach()只有一个参数function时：
-    $.each(group,function(index,value,array){ //$.each()是jq中的方法，function()中有两个参数
-        console.log(index); //对应数组下标（从0开始计算）；输出五次，依次为0,1,2,3,4
-        console.log(value); //对应数组中每个参数的值；输出五次，依次为1,3,5,7,9
-        console.log(array)
-     });
- 
-    $('li').each(function(index,value){ //$().each()对象方法
-        console.log(index+": "+$(this).text());
-    });
- 
-    var g_li = $('li');
-    $.each(g_li,function(index,value){ //$.each()类方法，该结果与上面结果相同，即证明$.each即是jq中对象方法，又是jq的类方法
-        console.log(index+": "+$(this).text());
-    });
- 
-    var result = group.map(function(value,index,array){ //function()中有三个参数
-        console.log(index); //对应数组下标（从0开始计算）；输出五次，依次为0,1,2,3,4，同$.each
-        console.log(value); //对应数组中每个参数的值；输出五次，依次为1,3,5,7,9,同$.each
-        console.log(array); //数组本身，即是->group；输出五次，每次都输出整个grounp数组
-        return value + 1; //支持返回值（与forEach的不同之处，forEach不支持返回值）
-    });
-    console.log('map函数返回值'+result); //result为数组，输出2,4,6,8,10 
-    console.log(group);
-</script>
-</body>
-</html>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/26/js%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/forEach/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-JS之forEach、$.each()、$().each()的用法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/26/JS%E4%B9%8BforEach%E3%80%81$.each()%E3%80%81$().each()%E7%9A%84%E7%94%A8%E6%B3%95/">JS之forEach、$.each()、$().each()的用法</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/26/JS%E4%B9%8BforEach%E3%80%81$.each()%E3%80%81$().each()%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2019-12-26T12:25:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>数组的遍历是我们在开发中十分常见的操作。本文针对原生数组的forEach，jquery的each()方法做出总结。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="forEach方法"><a href="#forEach方法" class="headerlink" title="forEach方法"></a>forEach方法</h3><p><code>forEach</code>方法是ES5中的数组方法，用于遍历、循环。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.forEach(callback,[ thisObject])</span><br></pre></td></tr></table></figure>
-
-<p><code>forEach</code>方法中的callback（回调函数）支持3个参数，第一个是遍历的数组内容（当前项），第二个是对应的数组索引，第三个是数组本身。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[].forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value,index,array</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>对比jQuery中的<code>$.each</code>方法二者index,vaule顺序：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.each([], <span class="function"><span class="keyword">function</span>(<span class="params">index, value</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<p>再下面，更进一步，<code>forEach</code>除了接受一个必须的回调函数参数，还可以接受一个可选的上下文参数（改变回调函数里面的<code>this</code>指向）（第2个参数）。如果这第2个可选参数不指定，则使用全局对象代替（在浏览器是为<code>window</code>），严格模式下甚至是<code>undefined</code>.</p>
-<p>另外，<code>forEach</code>不会遍历空元素的。</p>
-<h3 id="each-方法"><a href="#each-方法" class="headerlink" title="$.each()方法"></a>$.each()方法</h3><p><code>$.each()</code>方法是jquery的类方法，用于遍历数组，对象。</p>
-<p>第一个参数是要遍历的数组，第二个参数是个回调函数，回调函数里面有2个参数，第一个代表当前数组索引，第二个代表当前数组索引对应值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.each([], <span class="function"><span class="keyword">function</span>(<span class="params">index, value</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h3 id="each-方法-1"><a href="#each-方法-1" class="headerlink" title="$().each()方法"></a>$().each()方法</h3><p><code>$().each()</code>方法多用于遍历jq对象数组。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'selector'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">index,value</span>)</span>&#123;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-<p>实例：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>forEach与each用法比较<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.bootcss.com/jquery/1.12.1/jquery.js"</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  <span class="comment">&lt;!-- 需要引入jq --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> group = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>];</span></span><br><span class="line"><span class="actionscript">    <span class="comment">//forEach()只有一个参数function时：</span></span></span><br><span class="line"><span class="actionscript">    group.forEach(<span class="function"><span class="keyword">function</span><span class="params">(value,index,array)</span></span>&#123; <span class="comment">//function()中有三个参数</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(value); <span class="comment">//对应数组中每个参数的值；输出三次，依次为1,3,5</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(index); <span class="comment">//对应数组下标（从0开始计算）；输出三次，依次为0,1,2</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(array); <span class="comment">//数组本身，即是-&gt;group；输出三次，每次都输出整个grounp数组</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);  <span class="comment">//window对象</span></span></span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line"><span class="actionscript">    <span class="comment">//forEach()有两个参数function和thisArg（即改变this指向的参数）:</span></span></span><br><span class="line"><span class="actionscript">    group.forEach(<span class="function"><span class="keyword">function</span><span class="params">(value,index,array)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(value);</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(index);</span></span><br><span class="line"><span class="vbscript">        console.<span class="built_in">log</span>(<span class="built_in">array</span>);</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);  <span class="comment">//输出同console.log(array)，因为第二个参数指向了该group数组本身</span></span></span><br><span class="line">    &#125;,group);</span><br><span class="line"> </span><br><span class="line"><span class="actionscript"> <span class="comment">//----------------------$.each()---------------------</span></span></span><br><span class="line">    </span><br><span class="line"><span class="javascript">    $.each(group,<span class="function"><span class="keyword">function</span>(<span class="params">index,value</span>)</span>&#123; <span class="comment">//$.each()是jq中的方法，function()中有两个参数</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(index); <span class="comment">//对应数组下标（从0开始计算）；输出三次，依次为0,1,2</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(value); <span class="comment">//对应数组中每个参数的值；输出三次，依次为1,3,5</span></span></span><br><span class="line">     &#125;);</span><br><span class="line"> </span><br><span class="line">    </span><br><span class="line"><span class="actionscript"><span class="comment">//----------------------$().each()-------------------------    </span></span></span><br><span class="line"><span class="javascript">    $(<span class="string">'li'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">index,value</span>)</span>&#123; <span class="comment">//$().each()对象方法</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(index+<span class="string">": "</span>+$(<span class="keyword">this</span>).text());</span></span><br><span class="line">    &#125;);</span><br><span class="line"> 	</span><br><span class="line"><span class="actionscript"><span class="comment">//------------------$.each()与$().each()效果一致--------------</span></span></span><br><span class="line">    </span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> g_li = $(<span class="string">'li'</span>);</span></span><br><span class="line"><span class="javascript">    $.each(g_li,<span class="function"><span class="keyword">function</span>(<span class="params">index,value</span>)</span>&#123; <span class="comment">//$.each()类方法，该结果与上面结果相同，即证明$.each即是jq中对象方法，又是jq的类方法</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(index+<span class="string">": "</span>+$(<span class="keyword">this</span>).text());</span></span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line"><span class="actionscript"><span class="comment">//--------------------数组map()方法------------------------- </span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> result = group.map(<span class="function"><span class="keyword">function</span><span class="params">(value,index,array)</span></span>&#123; <span class="comment">//function()中有三个参数</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(index); <span class="comment">//对应数组下标（从0开始计算）</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(value); <span class="comment">//对应数组中每个参数的值</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(array); <span class="comment">//数组本身</span></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> value + <span class="number">1</span>; <span class="comment">//支持返回值（与forEach的不同之处，forEach不支持返回值）</span></span></span><br><span class="line">    &#125;);</span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">'map函数返回值'</span>+result); <span class="comment">//result为数组，输出2,4,6,8,10 </span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(group)<span class="comment">//map方法产生一个新数组，不会改变原数组。</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
-<li><p>数组原生方法<code>forEach()</code>里面二个参数，第一个必备参数，是一个回调函数，其第一个参数是值，第二个是索引，第三个是数组本身。第二个是改变this指向的参数。</p>
-</li>
-<li><p>jq的<code>$.each()</code>方法第一个参数是要遍历的数组，第二个才是回调函数，其只有二个参数，第一个是索引，第二个是值。而<code>$(&#39;selector&#39;).each()</code>方法里只有一个回调函数，第一个参数是索引，第二个是值。</p>
-</li>
-<li><p>注意点：回调函数中value,index的顺序。</p>
-</li>
-</ul>
-<h2 id="更多数组方法"><a href="#更多数组方法" class="headerlink" title="更多数组方法"></a>更多数组方法</h2><p>参考数组方法总结。</p>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>ES5中新增的Array方法详细说明:<a href="https://www.zhangxinxu.com/wordpress/2013/04/es5新增数组方法/" target="_blank" rel="noopener">https://www.zhangxinxu.com/wordpress/2013/04/es5%E6%96%B0%E5%A2%9E%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/26/JS%E4%B9%8BforEach%E3%80%81$.each()%E3%80%81$().each()%E7%9A%84%E7%94%A8%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
     <article id="post-google插件问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -923,9 +626,292 @@
 
 
   
+    <article id="post-JS事件绑定与解绑的多种方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/24/JS%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E4%B8%8E%E8%A7%A3%E7%BB%91%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F/">JS事件绑定与解绑的多种方式</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/24/JS%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E4%B8%8E%E8%A7%A3%E7%BB%91%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2019-12-24T12:33:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>一直以来容易把绑定事件的名搞混，现在在这里总结下:</p>
+<p>原生JS有三种。jq的话记得$.on(‘不带on的事件名’,callback)，注意它的参数个数。</p>
+<h3 id="zzzz"><a href="#zzzz" class="headerlink" title="zzzz"></a>zzzz</h3><h4 id="click-与-onclick"><a href="#click-与-onclick" class="headerlink" title="click 与 onclick"></a>click 与 onclick</h4><p>1.onclick 事件会在对象被点击时发生。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;input id=&quot;btn1&quot; type=&quot;button&quot; onclick=&quot;test();&quot; /&gt;</span><br><span class="line">function test() &#123;</span><br><span class="line">    alert(&quot;我是行间事件&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当点击id=”btn1”时,触发onclick事件</p>
+<p>2.onclick事件会在click事件之前执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;input id=&quot;btn2&quot; type=&quot;button&quot; onclick=&quot;test();&quot; /&gt;</span><br><span class="line">var btn2 = document.getElementById(&apos;btn2&apos;);</span><br><span class="line">btn2.addEventListener(&apos;click&apos;, showMsg, false); //鼠标单击的时候调用showMes这个函数  </span><br><span class="line">function showMsg() &#123;</span><br><span class="line">    alert(&quot;事件监听&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当点击id=”btn2”时,先执行onclick事件的方法test(),再执行click事件的showMsg()方法;</p>
+<h4 id="js-绑定点击事件的方法"><a href="#js-绑定点击事件的方法" class="headerlink" title="js 绑定点击事件的方法"></a>js 绑定点击事件的方法</h4><p>方法一:把onclick绑定在标签上</p>
+<p>HTML元素行间事件（也可以叫HTMl事件处理程序）,直接在html标签里添加事件。</p>
+<p>缺点：html和js代码紧密耦合</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input id=&quot;btn1&quot; type=&quot;button&quot; onclick=&quot;test();&quot; /&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>方法二:onclick的js绑定办法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//把一个函数赋值给一个事件处理程序属性。（这种方式也叫做Dom0级事件处理程序）</span><br><span class="line">var btn1 = document.getElementById(&apos;btn1&apos;);</span><br><span class="line">function abc() &#123;</span><br><span class="line">    alert(&apos;abc&apos;);</span><br><span class="line">&#125;</span><br><span class="line">btn1.onclick = abc; //当点击的时候执行abc这个函数，等价于 btn1.onclick=function abc()&#123;alert(&apos;abc&apos;);&#125;</span><br><span class="line">//btn1.onclick = null； //去掉绑定的事件</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p> 方法三:click的js绑定办法(js的话推荐这种)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//通过“事件监听”的方式来绑定事件（也叫Dom2级事件处理程序）</span><br><span class="line">var btn2 = document.getElementById(&apos;btn2&apos;);</span><br><span class="line">btn2.addEventListener(&apos;click&apos;, showMsg, false); //鼠标单击的时候调用showMes这个函数  </span><br><span class="line">function showMsg() &#123;</span><br><span class="line">    alert(&quot;事件监听&quot;);</span><br><span class="line">&#125;</span><br><span class="line">//btn2.removeEventListener(&apos;click&apos;, showMsg, false); //去除绑定</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="js-触发点击事件"><a href="#js-触发点击事件" class="headerlink" title="js 触发点击事件"></a>js 触发点击事件</h4><p>除了手动点击外,js也可以触发点击事件</p>
+<ol>
+<li>.onclick()//错误示例</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&quot;btn2&quot;).onclick();</span><br></pre></td></tr></table></figure>
+
+<p>这种只会触发onclick事件</p>
+<ol start="2">
+<li>.click()</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.getElementById(&quot;btn2&quot;).click();</span><br></pre></td></tr></table></figure>
+
+<p>这种会先出发onclick事件,再触发click事件</p>
+<h4 id="js-解绑点击事件的方法"><a href="#js-解绑点击事件的方法" class="headerlink" title="js  解绑点击事件的方法"></a>js  解绑点击事件的方法</h4><p>解绑onclick</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">btn1.onclick = null； //去掉绑定的事件</span><br></pre></td></tr></table></figure>
+
+<p>解绑click</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">btn2.removeEventListener(&apos;click&apos;, showMsg, false); //去除绑定</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="addEventListener事件监听（委托delegate）"><a href="#addEventListener事件监听（委托delegate）" class="headerlink" title="addEventListener事件监听（委托delegate）"></a>addEventListener事件监听（委托delegate）</h4><p>对“事件处理程序过多”问题的解决方案就是事件委托。事件委托利用了事件冒泡，只制定一个事件处理程序，就可以管理某一类型的所有事件。例如click事件一直会冒泡到document层。也就是我们可以只指定onclick事件处理程序，而不必给每个事件分别添加处理程序。<br>下面我们来看一个例子。</p>
+<p>样式以及DOM结构</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">style</span>&gt;</span></span><br><span class="line">   * &#123;</span><br><span class="line">     padding: 0;</span><br><span class="line">     margin: 0;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">   <span class="selector-class">.head</span>, <span class="selector-tag">li</span> <span class="selector-tag">div</span> &#123;</span></span><br><span class="line">     display: inline-block;</span><br><span class="line">     width: 70px;</span><br><span class="line">     text-align: center;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">   <span class="selector-tag">li</span> <span class="selector-class">.id</span>, <span class="selector-tag">li</span> <span class="selector-class">.sex</span>, <span class="selector-class">.id</span>, <span class="selector-class">.sex</span> &#123;</span></span><br><span class="line">     width: 15px;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">   <span class="selector-tag">li</span> <span class="selector-class">.name</span>, <span class="selector-class">.name</span> &#123;</span></span><br><span class="line">     width: 40px;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">   <span class="selector-tag">li</span> <span class="selector-class">.tel</span>, <span class="selector-class">.tel</span> &#123;</span></span><br><span class="line">     width: 90px;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">   <span class="selector-tag">li</span> <span class="selector-class">.del</span>, <span class="selector-class">.del</span> &#123;</span></span><br><span class="line">     width: 15px;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   ul &#123;</span><br><span class="line">     list-style: none;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="css">   <span class="selector-class">.user-delete</span> &#123;</span></span><br><span class="line">     cursor: pointer;</span><br><span class="line">   &#125;</span><br><span class="line"> <span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"J_container"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"record-head"</span>&gt;</span></span><br><span class="line">	  	<span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"head id"</span>&gt;</span>序号<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"head name"</span>&gt;</span>姓名<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"head sex"</span>&gt;</span>性别<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"head tel"</span>&gt;</span>电话号码<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"head province"</span>&gt;</span>省份<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"head"</span>&gt;</span>操作<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>=<span class="string">"J_List"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">li</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"id"</span>&gt;</span>1<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"name"</span>&gt;</span>张三<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sex"</span>&gt;</span>男<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tel"</span>&gt;</span>13788888888<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"province"</span>&gt;</span>浙江<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"user-delete"</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">li</span>&gt;</span><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"id"</span>&gt;</span>2<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"name"</span>&gt;</span>李四<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"sex"</span>&gt;</span>女<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"tel"</span>&gt;</span>13788887777<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"province"</span>&gt;</span>四川<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">         <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"user-delete"</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>方式一：不用事件委托。</strong></p>
+<p>而这种方法造成的代价是，性能的大量浪费。如果是成千上万条数据，页面将会严重卡顿，甚至崩溃。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Contact</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.init();</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">Contact.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> userdel = <span class="built_in">document</span>.querySelectorAll(<span class="string">'.user-delete'</span>);</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>;i&lt;lis.length;i++)&#123;</span><br><span class="line">		(<span class="function"><span class="keyword">function</span>(<span class="params">j</span>)</span>&#123;</span><br><span class="line">			userdel[j].onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	userdel[j].parentNode.parentNode.removeChild(userdel[j].parentNode);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;)(i);</span><br><span class="line">	&#125;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Contact();</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>方式二：使用事件委托，只绑定一次事件，大大减少了性能的损耗</strong>。</p>
+<p>也是在需要大量事件处理程序中一种非常好的解决方式。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Contact</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.init();</span><br><span class="line">&#125;</span><br><span class="line">	</span><br><span class="line"></span><br><span class="line">Contact.prototype.init = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> lis = <span class="built_in">document</span>.querySelector(<span class="string">'#J_List'</span>);</span><br><span class="line">	lis.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> target = e.target || e.srcElement;</span><br><span class="line">		<span class="keyword">if</span> (!!target &amp;&amp; target.className.toLowerCase()===<span class="string">'user-delete'</span>) &#123;				target.parentNode.parentNode.removeChild(target.parentNode);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Contact();</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h3><p><a href="https://www.cnblogs.com/ooo0/p/7742214.html" target="_blank" rel="noopener">https://www.cnblogs.com/ooo0/p/7742214.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/24/JS%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A%E4%B8%8E%E8%A7%A3%E7%BB%91%E7%9A%84%E5%A4%9A%E7%A7%8D%E6%96%B9%E5%BC%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-CSS显示模式-块级、行内、行内块" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/24/CSS%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F-%E5%9D%97%E7%BA%A7%E3%80%81%E8%A1%8C%E5%86%85%E3%80%81%E8%A1%8C%E5%86%85%E5%9D%97/">CSS显示模式(块级、行内、行内块)</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/24/CSS%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F-%E5%9D%97%E7%BA%A7%E3%80%81%E8%A1%8C%E5%86%85%E3%80%81%E8%A1%8C%E5%86%85%E5%9D%97/" class="archive-article-date">
+  	<time datetime="2019-12-24T11:11:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>主要是注意行内块元素。可以设置宽高，但是不独占一行。</p>
+<p>此外，注意行内元素会默认有间隔。解决方法：</p>
+<p>1.浮动。2.父元素设置font-size: 0或者word-spacing为某个负值</p>
+<h3 id="一-标签的类型（显示模式）"><a href="#一-标签的类型（显示模式）" class="headerlink" title="一.标签的类型（显示模式）"></a>一.标签的类型（显示模式）</h3><p>HTML标签一般分为块标签和行内标签两种类型，也可以称为<strong>块元素和行内元素</strong>。</p>
+        
+          <a class="article-more-a" href="/2019/12/24/CSS%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F-%E5%9D%97%E7%BA%A7%E3%80%81%E8%A1%8C%E5%86%85%E3%80%81%E8%A1%8C%E5%86%85%E5%9D%97/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/24/CSS%E6%98%BE%E7%A4%BA%E6%A8%A1%E5%BC%8F-%E5%9D%97%E7%BA%A7%E3%80%81%E8%A1%8C%E5%86%85%E3%80%81%E8%A1%8C%E5%86%85%E5%9D%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-JS关闭窗口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/25/JS%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3/">js之关闭窗口</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/25/JS%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3/" class="archive-article-date">
+  	<time datetime="2019-11-25T15:42:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在实现一个协议页面时，用户不同意会关闭页面，在google直接使用<code>window.close</code>方法会提示<code>Scripts may close only the windows that were opened by it.</code></p>
+<p>给出的原因很简单就是由于当前页面不是用脚本打开的，所以不能被关闭。</p>
+<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="一-在本页面打开一个窗口再关闭"><a href="#一-在本页面打开一个窗口再关闭" class="headerlink" title="一.在本页面打开一个窗口再关闭"></a>一.在本页面打开一个窗口再关闭</h4><h3 id="二-直接跳转到另一个页面"><a href="#二-直接跳转到另一个页面" class="headerlink" title="二.直接跳转到另一个页面"></a>二.直接跳转到另一个页面</h3><p>主页面test.html，两个按钮aaa和 bbb，aaa在自身Tab打开test1.html页面；bbb在新Tab打开test2.html页面。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HHH<span class="tag">&lt;/<span class="name">title</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btn1"</span> <span class="attr">value</span>=<span class="string">"aaa"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btn2"</span> <span class="attr">value</span>=<span class="string">"bbb"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        $(<span class="string">"#btn1"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.open(<span class="string">"test1.html"</span>,<span class="string">"_self"</span>);</span></span><br><span class="line">        &#125;);</span><br><span class="line"><span class="javascript">        $(<span class="string">"#btn2"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.open(<span class="string">"test2.html"</span>,<span class="string">"_blank"</span>);</span></span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>test1.html页面的代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HHH<span class="tag">&lt;/<span class="name">title</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>test1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"closeBtn"</span> <span class="attr">value</span>=<span class="string">"close"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        $(<span class="string">"#closeBtn"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">           <span class="built_in">window</span>.location.href=<span class="string">"about:blank"</span>;</span></span><br><span class="line"><span class="javascript">           <span class="built_in">window</span>.close();</span></span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>test2.html页面的代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HHH<span class="tag">&lt;/<span class="name">title</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>test2<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"closeBtn"</span> <span class="attr">value</span>=<span class="string">"close"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            $(<span class="string">"#closeBtn"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">window</span>.close();</span></span><br><span class="line">            &#125;);</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>上面的测试都是基于js脚本的，一旦你是直接通过文件路径的方式在地址栏输入访问，还是会报错。</p>
+<p>上面的测试还是与实际情况有差异。。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">将test页面与test2页面代码结合，再以地址栏方式打开，会出现空白页的代价</span><br><span class="line">$(<span class="string">"#closeBtn"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            	<span class="built_in">window</span>.open(<span class="string">''</span>,<span class="string">'_blank'</span>)</span><br><span class="line">                <span class="built_in">window</span>.close();</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+
+<p>页面打开方式：</p>
+<p>一、test1页面通过地址栏打开，可以关闭，不过会出现blank页。</p>
+<p>二、通过test页面打开，可以关闭，不过会出现blank页。</p>
+<p>三、还有一种打开方式就是直接在这个html文件右键在浏览器打开，会直接关闭，没有blank。这种打开方式下test2页面效果一致。</p>
+<h3 id="reload-、href-replace-差异"><a href="#reload-、href-replace-差异" class="headerlink" title="reload()、href /replace()差异"></a>reload()、href /replace()差异</h3><ul>
+<li><p>在实际应用的时候，重新刷新页面的时候，我们通常使用： window.location.reload() 或者是 window.history.go(0) 来做。因为这种做法就像是客户端点F5刷新页面</p>
+</li>
+<li><p>对于href 和replace ，都是重定向的作用</p>
+<p>1、location.href=’<a href="http://www.xxx.com/&#39;" target="_blank" rel="noopener">http://www.xxx.com/&#39;</a>;</p>
+<p>2、location.replace(‘<a href="http://www.xxx.com/&#39;" target="_blank" rel="noopener">http://www.xxx.com/&#39;</a>);</p>
+<p>两者的不同之处是前者会在浏览器的历史浏览记录（history对象）中增加一条新的记录，而后者则是相当于用replace中的url代替了现有的页面url，并把history中的url也替换为重定向后的url。</p>
+<p>window.location.replace(url)将目前浏览器的地址替换掉，调用这个方法的网页，将不会被写入浏览记录。</p>
+<p><a href="https://blog.csdn.net/github_37483541/article/details/59481084" target="_blank" rel="noopener">https://blog.csdn.net/github_37483541/article/details/59481084</a></p>
+<p><a href="https://www.cnblogs.com/lina6251125/p/6392299.html" target="_blank" rel="noopener">https://www.cnblogs.com/lina6251125/p/6392299.html</a></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/25/JS%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1060,19 +1046,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">B站</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">前端面试</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">开发相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">B站</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端面试</a>
               </li>
             
             <div class="clearfix"></div>
