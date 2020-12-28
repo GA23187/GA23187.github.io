@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JS之判断数组中对象是否存在某个数值 | 渡口迷津</title>
+  <title>hexo语法 | 渡口迷津</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="123456789101112131415var arr = [&amp;#123;    name: &quot;回锅肉&quot;,    value: &quot;0&quot;&amp;#125;, &amp;#123;    name: &quot;小炒肉&quot;,    value: &quot;1&quot;&amp;#125;]var result = arr.some(function(item) &amp;#123;    if (item.name == &quot;小炒肉&quot;) &amp;#123;">
-<meta name="keywords" content="js">
+  <meta name="description" content="Hexo基本操作写作新建文章1$ hexo new [layout] &amp;lt;title&amp;gt;  1[layout]: 指定文章的布局，默认为post可以通过修改 _config.yml 中的 default_layout 参数来指定默认布局。  布局(layout)Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而自定义的">
+<meta name="keywords" content="hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS之判断数组中对象是否存在某个数值">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;10&#x2F;JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC&#x2F;index.html">
+<meta property="og:title" content="hexo语法">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;06&#x2F;23&#x2F;js&#x2F;index.html">
 <meta property="og:site_name" content="渡口迷津">
-<meta property="og:description" content="123456789101112131415var arr = [&amp;#123;    name: &quot;回锅肉&quot;,    value: &quot;0&quot;&amp;#125;, &amp;#123;    name: &quot;小炒肉&quot;,    value: &quot;1&quot;&amp;#125;]var result = arr.some(function(item) &amp;#123;    if (item.name == &quot;小炒肉&quot;) &amp;#123;">
+<meta property="og:description" content="Hexo基本操作写作新建文章1$ hexo new [layout] &amp;lt;title&amp;gt;  1[layout]: 指定文章的布局，默认为post可以通过修改 _config.yml 中的 default_layout 参数来指定默认布局。  布局(layout)Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而自定义的">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-06-22T13:47:53.051Z">
+<meta property="og:updated_time" content="2020-06-23T12:11:46.625Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="渡口迷津" type="application/atom+xml">
@@ -153,28 +153,90 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-JS之判断数组中对象是否存在某个数值" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-js" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JS之判断数组中对象是否存在某个数值
+      hexo语法
     </h1>
   
 
         
-        <a href="/2020/01/10/JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC/" class="archive-article-date">
-  	<time datetime="2020-01-10T07:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
+        <a href="/2020/06/23/js/" class="archive-article-date">
+  	<time datetime="2020-06-23T11:56:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [&#123;</span><br><span class="line">    name: <span class="string">"回锅肉"</span>,</span><br><span class="line">    value: <span class="string">"0"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    name: <span class="string">"小炒肉"</span>,</span><br><span class="line">    value: <span class="string">"1"</span></span><br><span class="line">&#125;]</span><br><span class="line"><span class="keyword">var</span> result = arr.some(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (item.name == <span class="string">"小炒肉"</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br><span class="line"></span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/weixin_40687883/article/details/86502766</span></span><br></pre></td></tr></table></figure>
+        <h2 id="Hexo基本操作"><a href="#Hexo基本操作" class="headerlink" title="Hexo基本操作"></a>Hexo基本操作</h2><h2 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h2><h3 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo new [layout] &lt;title&gt;</span></span><br></pre></td></tr></table></figure>
 
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[layout]: 指定文章的布局，默认为post可以通过修改 _config.yml 中的 default_layout 参数来指定默认布局。</span><br></pre></td></tr></table></figure>
+
+<h4 id="布局-layout"><a href="#布局-layout" class="headerlink" title="布局(layout)"></a>布局(layout)</h4><p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
+<table>
+<thead>
+<tr>
+<th align="left">布局</th>
+<th align="left">路径</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>post</code></td>
+<td align="left"><code>source/_posts</code></td>
+</tr>
+<tr>
+<td align="left"><code>page</code></td>
+<td align="left"><code>source</code></td>
+</tr>
+<tr>
+<td align="left"><code>draft</code></td>
+<td align="left"><code>source/_drafts</code></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p> Hexo 的一种特殊布局：<code>draft</code>，这种布局在建立时会被保存到 <code>source/_drafts</code> 文件夹，您可通过 <code>publish</code> 命令将草稿移动到 <code>source/_posts</code> 文件夹，该命令的使用方式与 <code>new</code> 十分类似，您也可在命令中指定 <code>layout</code> 来指定布局。</p>
+</blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo publish [layout] &lt;title&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>草稿默认不会显示在页面中，您可在执行时加上 <code>--draft</code> 参数，或是把 <code>render_drafts</code> 参数设为 <code>true</code> 来预览草稿。</p>
+<h4 id="标题（title）"><a href="#标题（title）" class="headerlink" title="标题（title）"></a>标题（title）</h4><p>Hexo 默认以标题做为文件名称，但您可编辑 <code>new_post_name</code> 参数来改变默认的文件名称，举例来说，设为 <code>:year-:month-:day-:title.md</code> 可让您更方便的通过日期来管理文章。</p>
+<table>
+<thead>
+<tr>
+<th align="left">变量</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>:title</code></td>
+<td align="left">标题（小写，空格将会被替换为短杠）</td>
+</tr>
+<tr>
+<td align="left"><code>:year</code></td>
+<td align="left">建立的年份，比如， <code>2015</code></td>
+</tr>
+<tr>
+<td align="left"><code>:month</code></td>
+<td align="left">建立的月份（有前导零），比如， <code>04</code></td>
+</tr>
+<tr>
+<td align="left"><code>:i_month</code></td>
+<td align="left">建立的月份（无前导零），比如， <code>4</code></td>
+</tr>
+<tr>
+<td align="left"><code>:day</code></td>
+<td align="left">建立的日期（有前导零），比如， <code>07</code></td>
+</tr>
+<tr>
+<td align="left"><code>:i_day</code></td>
+<td align="left">建立的日期（无前导零），比如， <code>7</code></td>
+</tr>
+</tbody></table>
 
       
 
@@ -209,7 +271,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
         		</li>
       		
 		</ul>
@@ -265,7 +327,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2020/01/10/JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2020/06/23/js/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -279,18 +341,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          JS之根据数组中对象的某个属性值找到指定对象
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/01/10/JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JS之判断数组中是否存在某个数值</div>
+    <a href="/2020/01/14/vue%E4%B9%8Bref%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue之ref问题</div>
       <i class="icon-circle-right"></i>
     </a>
   
