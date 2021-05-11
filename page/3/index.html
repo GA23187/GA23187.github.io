@@ -151,236 +151,78 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-vue获取当前页面url" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS之options请求" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/09/vue%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E9%A1%B5%E9%9D%A2url/">vue获取当前页面url</a>
+      <a class="article-title" href="/2020/01/13/JS%E4%B9%8Boptions%E8%AF%B7%E6%B1%82/">JS之options请求</a>
     </h1>
   
 
         
-        <a href="/2020/01/09/vue%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E9%A1%B5%E9%9D%A2url/" class="archive-article-date">
-  	<time datetime="2020-01-09T03:35:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-09</time>
+        <a href="/2020/01/13/JS%E4%B9%8Boptions%E8%AF%B7%E6%B1%82/" class="archive-article-date">
+  	<time datetime="2020-01-13T09:31:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>有时需要获取当前的url地址来进行一些判断。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p> <code>vue-router</code> 文档 <a href="https://router.vuejs.org/zh-cn/api/route-object.html" target="_blank" rel="noopener">路由信息对象的属性</a></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>刚接触前端的时候，以为HTTP的Request Method只有GET与POST两种，后来才了解到，原来还有HEAD、PUT、DELETE、OPTIONS……</p>
+<p>本地环境测试项目的时候，每次POST之前，为啥浏览器还偷偷给我来一次没有返回的OPTIONS请求？</p>
+<p>原来，浏览器在某些请求中，在正式通信前会增加一次HTTP查询请求，称为”预检”请求（preflight）。</p>
+<p>览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h2 id="两种请求"><a href="#两种请求" class="headerlink" title="两种请求"></a>两种请求</h2><p>浏览器将CORS请求分为两类：简单请求（simple request）和非简单请求（not-so-simple request）。</p>
+<p>同时满足以下条件，就是简单请求：</p>
 <blockquote>
-<p>当前页面：<br>完整url可以用 <code>window.location.href</code><br>路由路径可以用 <code>this.$route.path</code><br>路由路径参数 <code>this.$route.params或 this.$route.query</code></p>
+<p>（1) 请求方法是以下三种方法之一：</p>
+<ul>
+<li>HEAD</li>
+<li>GET</li>
+<li>POST</li>
+</ul>
+<p>（2）HTTP的头信息不超出以下几种字段：</p>
+<ul>
+<li>Accept</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+<li>Last-Event-ID</li>
+<li>Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain</li>
+</ul>
 </blockquote>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>获取url的某个字段的值</p>
-<p>1、路由获取</p>
-<p><code>this.delivery_asn = this.$route.query.delivery_asn;</code></p>
-<p>2、非路由获取</p>
-<p>（1）在js文件中写方法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getUrlKey</span>(<span class="params">name,url</span>)</span>&#123;</span><br><span class="line">　　<span class="keyword">return</span> <span class="built_in">decodeURIComponent</span>((<span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">'[?|&amp;]'</span> + name + <span class="string">'='</span> + <span class="string">'([^&amp;;]+?)(&amp;|#|;|$)'</span>).exec(url) || [, <span class="string">""</span>])[<span class="number">1</span>].replace(<span class="regexp">/\+/g</span>, <span class="string">'%20'</span>)) || <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>（2）在项目文件中引入</p>
-<p>​    　<code>import { getUrlKey } from &#39;@/utils&#39;;</code></p>
-<p>（3）在项目文件中使用</p>
-<p>　<code>this.delivery_asn  = getUrlKey(&quot;delivery_asn &quot;,window.location.href)</code></p>
+<h2 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h2><p>对于简单请求，浏览器直接发出CORS请求。具体来说，就是在头信息之中，增加一个Origin字段。</p>
+<p>Origin字段用来说明，本次请求来自哪个源（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。</p>
+<p>如果Origin指定的源，不在许可范围内，服务器会返回一个正常的HTTP回应。浏览器发现，这个回应的头信息没有包含Access-Control-Allow-Origin字段（详见下文），就知道出错了，从而抛出一个错误，被XMLHttpRequest的onerror回调函数捕获。注意，这种错误无法通过状态码识别，因为HTTP回应的状态码有可能是200。</p>
+<p>如果Origin指定的域名在许可范围内，服务器返回的响应，会多出几个头信息字段。都以Access-Control- 开头：</p>
+<p>（1）Access-Control-Allow-Origin </p>
+<p>该字段是必须的。它的值要么是请求时Origin字段的值，要么是一个*，表示接受任意域名的请求。</p>
 <blockquote>
-<p>如果url中参数base64编码:</p>
-<p>​        let path = window.location.href.split(“?”) //分割url<br>　　let href = path[0]+”?”+path[1]<br>　　let query = Base64.decode(path[1])  //解码<br>　　href = path[0]+”?”+ query //解码后重组</p>
-<p>　　this.delivery_asn  = getUrlKey(“delivery_asn “,href)</p>
+<p>需要注意的是，如果要发送Cookie，Access-Control-Allow-Origin就不能设为星号，必须指定明确的、与请求网页一致的域名。同时，Cookie依然遵循同源政策，只有用服务器域名设置的Cookie才会上传，其他域名的Cookie并不会上传，且（跨源）原网页代码中的document.cookie也无法读取服务器域名下的Cookie。</p>
 </blockquote>
-<p>　　</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/09/vue%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E9%A1%B5%E9%9D%A2url/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-vue之父子通信props、$emit、$ref" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/08/vue%E4%B9%8B%E7%88%B6%E5%AD%90%E9%80%9A%E4%BF%A1props%E3%80%81$emit%E3%80%81$ref/">vue之父子通信props,$emit,$ref</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/08/vue%E4%B9%8B%E7%88%B6%E5%AD%90%E9%80%9A%E4%BF%A1props%E3%80%81$emit%E3%80%81$ref/" class="archive-article-date">
-  	<time datetime="2020-01-08T12:59:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://www.jb51.net/article/140581.htm" target="_blank" rel="noopener">https://www.jb51.net/article/140581.htm</a></p>
-<p>生命周期问题<a href="https://segmentfault.com/a/1190000014705819" target="_blank" rel="noopener">https://segmentfault.com/a/1190000014705819</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/08/vue%E4%B9%8B%E7%88%B6%E5%AD%90%E9%80%9A%E4%BF%A1props%E3%80%81$emit%E3%80%81$ref/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-vue之ref与this.$ref的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/08/vue%E4%B9%8Bref%E4%B8%8Ethis.$ref%E7%9A%84%E4%BD%BF%E7%94%A8/">vue之ref与this.$ref的使用</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/08/vue%E4%B9%8Bref%E4%B8%8Ethis.$ref%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2020-01-08T07:56:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><a href="https://www.jb51.net/article/151249.htm" target="_blank" rel="noopener">https://www.jb51.net/article/151249.htm</a></p>
-<p>$ref不是响应式的<a href="https://www.jb51.net/article/118622.htm" target="_blank" rel="noopener">https://www.jb51.net/article/118622.htm</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/08/vue%E4%B9%8Bref%E4%B8%8Ethis.$ref%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-JS之自定义事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/02/JS%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">JS之自定义事件</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/02/JS%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2020-01-02T15:15:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>自定义事件的触发dispatchEvent<br><a href="https://www.jianshu.com/p/5f9027722204" target="_blank" rel="noopener">https://www.jianshu.com/p/5f9027722204</a><br><a href="https://www.jianshu.com/p/09dfccb12c97" target="_blank" rel="noopener">https://www.jianshu.com/p/09dfccb12c97</a></p>
+<p>（2）Access-Control-Allow-Credentials</p>
+<p>该字段可选。它的值是一个布尔值，表示是否允许发送Cookie。默认情况下，Cookie不包括在CORS请求之中。设为true，即表示服务器明确许可，Cookie可以包含在请求中，一起发给服务器。这个值也只能设为true，如果服务器不要浏览器发送Cookie，删除该字段即可。</p>
+<p>（3）Access-Control-Expose-Headers</p>
+<p>该字段可选。CORS请求时，XMLHttpRequest对象的getResponseHeader()方法只能拿到6个基本字段：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma。如果想拿到其他字段，就必须在Access-Control-Expose-Headers里面指定。</p>
+<h2 id="非简单请求"><a href="#非简单请求" class="headerlink" title="非简单请求"></a>非简单请求</h2><p>非简单请求是那种对服务器有特殊要求的请求，比如请求方法是PUT或DELETE，或者Content-Type字段的类型是application/json。</p>
+<p>简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为”预检”请求（preflight）。</p>
+<p>浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。</p>
+<p>在页面域名与接口域名不一致的情况下，就出现了每次请求前先发送一个options请求的问题。</p>
+<p>OPTIONS请求头信息中，除了Origin字段，还至少会多两个特殊字段：</p>
+<p>（1）Access-Control-Request-Method</p>
+<p>该字段是必须的，用来列出浏览器的CORS请求会用到哪些HTTP方法。</p>
+<p>（2）Access-Control-Request-Headers</p>
+<p>该字段是一个逗号分隔的字符串，指定浏览器CORS请求会额外发送的头信息字段。</p>
+<p>总的来说：</p>
+<p><img src="https://pic3.zhimg.com/50/v2-da5ae04890068d4ffc9f4714e48719dd_hd.jpg" alt="img"></p>
+<p>服务器收到预检请求后，检查了Origin、Access-Control-Request-Method和Access-Control-Request-Headers字段以后，确认允许跨源请求，就可以做出回应。</p>
+<p>上面的HTTP回应中，关键的是Access-Control-Allow-Origin字段，表示<a href="http://link.zhihu.com/?target=http%3A//lizard.qa.nt.ctripcorp.com">http://lizard.qa.nt.ctripcorp.com</a>可以请求数据。该字段也可以设为星号，表示同意任意跨源请求。</p>
+<p>如果浏览器否定了”预检”请求，会返回一个正常的HTTP回应，但是没有任何CORS相关的头信息字段。这时，浏览器就会认定，服务器不同意预检请求，因此触发一个错误，被XMLHttpRequest对象的onerror回调函数捕获。控制台会打印出如下的报错信息。</p>
+<p>XMLHttpRequest cannot load <a href="http://link.zhihu.com/?target=http%3A//lizard.qa.nt.ctripcorp.com">http://lizard.qa.nt.ctripcorp.com</a><br>Origin <a href="http://link.zhihu.com/?target=http%3A//lizard.qa.nt.ctripcorp.com">http://lizard.qa.nt.ctripcorp.com</a> is not allowed by Access-Control-Allow-Origin.</p>
+<p>其他字段中Access-Control-Max-Age 用来指定本次预检请求的有效期，单位为秒。该字段可选。</p>
+<h2 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a>原文链接</h2><p><a href="https://www.cnblogs.com/chris-oil/p/8042677.html" target="_blank" rel="noopener">https://www.cnblogs.com/chris-oil/p/8042677.html</a></p>
 
       
 
@@ -404,7 +246,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/02/JS%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E4%BA%8B%E4%BB%B6/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/13/JS%E4%B9%8Boptions%E8%AF%B7%E6%B1%82/">展开全文 >></a>
         </p>
       
 
@@ -422,398 +264,432 @@
 
 
   
-    <article id="post-JS之自定义属性的几种方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-前端大话" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/02/JS%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">JS之自定义属性的几种方式</a>
+      <a class="article-title" href="/2020/01/13/%E5%89%8D%E7%AB%AF%E5%A4%A7%E8%AF%9D/">前端大话</a>
     </h1>
   
 
         
-        <a href="/2020/01/02/JS%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2020-01-02T15:03:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
+        <a href="/2020/01/13/%E5%89%8D%E7%AB%AF%E5%A4%A7%E8%AF%9D/" class="archive-article-date">
+  	<time datetime="2020-01-13T08:30:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-13</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p><a href="https://blog.csdn.net/weixin_41562661/article/details/81231573" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41562661/article/details/81231573</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/02/JS%E4%B9%8B%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B1%9E%E6%80%A7%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-vue之表单元素的一些事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/02/vue%E4%B9%8B%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%E4%BB%B6/">vue之表单元素的一些事件</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/02/vue%E4%B9%8B%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2020-01-02T14:47:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>总结下这几天vue中使用不同input标签的一些对应的事件。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>ｉｎｐｕｔ标签的各种事件<a href="https://www.jianshu.com/p/2f1933de55ad" target="_blank" rel="noopener">https://www.jianshu.com/p/2f1933de55ad</a></p>
-<p>select实现二级联动<a href="https://www.cnblogs.com/beileixinqing/p/8252153.html" target="_blank" rel="noopener">https://www.cnblogs.com/beileixinqing/p/8252153.html</a></p>
-<p>select</p>
-<p>@change<br><a href="https://segmentfault.com/q/1010000015933375/a-1020000015933837" target="_blank" rel="noopener">https://segmentfault.com/q/1010000015933375/a-1020000015933837</a></p>
-<p>透传到select的v-model指令中<br><a href="https://blog.csdn.net/yunhuaikong/article/details/96868171" target="_blank" rel="noopener">https://blog.csdn.net/yunhuaikong/article/details/96868171</a></p>
-<p>[select设置默认选中]<a href="https://www.cnblogs.com/till-the-end/p/8473738.html" target="_blank" rel="noopener">https://www.cnblogs.com/till-the-end/p/8473738.html</a></p>
-<p>vue中@change兼容问题<a href="https://www.jianshu.com/p/4334f6a40fb7" target="_blank" rel="noopener">https://www.jianshu.com/p/4334f6a40fb7</a></p>
-<p>vue-输入框change事件并获取值<a href="https://www.cnblogs.com/zhizou/p/10648513.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhizou/p/10648513.html</a><br>vue获取input值<a href="https://blog.csdn.net/qq_39043923/article/details/88688420" target="_blank" rel="noopener">https://blog.csdn.net/qq_39043923/article/details/88688420</a><br><a href="https://blog.csdn.net/qq_38188485/article/details/80587420" target="_blank" rel="noopener">https://blog.csdn.net/qq_38188485/article/details/80587420</a><br>vue中获取file数据<br><a href="https://www.cnblogs.com/sunday123/p/11504885.html" target="_blank" rel="noopener">https://www.cnblogs.com/sunday123/p/11504885.html</a><br>vue.js如何获取当前元素的文字信息<br><a href="https://www.php.cn/js-tutorial-388081.html" target="_blank" rel="noopener">https://www.php.cn/js-tutorial-388081.html</a></p>
-<p>js获取option中的文本<a href="https://blog.csdn.net/foreverlanlan/article/details/23033571" target="_blank" rel="noopener">https://blog.csdn.net/foreverlanlan/article/details/23033571</a></p>
-<p><a href="https://www.cnblogs.com/xiaoniuniu886/p/11047795.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaoniuniu886/p/11047795.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/02/vue%E4%B9%8B%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%E4%BB%B6/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-JS之几种请求方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/31/JS%E4%B9%8B%E5%87%A0%E7%A7%8D%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/">JS之几种请求方式</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/31/JS%E4%B9%8B%E5%87%A0%E7%A7%8D%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/" class="archive-article-date">
-  	<time datetime="2019-12-30T17:17:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>A23-187:<br><a href="https://www.cnblogs.com/bester-ace/articles/9234229.html" target="_blank" rel="noopener">https://www.cnblogs.com/bester-ace/articles/9234229.html</a></p>
-<p>A23-187:<br><a href="https://www.cnblogs.com/limeiky/p/5266492.html" target="_blank" rel="noopener">https://www.cnblogs.com/limeiky/p/5266492.html</a></p>
-<p>A23-187:<br><a href="https://www.cnblogs.com/wushifeng/p/6707248.html" target="_blank" rel="noopener">https://www.cnblogs.com/wushifeng/p/6707248.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/31/JS%E4%B9%8B%E5%87%A0%E7%A7%8D%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-vue之axios的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/31/vue%E4%B9%8Baxios%E7%9A%84%E4%BD%BF%E7%94%A8/">vue之axios的使用</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/31/vue%E4%B9%8Baxios%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2019-12-30T17:17:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>A23-187:<br><a href="https://www.jianshu.com/p/fd7bf46d4412" target="_blank" rel="noopener">https://www.jianshu.com/p/fd7bf46d4412</a></p>
-<p>A23-187:<br><a href="https://www.jianshu.com/p/affdd9fa6a2a" target="_blank" rel="noopener">https://www.jianshu.com/p/affdd9fa6a2a</a></p>
-<p>A23-187:<br><a href="https://www.jianshu.com/p/d771bbc61dab" target="_blank" rel="noopener">https://www.jianshu.com/p/d771bbc61dab</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/31/vue%E4%B9%8Baxios%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-CSS之多行文本溢出显示省略号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/31/CSS%E4%B9%8B%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7/">CSS之多行文本溢出显示省略号</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/31/CSS%E4%B9%8B%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7/" class="archive-article-date">
-  	<time datetime="2019-12-30T16:59:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><a href="https://www.html.cn/archives/5206/" target="_blank" rel="noopener">https://www.html.cn/archives/5206/</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/31/CSS%E4%B9%8B%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-JS之select选中option触发事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/26/JS%E4%B9%8Bselect%E9%80%89%E4%B8%ADoption%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6/">JS之select选中option触发事件</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/26/JS%E4%B9%8Bselect%E9%80%89%E4%B8%ADoption%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6/" class="archive-article-date">
-  	<time datetime="2019-12-26T13:57:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在做一个二级联动选择框时，想要获取到当前点击的option的值，发现给option绑定click事件没得用，给select添加呢，又会发现还没点option就已经触发了。</p>
-<p>百度来的说option没有可以触发的事件,需要在select中加onchange事件。</p>
-<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>onchange事件的触发，是改变了option选项时，如果是一直选择某一个这个事件不会触发。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">"myselect"</span>&gt;</span><br><span class="line">  &lt;option value=<span class="string">"opt1"</span>&gt;选项<span class="number">1</span>&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">  &lt;option value="opt2"&gt;选项2&lt;/</span>option&gt;</span><br><span class="line">  &lt;option value=<span class="string">"opt3"</span>&gt;选项<span class="number">3</span>&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>select&gt;</span><br><span class="line">$(<span class="string">"#myselect"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>)<span class="comment">//这里的this不是当前jq对象，而是select这个dom对象。</span></span><br><span class="line">  <span class="keyword">var</span> opt=$(<span class="string">"#myselect"</span>).val()<span class="comment">//获取的是当前选择的option的value</span></span><br><span class="line">  <span class="keyword">var</span> opt=$(<span class="string">"#myselect"</span>).text()<span class="comment">//获取的是选项1，2，3</span></span><br><span class="line">  <span class="keyword">var</span> opt=$(<span class="string">"#myselect"</span>).html()<span class="comment">//获取的是整个标签&lt;select&gt;&lt;/select&gt;</span></span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>  <strong>一. 使用原生js获取select标签下属性有selected的option项。</strong></p>
+        <h3 id="免费前端教程不会告诉你这些"><a href="#免费前端教程不会告诉你这些" class="headerlink" title="免费前端教程不会告诉你这些"></a>免费前端教程不会告诉你这些</h3><p>这个是昨天偶然间在知乎上看到的一个知乎LIVE，答题就是音频在线直播吧，我试听了一下觉得分享的还不错，就买了完整的。主讲人叫方应杭，貌似是个挺牛逼的程序猿，之前没有听过，但这是个典型的科班出生的程序员，全栈，挺佩服他的。接下来就整一些挺的过程中整理的点吧：</p>
+<h4 id="作者的自我介绍"><a href="#作者的自我介绍" class="headerlink" title="作者的自我介绍"></a>作者的自我介绍</h4><blockquote>
+<p>首先作者进项了一大段自我介绍，介绍了他从实习开始的工作经历。正如他所说的确实很顺啊，从实习开始就是腾讯，然后转正了去了腾讯，之后又去了阿里等公司。他大体每段工作经历都有讲到，那能从他这些工作经历的介绍中得到什么对自己有用的点呢？</p>
+</blockquote>
 <ul>
-<li><p>先写一个select标签如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectBox"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"value-aaa"</span> <span class="attr">selected</span>&gt;</span></span><br><span class="line">              aaaaa</span><br><span class="line">     <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"value-bbb"</span>&gt;</span></span><br><span class="line">              bbbbb</span><br><span class="line">     <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li><p>首先，作者有个习惯，就是在开始项目之前自己会根据项目情况自己造一些轮子，并且以开源框架的要求去封装，这一点给我的启示是自己也要适当地造一些轮子放在github上，看自己能不能做得跟第三方插件一样好甚至某些方面好那么一丢丢。而且这些造的轮子也便于自己日后复用以及面试时跟被人展示自己的技术沉淀。</p>
 </li>
-<li><p>原生js获取select标签这个 <strong>对象</strong> :</p>
-<p> var selectTest = document.getElementById(“selectBox”);</p>
+<li><p>在工作之余得有个自己的个人项目（side project）</p>
 </li>
-<li><p>然后找到 <strong>selected</strong> 的option标签的 <strong>索引值:</strong> </p>
-<p>var selectIndex = selectTest.selectedIndex;</p>
+<li><p>按照作者的观点，要想工作的内容刚好是自己需要学习的知识概率是很小的，那要想学习和实践一些新技术新框架怎么办呢，就是自己在工作之余弄一个自己的项目，在这个项目上自己想用什么框架和技术都是没有限制的。</p>
 </li>
-<li><p>这样就可以通过索引来获取选中项的 <strong>选中值和文本值:</strong> </p>
-<p>var selectValue = selectTest.options[selectIndex].value;<br>var selectText = selectTest.options[selectIndex].text;</p>
+<li><p>这样说 来确实挺有必要的。我之前找工作老想着新工作上用到的技术正好是自己需要学习的，可公司不是慈善机构，既然你都还需要在公司里学习，公司干嘛招你呢。所以，在公司工作的过程中能学到自己想学的知识最好，但那些还没接触过的或者最新的技术还得靠自己在工作之余去学习，这个观念得转变过来。</p>
+<h4 id="回答网友问题总结"><a href="#回答网友问题总结" class="headerlink" title="回答网友问题总结"></a>回答网友问题总结</h4></li>
+<li><p>学习知识的形式下过比较一般的是看书，进一步的是提炼总结，再进一步就是输出，写代码或者写文章，最好的方式是讲出来，也就是让别人听懂</p>
+<h4 id="前端的历史"><a href="#前端的历史" class="headerlink" title="前端的历史"></a>前端的历史</h4></li>
+<li><p>最开始是没有前端这个职位的，网页是后端程序猿写的，大都用的table布局，没什么css，比较丑</p>
+</li>
+<li><p>后来又了美工的加入，开始使用div+css布局，变得好看一些了</p>
+</li>
+<li><p>再之后随着AJAX的普及，慢慢开始专门有些后端程序猿开始专注于写复杂的JS来达到复杂的交互，这就慢慢形成了前端这个岗位</p>
+</li>
+<li><p>可是最开始HTML是由后端控制的，数据是由后端渲染，这样的话前端是很不爽的，而且前后端不能同时工作，后来就出现了前后端分离</p>
+</li>
+<li><p>前后端分离意味着前端完全控制HTML/CSS/JS，后端只负责用AJAX的形式提供数据接口，同时人员也彻底分离了，后端专门做后端的事，前端做前端的事</p>
+</li>
+<li><p>前后端分离也带来了一个问题，就是前端负责的这块显得没有后端那么重要，所以晋升难一些，事实上也确实是这样，不过后来移动端的兴起使得前端负责的东西多了一块，也稍微显得重要一些了</p>
+</li>
+<li><p>再之后就是各种随着HTML5和CSS3以及ES56的部分基础设施的完善和升级，前端框架开始向各种优秀语言抄，也就出现了现在的MVC和MVVM等框架</p>
+</li>
+</ul>
+<h4 id="入门指导"><a href="#入门指导" class="headerlink" title="入门指导"></a>入门指导</h4><ul>
+<li>书籍推荐<ul>
+<li>javascript.ruanyifeng.com</li>
+<li>es6.ruanyifeng.com</li>
+<li>你不知道的 JavaScript</li>
+<li>CSS 揭秘</li>
+</ul>
+</li>
+<li>项目推荐<ul>
+<li>原生 JS 仿网易云音乐、饿了么（后端使用 leanCloud）</li>
+<li><a href="https://www.cnblogs.com/wancheng7/p/8590212.html" target="_blank" rel="noopener">https://www.cnblogs.com/wancheng7/p/8590212.html</a></li>
+<li>Vue 或 React 再实现一遍</li>
+</ul>
+</li>
+<li>网站推荐<ul>
+<li>MDN</li>
+<li>CSS Tricks</li>
+<li>Codrops</li>
+<li>优质的中文前端博客 （1.4k）<a href="https://github.com/FrankFang/best-chinese-front-end-blogs" target="_blank" rel="noopener">https://github.com/FrankFang/best-chinese-front-end-blogs</a></li>
+</ul>
+</li>
+<li>学习思路推荐<ul>
+<li>仿你看到的所有东西：hao123、知乎、微信</li>
+<li>Follow 我的 GitHub<ul>
+<li><a href="https://github.com/FrankFang/resume-15-3" target="_blank" rel="noopener">https://github.com/FrankFang/resume-15-3</a></li>
+<li><a href="https://github.com/FrankFang/nav-demo" target="_blank" rel="noopener">https://github.com/FrankFang/nav-demo</a></li>
+<li><a href="https://github.com/FrankFang/canvas-demo-2017" target="_blank" rel="noopener">https://github.com/FrankFang/canvas-demo-2017</a></li>
+</ul>
+</li>
+<li>看完任意一本教程</li>
+</ul>
+</li>
+<li>给一年前端<ul>
+<li>从 60 分到 80 分，关注用户体验</li>
+<li>模仿组件</li>
+<li>不要重复自己</li>
+<li>不要满足于调用 API</li>
+</ul>
+</li>
+<li>三年前端<ul>
+<li>关注工作效率</li>
+<li>做份外的事情：后端、设计、产品</li>
+<li>管理上级、拢络平级</li>
+<li>变成重要的人</li>
+<li>坚持写博客</li>
+<li>模仿框架</li>
+<li>跟人（榜样）学，而不是跟视频、书学<ul>
+<li>社区里的人</li>
+<li>公司里的人</li>
+<li>互联网上的人</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="我的收获"><a href="#我的收获" class="headerlink" title="我的收获"></a>我的收获</h4><ul>
+<li>增长见识<ul>
+<li>首先作为一个非计算机科班的我第一次比较完整的了解了一个优秀科班生的从业经历，当然作者自己都说了，他算是比较顺风顺水型，但至少能看出学计算机专业的在编程领域真的有更多的可能性</li>
+<li>另外一点就是关于前端这个职位的发展，毕竟我不是从有这个职位就开始做前端的，这次算是从作者口中间接了解了前端这个一个职位的发展史</li>
+</ul>
+</li>
+<li>学习方法<ul>
+<li>我们之所以喜欢看名人传记，就是想从他们身上找到一些我们能够学习的优秀特质。听他人的技术分享也是一样的道理。虽热作者在分享过程中几乎没有说过要我们学他怎么样的话，但从他一些细节和习惯的描述中我们可以选择性的学习一些优秀特质，例如：<ul>
+<li>在开始项目之前自己先试着造个轮子</li>
+<li>工作之余做side project，在这种项目上学习新知识，而不是工作中</li>
+<li>工作中尝试封装组件，并且以能够给别人使用为目标，无论有没有人用</li>
+</ul>
+</li>
+<li>我觉得作者身上表现的这些点一定算是他成功路上的优秀特质，我们不一定要都学会，但是可以结合自身情况来学习一下</li>
+</ul>
+</li>
+<li>关于前端学习之路<ul>
+<li>前端知识比较分散，数量庞杂，最终还是要多练，多记吧，这肯定是必由之路。我之前听人说过一种观点，前端就是在记各种API和熟练使用各种API，当然，这是中低层主要在做的事情，也是每一个优秀前端的基本功。至于更高层级的话，按作者的说法就是不仅仅要满足于会用现成的API了，而是要想着怎么造好用的API给别人使用，当然造这个的前提是了解原理了，所以这个阶段就是不仅要知道怎么用，还得知道为什么要这么用了，我正在朝这个方向努力，加油！</li>
+<li>关于作者提出的向人学习这一点我有些疑问？<ul>
+<li>因为之前一直有种观点就是不要轻易去问人，因为没经过自己思考就去问人那样得到的答案记得确实没那么深刻。所以说关于作者提出的跟人学而不是跟视频什么的学，我的理解是多交流，当你身边坐着一位大牛的时候，你把问题和思路直接跟他说，那样能够得到及时的反馈肯定是最高效的，当然这种问题都是一些思路啊方法层面的了。</li>
+<li>所以，我的总结就是，基础的东西一定要自己查自己记住，而一些方法啊原理层面的东西，有资源的情况下尽量找比你牛逼的人交流解决，那肯定是要高效一些的。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="谈谈个人的长期目标和短期目标"><a href="#谈谈个人的长期目标和短期目标" class="headerlink" title="谈谈个人的长期目标和短期目标"></a>谈谈个人的长期目标和短期目标</h4><ul>
+<li>从15年毕业后经过培训进入前端行业到现在真正从事前端的时间也有两年多了，前一年几乎是没有任何目标感的，也不知道自己需要什么，公司需要什么就学什么，感觉有点浑浑噩噩混着的感觉。大概也就从去年开始才开始有了不仅仅要满足于解决现有问题，还应该多去了解基础和底层原理了。</li>
+<li>首先谈谈短期目标吧<ul>
+<li>短期目前就是在最近两年内完善自己的知识体系，成为前端小组长或者负责人。我目前理解的这个知识体系是从计算机原理到浏览器执行机制、HTTP协议、JS的最新规范以及适当的了解目前流行的前端框架及其出现的原因。这些不一定要面面俱到，但每个方面都要有涉及，不能遗漏。</li>
+</ul>
+</li>
+<li>长期目标<ul>
+<li>目前来说长期目标就是在前端之外探寻更多的可能性，也就是是说看在前端知识体系基本完善的情况下结合别的方面的能力。最好的话就是能够走管理或者培训吧。技术这条路是没有尽头的，每个公司需要的技术牛人毕竟是有限的，尤其是中小型公司，而每个公司都需要能够提升团队工作效率，尽快带来产出的leader，我想，我的长期目标就是成为一个这样能够推进项目发展的leader。</li>
+</ul>
+</li>
+<li>我的短期目标是长期目标的基础，也是我来杭州的目的，我相信只要这个短期目前完成的好的话长期目标就是积累加机遇的过程了！</li>
+</ul>
+<h4 id="最后附上作者的知乎LIVE"><a href="#最后附上作者的知乎LIVE" class="headerlink" title="最后附上作者的知乎LIVE"></a>最后附上作者的知乎LIVE</h4><p><a href="https://www.zhihu.com/lives/904019043848175616" target="_blank" rel="noopener">免费前端教程不会告诉你这些</a></p>
+<h4 id="原文地址"><a href="#原文地址" class="headerlink" title="原文地址"></a>原文地址</h4><p><a href="https://www.cnblogs.com/wancheng7/p/8906333.html" target="_blank" rel="noopener">https://www.cnblogs.com/wancheng7/p/8906333.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">暂定</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/13/%E5%89%8D%E7%AB%AF%E5%A4%A7%E8%AF%9D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-vue之axios-vuex发送请求" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/13/vue%E4%B9%8Baxios-vuex%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/">vue之axios+vuex发送请求</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/13/vue%E4%B9%8Baxios-vuex%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/" class="archive-article-date">
+  	<time datetime="2020-01-13T07:25:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Vue 原本有一个官方推荐的 ajax 插件 vue-resource，但是自从 Vue 更新到 2.0 之后，官方就不再更新 vue-resource。<br>    目前主流的 Vue 项目，都选择 axios来完成 ajax 请求，而大型项目都会使用 Vuex 来管理数据，所以这篇博客将结合两者来发送请求。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>使用 npm 安装 axios</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios -S</span><br></pre></td></tr></table></figure>
+<pre><code>安装其他插件的时候，可以s直接在 main.js 中引入并 Vue.use()，但是 axios 并不能 use，只能每个需要发送请求的组件中即时引入。</code></pre><p>为了解决这个问题，有两种开发思路，一是在引入 axios 之后，修改原型链，二是结合 Vuex，封装一个 aciton。具体的实施请往下看~<br>方案一：改写原型链<br>首先在main.js 中引入 axios</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br></pre></td></tr></table></figure>
+<pre><code>这时候如果在其它的组件中，是无法使用 axios 命令的。但如果将 axios 改写为 Vue 的原型属性，就能解决这个问题</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.$ajax = axios</span><br></pre></td></tr></table></figure>
+<pre><code>在 main.js 中添加了这两行代码之后，就能直接在组件的 methods 中使用 $ajax 命令</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">submitForm () &#123;</span><br><span class="line"><span class="keyword">this</span>.$ajax(&#123;</span><br><span class="line">method: <span class="string">'post'</span>,</span><br><span class="line">url: <span class="string">'/user'</span>,</span><br><span class="line">data: &#123;</span><br><span class="line">name: <span class="string">'wise'</span>,</span><br><span class="line">info: <span class="string">'wrong'</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方案二：在 Vuex 中封装<br>    之前的文章中用到过 Vuex 的 mutations，从结果上看，mutations 类似于事件，用于提交 Vuex 中的状态 state。<br>    action 和 mutations 也很类似，主要的区别在于，action 可以包含异步操作，而且可以通过 action 来提交 mutations<br>另外还有一个重要的区别：</p>
+<pre><code>mutations 有一个固有参数 state，接收的是 Vuex 中的 state 对象
+action 也有一个固有参数 context，但是 context 是 state 的父级，包含 state、getters
+Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'Vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span><span class="comment">// 引入 axios</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line"><span class="comment">// 定义状态</span></span><br><span class="line">state: &#123;</span><br><span class="line">test01: &#123;</span><br><span class="line">name: <span class="string">'Wise Wrong'</span></span><br><span class="line">&#125;,</span><br><span class="line">test02: &#123;</span><br><span class="line">tell: <span class="string">'12312345678'</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line">actions: &#123;</span><br><span class="line"><span class="comment">// 封装一个 ajax 方法</span></span><br><span class="line">saveForm (context) &#123;</span><br><span class="line">axios(&#123;</span><br><span class="line">method: <span class="string">'post'</span>,</span><br><span class="line">url: <span class="string">'/user'</span>,</span><br><span class="line">data: context.state.test02</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br></pre></td></tr></table></figure>
+
+<pre><code>注意：即使已经在 main.js 中引入了 axios，并改写了原型链，也无法在 store.js 中直接使用 $ajax 命令。换言之，这两种方案是相互独立的
+在组件中发送请求的时候，需要使用this.$store.dispatch 来分发</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">submitForm () &#123;</span><br><span class="line"><span class="keyword">this</span>.$store.dispatch(<span class="string">'saveForm'</span>)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code>submitForm 是绑定在组件上的一个方法，将触发 saveForm，从而通过 axios 向服务器发送请求</code></pre><p>附录：配置 axios<br>    上面封装的方法中，使用了 axios 的三个配置项，实际上只有 url 是必须的，完整的 api 可以参考使用说明。<br>    为了方便，axios 还为每种方法起了别名，比如上面的 saveForm 方法等价于：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">axios.post(<span class="string">'/user'</span>, context.state.test02)</span><br></pre></td></tr></table></figure>
+<p>完整的请求还应当包括 .then 和 .catch</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<pre><code>当请求成功时，会执行 .then，否则执行 .catch
+这两个回调函数都有各自独立的作用域，如果直接在里面访问 this，无法访问到 Vue 实例。
+这时只要添加一个.bind(this) 就能解决这个问题</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.data)</span><br><span class="line">&#125;.bind(<span class="keyword">this</span>))</span><br></pre></td></tr></table></figure>
+<p>原文链接：<a href="https://blog.csdn.net/sunhuaqiang1/article/details/80206728" target="_blank" rel="noopener">https://blog.csdn.net/sunhuaqiang1/article/details/80206728</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/13/vue%E4%B9%8Baxios-vuex%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-vue之webpack的代理配置（proxyTable）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/13/vue%E4%B9%8Bwebpack%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%EF%BC%88proxyTable%EF%BC%89/">vue之webpack的代理配置（proxyTable）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/13/vue%E4%B9%8Bwebpack%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%EF%BC%88proxyTable%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-01-13T06:42:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在项目开发的时候，接口联调的时候一般都是同域名下，且不存在跨域的情况下进行接口联调，但是当我们现在使用vue-cli进行本地调试时，我们在本地启动服务器后，比如本地开发服务下是 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 这样的访问页面，但是我们的接口地址是 <a href="http://xxxx.com/save/index" target="_blank" rel="noopener">http://xxxx.com/save/index</a> 这样的接口地址，我们这样直接使用会存在跨域的请求，导致接口请求不成功，因此我们需要配置一下。</p>
+<p>vue的<a href="https://vuejs-templates.github.io/webpack/proxy.html" target="_blank" rel="noopener">proxyTable</a>是用于开发阶段配置跨域的工具，可以同时配置多个后台服务器跨越请求接口，其真正依赖的npm包是<a href="https://github.com/chimurai/http-proxy-middleware" target="_blank" rel="noopener">http-proxy-middleware</a>，在github上拥有更丰富的配置。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>针对vue-cli2.0搭建的项目，在config文件下的index.js中配置代理地址</p>
 <blockquote>
-<p>注意：不能获取到自定义属性的值，或者是标签具有的属性但是没有直接在标签上书写属性值（即通过js添加的方式）。</p>
-<p>需要借助getAttrbute和setAttrbute方法二个原生DOM方法的。或者是jq的attr()方法。</p>
+<p>举例：localhost:8080/api/xxx 代理到 <a href="http://192.168.10.183:8103/api/xxx,如果用pathRewrite重写则代理到http://192.168.10.183:8103/xxx将&#39;/api&#39;转为&#39;/&#39;" target="_blank" rel="noopener">http://192.168.10.183:8103/api/xxx,如果用pathRewrite重写则代理到http://192.168.10.183:8103/xxx将&#39;/api&#39;转为&#39;/&#39;</a></p>
 </blockquote>
-</li>
-</ul>
-<p>详情可见：JS之自定义属性的几种方式[xxxxxx]</p>
-<hr>
-<p><strong>二. 当然这样写可能会比较麻烦，jquery为我们提供了更加方便的方法</strong></p>
-<ul>
-<li>主要是用到了jquery中的 <strong>选择器:</strong> </li>
-</ul>
-<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selectedOption = $(<span class="string">"#selectBox option: selected"</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">　　proxyTable: &#123;</span><br><span class="line">  <span class="string">'/api'</span>: &#123;<span class="comment">// '/api':匹配项</span></span><br><span class="line">    target: <span class="string">'http://192.168.10.183:8103'</span>,<span class="comment">// 接口的域名</span></span><br><span class="line">　　　　 <span class="comment">// secure: false,// 如果是https接口，需要配置这个参数</span></span><br><span class="line">    changeOrigin: <span class="literal">true</span>,<span class="comment">// 如果接口跨域，需要进行这个参数配置</span></span><br><span class="line">　　　　　<span class="comment">// pathRewrite: &#123;// 如果接口本身没有/api需要通过pathRewrite来重写了地址</span></span><br><span class="line">　　　　　<span class="comment">//   '^api': ''</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>然后直接使用val() 和 text() 方法：</li>
-</ul>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">console</span><span class="selector-class">.log</span>(<span class="selector-tag">selectedOption</span><span class="selector-class">.val</span>(), <span class="selector-tag">selectedOption</span><span class="selector-class">.text</span>()  );</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>注意使用jQuery的方法，记得 <strong>引入jquery库文件</strong>。</li>
-</ul>
-<p>在jQuery中选择select标签的方法有：</p>
-<p>$(“#selectId”) 和 $(“select[name=’selectName’]”)</p>
-<p><strong>1.获取select选择的值</strong>,选择了select之后直接用val()：</p>
-<p>例如：$(“#selectId”).val()或者$(“select[name=’selectName’]”).val();</p>
-<p><strong>2.获取select的文本值</strong>，选择了select之后，用find()：</p>
-<p>例如：$(“#selectId”).find(“option:selected”).text();或者$(“select[name=’selectName’]”).find(“option:selected”).text();</p>
-<p><strong>3.获取select选中的索引</strong></p>
-<p>例如：$(“#selectId”).get(0).selectedindex;</p>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>用axios请求配置proxyTable代理：<a href="https://www.cnblogs.com/beka/p/8479710.html" target="_blank" rel="noopener">https://www.cnblogs.com/beka/p/8479710.html</a></p>
+<p>vue之proxyTable代理超全面配置:<a href="https://blog.csdn.net/harmsworth2016/article/details/84403396" target="_blank" rel="noopener">https://blog.csdn.net/harmsworth2016/article/details/84403396</a></p>
+<p><a href="https://blog.csdn.net/sunhuaqiang1/article/details/85111648" target="_blank" rel="noopener">https://blog.csdn.net/sunhuaqiang1/article/details/85111648</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/13/vue%E4%B9%8Bwebpack%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%EF%BC%88proxyTable%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-B_JS之ES6语法参数解构与对象展开运算符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/10/B_JS%E4%B9%8BES6%E8%AF%AD%E6%B3%95%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%84%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/">JS之ES6语法参数解构与对象展开运算符</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/10/B_JS%E4%B9%8BES6%E8%AF%AD%E6%B3%95%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%84%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/" class="archive-article-date">
+  	<time datetime="2020-01-10T12:03:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/10/B_JS%E4%B9%8BES6%E8%AF%AD%E6%B3%95%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%84%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-JS之ES6语法export与export-default的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/10/JS%E4%B9%8BES6%E8%AF%AD%E6%B3%95export%E4%B8%8Eexport-default%E7%9A%84%E5%8C%BA%E5%88%AB/">JS之ES6语法export与export default的区别</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/10/JS%E4%B9%8BES6%E8%AF%AD%E6%B3%95export%E4%B8%8Eexport-default%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2020-01-10T11:43:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.cnblogs.com/fanyanzhao/p/10298543.html" target="_blank" rel="noopener">https://www.cnblogs.com/fanyanzhao/p/10298543.html</a></p>
 
       
 
@@ -837,7 +713,292 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/26/JS%E4%B9%8Bselect%E9%80%89%E4%B8%ADoption%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/01/10/JS%E4%B9%8BES6%E8%AF%AD%E6%B3%95export%E4%B8%8Eexport-default%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-JS之根据对象的某个属性值找到指定对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/">JS之根据对象的某个属性值找到指定对象</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
+  	<time datetime="2020-01-10T07:27:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = &#123;</span><br><span class="line">  <span class="number">1267</span>: <span class="string">'成都大学附属医院'</span>,</span><br><span class="line">  <span class="number">1272</span>: <span class="string">'成都军区机关医院'</span>,</span><br><span class="line">  <span class="number">1206</span>: <span class="string">'成都市第二人民医院'</span>,</span><br><span class="line">  <span class="number">1256</span>: <span class="string">'成都市第六人民医院'</span>,</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findKey</span>(<span class="params">obj, value, compare = (a, b</span>) =&gt; <span class="title">a</span> === <span class="title">b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.keys(obj).find(<span class="function"><span class="params">k</span> =&gt;</span> compare(obj[k], value))</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">// function findKey(obj,value)&#123;</span></span><br><span class="line"><span class="comment">//   return Object.keys(obj).find((k)=&gt;&#123;</span></span><br><span class="line"><span class="comment">//     return obj[k]==value</span></span><br><span class="line"><span class="comment">//   &#125;)</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.log(findKey(arr, <span class="string">'成都大学附属医院'</span>));</span><br><span class="line"></span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/TCF_JingFeng/article/details/89881305</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-JS之根据数组中对象的某个属性值找到指定对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/">JS之根据数组中对象的某个属性值找到指定对象</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
+  	<time datetime="2020-01-10T07:21:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">现在有一个数组对象,也就是数组元素是对象类型,现在的需求是根据对象的某个属性值,找到该数组对应的元素(对象),比如根据<span class="string">"bianma"</span>==<span class="string">"11"</span>,找到对应的<span class="string">"name"</span>为<span class="string">"商品房"</span> : </span><br><span class="line"></span><br><span class="line">该数组对象数据如下: </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> datas = [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"name"</span>: <span class="string">"商品房"</span>,</span><br><span class="line">      <span class="string">"bianma"</span>: <span class="string">"11"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"name"</span>: <span class="string">"商铺"</span>,</span><br><span class="line">      <span class="string">"bianma"</span>: <span class="string">"12"</span></span><br><span class="line">    &#125;</span><br><span class="line"> ]</span><br><span class="line">我们可以通过对数组进行筛选操作:</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data= datas.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">return</span> item.bianma == <span class="string">"12"</span>; </span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(data); <span class="comment">// [&#123;name: "商铺", bianma: "12"&#125;]</span></span><br><span class="line">filter() 方法将匹配元素集合缩减为匹配指定选择器的元素.该方法不改变原数组,返回的是筛选后满足条件的数组.</span><br><span class="line"></span><br><span class="line">转载于:https:<span class="comment">//www.cnblogs.com/stella1024/p/7919231.html</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-JS之判断数组中对象是否存在某个数值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/10/JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC/">JS之判断数组中对象是否存在某个数值</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/10/JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC/" class="archive-article-date">
+  	<time datetime="2020-01-10T07:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [&#123;</span><br><span class="line">    name: <span class="string">"回锅肉"</span>,</span><br><span class="line">    value: <span class="string">"0"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    name: <span class="string">"小炒肉"</span>,</span><br><span class="line">    value: <span class="string">"1"</span></span><br><span class="line">&#125;]</span><br><span class="line"><span class="keyword">var</span> result = arr.some(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (item.name == <span class="string">"小炒肉"</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br><span class="line"></span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/weixin_40687883/article/details/86502766</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/10/JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-JS之判断数组中是否存在某个数值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/10/JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC/">JS之判断数组中是否存在某个数值</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/10/JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC/" class="archive-article-date">
+  	<time datetime="2020-01-10T07:19:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1.javascript的indexOf()方法 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr_data = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]; </span><br><span class="line">arr_data.indexOf(<span class="number">1</span>); <span class="comment">//如果存在返回值的下标，不存在返回-1</span></span><br></pre></td></tr></table></figure>
+
+<p>2.jquery的$.inArray()方法 </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$.inArray(<span class="number">1</span>, arr_data); <span class="comment">//如果存在返回值的下标，不存在返回-1</span></span><br></pre></td></tr></table></figure>
+
+<p>3.arr.find()方法</p>
+<p>ES6为数组添加的方法find()用于找出第一个符合条件的数组元素。它的参数是一个回调函数，所有的数组元素依次遍历该回调函数，直到找出第一个返回值为true的元素，然后返回该元素，否则返回undefined。</p>
+<p>注意：find()对于空数组，函数是不会执行的。find()并没有改变数组的原始值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">23</span>,<span class="number">40</span>,<span class="number">50</span>]</span><br><span class="line"><span class="keyword">let</span> res = arr.find(<span class="function">(<span class="params">val,index,arr</span>)=&gt;</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> val &gt;<span class="number">30</span></span><br><span class="line">&#125;)</span><br><span class="line"> <span class="built_in">console</span>.log(res) <span class="comment">//返回：40</span></span><br></pre></td></tr></table></figure>
+
+<p>4.arr.findIndex()返回第一个符合条件的数组元素的位置，如果所有的元素都不符合条件，则返回-1.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">23</span>,<span class="number">40</span>,<span class="number">50</span>]</span><br><span class="line"><span class="keyword">let</span> res = arr.findIndex(<span class="function">(<span class="params">val,index,arr</span>)=&gt;</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> val &gt;<span class="number">30</span></span><br><span class="line">&#125;)</span><br><span class="line"> <span class="built_in">console</span>.log(res) <span class="comment">//返回：1</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：find(),findIndex()弥补了indexOf的不足：（即判断NAN）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[<span class="literal">NaN</span>].indexOf(<span class="literal">NaN</span>) <span class="comment">// -1</span></span><br><span class="line"></span><br><span class="line">[<span class="literal">NaN</span>].findIndex(<span class="function"><span class="params">y</span> =&gt;</span> <span class="built_in">Object</span>.is(<span class="literal">NaN</span>, y))<span class="comment">// 0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> arr2 = [<span class="number">1</span>, <span class="number">2</span>, <span class="literal">NaN</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>, <span class="number">11</span>]</span><br><span class="line"><span class="keyword">var</span> ret5 = arr2.find(<span class="function">(<span class="params">value, index, arr</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.is(<span class="literal">NaN</span>, value)</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ret6 = arr2.findIndex(<span class="function">(<span class="params">value, index, arr</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.is(<span class="literal">NaN</span>, value)</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%s'</span>, ret5)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%s'</span>, ret6)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p><code>Object.is()</code>是在ES6中定义的一个新方法，它与‘<code>===</code>’相比，特别针对<code>-0</code>、<code>+0</code>、<code>NaN</code>做了处理。<code>Object.is(-0, +0)</code>会返回<code>false</code>，而<code>Object.is(NaN, NaN)</code>会返回<code>true</code>。这与<code>===</code>的判断恰好相反，也更加符合我们的预期。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Object.is(+0, -0) // false</span><br><span class="line">Object.is(NaN, NaN) // true</span><br><span class="line">Object.is(NaN, 0/0) // true</span><br><span class="line">+0 === -0 // true</span><br><span class="line">NaN === NaN // false</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>5.arr.includes()判断是否包含某一元素。它直接返回true或者false表示是否包含元素，对NaN一样能有有效。</p>
+<p>在ES5，Array已经提供了indexOf用来查找某个元素的位置，如果不存在就返回-1，但是这个函数在判断数组是否包含某个元素时有两个小不足，第一个是它会返回-1和元素的位置来表示是否包含，在定位方面是没问题，就是不够语义化。另一个问题是不能判断是否有NaN的元素。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="literal">NaN</span>]</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%s'</span>, arr1.indexOf(<span class="literal">NaN</span>))</span><br><span class="line">结果：</span><br><span class="line"><span class="number">-1</span></span><br><span class="line"><span class="string">`</span></span><br></pre></td></tr></table></figure>
+<p>ES6提供了Array.includes()函数判断是否包含某一元素，除了不能定位外，解决了indexOf的上述的两个问题。它直接返回true或者false表示是否包含元素，对NaN一样能有有效。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="literal">NaN</span>]</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%s'</span>, arr1.includes(<span class="string">'c'</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%s'</span>, arr1.includes(<span class="string">'z'</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%s'</span>, arr1.includes(<span class="literal">NaN</span>))</span><br><span class="line">结果：</span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<p>includes()函数的第二个参数表示判断的起始位置。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> arr1 = [<span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="literal">NaN</span>]</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%s'</span>, arr1.includes(<span class="string">'d'</span>, <span class="number">1</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%s'</span>, arr1.includes(<span class="string">'d'</span>, <span class="number">3</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%s'</span>, arr1.includes(<span class="string">'d'</span>, <span class="number">4</span>))</span><br><span class="line">结果：</span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>第二个参数也可以是负数，表示从右数过来第几个，但是不改变判断搜索的方向，搜索方向还是从左到右。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="string">'%s'</span>, arr1.includes(<span class="string">'k'</span>, <span class="number">-1</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%s'</span>, arr1.includes(<span class="string">'k'</span>, <span class="number">-2</span>))</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'%s'</span>, arr1.includes(<span class="string">'i'</span>, <span class="number">-3</span>))</span><br><span class="line">结果：</span><br><span class="line"><span class="literal">false</span></span><br><span class="line"><span class="literal">true</span></span><br><span class="line"><span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>5.for循环和if判断</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// for...of</span></span><br><span class="line"><span class="keyword">for</span>(v <span class="keyword">of</span> arr) &#123;</span><br><span class="line">    <span class="keyword">if</span>(v === 查找值) &#123;</span><br><span class="line">        <span class="comment">//则包含该元素</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//forEach</span></span><br><span class="line">arr.forEach(<span class="function"><span class="params">v</span>=&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(v === 查找值) &#123;</span><br><span class="line">        <span class="comment">//则包含该元素</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>原文链接：<a href="https://blog.csdn.net/weixin_38098192/article/details/80476039" target="_blank" rel="noopener">https://blog.csdn.net/weixin_38098192/article/details/80476039</a></p>
+<p>参考链接：<a href="https://www.cnblogs.com/kongxianghai/p/7527526.html" target="_blank" rel="noopener">https://www.cnblogs.com/kongxianghai/p/7527526.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/10/JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC/">展开全文 >></a>
         </p>
       
 
@@ -857,7 +1018,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/2/">&lt; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/">Next &gt;</a>
+      <a class="extend prev" rel="prev" href="/page/2/">&lt; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &gt;</a>
     </nav>
   
 
@@ -869,7 +1030,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Tiger
+    		&copy; 2021 Tiger
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -964,6 +1125,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">暂定</a>
               </li>
              
@@ -976,10 +1149,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jquery</a>
               </li>
              
@@ -988,11 +1157,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+                <a href="javascript:void(0)" class="js-tag color3">待定</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂项</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">概念</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1008,7 +1189,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+                <a href="javascript:void(0)" class="js-tag color3">JQ</a>
               </li>
             
             <div class="clearfix"></div>

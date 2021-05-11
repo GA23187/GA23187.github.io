@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="渡口迷津">
 <meta property="og:description" content="GIT相关基本操作本地仓库的有关操作 安装  配置用户信息（英文或拼音） 1git config --global user.name &quot;你的用户名&quot;  配置邮箱 1git config --global user.email &quot;你的邮箱&quot;   此时配置的都是全局用户名与邮箱，表达的含义是在当前计算机中，创建的项目仓库均为默认使用该用户名与邮箱。 如果希望只是给某个项目配置，去除–global">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-06-21T15:41:03.060Z">
+<meta property="og:updated_time" content="2020-08-12T14:44:44.196Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="渡口迷津" type="application/atom+xml">
@@ -189,7 +189,9 @@
 </li>
 <li><p>初始化仓库</p>
  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">初始化仓库以后，会在当前目录下创建一个.git的隐藏文件夹，这个文件夹里面存储这备份的信息</span></span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">- 创建文件</span><br><span class="line"></span><br><span class="line">  ```shell</span><br><span class="line">  #创建文件夹proj</span><br><span class="line">  mkdir proj</span><br><span class="line">  #进入文件夹</span><br><span class="line">  cd proj</span><br><span class="line">  #查看文件夹中的内容</span><br><span class="line">  ls -a</span><br><span class="line">  #新建文件</span><br><span class="line">  touch index.html</span><br><span class="line">  #移除文件</span><br><span class="line">  rm index.html</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建文件</p>
+ <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">创建文件夹proj</span></span><br><span class="line">mkdir proj</span><br><span class="line"><span class="meta">#</span><span class="bash">进入文件夹</span></span><br><span class="line">cd proj</span><br><span class="line"><span class="meta">#</span><span class="bash">查看文件夹中的内容</span></span><br><span class="line">ls -a</span><br><span class="line"><span class="meta">#</span><span class="bash">新建文件</span></span><br><span class="line">touch index.html</span><br><span class="line"><span class="meta">#</span><span class="bash">移除文件</span></span><br><span class="line">rm index.html</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>查看git状态</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git只会管理文件，不会管理文件夹</span><br></pre></td></tr></table></figure>
@@ -339,7 +341,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Tiger
+    		&copy; 2021 Tiger
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -434,6 +436,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">暂定</a>
               </li>
              
@@ -446,10 +460,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jquery</a>
               </li>
              
@@ -458,11 +468,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+                <a href="javascript:void(0)" class="js-tag color3">待定</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂项</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">概念</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -478,7 +500,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+                <a href="javascript:void(0)" class="js-tag color3">JQ</a>
               </li>
             
             <div class="clearfix"></div>

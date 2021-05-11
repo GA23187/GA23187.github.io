@@ -151,915 +151,451 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-js" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-python安装第三方模块" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/06/23/js/">hexo语法</a>
+      <a class="article-title" href="/2020/12/27/python%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97/">python安装第三方模块</a>
     </h1>
   
 
         
-        <a href="/2020/06/23/js/" class="archive-article-date">
-  	<time datetime="2020-06-23T11:56:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-06-23</time>
+        <a href="/2020/12/27/python%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97/" class="archive-article-date">
+  	<time datetime="2020-12-27T15:54:04.917Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-12-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Hexo基本操作"><a href="#Hexo基本操作" class="headerlink" title="Hexo基本操作"></a>Hexo基本操作</h2><h2 id="写作"><a href="#写作" class="headerlink" title="写作"></a>写作</h2><h3 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo new [layout] &lt;title&gt;</span></span><br></pre></td></tr></table></figure>
+        <h2 id="1-1安装"><a href="#1-1安装" class="headerlink" title="1.1安装"></a>1.1安装</h2><p>众所周知，python安装第三方模块，是在CMD里面输入命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1pip install 模块名</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[layout]: 指定文章的布局，默认为post可以通过修改 _config.yml 中的 default_layout 参数来指定默认布局。</span><br></pre></td></tr></table></figure>
+<p>因为python默认下载模块地址是国外的网站，所以这样安装python模块下载速度会非常慢</p>
+<p><img src="http://p1-tt-ipv6.byteimg.com/large/pgc-image/f2345048bc1d420594af02c3d24a830c" alt="img"><br>下载一个7mb的模块居然需要半个小时，这样肯定是不行的，而且安装的时候还会出现<br>time out 报错</p>
+<p>所以你可以使用国内的镜像源安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">1清华：https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">2阿里云：http://mirrors.aliyun.com/pypi/simple/</span><br><span class="line">3中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/</span><br><span class="line">4华中理工大学：http://pypi.hustunique.com/</span><br><span class="line">5山东理工大学：http://pypi.sdutlinux.org/ </span><br><span class="line">6豆瓣：http://pypi.douban.com/simple/</span><br></pre></td></tr></table></figure>
 
-<h4 id="布局-layout"><a href="#布局-layout" class="headerlink" title="布局(layout)"></a>布局(layout)</h4><p>Hexo 有三种默认布局：post、page 和 draft。在创建者三种不同类型的文件时，它们将会被保存到不同的路径；而自定义的其他布局和 post 相同，都将储存到 source/_posts 文件夹。</p>
-<table>
-<thead>
-<tr>
-<th align="left">布局</th>
-<th align="left">路径</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>post</code></td>
-<td align="left"><code>source/_posts</code></td>
-</tr>
-<tr>
-<td align="left"><code>page</code></td>
-<td align="left"><code>source</code></td>
-</tr>
-<tr>
-<td align="left"><code>draft</code></td>
-<td align="left"><code>source/_drafts</code></td>
-</tr>
-</tbody></table>
+<p>安装命令比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip  install  -i  https://pypi.doubanio.com/simple/  --trusted-host </span><br><span class="line">pypi.doubanio.com  模块名</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://p1-tt-ipv6.byteimg.com/large/pgc-image/26cff34ee094438dbcb9cc6627c69c35" alt="img"></p>
+<h2 id="1-2-自动配置"><a href="#1-2-自动配置" class="headerlink" title="1.2. 自动配置"></a>1.2. 自动配置</h2><p>以配置清华源为例，在命令行输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip config <span class="built_in">set</span> global.index-url https://pypi.tuna.tsinghua.edu.cn/simple</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/202008252317011.png#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="1-3-手动配置"><a href="#1-3-手动配置" class="headerlink" title="1.3. 手动配置"></a>1.3. 手动配置</h2><p>windows下，在当前用户的<a href="https://coco56.blog.csdn.net/article/details/108230832" target="_blank" rel="noopener">AppData目录</a>中创建一个<code>pip</code>目录，再新建<code>pip.ini</code>文件（该文件的具体路径如：<code>C:\Users\Coco\AppData\Roaming\pip\pip.ini</code>）<br><img src="https://img-blog.csdnimg.cn/20200825231709186.png#pic_center" alt="在这里插入图片描述"><br>打开当前用户的<a href="https://coco56.blog.csdn.net/article/details/108230832" target="_blank" rel="noopener">AppData目录</a>可以参考：<a href="https://coco56.blog.csdn.net/article/details/108230832" target="_blank" rel="noopener">Windows下打开当前用户的AppData目录</a></p>
+<p>接着打开<code>pip.ini</code>文件，复制粘贴以下内容并保存。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url = https://pypi.tuna.tsinghua.edu.cn/simple</span><br><span class="line">12</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://img-blog.csdnimg.cn/20200825232012460.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0NPQ081Ng==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://coco56.blog.csdn.net/article/details/108230573" target="_blank" rel="noopener">https://coco56.blog.csdn.net/article/details/108230573</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/12/27/python%E5%AE%89%E8%A3%85%E7%AC%AC%E4%B8%89%E6%96%B9%E6%A8%A1%E5%9D%97/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-github提速" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/26/github%E6%8F%90%E9%80%9F/">TODO</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/26/github%E6%8F%90%E9%80%9F/" class="archive-article-date">
+  	<time datetime="2020-07-26T08:52:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="github下载加速"><a href="#github下载加速" class="headerlink" title="github下载加速"></a>github下载加速</h2><h3 id="码云"><a href="#码云" class="headerlink" title="码云"></a>码云</h3><p>码云作为国内的代码托管厂商，速度是非常快的，我们可以使用码云来作为中转站</p>
+<p><img src="https://img.lookroot.cn/blog/202006/23/170557-580438.png" alt="image-20200623170557240"></p>
+<p>选择 从 <strong>GitHub</strong>中导入仓库</p>
+<p><img src="https://img.lookroot.cn/blog/202006/23/170712-491904.png" alt="image-20200623170711238"></p>
+<p>此时使用下载速度变得非常的快，但是码云对仓库大小有一定限制，所以太大的仓库用这个方法不行</p>
+<p><img src="https://img.lookroot.cn/blog/202006/23/170803-598586.png" alt="image-20200623170803046"></p>
+<h3 id="使用cnpmjs镜像"><a href="#使用cnpmjs镜像" class="headerlink" title="使用cnpmjs镜像"></a>使用cnpmjs镜像</h3><p>这个方法更加的简单,只需要修改你的路径<code>github.com</code>为<code>github.com.cnpmjs.org</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/lookroot/WeeklyHub.git</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用cnpmjs</span></span><br><span class="line">git <span class="built_in">clone</span>  https://github.com.cnpmjs.org/lookroot/WeeklyHub.git</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用jsdelivr加速"><a href="#使用jsdelivr加速" class="headerlink" title="使用jsdelivr加速"></a>使用jsdelivr加速</h3><p>jsdelivr可免费提供CDN加速，我们一般用来给自己的博客加速，或者制作一个免费的图床</p>
+<p>同样的它也可以加速我们的GitHub，当我们要快速获取项目中的某个文件的时候就可以使用这个方式</p>
+<p>它的使用也非常简单，我们将<code>github.com</code>修改为<code>cdn.jsdelivr.net</code>同时将<code>/blob/</code>修改为<code>@</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">https://github.com/vuejs/vue/blob/dev/README.md</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用jsdelivr</span></span><br><span class="line">https://cdn.jsdelivr.net/gh/vuejs/vue@dev/README.md</span><br></pre></td></tr></table></figure>
+
+<p>此时速度就非常快了</p>
+<h3 id="修改hosts文件"><a href="#修改hosts文件" class="headerlink" title="修改hosts文件"></a>修改hosts文件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">GitHub官网：https://github.com</span><br><span class="line">Gridea官网：https://gridea.dev</span><br><span class="line">Windows hosts目录：C:\windows\system32\drivers\etc\</span><br><span class="line">DNS网页缓存刷新CMD指令：ipconfig /flushdns</span><br><span class="line"></span><br><span class="line">通过这个网址中的IP Address Tools中的IPAddress Lookup找到对应网址的ip</span><br><span class="line">https://www.ipaddress.com/</span><br><span class="line">然后就可以在hosts中配置对应dns解析关系</span><br><span class="line"></span><br><span class="line">3个主要网址</span><br><span class="line">github.com</span><br><span class="line">assets-cdn.github.com</span><br><span class="line">github.global.ssl.fastly.net</span><br><span class="line"></span><br><span class="line"># Github</span><br><span class="line">140.82.114.4 github.com</span><br><span class="line">140.82.114.9 nodeload.github.com</span><br><span class="line">140.82.114.5 api.github.com</span><br><span class="line">140.82.112.18 training.github.com</span><br><span class="line">140.82.113.10 codeload.github.com</span><br><span class="line"></span><br><span class="line">185.199.108.153 assets-cdn.github.com</span><br><span class="line">185.199.108.153 documentcloud.github.com</span><br><span class="line">185.199.108.154 help.github.com</span><br><span class="line">185.199.108.153 githubstatus.com</span><br><span class="line"># Github picture</span><br><span class="line">199.232.69.194 github.global.ssl.fastly.net</span><br><span class="line">199.232.68.133 raw.github.com</span><br><span class="line">199.232.68.133 raw.githubusercontent.com</span><br><span class="line">199.232.68.133 cloud.githubusercontent.com</span><br><span class="line">199.232.68.133 gist.githubusercontent.com</span><br><span class="line">199.232.68.133 marketplace-screenshots.githubusercontent.com</span><br><span class="line">199.232.68.133 repository-images.githubusercontent.com</span><br><span class="line">199.232.68.133 user-images.githubusercontent.com</span><br><span class="line">199.232.68.133 desktop.githubusercontent.com</span><br><span class="line">199.232.68.133 avatars0.githubusercontent.com</span><br><span class="line">199.232.68.133 avatars1.githubusercontent.com</span><br><span class="line">199.232.68.133 avatars2.githubusercontent.com</span><br><span class="line">199.232.68.133 avatars3.githubusercontent.com</span><br><span class="line">199.232.68.133 avatars4.githubusercontent.com</span><br><span class="line">199.232.68.133 avatars5.githubusercontent.com</span><br><span class="line">199.232.68.133 avatars6.githubusercontent.com</span><br><span class="line">199.232.68.133 avatars7.githubusercontent.com</span><br><span class="line">199.232.68.133 avatars8.githubusercontent.com</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="图床推荐"><a href="#图床推荐" class="headerlink" title="图床推荐"></a>图床推荐</h3><h2 id="github克隆速度提升"><a href="#github克隆速度提升" class="headerlink" title="github克隆速度提升"></a>github克隆速度提升</h2><blockquote>
+<p>只需要将<a href="http://www.github.com/改为www.github.com.cnpmjs.org/就可以实现一键式加速" target="_blank" rel="noopener">www.github.com/改为www.github.com.cnpmjs.org/就可以实现一键式加速</a></p>
+</blockquote>
+<p>2020年11月24号，再次验证此方法依然有效</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/26/github%E6%8F%90%E9%80%9F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-每日公众号阅读（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/">每日公众号阅读（一）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-07-03T17:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="2020-07-07"><a href="#2020-07-07" class="headerlink" title="2020/07/07"></a>2020/07/07</h2><h3 id="软件工具类"><a href="#软件工具类" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p><strong>PDF转换或者编辑的工具</strong> </p>
+<p> <a href="javascript:void(0);">ONE6</a> 公众号</p>
+<p> <a href="https://mp.weixin.qq.com/s/8t5vXi92pXInaNg_eXI-4g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/8t5vXi92pXInaNg_eXI-4g</a></p>
+</li>
+<li><p><strong>浏览器</strong></p>
+<ul>
+<li><p><strong>荟萃浏览器（安卓）</strong></p>
+</li>
+<li><p><strong><a href="https://apps.apple.com/cn/app/%E6%9C%80%E5%A5%BD%E6%B5%8F%E8%A7%88%E5%99%A8/id1396859063" target="_blank" rel="noopener">最好浏览器</a>（iOS）</strong></p>
+</li>
+</ul>
+<p>App搜罗君</p>
+<p><a href="https://mp.weixin.qq.com/s/C10U1mjT6giwjWElXoj-xg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/C10U1mjT6giwjWElXoj-xg</a></p>
+</li>
+</ul>
+<h3 id="前端知识类"><a href="#前端知识类" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>css动画</p>
+<p><a href="https://juejin.im/post/5d99b706e51d4577f9285c33" target="_blank" rel="noopener">https://juejin.im/post/5d99b706e51d4577f9285c33</a></p>
+</li>
+</ul>
+<h2 id="2020-07-08"><a href="#2020-07-08" class="headerlink" title="2020/07/08"></a>2020/07/08</h2><h3 id="软件工具类-1"><a href="#软件工具类-1" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p>【软件名称】：猎影下载器</p>
+<p>【适用平台】：windows</p>
+<p>【软件优势】：目前实现爱优腾视频的下载兼自动转成MP4格式</p>
+<p>【来源】： <a href="https://mp.weixin.qq.com/s/FPPtnpbPBDaE7IJKb-Cq4g" target="_blank" rel="noopener">悦美兮</a></p>
+</li>
+</ul>
+<h3 id="前端知识类-1"><a href="#前端知识类-1" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>一些前端知识点（重点一些js手写方法）</p>
+<p><a href="https://mp.weixin.qq.com/s/xVVP_Uk8rLBhHJaMqMMJoA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/xVVP_Uk8rLBhHJaMqMMJoA</a></p>
+</li>
+<li><p>docker容器介绍</p>
+<p><a href="https://mp.weixin.qq.com/s/cp1JlSUb4QZPyDmXwYyQyw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/cp1JlSUb4QZPyDmXwYyQyw</a></p>
+</li>
+<li><p>前端异常处理</p>
+<p><a href="https://mp.weixin.qq.com/s/QEkzv237s3ZSfiIqcpBowQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/QEkzv237s3ZSfiIqcpBowQ</a></p>
+</li>
+</ul>
+<h3 id="项目类"><a href="#项目类" class="headerlink" title="项目类"></a>项目类</h3><ul>
+<li><p>某马电商项目</p>
+<p><strong>来源</strong></p>
+<p>MarkerHub</p>
+<p><a href="https://mp.weixin.qq.com/s/48cZn0BMjZ6-oEa63ZwAmw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/48cZn0BMjZ6-oEa63ZwAmw</a></p>
+<p><strong>项目技术栈</strong></p>
+<p>基于springBoot2.x、springCloud采用前后端分离的架构；利用FastDFS作为分布式文件存储系统，Canal实现数据同步，监控数据变化；Elasticsearch+IK+Kibana实现商品搜索功能；Spring Security Oauth2 JWT实现微服务统一认证和资源授权；利用RabbitMq实现异步解耦；Seata实现分布式事务等，从而打造一个高可用的分布式电商系统。</p>
+<p><strong>技术架构</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eukZ9J6BEiafZu1tvankdUrCCQVb4jU7aiaG3jCkNXB4yDQb9nAibQTEOKB5L9K2AfsibMiaIxojNFicoYgUSHy6yxKw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="avatar"></p>
+</li>
+</ul>
+<p>  <strong>系统架构</strong></p>
+<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/eukZ9J6BEiafZu1tvankdUrCCQVb4jU7aibRUU5XAJOURbiaOUo604RMd6YA3yCNgsicibK7Rj33ZdZsKMujeSC7NEQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="avatar"></p>
+<p>  <strong>文档地址</strong></p>
+<p>  <a href="https://www.kancloud.cn/laopaojava/mallguide2020/1801356" target="_blank" rel="noopener">https://www.kancloud.cn/laopaojava/mallguide2020/1801356</a></p>
+<h2 id="2020-7-11"><a href="#2020-7-11" class="headerlink" title="2020/7/11"></a>2020/7/11</h2><p><strong>JavaScript高级程序设计（第3版）</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRAR3CCKWuBYXJH5iaKbckllfE7D6m0YVcUwrBZlduIFCPnSOBfYn9nTlxw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>JavaScript Dom编程艺术（第2版）</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARRJdPNF1V7HkFXmTgc7BEDiaQ5L91GSLrm9rYMDnD3tBoiclgR9ESmH2g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>JavaScript设计模式与开发实践</strong></p>
 <blockquote>
-<p> Hexo 的一种特殊布局：<code>draft</code>，这种布局在建立时会被保存到 <code>source/_drafts</code> 文件夹，您可通过 <code>publish</code> 命令将草稿移动到 <code>source/_posts</code> 文件夹，该命令的使用方式与 <code>new</code> 十分类似，您也可在命令中指定 <code>layout</code> 来指定布局。</p>
+<p>本书在尊重《设计模式》原意的同时，针对 JavaScript 语言特性全面介绍了更适合 JavaScript 程序员的了 16 个常用的设计模式，讲解了 JavaScript 面向对象和函数式编程方面的基础知识，介绍了面向对象的设计原则及其在设计模式中的体现，还分享了面向对象编程技巧和日常开发中的代码重构。本书将教会你如何把经典的设计模式应用到 JavaScript 语言中，编写出优美高效、结构化和可维护的代码。</p>
 </blockquote>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo publish [layout] &lt;title&gt;</span></span><br></pre></td></tr></table></figure>
-
-<p>草稿默认不会显示在页面中，您可在执行时加上 <code>--draft</code> 参数，或是把 <code>render_drafts</code> 参数设为 <code>true</code> 来预览草稿。</p>
-<h4 id="标题（title）"><a href="#标题（title）" class="headerlink" title="标题（title）"></a>标题（title）</h4><p>Hexo 默认以标题做为文件名称，但您可编辑 <code>new_post_name</code> 参数来改变默认的文件名称，举例来说，设为 <code>:year-:month-:day-:title.md</code> 可让您更方便的通过日期来管理文章。</p>
-<table>
-<thead>
-<tr>
-<th align="left">变量</th>
-<th align="left">描述</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left"><code>:title</code></td>
-<td align="left">标题（小写，空格将会被替换为短杠）</td>
-</tr>
-<tr>
-<td align="left"><code>:year</code></td>
-<td align="left">建立的年份，比如， <code>2015</code></td>
-</tr>
-<tr>
-<td align="left"><code>:month</code></td>
-<td align="left">建立的月份（有前导零），比如， <code>04</code></td>
-</tr>
-<tr>
-<td align="left"><code>:i_month</code></td>
-<td align="left">建立的月份（无前导零），比如， <code>4</code></td>
-</tr>
-<tr>
-<td align="left"><code>:day</code></td>
-<td align="left">建立的日期（有前导零），比如， <code>07</code></td>
-</tr>
-<tr>
-<td align="left"><code>:i_day</code></td>
-<td align="left">建立的日期（无前导零），比如， <code>7</code></td>
-</tr>
-</tbody></table>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/06/23/js/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-vue之ref问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/14/vue%E4%B9%8Bref%E9%97%AE%E9%A2%98/">vue之ref问题</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/14/vue%E4%B9%8Bref%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2020-01-14T10:51:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>ref 注册子组件，父组件可以通过this.$refs.xx.fn调用子组件里的函数，但是有时会出现 fn 为定义的情况，这是为什么呢？</p>
-<p>vue 官网中ref 下有一段话  “关于 ref 注册时间的重要说明：因为 ref 本身是作为渲染结果被创建的，在初始渲染的时候你不能访问它们 - 它们还不存在！<code>$refs</code> 也不是响应式的，因此你不应该试图用它在模板中做数据绑定。”</p>
-<p>也就是说 ref 只有等页面加载完成好之后你才能调用 this.$refs ，如果你使用v-if 、v-for渲染页面的话，那么在刚开始页面没没渲染之前你是拿不到this.$refs 的，所以要等到页面渲染之后拿才可以</p>
-<p>解决办法：</p>
-<p>1、如果你在mounted里获取this.$refs，因为dom还未完全加载，所以你是拿不到的， update阶段则是完成了数据更新到 DOM 的阶段(对加载回来的数据进行处理)，此时，就可以使用this.$refs了</p>
-<p>2、如果写在method中，那么可以使用 this.$nextTick(() =&gt; {}) 等页面渲染好再调用，这样就可以了</p>
-<p>3、或者加个定时器延时加载this.$refs（这个方法还没有试）</p>
-<p>1）原因：<br>如果在 DOM 结构中的某个 DOM 节点使用了 v-if、v-show 或者 v-for（即根据获取到的后台数据来动态操作 DOM，即响应式），那么这些 DOM 是不会在 mounted 阶段找到的。</p>
-<p>mounted 阶段，一般是用于发起后端请求，获取数据，配合路由钩子做一些事情。简单来说就是在 mounted 钩子中加载数据而已，加载回来的数据是不会在这个阶段更新到 DOM 中的。所以在 mounted 钩子中使用 $refs，如果 ref 是定位在有 v-if、v-for、v-show 的 DOM 节点中，返回来的只能是 undefined，因为在 mounted 阶段他们根本不存在。</p>
-<p>如果说 mounted 阶段是加载阶段，那么 updated 阶段则是完成了数据更新到 DOM 的阶段(对加载回来的数据进行处理)，此时，再使用 this.$refs.xx，就 100% 能找到该 DOM 节点。</p>
-<p>updated 与 mounted 不同的是，在每一次的 DOM 结构更新，Vue.js 都会调用一次 updated 钩子函数！而 mounted 钩子函数仅仅只执行一次而已。</p>
-<p>（2）解决：使用$nextTick<br>Vue 实现响应式并不是数据发生变化之后 DOM 立即变化，而是按一定的策略进行 DOM 的更新。</p>
-<p>$nextTick 是在下次 DOM 更新循环结束之后执行延迟回调，在修改数据之后使用 $nextTick，则可以在回调中获取更新后的 DOM。</p>
-<p><img src="https://img-blog.csdnimg.cn/20190417160755482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQwNTQyNzI4,size_16,color_FFFFFF,t_70" alt="img"></p>
-<p><a href="https://blog.csdn.net/changzhen11/article/details/84067816" target="_blank" rel="noopener">https://blog.csdn.net/changzhen11/article/details/84067816</a></p>
-<p><a href="https://blog.csdn.net/qq_40542728/article/details/89358065" target="_blank" rel="noopener">https://blog.csdn.net/qq_40542728/article/details/89358065</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/14/vue%E4%B9%8Bref%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-jQuery之ajax的beforeSend" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/14/jQuery%E4%B9%8Bajax%E7%9A%84beforeSend/">jQuery之ajax的beforeSend</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/14/jQuery%E4%B9%8Bajax%E7%9A%84beforeSend/" class="archive-article-date">
-  	<time datetime="2020-01-14T10:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>jQuery是经常使用的一个开源js框架，其中的$.ajax请求中有一个beforeSend方法，用于在向服务器发送请求前执行一些动作。<br>具体可参考jQuery官方文档：<a href="http://api.jquery.com/Ajax_Events/" target="_blank" rel="noopener">http://api.jquery.com/Ajax_Events/</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    beforeSend: function()&#123;</span><br><span class="line">     // Handle the beforeSend event</span><br><span class="line">    &#125;,</span><br><span class="line">    complete: function()&#123;</span><br><span class="line">     // Handle the complete event</span><br><span class="line">    &#125;</span><br><span class="line">    // ......</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="防止重复数据"><a href="#防止重复数据" class="headerlink" title="防止重复数据"></a>防止重复数据</h2><p>在实际项目开发中，提交表单时常常由于网络或者其原因，用户点击提交按钮误认为自己没有操作成功，进而会重复提交按钮操作次数，如果页面前端代码没有做一些相应的处理，通常会导致多条同样的数据插入数据库，导致脏数据的增加。要避免这种现象，在$.ajax请求中的beforeSend方法中把提交按钮禁用掉，等到Ajax请求执行完毕，在恢复按钮的可用状态。</p>
-<p>举个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 提交表单数据到后台处理</span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    type: &quot;post&quot;,</span><br><span class="line">    data: studentInfo,</span><br><span class="line">    contentType: &quot;application/json&quot;,</span><br><span class="line">    url: &quot;/Home/Submit&quot;,</span><br><span class="line">    beforeSend: function () &#123;</span><br><span class="line">        // 禁用按钮防止重复提交</span><br><span class="line">        $(&quot;#submit&quot;).attr(&#123; disabled: &quot;disabled&quot; &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    success: function (data) &#123;</span><br><span class="line">        if (data == &quot;Success&quot;) &#123;</span><br><span class="line">            //清空输入框</span><br><span class="line">            clearBox();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    complete: function () &#123;</span><br><span class="line">        $(&quot;#submit&quot;).removeAttr(&quot;disabled&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: function (data) &#123;</span><br><span class="line">        console.info(&quot;error: &quot; + data.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="模拟Toast效果"><a href="#模拟Toast效果" class="headerlink" title="模拟Toast效果"></a>模拟Toast效果</h2><p>ajax请求服务器加载数据列表时提示loading(“加载中，请稍后…”),</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: &quot;post&quot;,</span><br><span class="line">    contentType: &quot;application/json&quot;,</span><br><span class="line">    url: &quot;/Home/GetList&quot;,</span><br><span class="line">    beforeSend: function () &#123;</span><br><span class="line">        $(&quot;loading&quot;).show();</span><br><span class="line">    &#125;,</span><br><span class="line">    success: function (data) &#123;</span><br><span class="line">        if (data == &quot;Success&quot;) &#123;</span><br><span class="line">            // ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    complete: function () &#123;</span><br><span class="line">        $(&quot;loading&quot;).hide();</span><br><span class="line">    &#125;,</span><br><span class="line">    error: function (data) &#123;</span><br><span class="line">        console.info(&quot;error: &quot; + data.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-
-<h2 id="原文地址"><a href="#原文地址" class="headerlink" title="原文地址"></a>原文地址</h2><p><a href="https://www.cnblogs.com/hnsongbiao/p/8966312.html" target="_blank" rel="noopener">https://www.cnblogs.com/hnsongbiao/p/8966312.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jquery</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/14/jQuery%E4%B9%8Bajax%E7%9A%84beforeSend/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-前端处理token" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/14/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86token/">前端处理token</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/14/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86token/" class="archive-article-date">
-  	<time datetime="2020-01-14T07:52:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近，做一个后台管理项目，对于用户身份划分有要求，首先遇到的问题就是登陆权限认证。这里主要讲解基于token的身份验证方法。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="一、HTTP基本认证"><a href="#一、HTTP基本认证" class="headerlink" title="一、HTTP基本认证"></a>一、HTTP基本认证</h3><p>Basic Authentication——当浏览器访问使用基本认证的网站的时候， 浏览器会提示你输入用户名和密码。</p>
-<p>http auth的过程：</p>
-<ul>
-<li>客户端发送http请求</li>
-<li>服务器发现配置了http auth，于是检查request里面有没有”Authorization”的http header</li>
-<li>如果有，则判断Authorization里面的内容是否在用户列表里面，Authorization header的典型数据为”Authorization: Basic jdhaHY0=”，其中Basic表示基础认证， jdhaHY0=是base64编码的”user:passwd”字符串。</li>
-<li>如果没有，或者用户密码不对，则返回http code 401页面给客户端</li>
-<li>标准的http浏览器在收到401页面之后，应该弹出一个对话框让用户输入帐号密码；并在用户点确认的时候再次发出请求，这次请求里面将带上Authorization header</li>
-</ul>
-<p>一次典型的访问场景是：</p>
-<ul>
-<li>浏览器发送http请求（没有Authorization header）</li>
-<li>服务器端返回401页面</li>
-<li>浏览器弹出认证对话框</li>
-<li>用户输入帐号密码，并点确认</li>
-<li>浏览器再次发出http请求（带着Authorization header）</li>
-<li>服务器端认证通过，并返回页面</li>
-<li>浏览器显示页面</li>
-</ul>
-<h3 id="二、JWT鉴权"><a href="#二、JWT鉴权" class="headerlink" title="二、JWT鉴权"></a>二、JWT鉴权</h3><p><a href="https://jwt.io/" target="_blank" rel="noopener">JWT</a>是一种token based auth的标准。</p>
-<p>其工作流程是这样的</p>
-<ol>
-<li>用户使用用户名和密码进行鉴权</li>
-<li>服务端进行鉴权</li>
-<li>服务端给客户端分配一个加密的token</li>
-<li>客户端保存这个token，以后的每个请求，客户端都会发送这个token</li>
-<li>服务端通过token判断是否是鉴权过的用户，并返回请求的响应数据</li>
-</ol>
-<h4 id="JWT的特点"><a href="#JWT的特点" class="headerlink" title="JWT的特点"></a>JWT的特点</h4><ul>
-<li>简洁：可以通过URL，POST参数或者在HTTP header发送，因为数据量小，传输速度也很快</li>
-<li>自包含：payload中包含了所有用户所需要的信息，避免了多次查询数据库</li>
-</ul>
-<h4 id="JWT的应用场景"><a href="#JWT的应用场景" class="headerlink" title="JWT的应用场景"></a>JWT的应用场景</h4><ul>
-<li>身份认证</li>
-<li>安全要求的信息交换</li>
-</ul>
-<h4 id="JWT的结构"><a href="#JWT的结构" class="headerlink" title="JWT的结构"></a>JWT的结构</h4><p>JWT包含了使用.分隔的三部分：</p>
-<ul>
-<li>Header 头部：Base64Url（token类型+加密算法）</li>
-<li>Payload 负载：Base64Url（用户信息）</li>
-<li>Signature 签名：算法（  base64UrlEncode(header) + “.” +  base64UrlEncode(payload),  密钥）</li>
-</ul>
-<p>其结构看起来是这样的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxxxx.yyyyy.zzzzz</span><br></pre></td></tr></table></figure>
-
-<p>签名用于验证消息的发送者以及消息是没有经过篡改的。如果黑客获取到了payload中的用户信息，并进行了篡改，那么经过Base64编码后也会发生变化，而签名是根据Header和Payload共同决定的，签名也会不一样，服务器就会判断出不一致。</p>
-<h4 id="如何使用JWT"><a href="#如何使用JWT" class="headerlink" title="如何使用JWT?"></a>如何使用JWT?</h4><p>1）用户在客户端输入用户名和密码登录服务器；</p>
-<p>2）服务器认证通过后，返回给用户一个JWT</p>
-<p>3）客户端只需要本地保存该token（通常使用local storage，也可以使用cookie）即可。</p>
-<p>4）当用户下次访问时，在Authorization头部使用Bearer模式添加JWT，格式<code>Authorization: Bearer &lt;token&gt;</code></p>
-<p>5）服务端检查请求头<code>Authorization</code>中的JWT信息，如果合法，则允许用户的行为。</p>
-<p>由于JWT是自包含的，因此减少了需要查询数据库的需要。</p>
-<p><img src="https://img2018.cnblogs.com/blog/803751/201811/803751-20181130221550124-398375266.png" alt="img"></p>
-<h4 id="前端使用token"><a href="#前端使用token" class="headerlink" title="前端使用token"></a>前端使用token</h4><h5 id="大概流程"><a href="#大概流程" class="headerlink" title="大概流程"></a>大概流程</h5><ul>
-<li>客户端使用用户名跟密码请求登录</li>
-<li>服务端收到请求，去验证用户名与密码</li>
-<li>验证成功后，服务端会签发一个 Token，再把这个 Token 发送给客户端</li>
-<li>客户端收到 Token 以后可以把它存储起来，比如放在 Cookie 里或者 Local Storage 里</li>
-<li>客户端每次向服务端请求资源的时候需要带着服务端签发的 Token</li>
-<li>服务端收到请求，然后去验证客户端请求里面带着的 Token，如果验证成功，就向客户端返回请求的数据</li>
-</ul>
-<h5 id="vue中处理token"><a href="#vue中处理token" class="headerlink" title="vue中处理token"></a>vue中处理token</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求拦截</span></span><br><span class="line">axios.interceptors.request.use(<span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 判断是否有token</span></span><br><span class="line">  <span class="keyword">if</span> (localStorage.loginToken) &#123;</span><br><span class="line">    config.headers.Authorization = localStorage.loginToken;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;, err =&gt; &#123;</span><br><span class="line">  <span class="comment">// 请求错误</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 响应拦截（不用每次请求都写一遍catch）</span></span><br><span class="line">axios.interceptors.response.use(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;,</span><br><span class="line">  err =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; status &#125; = err.response;</span><br><span class="line">    <span class="keyword">if</span> (status == <span class="number">401</span>) &#123;</span><br><span class="line">      <span class="comment">// 后台定义401为过期</span></span><br><span class="line">      alert(<span class="string">"token过期,请重新登录!"</span>)</span><br><span class="line">      <span class="comment">// 清楚token</span></span><br><span class="line">      localStorage.removeItem(<span class="string">"loginToken"</span>);</span><br><span class="line">      router.push(<span class="string">"/login"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      alert(err.response.data)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>前后端分离使用 Token 登录解决方案：<a href="http://www.yyyweb.com/5144.html" target="_blank" rel="noopener">http://www.yyyweb.com/5144.html</a></p>
-<p>http基本认证与JWT鉴权：<a href="https://www.cnblogs.com/loveapple/p/10046835.html" target="_blank" rel="noopener">https://www.cnblogs.com/loveapple/p/10046835.html</a></p>
-<p>web前端处理token：<a href="https://blog.csdn.net/weixin_42265852/article/details/87771101" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42265852/article/details/87771101</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">暂定</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/14/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86token/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-GIT相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/13/GIT%E7%9B%B8%E5%85%B3/">GIT相关</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/13/GIT%E7%9B%B8%E5%85%B3/" class="archive-article-date">
-  	<time datetime="2020-01-13T14:26:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="GIT相关"><a href="#GIT相关" class="headerlink" title="GIT相关"></a>GIT相关</h1><h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="本地仓库的有关操作"><a href="#本地仓库的有关操作" class="headerlink" title="本地仓库的有关操作"></a>本地仓库的有关操作</h3><ul>
-<li><p>安装</p>
-</li>
-<li><p>配置用户信息（英文或拼音）</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "你的用户名"</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置邮箱</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email "你的邮箱"</span><br></pre></td></tr></table></figure>
-
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARbCy2JDnKpibV6pIS0wtpmjE67H6iceiauwA4ZkzBg4KuTEicmSJzY9ZO9w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>Head First JavaScript程序设计</strong></p>
 <blockquote>
-<p>此时配置的都是全局用户名与邮箱，表达的含义是在当前计算机中，创建的项目仓库均为默认使用该用户名与邮箱。</p>
-<p>如果希望只是给某个项目配置，去除–global</p>
+<p>史上最轻松 JavaScript 入门书，全彩印刷，本书从 JavaScript 的基础知识逐渐深入到高阶话题，包括对象、函数、浏览器的文档对象模型、类型、数组、原型、闭包等。读者会在阅读的过程中玩游戏、解谜题，并且以你想象不到的方式与 JavaScript 交互。此外，读者还会写大量的代码，以便构建自己的 Web 应用。</p>
 </blockquote>
-</li>
-<li><p>初始化仓库</p>
- <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">初始化仓库以后，会在当前目录下创建一个.git的隐藏文件夹，这个文件夹里面存储这备份的信息</span></span><br><span class="line">git init</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">- 创建文件</span><br><span class="line"></span><br><span class="line">  ```shell</span><br><span class="line">  #创建文件夹proj</span><br><span class="line">  mkdir proj</span><br><span class="line">  #进入文件夹</span><br><span class="line">  cd proj</span><br><span class="line">  #查看文件夹中的内容</span><br><span class="line">  ls -a</span><br><span class="line">  #新建文件</span><br><span class="line">  touch index.html</span><br><span class="line">  #移除文件</span><br><span class="line">  rm index.html</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查看git状态</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">git只会管理文件，不会管理文件夹</span><br></pre></td></tr></table></figure>
-
-
-
-</li>
-</ul>
-<h1 id="项目收集"><a href="#项目收集" class="headerlink" title="项目收集"></a>项目收集</h1><p>博客园美化：<a href="https://github.com/BNDong/Cnblogs-Theme-SimpleMemory/tree/v1.1.9" target="_blank" rel="noopener">https://github.com/BNDong/Cnblogs-Theme-SimpleMemory/tree/v1.1.9</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/13/GIT%E7%9B%B8%E5%85%B3/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-JS之options请求" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/13/JS%E4%B9%8Boptions%E8%AF%B7%E6%B1%82/">JS之options请求</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/13/JS%E4%B9%8Boptions%E8%AF%B7%E6%B1%82/" class="archive-article-date">
-  	<time datetime="2020-01-13T09:31:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>刚接触前端的时候，以为HTTP的Request Method只有GET与POST两种，后来才了解到，原来还有HEAD、PUT、DELETE、OPTIONS……</p>
-<p>本地环境测试项目的时候，每次POST之前，为啥浏览器还偷偷给我来一次没有返回的OPTIONS请求？</p>
-<p>原来，浏览器在某些请求中，在正式通信前会增加一次HTTP查询请求，称为”预检”请求（preflight）。</p>
-<p>览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h2 id="两种请求"><a href="#两种请求" class="headerlink" title="两种请求"></a>两种请求</h2><p>浏览器将CORS请求分为两类：简单请求（simple request）和非简单请求（not-so-simple request）。</p>
-<p>同时满足以下条件，就是简单请求：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARibzicX4zyN1HTENeAURG8XZpORUNuGNxgmzAhQosQdwf8mtpgicQ89I7Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>学习JavaScript数据结构与算法（第3版）</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARaaXhDvytBu1NQAxo3ueQ99NEblBUEXxL82ddYEQwugDXKiafkgrsAkg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>你不知道的JavaScript（上卷）</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRAR0pX6UibU85iaHRbwaiaDYXRyiaPCqQ2yk1JyHQIjrj0It6vxvmU67Oh7PA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>你不知道的JavaScript（中卷）</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARRjGvK70Xkiaz8B0gXjXDPulYhegDFfSFicZia0kAqBpnxyYu6b2iafTW9g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>深入理解JavaScript特性</strong></p>
 <blockquote>
-<p>（1) 请求方法是以下三种方法之一：</p>
-<ul>
-<li>HEAD</li>
-<li>GET</li>
-<li>POST</li>
-</ul>
-<p>（2）HTTP的头信息不超出以下几种字段：</p>
-<ul>
-<li>Accept</li>
-<li>Accept-Language</li>
-<li>Content-Language</li>
-<li>Last-Event-ID</li>
-<li>Content-Type：只限于三个值application/x-www-form-urlencoded、multipart/form-data、text/plain</li>
-</ul>
+<p>待补充</p>
 </blockquote>
-<h2 id="简单请求"><a href="#简单请求" class="headerlink" title="简单请求"></a>简单请求</h2><p>对于简单请求，浏览器直接发出CORS请求。具体来说，就是在头信息之中，增加一个Origin字段。</p>
-<p>Origin字段用来说明，本次请求来自哪个源（协议 + 域名 + 端口）。服务器根据这个值，决定是否同意这次请求。</p>
-<p>如果Origin指定的源，不在许可范围内，服务器会返回一个正常的HTTP回应。浏览器发现，这个回应的头信息没有包含Access-Control-Allow-Origin字段（详见下文），就知道出错了，从而抛出一个错误，被XMLHttpRequest的onerror回调函数捕获。注意，这种错误无法通过状态码识别，因为HTTP回应的状态码有可能是200。</p>
-<p>如果Origin指定的域名在许可范围内，服务器返回的响应，会多出几个头信息字段。都以Access-Control- 开头：</p>
-<p>（1）Access-Control-Allow-Origin </p>
-<p>该字段是必须的。它的值要么是请求时Origin字段的值，要么是一个*，表示接受任意域名的请求。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARvmk7sdt6aianB2hTN08daw3HkpricrCXU7y6AmibNCWONuzzibre8OOseA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>HTML5权威指南</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARunbpXia1o2mic7Kn0IW5Lb070DdwPcicRFZNicNDITjEGia3vSgPbPhkgww/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>CSS揭秘</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARocEu1Jt40eEvJjyt0KV1dl4WA27qjicYy7iaXdqyojAuPK9G54eiceJVA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>深入浅出Node.js</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARiaOIuaUibUic77TlaQopJe3wlkCsDduIBoIwnA1eXp64Rz64HgcBlG79w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>深入浅出Vue.js</strong></p>
 <blockquote>
-<p>需要注意的是，如果要发送Cookie，Access-Control-Allow-Origin就不能设为星号，必须指定明确的、与请求网页一致的域名。同时，Cookie依然遵循同源政策，只有用服务器域名设置的Cookie才会上传，其他域名的Cookie并不会上传，且（跨源）原网页代码中的document.cookie也无法读取服务器域名下的Cookie。</p>
+<p>待补充</p>
 </blockquote>
-<p>（2）Access-Control-Allow-Credentials</p>
-<p>该字段可选。它的值是一个布尔值，表示是否允许发送Cookie。默认情况下，Cookie不包括在CORS请求之中。设为true，即表示服务器明确许可，Cookie可以包含在请求中，一起发给服务器。这个值也只能设为true，如果服务器不要浏览器发送Cookie，删除该字段即可。</p>
-<p>（3）Access-Control-Expose-Headers</p>
-<p>该字段可选。CORS请求时，XMLHttpRequest对象的getResponseHeader()方法只能拿到6个基本字段：Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma。如果想拿到其他字段，就必须在Access-Control-Expose-Headers里面指定。</p>
-<h2 id="非简单请求"><a href="#非简单请求" class="headerlink" title="非简单请求"></a>非简单请求</h2><p>非简单请求是那种对服务器有特殊要求的请求，比如请求方法是PUT或DELETE，或者Content-Type字段的类型是application/json。</p>
-<p>简单请求的CORS请求，会在正式通信之前，增加一次HTTP查询请求，称为”预检”请求（preflight）。</p>
-<p>浏览器先询问服务器，当前网页所在的域名是否在服务器的许可名单之中，以及可以使用哪些HTTP动词和头信息字段。只有得到肯定答复，浏览器才会发出正式的XMLHttpRequest请求，否则就报错。</p>
-<p>在页面域名与接口域名不一致的情况下，就出现了每次请求前先发送一个options请求的问题。</p>
-<p>OPTIONS请求头信息中，除了Origin字段，还至少会多两个特殊字段：</p>
-<p>（1）Access-Control-Request-Method</p>
-<p>该字段是必须的，用来列出浏览器的CORS请求会用到哪些HTTP方法。</p>
-<p>（2）Access-Control-Request-Headers</p>
-<p>该字段是一个逗号分隔的字符串，指定浏览器CORS请求会额外发送的头信息字段。</p>
-<p>总的来说：</p>
-<p><img src="https://pic3.zhimg.com/50/v2-da5ae04890068d4ffc9f4714e48719dd_hd.jpg" alt="img"></p>
-<p>服务器收到预检请求后，检查了Origin、Access-Control-Request-Method和Access-Control-Request-Headers字段以后，确认允许跨源请求，就可以做出回应。</p>
-<p>上面的HTTP回应中，关键的是Access-Control-Allow-Origin字段，表示<a href="http://link.zhihu.com/?target=http%3A//lizard.qa.nt.ctripcorp.com">http://lizard.qa.nt.ctripcorp.com</a>可以请求数据。该字段也可以设为星号，表示同意任意跨源请求。</p>
-<p>如果浏览器否定了”预检”请求，会返回一个正常的HTTP回应，但是没有任何CORS相关的头信息字段。这时，浏览器就会认定，服务器不同意预检请求，因此触发一个错误，被XMLHttpRequest对象的onerror回调函数捕获。控制台会打印出如下的报错信息。</p>
-<p>XMLHttpRequest cannot load <a href="http://link.zhihu.com/?target=http%3A//lizard.qa.nt.ctripcorp.com">http://lizard.qa.nt.ctripcorp.com</a><br>Origin <a href="http://link.zhihu.com/?target=http%3A//lizard.qa.nt.ctripcorp.com">http://lizard.qa.nt.ctripcorp.com</a> is not allowed by Access-Control-Allow-Origin.</p>
-<p>其他字段中Access-Control-Max-Age 用来指定本次预检请求的有效期，单位为秒。该字段可选。</p>
-<h2 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a>原文链接</h2><p><a href="https://www.cnblogs.com/chris-oil/p/8042677.html" target="_blank" rel="noopener">https://www.cnblogs.com/chris-oil/p/8042677.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/13/JS%E4%B9%8Boptions%E8%AF%B7%E6%B1%82/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-前端大话" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/13/%E5%89%8D%E7%AB%AF%E5%A4%A7%E8%AF%9D/">前端大话</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/13/%E5%89%8D%E7%AB%AF%E5%A4%A7%E8%AF%9D/" class="archive-article-date">
-  	<time datetime="2020-01-13T08:30:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="免费前端教程不会告诉你这些"><a href="#免费前端教程不会告诉你这些" class="headerlink" title="免费前端教程不会告诉你这些"></a>免费前端教程不会告诉你这些</h3><p>这个是昨天偶然间在知乎上看到的一个知乎LIVE，答题就是音频在线直播吧，我试听了一下觉得分享的还不错，就买了完整的。主讲人叫方应杭，貌似是个挺牛逼的程序猿，之前没有听过，但这是个典型的科班出生的程序员，全栈，挺佩服他的。接下来就整一些挺的过程中整理的点吧：</p>
-<h4 id="作者的自我介绍"><a href="#作者的自我介绍" class="headerlink" title="作者的自我介绍"></a>作者的自我介绍</h4><blockquote>
-<p>首先作者进项了一大段自我介绍，介绍了他从实习开始的工作经历。正如他所说的确实很顺啊，从实习开始就是腾讯，然后转正了去了腾讯，之后又去了阿里等公司。他大体每段工作经历都有讲到，那能从他这些工作经历的介绍中得到什么对自己有用的点呢？</p>
-</blockquote>
-<ul>
-<li><p>首先，作者有个习惯，就是在开始项目之前自己会根据项目情况自己造一些轮子，并且以开源框架的要求去封装，这一点给我的启示是自己也要适当地造一些轮子放在github上，看自己能不能做得跟第三方插件一样好甚至某些方面好那么一丢丢。而且这些造的轮子也便于自己日后复用以及面试时跟被人展示自己的技术沉淀。</p>
-</li>
-<li><p>在工作之余得有个自己的个人项目（side project）</p>
-</li>
-<li><p>按照作者的观点，要想工作的内容刚好是自己需要学习的知识概率是很小的，那要想学习和实践一些新技术新框架怎么办呢，就是自己在工作之余弄一个自己的项目，在这个项目上自己想用什么框架和技术都是没有限制的。</p>
-</li>
-<li><p>这样说 来确实挺有必要的。我之前找工作老想着新工作上用到的技术正好是自己需要学习的，可公司不是慈善机构，既然你都还需要在公司里学习，公司干嘛招你呢。所以，在公司工作的过程中能学到自己想学的知识最好，但那些还没接触过的或者最新的技术还得靠自己在工作之余去学习，这个观念得转变过来。</p>
-<h4 id="回答网友问题总结"><a href="#回答网友问题总结" class="headerlink" title="回答网友问题总结"></a>回答网友问题总结</h4></li>
-<li><p>学习知识的形式下过比较一般的是看书，进一步的是提炼总结，再进一步就是输出，写代码或者写文章，最好的方式是讲出来，也就是让别人听懂</p>
-<h4 id="前端的历史"><a href="#前端的历史" class="headerlink" title="前端的历史"></a>前端的历史</h4></li>
-<li><p>最开始是没有前端这个职位的，网页是后端程序猿写的，大都用的table布局，没什么css，比较丑</p>
-</li>
-<li><p>后来又了美工的加入，开始使用div+css布局，变得好看一些了</p>
-</li>
-<li><p>再之后随着AJAX的普及，慢慢开始专门有些后端程序猿开始专注于写复杂的JS来达到复杂的交互，这就慢慢形成了前端这个岗位</p>
-</li>
-<li><p>可是最开始HTML是由后端控制的，数据是由后端渲染，这样的话前端是很不爽的，而且前后端不能同时工作，后来就出现了前后端分离</p>
-</li>
-<li><p>前后端分离意味着前端完全控制HTML/CSS/JS，后端只负责用AJAX的形式提供数据接口，同时人员也彻底分离了，后端专门做后端的事，前端做前端的事</p>
-</li>
-<li><p>前后端分离也带来了一个问题，就是前端负责的这块显得没有后端那么重要，所以晋升难一些，事实上也确实是这样，不过后来移动端的兴起使得前端负责的东西多了一块，也稍微显得重要一些了</p>
-</li>
-<li><p>再之后就是各种随着HTML5和CSS3以及ES56的部分基础设施的完善和升级，前端框架开始向各种优秀语言抄，也就出现了现在的MVC和MVVM等框架</p>
-</li>
-</ul>
-<h4 id="入门指导"><a href="#入门指导" class="headerlink" title="入门指导"></a>入门指导</h4><ul>
-<li>书籍推荐<ul>
-<li>javascript.ruanyifeng.com</li>
-<li>es6.ruanyifeng.com</li>
-<li>你不知道的 JavaScript</li>
-<li>CSS 揭秘</li>
-</ul>
-</li>
-<li>项目推荐<ul>
-<li>原生 JS 仿网易云音乐、饿了么（后端使用 leanCloud）</li>
-<li><a href="https://www.cnblogs.com/wancheng7/p/8590212.html" target="_blank" rel="noopener">https://www.cnblogs.com/wancheng7/p/8590212.html</a></li>
-<li>Vue 或 React 再实现一遍</li>
-</ul>
-</li>
-<li>网站推荐<ul>
-<li>MDN</li>
-<li>CSS Tricks</li>
-<li>Codrops</li>
-<li>优质的中文前端博客 （1.4k）<a href="https://github.com/FrankFang/best-chinese-front-end-blogs" target="_blank" rel="noopener">https://github.com/FrankFang/best-chinese-front-end-blogs</a></li>
-</ul>
-</li>
-<li>学习思路推荐<ul>
-<li>仿你看到的所有东西：hao123、知乎、微信</li>
-<li>Follow 我的 GitHub<ul>
-<li><a href="https://github.com/FrankFang/resume-15-3" target="_blank" rel="noopener">https://github.com/FrankFang/resume-15-3</a></li>
-<li><a href="https://github.com/FrankFang/nav-demo" target="_blank" rel="noopener">https://github.com/FrankFang/nav-demo</a></li>
-<li><a href="https://github.com/FrankFang/canvas-demo-2017" target="_blank" rel="noopener">https://github.com/FrankFang/canvas-demo-2017</a></li>
-</ul>
-</li>
-<li>看完任意一本教程</li>
-</ul>
-</li>
-<li>给一年前端<ul>
-<li>从 60 分到 80 分，关注用户体验</li>
-<li>模仿组件</li>
-<li>不要重复自己</li>
-<li>不要满足于调用 API</li>
-</ul>
-</li>
-<li>三年前端<ul>
-<li>关注工作效率</li>
-<li>做份外的事情：后端、设计、产品</li>
-<li>管理上级、拢络平级</li>
-<li>变成重要的人</li>
-<li>坚持写博客</li>
-<li>模仿框架</li>
-<li>跟人（榜样）学，而不是跟视频、书学<ul>
-<li>社区里的人</li>
-<li>公司里的人</li>
-<li>互联网上的人</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="我的收获"><a href="#我的收获" class="headerlink" title="我的收获"></a>我的收获</h4><ul>
-<li>增长见识<ul>
-<li>首先作为一个非计算机科班的我第一次比较完整的了解了一个优秀科班生的从业经历，当然作者自己都说了，他算是比较顺风顺水型，但至少能看出学计算机专业的在编程领域真的有更多的可能性</li>
-<li>另外一点就是关于前端这个职位的发展，毕竟我不是从有这个职位就开始做前端的，这次算是从作者口中间接了解了前端这个一个职位的发展史</li>
-</ul>
-</li>
-<li>学习方法<ul>
-<li>我们之所以喜欢看名人传记，就是想从他们身上找到一些我们能够学习的优秀特质。听他人的技术分享也是一样的道理。虽热作者在分享过程中几乎没有说过要我们学他怎么样的话，但从他一些细节和习惯的描述中我们可以选择性的学习一些优秀特质，例如：<ul>
-<li>在开始项目之前自己先试着造个轮子</li>
-<li>工作之余做side project，在这种项目上学习新知识，而不是工作中</li>
-<li>工作中尝试封装组件，并且以能够给别人使用为目标，无论有没有人用</li>
-</ul>
-</li>
-<li>我觉得作者身上表现的这些点一定算是他成功路上的优秀特质，我们不一定要都学会，但是可以结合自身情况来学习一下</li>
-</ul>
-</li>
-<li>关于前端学习之路<ul>
-<li>前端知识比较分散，数量庞杂，最终还是要多练，多记吧，这肯定是必由之路。我之前听人说过一种观点，前端就是在记各种API和熟练使用各种API，当然，这是中低层主要在做的事情，也是每一个优秀前端的基本功。至于更高层级的话，按作者的说法就是不仅仅要满足于会用现成的API了，而是要想着怎么造好用的API给别人使用，当然造这个的前提是了解原理了，所以这个阶段就是不仅要知道怎么用，还得知道为什么要这么用了，我正在朝这个方向努力，加油！</li>
-<li>关于作者提出的向人学习这一点我有些疑问？<ul>
-<li>因为之前一直有种观点就是不要轻易去问人，因为没经过自己思考就去问人那样得到的答案记得确实没那么深刻。所以说关于作者提出的跟人学而不是跟视频什么的学，我的理解是多交流，当你身边坐着一位大牛的时候，你把问题和思路直接跟他说，那样能够得到及时的反馈肯定是最高效的，当然这种问题都是一些思路啊方法层面的了。</li>
-<li>所以，我的总结就是，基础的东西一定要自己查自己记住，而一些方法啊原理层面的东西，有资源的情况下尽量找比你牛逼的人交流解决，那肯定是要高效一些的。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="谈谈个人的长期目标和短期目标"><a href="#谈谈个人的长期目标和短期目标" class="headerlink" title="谈谈个人的长期目标和短期目标"></a>谈谈个人的长期目标和短期目标</h4><ul>
-<li>从15年毕业后经过培训进入前端行业到现在真正从事前端的时间也有两年多了，前一年几乎是没有任何目标感的，也不知道自己需要什么，公司需要什么就学什么，感觉有点浑浑噩噩混着的感觉。大概也就从去年开始才开始有了不仅仅要满足于解决现有问题，还应该多去了解基础和底层原理了。</li>
-<li>首先谈谈短期目标吧<ul>
-<li>短期目前就是在最近两年内完善自己的知识体系，成为前端小组长或者负责人。我目前理解的这个知识体系是从计算机原理到浏览器执行机制、HTTP协议、JS的最新规范以及适当的了解目前流行的前端框架及其出现的原因。这些不一定要面面俱到，但每个方面都要有涉及，不能遗漏。</li>
-</ul>
-</li>
-<li>长期目标<ul>
-<li>目前来说长期目标就是在前端之外探寻更多的可能性，也就是是说看在前端知识体系基本完善的情况下结合别的方面的能力。最好的话就是能够走管理或者培训吧。技术这条路是没有尽头的，每个公司需要的技术牛人毕竟是有限的，尤其是中小型公司，而每个公司都需要能够提升团队工作效率，尽快带来产出的leader，我想，我的长期目标就是成为一个这样能够推进项目发展的leader。</li>
-</ul>
-</li>
-<li>我的短期目标是长期目标的基础，也是我来杭州的目的，我相信只要这个短期目前完成的好的话长期目标就是积累加机遇的过程了！</li>
-</ul>
-<h4 id="最后附上作者的知乎LIVE"><a href="#最后附上作者的知乎LIVE" class="headerlink" title="最后附上作者的知乎LIVE"></a>最后附上作者的知乎LIVE</h4><p><a href="https://www.zhihu.com/lives/904019043848175616" target="_blank" rel="noopener">免费前端教程不会告诉你这些</a></p>
-<h4 id="原文地址"><a href="#原文地址" class="headerlink" title="原文地址"></a>原文地址</h4><p><a href="https://www.cnblogs.com/wancheng7/p/8906333.html" target="_blank" rel="noopener">https://www.cnblogs.com/wancheng7/p/8906333.html</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">暂定</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/13/%E5%89%8D%E7%AB%AF%E5%A4%A7%E8%AF%9D/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-vue之axios-vuex发送请求" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/13/vue%E4%B9%8Baxios-vuex%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/">vue之axios+vuex发送请求</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/13/vue%E4%B9%8Baxios-vuex%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/" class="archive-article-date">
-  	<time datetime="2020-01-13T07:25:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Vue 原本有一个官方推荐的 ajax 插件 vue-resource，但是自从 Vue 更新到 2.0 之后，官方就不再更新 vue-resource。<br>    目前主流的 Vue 项目，都选择 axios来完成 ajax 请求，而大型项目都会使用 Vuex 来管理数据，所以这篇博客将结合两者来发送请求。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>使用 npm 安装 axios</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install axios -S</span><br></pre></td></tr></table></figure>
-<pre><code>安装其他插件的时候，可以s直接在 main.js 中引入并 Vue.use()，但是 axios 并不能 use，只能每个需要发送请求的组件中即时引入。</code></pre><p>为了解决这个问题，有两种开发思路，一是在引入 axios 之后，修改原型链，二是结合 Vuex，封装一个 aciton。具体的实施请往下看~<br>方案一：改写原型链<br>首先在main.js 中引入 axios</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br></pre></td></tr></table></figure>
-<pre><code>这时候如果在其它的组件中，是无法使用 axios 命令的。但如果将 axios 改写为 Vue 的原型属性，就能解决这个问题</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Vue.prototype.$ajax = axios</span><br></pre></td></tr></table></figure>
-<pre><code>在 main.js 中添加了这两行代码之后，就能直接在组件的 methods 中使用 $ajax 命令</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">submitForm () &#123;</span><br><span class="line"><span class="keyword">this</span>.$ajax(&#123;</span><br><span class="line">method: <span class="string">'post'</span>,</span><br><span class="line">url: <span class="string">'/user'</span>,</span><br><span class="line">data: &#123;</span><br><span class="line">name: <span class="string">'wise'</span>,</span><br><span class="line">info: <span class="string">'wrong'</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>方案二：在 Vuex 中封装<br>    之前的文章中用到过 Vuex 的 mutations，从结果上看，mutations 类似于事件，用于提交 Vuex 中的状态 state。<br>    action 和 mutations 也很类似，主要的区别在于，action 可以包含异步操作，而且可以通过 action 来提交 mutations<br>另外还有一个重要的区别：</p>
-<pre><code>mutations 有一个固有参数 state，接收的是 Vuex 中的 state 对象
-action 也有一个固有参数 context，但是 context 是 state 的父级，包含 state、getters
-Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// store.js</span></span><br><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'Vue'</span></span><br><span class="line"><span class="keyword">import</span> Vuex <span class="keyword">from</span> <span class="string">'vuex'</span><span class="comment">// 引入 axios</span></span><br><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">'axios'</span></span><br><span class="line">Vue.use(Vuex)</span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line"><span class="comment">// 定义状态</span></span><br><span class="line">state: &#123;</span><br><span class="line">test01: &#123;</span><br><span class="line">name: <span class="string">'Wise Wrong'</span></span><br><span class="line">&#125;,</span><br><span class="line">test02: &#123;</span><br><span class="line">tell: <span class="string">'12312345678'</span></span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line">actions: &#123;</span><br><span class="line"><span class="comment">// 封装一个 ajax 方法</span></span><br><span class="line">saveForm (context) &#123;</span><br><span class="line">axios(&#123;</span><br><span class="line">method: <span class="string">'post'</span>,</span><br><span class="line">url: <span class="string">'/user'</span>,</span><br><span class="line">data: context.state.test02</span><br><span class="line">&#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store</span><br></pre></td></tr></table></figure>
-
-<pre><code>注意：即使已经在 main.js 中引入了 axios，并改写了原型链，也无法在 store.js 中直接使用 $ajax 命令。换言之，这两种方案是相互独立的
-在组件中发送请求的时候，需要使用this.$store.dispatch 来分发</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">submitForm () &#123;</span><br><span class="line"><span class="keyword">this</span>.$store.dispatch(<span class="string">'saveForm'</span>)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<pre><code>submitForm 是绑定在组件上的一个方法，将触发 saveForm，从而通过 axios 向服务器发送请求</code></pre><p>附录：配置 axios<br>    上面封装的方法中，使用了 axios 的三个配置项，实际上只有 url 是必须的，完整的 api 可以参考使用说明。<br>    为了方便，axios 还为每种方法起了别名，比如上面的 saveForm 方法等价于：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">axios.post(<span class="string">'/user'</span>, context.state.test02)</span><br></pre></td></tr></table></figure>
-<p>完整的请求还应当包括 .then 和 .catch</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(res)</span><br><span class="line">&#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">err</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(err)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<pre><code>当请求成功时，会执行 .then，否则执行 .catch
-这两个回调函数都有各自独立的作用域，如果直接在里面访问 this，无法访问到 Vue 实例。
-这时只要添加一个.bind(this) 就能解决这个问题</code></pre><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.then(<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">this</span>.data)</span><br><span class="line">&#125;.bind(<span class="keyword">this</span>))</span><br></pre></td></tr></table></figure>
-<p>原文链接：<a href="https://blog.csdn.net/sunhuaqiang1/article/details/80206728" target="_blank" rel="noopener">https://blog.csdn.net/sunhuaqiang1/article/details/80206728</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/13/vue%E4%B9%8Baxios-vuex%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-vue之webpack的代理配置（proxyTable）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/13/vue%E4%B9%8Bwebpack%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%EF%BC%88proxyTable%EF%BC%89/">vue之webpack的代理配置（proxyTable）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/13/vue%E4%B9%8Bwebpack%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%EF%BC%88proxyTable%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-01-13T06:42:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在项目开发的时候，接口联调的时候一般都是同域名下，且不存在跨域的情况下进行接口联调，但是当我们现在使用vue-cli进行本地调试时，我们在本地启动服务器后，比如本地开发服务下是 <a href="http://localhost:8080" target="_blank" rel="noopener">http://localhost:8080</a> 这样的访问页面，但是我们的接口地址是 <a href="http://xxxx.com/save/index" target="_blank" rel="noopener">http://xxxx.com/save/index</a> 这样的接口地址，我们这样直接使用会存在跨域的请求，导致接口请求不成功，因此我们需要配置一下。</p>
-<p>vue的<a href="https://vuejs-templates.github.io/webpack/proxy.html" target="_blank" rel="noopener">proxyTable</a>是用于开发阶段配置跨域的工具，可以同时配置多个后台服务器跨越请求接口，其真正依赖的npm包是<a href="https://github.com/chimurai/http-proxy-middleware" target="_blank" rel="noopener">http-proxy-middleware</a>，在github上拥有更丰富的配置。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>针对vue-cli2.0搭建的项目，在config文件下的index.js中配置代理地址</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARNMJeSzu2O6XbrzHeWG9WmlTwFKZr75GDMtvasGw2AACOwatnxyTEdw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>Web性能权威指南</strong></p>
 <blockquote>
-<p>举例：localhost:8080/api/xxx 代理到 <a href="http://192.168.10.183:8103/api/xxx,如果用pathRewrite重写则代理到http://192.168.10.183:8103/xxx将&#39;/api&#39;转为&#39;/&#39;" target="_blank" rel="noopener">http://192.168.10.183:8103/api/xxx,如果用pathRewrite重写则代理到http://192.168.10.183:8103/xxx将&#39;/api&#39;转为&#39;/&#39;</a></p>
+<p>Google 高性能团队核心成员的权威之作，堪称实战经验与规范解读完美结合的产物。本书涵盖 Web 开发者技术体系中应该掌握的所有网络及性能优化知识。全书以性能优化为主线，从TCP、UDP 和 TLS 协议讲起，解释了如何针对这几种协议和基础设施来优化应用。然后深入探讨了无线和移动网络的工作机制。最后，揭示了 HTTP 协议的底层细节，同时详细介绍了 HTTP 2.0、 XHR、SSE、WebSocket、WebRTC 和 DataChannel 等现代浏览器新增的具有革命性的新能力。</p>
 </blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">　　proxyTable: &#123;</span><br><span class="line">  <span class="string">'/api'</span>: &#123;<span class="comment">// '/api':匹配项</span></span><br><span class="line">    target: <span class="string">'http://192.168.10.183:8103'</span>,<span class="comment">// 接口的域名</span></span><br><span class="line">　　　　 <span class="comment">// secure: false,// 如果是https接口，需要配置这个参数</span></span><br><span class="line">    changeOrigin: <span class="literal">true</span>,<span class="comment">// 如果接口跨域，需要进行这个参数配置</span></span><br><span class="line">　　　　　<span class="comment">// pathRewrite: &#123;// 如果接口本身没有/api需要通过pathRewrite来重写了地址</span></span><br><span class="line">　　　　　<span class="comment">//   '^api': ''</span></span><br><span class="line">    <span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>用axios请求配置proxyTable代理：<a href="https://www.cnblogs.com/beka/p/8479710.html" target="_blank" rel="noopener">https://www.cnblogs.com/beka/p/8479710.html</a></p>
-<p>vue之proxyTable代理超全面配置:<a href="https://blog.csdn.net/harmsworth2016/article/details/84403396" target="_blank" rel="noopener">https://blog.csdn.net/harmsworth2016/article/details/84403396</a></p>
-<p><a href="https://blog.csdn.net/sunhuaqiang1/article/details/85111648" target="_blank" rel="noopener">https://blog.csdn.net/sunhuaqiang1/article/details/85111648</a></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARQM047pQWSh1La6r3Z2lYQNicf7xyIIXgTaOT5gDXNuyCAznbibSr4VvQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h2 id="2020-7-12"><a href="#2020-7-12" class="headerlink" title="2020/7/12"></a>2020/7/12</h2><h3 id="软件工具类-2"><a href="#软件工具类-2" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p>【软件名称】：搜索重复文件</p>
+<p>【适用平台】：安卓</p>
+<p>【软件优势】：手机文件的查重神器，仅仅1.4M</p>
+<p>【来源】： 【轻安卓】</p>
+</li>
+<li><p>【软件名称】：全网音乐免费解析</p>
+<p>【适用平台】：安卓</p>
+<p>【软件优势】：只需要在输入框输入自己想要下载的音乐，然后点击解析音乐，该软件就会自动在5个平台中解析这个音乐</p>
+<p>【来源】： 【效率为王】</p>
+</li>
+</ul>
+<h3 id="前端知识类-2"><a href="#前端知识类-2" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>转场动画特效</p>
+<p><a href="https://mp.weixin.qq.com/s/rW0GmvF4GfKXjqKmoU_IFQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/rW0GmvF4GfKXjqKmoU_IFQ</a></p>
+</li>
+<li><p>Vue组件之间的8种通信方式</p>
+<p><a href="https://mp.weixin.qq.com/s/s24xpSo8tpsqRDtUewS9QA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/s24xpSo8tpsqRDtUewS9QA</a></p>
+</li>
+<li><p>15条高效JS技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/nZXwIm9gcd_iyP11v6tfkQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/nZXwIm9gcd_iyP11v6tfkQ</a></p>
+</li>
+<li><p>this关键字</p>
+<p><a href="https://mp.weixin.qq.com/s/5c05RjdRbtAjlHG6HRcIJQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5c05RjdRbtAjlHG6HRcIJQ</a></p>
+</li>
+<li><p>34道Vue面试题系列</p>
+<p><a href="https://mp.weixin.qq.com/s/6l8dCMKsnEiZHCh_6AvY0g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/6l8dCMKsnEiZHCh_6AvY0g</a></p>
+</li>
+<li><p>从零实现webpack热更新HMR</p>
+<p><a href="https://juejin.im/post/5df36ffd518825124d6c1765" target="_blank" rel="noopener">https://juejin.im/post/5df36ffd518825124d6c1765</a></p>
+</li>
+<li><p>小恐龙</p>
+<p><a href="https://mp.weixin.qq.com/s/laCs7EpKXlvvYAKrJ44gAA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/laCs7EpKXlvvYAKrJ44gAA</a></p>
+</li>
+</ul>
+<h2 id="2020-7-13"><a href="#2020-7-13" class="headerlink" title="2020/7/13"></a>2020/7/13</h2><h3 id="软件工具类-3"><a href="#软件工具类-3" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p>【软件名称】：奇奇动画</p>
+<p>【适用平台】：安卓</p>
+<p>【软件优势】：这是一款无ad、时效性强的APP。资源丰富、加载速度快</p>
+<p>【来源】： 【轻安卓】</p>
+</li>
+</ul>
+<h3 id="前端知识类-3"><a href="#前端知识类-3" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>前端代码规范</p>
+<p><a href="https://mp.weixin.qq.com/s/u7hp-Plw_H2fZg6tmKFJQQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/u7hp-Plw_H2fZg6tmKFJQQ</a></p>
+</li>
+<li><p>OAuth2.0 的四种授权方式</p>
+<p><a href="https://mp.weixin.qq.com/s/in_E1pKqQc8wkPXT61g8gQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/in_E1pKqQc8wkPXT61g8gQ</a></p>
+</li>
+<li><p>Github 做授权登录就是这么简单！（OAuth2.0实战）</p>
+<p><a href="https://mp.weixin.qq.com/s/KzWE4EtZ6F4_-2fYnVA5QA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/KzWE4EtZ6F4_-2fYnVA5QA</a></p>
+</li>
+</ul>
+<h3 id="项目类-1"><a href="#项目类-1" class="headerlink" title="项目类"></a>项目类</h3><ul>
+<li><p>github上35K的SpringBoot实战电商项目<code>mall</code></p>
+<p><strong>来源</strong></p>
+<p>程序员闪充宝</p>
+<p><a href="https://mp.weixin.qq.com/s/DguQefH2ZjaEcOOF_S1zFg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/DguQefH2ZjaEcOOF_S1zFg</a></p>
+<p><strong>项目地址</strong></p>
+<p><strong><a href="https://github.com/macrozheng/mall" target="_blank" rel="noopener">https://github.com/macrozheng/mall</a></strong></p>
+<p><strong>系统架构图</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/CKvMdchsUwm6J06fUyzKicPAfGEzcIiciaR4I1naxIVbELRPM8ceTlIhVqIFqKRKxkOBj1sSMZZUNz7X62iaC0fZXg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>项目演示</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/CKvMdchsUwm6J06fUyzKicPAfGEzcIiciaR4uJ7mhkkUowXAYNM2VKf66B1c2FpO0yP8icmNicX6lqtrcicBT3kExF2w/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
+</li>
+</ul>
+<h2 id="2020-7-15"><a href="#2020-7-15" class="headerlink" title="2020/7/15"></a>2020/7/15</h2><h3 id="软件工具类-4"><a href="#软件工具类-4" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p>【软件名称】：秋秋下载器</p>
+<p>【适用平台】：安卓</p>
+<p>【软件优势】：下载器大小只有不到300kb，图片，网页、文本、音乐、动画、视频！同时，它还支持<strong>批量网页下载、定时下载</strong>等高级功能。</p>
+<p>【来源】： 【效率为王】</p>
+</li>
+</ul>
+<h3 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h3><ul>
+<li><p>Fatkun是一款内嵌到浏览器的工具；可以帮你方便地从任意网站上批量采集喜欢的图片并迅速完成筛选和保存</p>
+<p><a href="http://fatkun.yueding168.com/?noexe#" target="_blank" rel="noopener">http://fatkun.yueding168.com/?noexe#</a></p>
+</li>
+</ul>
+<h3 id="前端知识类-4"><a href="#前端知识类-4" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>前端如何玩转 Word 文档</p>
+<p><a href="https://mp.weixin.qq.com/s/1ztZLSCEhBpBuTEdqJSS2w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/1ztZLSCEhBpBuTEdqJSS2w</a></p>
+</li>
+<li><p>图片处理</p>
+<p><a href="https://mp.weixin.qq.com/s/AK5T0_xUD8qNp8qtvHPUUA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/AK5T0_xUD8qNp8qtvHPUUA</a></p>
+</li>
+</ul>
+<h2 id="2020-7-16"><a href="#2020-7-16" class="headerlink" title="2020/7/16"></a>2020/7/16</h2><h3 id="软件工具类-5"><a href="#软件工具类-5" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p>【软件名称】：政府版WPS</p>
+<p>【适用平台】：PC</p>
+<p>【软件优势】：<strong>安装简单</strong>，<strong>使用强大的PRO专业增强版</strong></p>
+<p>【来源】： 【ONE6】</p>
+<p>【补充】: 可以在软件的安装目录中找到如下<strong>“companylogo.png”</strong>图片！然后将它删除,也可以自行修改png图片。</p>
+</li>
+</ul>
+<h3 id="前端知识类-5"><a href="#前端知识类-5" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>玩转前端 Video 播放器</p>
+<p><a href="https://mp.weixin.qq.com/s/tgiHiint3iTfPnr318kuFg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/tgiHiint3iTfPnr318kuFg</a></p>
+</li>
+</ul>
+<h2 id="2020-7-18"><a href="#2020-7-18" class="headerlink" title="2020/7/18"></a>2020/7/18</h2><h3 id="前端知识类-6"><a href="#前端知识类-6" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>再谈防抖和节流</p>
+<p><a href="https://mp.weixin.qq.com/s/1dlmD8Va62-KCj9fbpwp_g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/1dlmD8Va62-KCj9fbpwp_g</a></p>
+</li>
+<li><p>文件上传全过程</p>
+<p><a href="https://mp.weixin.qq.com/s/hRAw_eiDF2sVg7J1GzRCiw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/hRAw_eiDF2sVg7J1GzRCiw</a></p>
+</li>
+<li><p>CSS 渲染原理以及优化策略深剖析</p>
+<p><a href="https://mp.weixin.qq.com/s/EJZmCi1m0fPK2zxJuHlECw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/EJZmCi1m0fPK2zxJuHlECw</a></p>
+</li>
+</ul>
+<h3 id="项目类-2"><a href="#项目类-2" class="headerlink" title="项目类"></a>项目类</h3><p><a href="https://juejin.im/post/5c622fb5e51d457f9f2c2381" target="_blank" rel="noopener">https://juejin.im/post/5c622fb5e51d457f9f2c2381</a></p>
+<h3 id="网址-1"><a href="#网址-1" class="headerlink" title="网址"></a>网址</h3><ul>
+<li><p>谷歌插件下载</p>
+<p><a href="https://www.ggfwzs.com/" target="_blank" rel="noopener">https://www.ggfwzs.com/</a></p>
+</li>
+</ul>
+<h3 id="谷歌插件"><a href="#谷歌插件" class="headerlink" title="谷歌插件"></a>谷歌插件</h3><ul>
+<li><p>一键视频下载</p>
+<p>  一键视频下载是一款可以下载<strong>「微信视频，百度视频，好看视频，微博视频，知乎视频」</strong>的神奇插件。</p>
+<p>  测试：百度可以，知乎不行</p>
+</li>
+<li><p>CocoCut<br>这是一款超级厉害的<strong>「视频音频解析下载插件，支持海量国外的视频音频平台」</strong></p>
+<p>测试：可以下载知乎</p>
+</li>
+</ul>
+<h2 id="2020-7-20"><a href="#2020-7-20" class="headerlink" title="2020/7/20"></a>2020/7/20</h2><h3 id="前端知识类-7"><a href="#前端知识类-7" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>Vue 开发必须知道的 36 个技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/ettUDlfNGjdpDTlPrbxbGQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ettUDlfNGjdpDTlPrbxbGQ</a></p>
+</li>
+<li><p>如何实现单点登录功能 </p>
+<p><a href="https://mp.weixin.qq.com/s/O6A_BqyQPjJBrRt9o6fSvw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/O6A_BqyQPjJBrRt9o6fSvw</a></p>
+</li>
+<li><p>前端登录方案</p>
+<p><a href="https://mp.weixin.qq.com/s/Dv5HEXVTX5r0RxfDvoWt6A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Dv5HEXVTX5r0RxfDvoWt6A</a></p>
+</li>
+<li><p>前端常用的工具方法</p>
+<p><a href="https://mp.weixin.qq.com/s/9VvaLdgKmDaQXnd_upWA2g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/9VvaLdgKmDaQXnd_upWA2g</a></p>
+</li>
+<li><p>理解websocket的原理</p>
+<p><a href="https://mp.weixin.qq.com/s/OKiVeiAtdZvSG5ZC8jYOzg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/OKiVeiAtdZvSG5ZC8jYOzg</a></p>
+</li>
+<li><p>写给初中级前端的高级进阶指南（万字路线）</p>
+<p><a href="https://mp.weixin.qq.com/s/MgC41d3X7T1k3Daq_UiLIw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/MgC41d3X7T1k3Daq_UiLIw</a></p>
+</li>
+<li><p>TS 不要错过的八个工具 </p>
+<p><a href="https://mp.weixin.qq.com/s/0EqUsQLsCR7_PUwg1Cq7NQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/0EqUsQLsCR7_PUwg1Cq7NQ</a></p>
+</li>
+<li><p>深度解析bind原理、使用场景及模拟实现</p>
+<p><a href="https://mp.weixin.qq.com/s/fq66ljxVN_2Oz3ZOS6vNXA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/fq66ljxVN_2Oz3ZOS6vNXA</a></p>
+</li>
+<li><p>15条JS技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/pWtYolrUcNHE24YfvpkDhg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/pWtYolrUcNHE24YfvpkDhg</a></p>
+</li>
+<li><p>教你用好 Javascript 数组</p>
+<p><a href="https://mp.weixin.qq.com/s/lep5mh1cd8zE0YVi8ZR5Dw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/lep5mh1cd8zE0YVi8ZR5Dw</a></p>
+</li>
+</ul>
+<h3 id="软件工具类-6"><a href="#软件工具类-6" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p>【软件名称】：Sandboxie </p>
+<p>【适用平台】：PC</p>
+<p>【软件优势】：Windows平台上的一款功能强大的老牌沙盘工具，能够在系统中制造另一个虚拟的程序运行环境，与用户本身的系统完全隔离开来。</p>
+<p>【来源】： 【潮软件]】</p>
+</li>
+<li><p>【软件名称】：星雨视频</p>
+<p>【适用平台】：安卓</p>
+<p>【软件优势】：<strong>完全无广告</strong>，画面基本<strong>高清</strong>以上，支持投屏、缓存、倍数。</p>
+<p>【缺点】：有一点点缺陷，那就是这款App<strong>不支持弹幕</strong>，</p>
+<p>【来源】： 【ONE6】</p>
+</li>
+<li><p>【软件名称】：番茄影视</p>
+<p>【适用平台】：安卓</p>
+<p>【来源】： 【ONE6】</p>
+</li>
+<li><p>【软件名称】：南瓜影视 V1.3.8.0</p>
+<p>【适用平台】：安卓</p>
+<p>【来源】： 【ONE6】</p>
+</li>
+<li><p>【软件名称】：Foobox</p>
+<p>【适用平台】：PC</p>
+<p>【软件优势】：这是一款<strong>原版</strong>的音乐播放器，软件<strong>简洁、无ad</strong>，内置了<strong>主题和音乐下载插件</strong>，支持<strong>在线试听和下载</strong>，支持<strong>LRC显示</strong></p>
+<p>【来源】： 【KeyApps】</p>
+<p>【补充】: 点击上方<strong>“搜索框”</strong>就改为<strong>网络模式</strong>，就可以进行自定义搜索想听的音乐了，</p>
+<p>同样的位置，点击“<strong>搜索来源</strong>”，你会发现，此软件有<strong>3个</strong> 搜索源，分别是：<strong>酷我、千千、咪咕</strong>。</p>
+</li>
+</ul>
 
       
 
@@ -1073,7 +609,7 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
         		</li>
       		
 		</ul>
@@ -1083,7 +619,7 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/13/vue%E4%B9%8Bwebpack%E7%9A%84%E4%BB%A3%E7%90%86%E9%85%8D%E7%BD%AE%EF%BC%88proxyTable%EF%BC%89/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
         </p>
       
 
@@ -1101,27 +637,162 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
 
 
   
-    <article id="post-B_JS之ES6语法参数解构与对象展开运算符" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-每日公众号阅读（七）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/10/B_JS%E4%B9%8BES6%E8%AF%AD%E6%B3%95%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%84%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/">JS之ES6语法参数解构与对象展开运算符</a>
+      <a class="article-title" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%83%EF%BC%89/">每日公众号阅读（七）</a>
     </h1>
   
 
         
-        <a href="/2020/01/10/B_JS%E4%B9%8BES6%E8%AF%AD%E6%B3%95%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%84%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/" class="archive-article-date">
-  	<time datetime="2020-01-10T12:03:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
+        <a href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%83%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-07-03T17:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="2020-09-07"><a href="#2020-09-07" class="headerlink" title="2020/09/07"></a>2020/09/07</h2><h3 id="前端知识类"><a href="#前端知识类" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>一篇文章带你了解CSS3 3D 转换知识</p>
+<p><a href="https://mp.weixin.qq.com/s/s-u5aFCDImGOxkqkDW27Qw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/s-u5aFCDImGOxkqkDW27Qw</a></p>
+</li>
+<li><p>XSS攻防实战（附JS源码）</p>
+<p><a href="https://mp.weixin.qq.com/s/_2WeheJfK8ao3HrI4TXa8w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/_2WeheJfK8ao3HrI4TXa8w</a></p>
+<p><a href="https://juejin.im/post/6867184627393265677" target="_blank" rel="noopener">https://juejin.im/post/6867184627393265677</a></p>
+</li>
+<li><p>Dooring可视化之从零实现动态表单设计器（React）</p>
+<p><a href="https://mp.weixin.qq.com/s/OYlLXp9bcwxM2q4c8A_FvQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/OYlLXp9bcwxM2q4c8A_FvQ</a></p>
+</li>
+<li><p>一文快速上手Rollup，JavaScript类库打包好帮手</p>
+<p><a href="https://mp.weixin.qq.com/s/aASz3qam4ljVVkVxqgJoFQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/aASz3qam4ljVVkVxqgJoFQ</a></p>
+</li>
+</ul>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
+<li><p>面试官：说一说递归如何优化-尾递归优化</p>
+<p><a href="https://mp.weixin.qq.com/s/I-QIsLhykupreVKBHNmbwg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/I-QIsLhykupreVKBHNmbwg</a></p>
+</li>
+</ul>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>200行JS代码，带你实现代码编译器</p>
+<p><a href="https://mp.weixin.qq.com/s/gJiszlCjxTOkpPysDyjMgw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/gJiszlCjxTOkpPysDyjMgw</a></p>
+</li>
+</ul>
+<h2 id="2020-09-08"><a href="#2020-09-08" class="headerlink" title="2020/09/08"></a>2020/09/08</h2><h3 id="前端知识类-1"><a href="#前端知识类-1" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>『极限版』不掺水，用纯 CSS 来实现超飒的表单验证功能</p>
+<p><a href="https://mp.weixin.qq.com/s/9IZBwnV0Ck7b-nCMdM03hQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/9IZBwnV0Ck7b-nCMdM03hQ</a></p>
+</li>
+<li><p>这次，彻底搞懂发布订阅模式</p>
+<p><a href="https://mp.weixin.qq.com/s/yMvATu7Pgn_EDkXz_myqdg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/yMvATu7Pgn_EDkXz_myqdg</a></p>
+<p><a href="https://juejin.im/post/6865262396672311310" target="_blank" rel="noopener">https://juejin.im/post/6865262396672311310</a></p>
+</li>
+<li><p>10个Vue开发技巧助力成为更好的工程师</p>
+<p><a href="https://mp.weixin.qq.com/s/wS7qMHe7McP0id5tMIEBhA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/wS7qMHe7McP0id5tMIEBhA</a></p>
+</li>
+</ul>
+<h3 id="拓展-1"><a href="#拓展-1" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>[Javascript库] 只需几行 JavaScript 代码，网页瞬间有气质了</p>
+<p><a href="https://mp.weixin.qq.com/s/Lh0R5xNLGie6hPlWHhaUIQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Lh0R5xNLGie6hPlWHhaUIQ</a></p>
+</li>
+<li><p>Webpack漫谈</p>
+<p><a href="https://mp.weixin.qq.com/s/mcQuU7PWxczvnTGFw5W1FQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/mcQuU7PWxczvnTGFw5W1FQ</a></p>
+</li>
+<li><p>【工具】15个非常实用的 JavaScript 表单验证库</p>
+<p><a href="https://mp.weixin.qq.com/s/t-X_c5ZcHxfU_waGkP3uVQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/t-X_c5ZcHxfU_waGkP3uVQ</a></p>
+</li>
+</ul>
+<h2 id="2020-09-09"><a href="#2020-09-09" class="headerlink" title="2020/09/09"></a>2020/09/09</h2><h3 id="前端知识类-2"><a href="#前端知识类-2" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>13个超实用的JavaScript数组操作技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/J1gLEEiTDsd9R4Zj_kcGog" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/J1gLEEiTDsd9R4Zj_kcGog</a></p>
+</li>
+<li><p>网页骨架屏自动生成方案（dps）</p>
+<p><a href="https://mp.weixin.qq.com/s/yTIaFa7sxfXbiTaorRw3tg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/yTIaFa7sxfXbiTaorRw3tg</a></p>
+</li>
+<li><p>一文带你层层解锁「文件下载」的奥秘</p>
+<p><a href="https://mp.weixin.qq.com/s/EXmtSwthZVxcB61hvX32kA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/EXmtSwthZVxcB61hvX32kA</a></p>
+</li>
+<li><p>Promise 你可能真的还没用明白（续集进阶版）</p>
+<p><a href="https://mp.weixin.qq.com/s/d1RNx53PZisr7vpg8rGp2w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/d1RNx53PZisr7vpg8rGp2w</a></p>
+</li>
+<li><p>细数 TS 中那些奇怪的符号</p>
+<p><a href="https://mp.weixin.qq.com/s/8b9wAwyhr1HLuT3RqxxvHw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/8b9wAwyhr1HLuT3RqxxvHw</a></p>
+</li>
+<li><p>图解 HTTP 缓存</p>
+<p><a href="https://mp.weixin.qq.com/s/gEeE1YcrK_VM3d4H311asw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/gEeE1YcrK_VM3d4H311asw</a></p>
+</li>
+</ul>
+<h3 id="拓展-2"><a href="#拓展-2" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>Node.js 中的 require 是如何工作的？</p>
+<p><a href="https://mp.weixin.qq.com/s/usS7VUXiG7urs573pPO9bQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/usS7VUXiG7urs573pPO9bQ</a></p>
+</li>
+</ul>
+<h2 id="2020-09-10"><a href="#2020-09-10" class="headerlink" title="2020/09/10"></a>2020/09/10</h2><h3 id="前端知识类-3"><a href="#前端知识类-3" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>一文带你玩转前端图片</p>
+<p><a href="https://mp.weixin.qq.com/s/umdcC-qtco0ZsKyeh_mmbA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/umdcC-qtco0ZsKyeh_mmbA</a></p>
+</li>
+<li><p>21个面试中常见算法问题详解</p>
+<p><a href="https://mp.weixin.qq.com/s/SzC6QAw53JEDntySARD8mA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/SzC6QAw53JEDntySARD8mA</a></p>
+</li>
+<li><p>「1.8W字」2020不可多得的 TS 学习指南</p>
+<p><a href="https://mp.weixin.qq.com/s/3X9FIP0PgNLSEfzhSx_Srg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3X9FIP0PgNLSEfzhSx_Srg</a></p>
+</li>
+</ul>
+<h3 id="拓展-3"><a href="#拓展-3" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>「一劳永逸」一张脑图带你掌握Git命令</p>
+<p><a href="https://mp.weixin.qq.com/s/-DjGBDi7HQfVpGNY8sOCmw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/-DjGBDi7HQfVpGNY8sOCmw</a></p>
+</li>
+</ul>
+<h2 id="2020-09-11"><a href="#2020-09-11" class="headerlink" title="2020/09/11"></a>2020/09/11</h2><h3 id="前端知识类-4"><a href="#前端知识类-4" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>这五个有用的 CSS 属性完全被我忽视了</p>
+<p><a href="https://mp.weixin.qq.com/s/ma24eGS1zKggpRceLWv3UA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ma24eGS1zKggpRceLWv3UA</a></p>
+</li>
+<li><p>大规格文件的上传优化(实用篇)</p>
+<p><a href="https://mp.weixin.qq.com/s/S9Op6mk4PjuAB977RJyN9g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/S9Op6mk4PjuAB977RJyN9g</a></p>
+</li>
+<li><p>真赞 · 纯 CSS 判断鼠标进入方向</p>
+<p><a href="https://mp.weixin.qq.com/s/txJsOdyrYc8GJelu7pmouA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/txJsOdyrYc8GJelu7pmouA</a></p>
+</li>
+</ul>
+<h3 id="拓展-4"><a href="#拓展-4" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>「面试」你不知道的 React 和 Vue 的 20 个区别</p>
+<p><a href="https://mp.weixin.qq.com/s/BCE2wGOvsSv4ZGUVqvhv7w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/BCE2wGOvsSv4ZGUVqvhv7w</a></p>
+</li>
+<li><p>Next.js + TypeScript 搭建一个简易的博客系统</p>
+<p><a href="https://mp.weixin.qq.com/s/fJRtEqjem7cA9x-FS1ud4w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/fJRtEqjem7cA9x-FS1ud4w</a></p>
+</li>
+</ul>
+<h2 id="2020-09-12"><a href="#2020-09-12" class="headerlink" title="2020/09/12"></a>2020/09/12</h2><h3 id="前端知识类-5"><a href="#前端知识类-5" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>5个很常用的CSS3网页小实例</p>
+<p><a href="https://mp.weixin.qq.com/s/ORnNHybqqVW8FM1JPxdpEg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ORnNHybqqVW8FM1JPxdpEg</a></p>
+</li>
+<li><p>Vue超好玩的新特性：在CSS中引入JS变量</p>
+<p><a href="https://mp.weixin.qq.com/s/7zJdAEzWzY9ILSq8ngTjRw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/7zJdAEzWzY9ILSq8ngTjRw</a></p>
+</li>
+<li><p>你所不知道的 CSS 负值技巧与细节</p>
+<p><a href="https://mp.weixin.qq.com/s/sDrMM3I-dTacLYzzh4Hdgg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/sDrMM3I-dTacLYzzh4Hdgg</a></p>
+</li>
+</ul>
+<h3 id="拓展-5"><a href="#拓展-5" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>在线IDE开发入门之从零实现一个在线代码编辑器</p>
+<p><a href="https://mp.weixin.qq.com/s/CAv0qRCcjo0UdY7fDNpv6w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/CAv0qRCcjo0UdY7fDNpv6w</a></p>
+</li>
+<li><p>Gitlab-ci: 从零开始的前端自动化部署</p>
+<p><a href="https://mp.weixin.qq.com/s/vllbzDjE7sraZj9axk1u4A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/vllbzDjE7sraZj9axk1u4A</a></p>
+</li>
+</ul>
+<h2 id="2020-09-13"><a href="#2020-09-13" class="headerlink" title="2020/09/13"></a>2020/09/13</h2><h3 id="前端知识类-6"><a href="#前端知识类-6" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>CSS 属性选择器深入挖掘（实现这些功能，CSS完胜）</p>
+<p><a href="https://mp.weixin.qq.com/s/GQeWsojO57Uik5bGWa9Nbg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/GQeWsojO57Uik5bGWa9Nbg</a></p>
+</li>
+<li><p>Vue源码解析，keep-alive是如何实现缓存的？</p>
+<p><a href="https://mp.weixin.qq.com/s/Dm5DSLuJWtnCmeqGdWeKAw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Dm5DSLuJWtnCmeqGdWeKAw</a></p>
+</li>
+</ul>
+
       
 
       
@@ -1134,7 +805,7 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
         		</li>
       		
 		</ul>
@@ -1144,7 +815,1466 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/10/B_JS%E4%B9%8BES6%E8%AF%AD%E6%B3%95%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%84%E4%B8%8E%E5%AF%B9%E8%B1%A1%E5%B1%95%E5%BC%80%E8%BF%90%E7%AE%97%E7%AC%A6/">展开全文 >></a>
+          <a class="article-more-a" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%83%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-每日公众号阅读（三）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%89%EF%BC%89/">每日公众号阅读（三）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%89%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-07-03T17:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="2020-08-01"><a href="#2020-08-01" class="headerlink" title="2020/08/01"></a>2020/08/01</h2><h3 id="前端知识类"><a href="#前端知识类" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>css动画</p>
+<p><a href="https://juejin.im/post/5d99b706e51d4577f9285c33" target="_blank" rel="noopener">https://juejin.im/post/5d99b706e51d4577f9285c33</a></p>
+</li>
+<li><p>微前端那些事</p>
+<p><a href="https://mp.weixin.qq.com/s/DxAwfmmlfi8lQCkgoDsyDg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/DxAwfmmlfi8lQCkgoDsyDg</a></p>
+<p>前端微服务化解决方案<a href="https://alili.tech/tags/microfrontend/" target="_blank" rel="noopener">https://alili.tech/tags/microfrontend/</a></p>
+</li>
+<li><p>Node.js 在大前端领域的应用分析</p>
+<p><a href="https://mp.weixin.qq.com/s/uSlXCu6IC0Kys6pgOBp47w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/uSlXCu6IC0Kys6pgOBp47w</a></p>
+</li>
+<li><p>Vue+Electron开发跨平台桌面应用</p>
+<p><a href="https://mp.weixin.qq.com/s/zNYzhGJr0kxUyZXEL83mGg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/zNYzhGJr0kxUyZXEL83mGg</a></p>
+<ul>
+<li>2个github项目</li>
+</ul>
+</li>
+<li><p>7个处理undefined的技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/CL0VZQrs8K_m10Y1_ufCxg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/CL0VZQrs8K_m10Y1_ufCxg</a></p>
+</li>
+</ul>
+<h3 id="算法类"><a href="#算法类" class="headerlink" title="算法类"></a>算法类</h3><ul>
+<li><p>一看就懂的队列系算法题解析<br><a href="https://mp.weixin.qq.com/s/FlTn51bW6h_sQiRur4GoKQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/FlTn51bW6h_sQiRur4GoKQ</a></p>
+</li>
+<li><p>从头开始复习算法之让你彻底搞清楚BFS和DFS</p>
+<p><a href="https://mp.weixin.qq.com/s/kiFAdJGTt-EgYjhM5FgOnw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/kiFAdJGTt-EgYjhM5FgOnw</a></p>
+</li>
+</ul>
+<h3 id="网址类"><a href="#网址类" class="headerlink" title="网址类"></a>网址类</h3><ul>
+<li><p>谷歌应用下载</p>
+<p><a href="https://apkssl.com/zh-cn/" target="_blank" rel="noopener">https://apkssl.com/zh-cn/</a></p>
+</li>
+</ul>
+<h2 id="2020-08-03"><a href="#2020-08-03" class="headerlink" title="2020/08/03"></a>2020/08/03</h2><h3 id="软件工具类"><a href="#软件工具类" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p>【软件名称】：<strong>音友</strong></p>
+<p>【适用平台】：安卓</p>
+<p>【软件优势】：这是一款集<strong>各大音乐平台资源为一体</strong>的App，软件UI<strong>页面清晰</strong>干净，没有任何<strong>广告植入</strong>。重点是<strong>无需登录</strong>，便能免费操作整个平台资源。</p>
+<p>【来源】：  [KeyApps]</p>
+</li>
+<li><p>【软件名称】：<strong>互盾数据恢复</strong></p>
+<p>【适用平台】：PC</p>
+<p>【软件优势】：<strong>这款软件兼容性很强，可以在xp、win7、win10等系统上稳定运行，没有什么异常非常稳定</strong>。<strong>软件支持硬盘、u盘、移动硬盘、SD卡、内存卡、相机卡、手机卡等多种设备进行恢复,</strong>而且恢复图片时还支持图片预览。</p>
+<p>【来源】：  [KeyApps]</p>
+<p> 【注意】：<strong>只需要先安装文件夹①里面的应用程序，然后将文件②里面的文件复制到安装目录下，接着替换原文件就OK。</strong>安装好后打开软件，恢复你需要恢复的数据即可。</p>
+</li>
+</ul>
+<h3 id="前端知识类-1"><a href="#前端知识类-1" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>5000字解析：前端五种跨平台技术</p>
+<p><a href="https://mp.weixin.qq.com/s/PuDm3oXQYakYdvTah-TAsQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/PuDm3oXQYakYdvTah-TAsQ</a></p>
+</li>
+<li><p>【干货】Chrome插件(扩展)开发全攻略</p>
+<p><a href="https://mp.weixin.qq.com/s/w6_QhnNCK_X8stBmNd_F5w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/w6_QhnNCK_X8stBmNd_F5w</a></p>
+</li>
+<li><p>如何优雅的实现一个九宫格抽奖</p>
+<p><a href="https://mp.weixin.qq.com/s/XEGuThFOuxOyTgdLy0ySYQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/XEGuThFOuxOyTgdLy0ySYQ</a></p>
+</li>
+<li><p>缩减 SCSS 50%样式代码的 14 条实战经验</p>
+<p><a href="https://mp.weixin.qq.com/s/707CAMqSDNPizctlrUqEVw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/707CAMqSDNPizctlrUqEVw</a></p>
+</li>
+</ul>
+<h3 id="github项目"><a href="#github项目" class="headerlink" title="github项目"></a>github项目</h3><ul>
+<li><p>15款Spring开源项目脚手架，全面&amp;给力（收藏款)</p>
+<p><a href="https://juejin.im/post/5ef2e2dd6fb9a058727f3bac" target="_blank" rel="noopener">https://juejin.im/post/5ef2e2dd6fb9a058727f3bac</a></p>
+</li>
+</ul>
+<h2 id="2020-08-04"><a href="#2020-08-04" class="headerlink" title="2020/08/04"></a>2020/08/04</h2><h3 id="前端知识类-2"><a href="#前端知识类-2" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>深入 TypeScript 中的子类型、逆变、协变</p>
+<p><a href="https://mp.weixin.qq.com/s/qea0RR1jsznqhemPjo11-Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/qea0RR1jsznqhemPjo11-Q</a></p>
+</li>
+<li><p>拥抱 Vue 3 系列之 JSX 语法</p>
+<p><a href="https://mp.weixin.qq.com/s/fUz8uU4MuzbGM43S3LXuAw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/fUz8uU4MuzbGM43S3LXuAw</a></p>
+</li>
+<li><p>15个Github使用技巧，你肯定有不知道的</p>
+<p><a href="https://mp.weixin.qq.com/s/3Z-o_JNoC9rGB0fIcZ7k2w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3Z-o_JNoC9rGB0fIcZ7k2w</a></p>
+</li>
+<li><p>我的前端知识体系构建（上）</p>
+<p><a href="https://mp.weixin.qq.com/s/A7ZE6w25qWq2i3z0HABg-g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/A7ZE6w25qWq2i3z0HABg-g</a></p>
+</li>
+<li><p>我的前端知识体系构建（下）</p>
+<p><a href="https://mp.weixin.qq.com/s/WpuzHt0BTp35qAxCSaavcQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/WpuzHt0BTp35qAxCSaavcQ</a></p>
+</li>
+<li><p>如何精确统计页面停留时长</p>
+<p><a href="https://mp.weixin.qq.com/s/vVBl25L9oOlJaYKNGUKd3Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/vVBl25L9oOlJaYKNGUKd3Q</a></p>
+</li>
+</ul>
+<h3 id="java"><a href="#java" class="headerlink" title="java"></a>java</h3><ul>
+<li><p>徒手撸了个多线程断点续传下载器</p>
+<p><a href="https://mp.weixin.qq.com/s/yeDPqoqyxCd6J5lNaN3vXQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/yeDPqoqyxCd6J5lNaN3vXQ</a></p>
+</li>
+<li><p>进来领略下cURL的独门绝技</p>
+<p><a href="https://mp.weixin.qq.com/s/jK4ctq5VQjw4oPSO0gEp6Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/jK4ctq5VQjw4oPSO0gEp6Q</a></p>
+</li>
+</ul>
+<h3 id="github项目-1"><a href="#github项目-1" class="headerlink" title="github项目"></a>github项目</h3><ul>
+<li><p>一款vue编写的功能强大的swagger-ui</p>
+<p><a href="https://mp.weixin.qq.com/s/PeqBO0uPEYdHWCGL5A1HcQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/PeqBO0uPEYdHWCGL5A1HcQ</a></p>
+</li>
+</ul>
+<h3 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h3><ul>
+<li><p>死亡公司统计</p>
+<p><a href="https://www.itjuzi.com/deathCompany" target="_blank" rel="noopener">https://www.itjuzi.com/deathCompany</a></p>
+</li>
+</ul>
+<h2 id="2020-08-05"><a href="#2020-08-05" class="headerlink" title="2020/08/05"></a>2020/08/05</h2><h3 id="软件工具类-1"><a href="#软件工具类-1" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p>【软件名称】：<strong>小羊搜搜</strong></p>
+<p>【适用平台】：安卓，ios</p>
+<p>【软件优势】：这是一款<strong>支持双平台的</strong>搜索工具App，支持不同类型的资源搜索，<strong>页面清晰</strong>简单，集成<strong>小说、漫画、视频、音乐</strong>搜索，想要的资源基本能够免费找到。</p>
+<p>【来源】：  [KeyApps]</p>
+</li>
+<li><p>【软件名称】：第三方6盘小白羊</p>
+<p>【适用平台】：PC</p>
+<p>【软件优势】：支持免登录搜索百dù网盘资源，<strong>不限次数高速下载百dù网盘资源，6盘小白羊主要还是调用的6盘的API！</strong></p>
+<p>【来源】：  [ONE6]</p>
+</li>
+</ul>
+<h3 id="前端知识类-3"><a href="#前端知识类-3" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>25个你不得不知道的数组reduce高级用法</p>
+<p><a href="https://mp.weixin.qq.com/s/PO0KLQvAJ3JmN2q1iG5VSQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/PO0KLQvAJ3JmN2q1iG5VSQ</a></p>
+</li>
+<li><p>TinyPNG可以这样玩</p>
+<p><a href="https://mp.weixin.qq.com/s/aRyEzYcJ7CvOaN6ll5C10Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/aRyEzYcJ7CvOaN6ll5C10Q</a></p>
+<p>手搓一个TinyPng压缩图片的WebpackPlugin</p>
+<p><a href="https://mp.weixin.qq.com/s/eqsZwZPCX-GZyB-EOm3TwQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/eqsZwZPCX-GZyB-EOm3TwQ</a></p>
+</li>
+<li><p>从零开始配置 TypeScript 项目</p>
+<p><a href="https://juejin.im/post/6856410900577026061" target="_blank" rel="noopener">https://juejin.im/post/6856410900577026061</a></p>
+</li>
+<li><p>初中级前端 JavaScript 自测清单 - 2</p>
+<p><a href="https://mp.weixin.qq.com/s/-fiuJMW_xVaYZxrAuH0TBg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/-fiuJMW_xVaYZxrAuH0TBg</a></p>
+</li>
+</ul>
+<h3 id="java-1"><a href="#java-1" class="headerlink" title="java"></a>java</h3><ul>
+<li><p>大公司为什么都有API网关？什么是API网关</p>
+<p><a href="https://mp.weixin.qq.com/s/KK5GEtbS_BOgY7U4fbjGeA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/KK5GEtbS_BOgY7U4fbjGeA</a></p>
+</li>
+</ul>
+<h3 id="网址-1"><a href="#网址-1" class="headerlink" title="网址"></a>网址</h3><ul>
+<li><p>热搜生成器</p>
+<p>wb.newbfun.com/resou/main.html</p>
+</li>
+<li><p>爱豆翻牌体验器</p>
+<p>wb.newbfun.com/fanpai/main.html</p>
+</li>
+<li><p>PornHub的logo生成器</p>
+<p>logoly.pro/#</p>
+</li>
+<li><p>卡通头像生成器</p>
+<p>getavataaars.com</p>
+</li>
+<li><p>彩虹屁生成器</p>
+<p>chp.shadiao.app</p>
+</li>
+<li><p>为所欲为生成器</p>
+<p>lab.bangbang93.com/wsyw</p>
+</li>
+<li><p>记仇生成器</p>
+<p>lab.bangbang93.com/jichou</p>
+</li>
+</ul>
+<h2 id="2020-08-07"><a href="#2020-08-07" class="headerlink" title="2020/08/07"></a>2020/08/07</h2><h3 id="前端知识类-4"><a href="#前端知识类-4" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>你可能不知道 JSON.stringify() 的这些妙用</p>
+<p><a href="https://mp.weixin.qq.com/s/0iVZCf_McLAbLs_QFhq_lw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/0iVZCf_McLAbLs_QFhq_lw</a></p>
+</li>
+<li><p>动画：深入浅出从根上理解 HTTP 缓存机制及原理</p>
+<p><a href="https://mp.weixin.qq.com/s/M8Ew7xKStiGEnhGgCq5YPA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/M8Ew7xKStiGEnhGgCq5YPA</a></p>
+</li>
+<li><p>使用 JavaScript 编写更好的条件语句</p>
+<p><a href="https://mp.weixin.qq.com/s/QNXROkBmk12MvyvUy7D7Sg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/QNXROkBmk12MvyvUy7D7Sg</a></p>
+</li>
+<li><p>JavaScript 模块化的历史进程（偏历史介绍）</p>
+<p><a href="https://mp.weixin.qq.com/s/W4pbh5ivGu-RGkz1fdDqwQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/W4pbh5ivGu-RGkz1fdDqwQ</a></p>
+</li>
+<li><p>TS核心知识点总结及项目实战案例分析</p>
+<p><a href="https://mp.weixin.qq.com/s/L91rWMdIepUKi1fG1czrlA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/L91rWMdIepUKi1fG1czrlA</a></p>
+</li>
+<li><p>typescript实战总结之实现一个互联网黑白墙</p>
+<p><a href="https://mp.weixin.qq.com/s/0iVZCf_McLAbLs_QFhq_lw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/0iVZCf_McLAbLs_QFhq_lw</a></p>
+</li>
+<li><p>Typescript 设计模式之工厂方法</p>
+<p><a href="https://mp.weixin.qq.com/s/ODSjqmsb1cnjQwwjhS5AOg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ODSjqmsb1cnjQwwjhS5AOg</a></p>
+</li>
+<li><p>Vue.set 的副作用</p>
+<p><a href="https://mp.weixin.qq.com/s/UC-SrKVyn_rdF-_s-RNKug" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/UC-SrKVyn_rdF-_s-RNKug</a></p>
+</li>
+<li><p>了解 JS 压缩图片，这一篇就够了</p>
+<p><a href="https://mp.weixin.qq.com/s/JEuPEldSXqzC2bn8FT8dyA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/JEuPEldSXqzC2bn8FT8dyA</a></p>
+</li>
+<li><p>前端数据结构与算法入门</p>
+<p><a href="https://mp.weixin.qq.com/s/S-kbKRpA2_6nSz9rU6NuEw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/S-kbKRpA2_6nSz9rU6NuEw</a></p>
+</li>
+<li><p>rem，em，px的区别和使用场景</p>
+<p><a href="https://mp.weixin.qq.com/s/EiTOVHI4KqUn06PmUcGOUg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/EiTOVHI4KqUn06PmUcGOUg</a></p>
+</li>
+<li><p>使用CSS文字阴影创建有趣的效果</p>
+<p><a href="https://mp.weixin.qq.com/s/HfdO2Qh8krWsS_HcGKzaTA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/HfdO2Qh8krWsS_HcGKzaTA</a></p>
+</li>
+<li><p>【测试】京喜前端自动化测试之路</p>
+<p><a href="https://mp.weixin.qq.com/s/DXL0rzfFLQZ65g20X83Tlg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/DXL0rzfFLQZ65g20X83Tlg</a></p>
+</li>
+</ul>
+<h3 id="github项目-2"><a href="#github项目-2" class="headerlink" title="github项目"></a>github项目</h3><ul>
+<li><p>一套开源的，基于SpringBoot的车牌识别系统</p>
+<p><a href="https://gitee.com/admin_yu/yx-image-recognition" target="_blank" rel="noopener">https://gitee.com/admin_yu/yx-image-recognition</a></p>
+</li>
+</ul>
+<h3 id="软件工具类-2"><a href="#软件工具类-2" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p>【软件名称】：B站视频下载器</p>
+<p>【适用平台】：PC</p>
+<p>【软件优势】：可以下载大部分B站的视频，B站有很多有趣的内容，而且大部分视频的分辨率都可以达到4K。</p>
+<p>【来源】：  [悦美兮]</p>
+</li>
+<li><p>【软件名称】：字说视频字幕动画</p>
+<p>【适用平台】：安卓</p>
+<p>【软件优势】：这是一款字幕动画制作工具App，支持视频加字幕、去水印、转GIF以及视频提取等功能，已特殊处理，安装即是高级会员，无ad，众多模板，一键轻松制作。</p>
+<p>【来源】：  [KeyApps]</p>
+</li>
+</ul>
+<h3 id="【拓展】"><a href="#【拓展】" class="headerlink" title="【拓展】"></a>【拓展】</h3><ul>
+<li><p>PicGo 一款免费的图床管理应用</p>
+<p><a href="https://mp.weixin.qq.com/s/-3sbIJrY4egcSFigBToMUg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/-3sbIJrY4egcSFigBToMUg</a></p>
+</li>
+<li><p>Google Hacking的用法<br><a href="https://mp.weixin.qq.com/s/MzAeWYjU22BMK5Fvhi86hA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/MzAeWYjU22BMK5Fvhi86hA</a></p>
+</li>
+</ul>
+<h2 id="2020-08-13"><a href="#2020-08-13" class="headerlink" title="2020/08/13"></a>2020/08/13</h2><h3 id="前端知识类-5"><a href="#前端知识类-5" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>向强大的SVG迈进</p>
+<p><a href="https://mp.weixin.qq.com/s/40JTeqvHrmcQ-F33SFAmAw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/40JTeqvHrmcQ-F33SFAmAw</a></p>
+</li>
+<li><p>一行 CSS 为网页添加暗黑模式支持</p>
+<p><a href="https://mp.weixin.qq.com/s/mEHbfBiSD-Ube3SggWEUMA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/mEHbfBiSD-Ube3SggWEUMA</a></p>
+</li>
+<li><p>真实案例解释XSS的三种攻击</p>
+<p><a href="https://mp.weixin.qq.com/s/w0N-jxJ7S6C7bFC8g3NP3A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/w0N-jxJ7S6C7bFC8g3NP3A</a></p>
+</li>
+<li><p>多站点单点登录实现方案理论</p>
+<p><a href="https://mp.weixin.qq.com/s/ukSmicebkSc_5ZEwPsBJJQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ukSmicebkSc_5ZEwPsBJJQ</a></p>
+</li>
+<li><p>深入解析 Vue 的热更新原理</p>
+<p><a href="https://mp.weixin.qq.com/s/PocE31t4ARNth4XuX3vc3Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/PocE31t4ARNth4XuX3vc3Q</a></p>
+</li>
+<li><p>推荐 15 种水平垂直居中布局方案</p>
+<p><a href="https://mp.weixin.qq.com/s/txYRk4XHL_LaPL2Plu2O0Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/txYRk4XHL_LaPL2Plu2O0Q</a></p>
+</li>
+<li><p>Vue 项目性能优化实践</p>
+<p><a href="https://mp.weixin.qq.com/s/UemhqBezTPxRIYrOjC_99w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/UemhqBezTPxRIYrOjC_99w</a></p>
+</li>
+</ul>
+<h3 id="github项目-3"><a href="#github项目-3" class="headerlink" title="github项目"></a>github项目</h3><ul>
+<li><p>nestjs+vue+ts打造一个酷炫的星空聊天室</p>
+<p><a href="https://mp.weixin.qq.com/s/2rGqf2hN2y6raBXPRILI5w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/2rGqf2hN2y6raBXPRILI5w</a></p>
+<p><a href="https://github.com/genaller/genal-chat" target="_blank" rel="noopener">https://github.com/genaller/genal-chat</a></p>
+</li>
+</ul>
+<h3 id="软件工具类-3"><a href="#软件工具类-3" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p>【软件名称】：SpaceSniffer</p>
+<p>【适用平台】：PC</p>
+<p>【软件优势】：仅<strong>830KB</strong>的SpaceSniffer，是一款<strong>绿色免安装的免费软件</strong>，一个<strong>可以让您清晰查看硬盘中文件和文件夹</strong>的分布情况！并且通过<strong>可视化的布局</strong>，你可以直观地看到在你硬盘上的文件和文件夹<strong>占据存储</strong>的情况！</p>
+<p>【来源】：  [ONE6]</p>
+</li>
+<li><p>【软件名称】：笔趣阁</p>
+<p>【适用平台】：安卓</p>
+<p>【软件优势】：<strong>去除了全部广告，安装即是会员</strong></p>
+<p>【来源】：  [轻安卓]</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%89%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-每日公众号阅读（九） " class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B9%9D%EF%BC%89%20/">每日公众号阅读（九）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B9%9D%EF%BC%89%20/" class="archive-article-date">
+  	<time datetime="2020-07-03T17:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="2020-09-21"><a href="#2020-09-21" class="headerlink" title="2020/09/21"></a>2020/09/21</h2><h3 id="前端知识类"><a href="#前端知识类" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>一切的前端安全都是纸老虎</p>
+<p><a href="https://mp.weixin.qq.com/s/jk_TL8QtMLkbLa3ldFLRhA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/jk_TL8QtMLkbLa3ldFLRhA</a></p>
+</li>
+<li><p>从一个需求说起，H5实现万能返回</p>
+<p><a href="https://mp.weixin.qq.com/s/Y4RVEuEqIwvVveB5NxVmxg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Y4RVEuEqIwvVveB5NxVmxg</a></p>
+</li>
+<li><p>【手把手教学】基于vue封装一个安全键盘组件</p>
+<p><a href="https://mp.weixin.qq.com/s/0b6k3hDgFhA1aor_d41MVQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/0b6k3hDgFhA1aor_d41MVQ</a></p>
+</li>
+<li><p>收藏！40 个 CSS 布局技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/kL1c2Khpcr-D1E-2wZe0RA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/kL1c2Khpcr-D1E-2wZe0RA</a></p>
+</li>
+<li><p>在 JavaScript 中使用 Promises 时最常见的 3 个错误</p>
+<p><a href="https://mp.weixin.qq.com/s/UYfsIKEDfFg_3EFbxPn3bQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/UYfsIKEDfFg_3EFbxPn3bQ</a></p>
+</li>
+<li><p>Vue 进阶面试必问，异步更新机制和 nextTick 原理</p>
+<p><a href="https://mp.weixin.qq.com/s/ihzymIiY_i4Hj21CDHgzZQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ihzymIiY_i4Hj21CDHgzZQ</a></p>
+</li>
+<li><p>就是要让你搞懂Nginx，这篇就够了！</p>
+<p><a href="https://mp.weixin.qq.com/s/8aiYfxlPJrwP0AhbacPa4w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/8aiYfxlPJrwP0AhbacPa4w</a></p>
+</li>
+<li><p>Nginx常用配置总结</p>
+<p><a href="https://mp.weixin.qq.com/s/Ouuh6l1h8kb9gTV4T1aptQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Ouuh6l1h8kb9gTV4T1aptQ</a></p>
+</li>
+<li><p>动画：老大，不好了，内存泄漏了！</p>
+<p><a href="https://mp.weixin.qq.com/s/ieocNliu2yq2WQwf9jU6gA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ieocNliu2yq2WQwf9jU6gA</a></p>
+</li>
+<li><p>前端如何优雅的处理类数组对象？</p>
+<p><a href="https://mp.weixin.qq.com/s/xcncmGEiKDLnrgKkbS6lGQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/xcncmGEiKDLnrgKkbS6lGQ</a></p>
+</li>
+</ul>
+<h2 id="2020-09-22"><a href="#2020-09-22" class="headerlink" title="2020/09/22"></a>2020/09/22</h2><h3 id="前端知识类-1"><a href="#前端知识类-1" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>划线高亮和插入笔记的技术实现</p>
+<p><a href="https://mp.weixin.qq.com/s/2LHJiN92g7ePodB4luhksw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/2LHJiN92g7ePodB4luhksw</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/225773857" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/225773857</a></p>
+</li>
+<li><p>js垃圾回收机制原理给你聊的明明白白</p>
+<p><a href="https://mp.weixin.qq.com/s/VaZb1UC3a_kpCAwrI8M2Ew" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/VaZb1UC3a_kpCAwrI8M2Ew</a></p>
+</li>
+<li><p>Vue 项目里戳中你痛点的问题及解决办法（更新）</p>
+<p><a href="https://mp.weixin.qq.com/s/wHmGez1K_Qnnnmu2oiCrBw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/wHmGez1K_Qnnnmu2oiCrBw</a></p>
+<p><a href="https://juejin.im/post/6844903632815521799" target="_blank" rel="noopener">https://juejin.im/post/6844903632815521799</a></p>
+</li>
+<li><p>想要成为前端Star 吗？一首歌时间将React / Vue 应用Docker 化</p>
+<p><a href="https://mp.weixin.qq.com/s/ruALksvJeONaF1AK3W3lOQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ruALksvJeONaF1AK3W3lOQ</a></p>
+</li>
+<li><p>使用NodeJS实现JWT原理</p>
+<p><a href="https://mp.weixin.qq.com/s/aELqYL8B6Evn_PFBWdqNuA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/aELqYL8B6Evn_PFBWdqNuA</a></p>
+</li>
+</ul>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>HTTPS 证书被伪造了怎么办？</p>
+<p><a href="https://mp.weixin.qq.com/s/62RKlM1mrtOLFLKKsGxUbA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/62RKlM1mrtOLFLKKsGxUbA</a></p>
+</li>
+<li><p>你的Tree-Shaking并没什么卵用</p>
+<p><a href="https://mp.weixin.qq.com/s/E4iFf5aTbR9rXBU3gnR4Gg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/E4iFf5aTbR9rXBU3gnR4Gg</a></p>
+</li>
+<li><p>基于NodeJS从零构建线上自动化打包工作流</p>
+<p><a href="https://mp.weixin.qq.com/s/HIJsptzRa1a_jgsmiESGAg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/HIJsptzRa1a_jgsmiESGAg</a></p>
+</li>
+<li><p>移动端 1px 问题解决方案</p>
+<p><a href="https://mp.weixin.qq.com/s/IfstO7MxoVNUNNuAFW7xMQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/IfstO7MxoVNUNNuAFW7xMQ</a></p>
+</li>
+</ul>
+<h2 id="2020-09-23"><a href="#2020-09-23" class="headerlink" title="2020/09/23"></a>2020/09/23</h2><h3 id="前端知识类-2"><a href="#前端知识类-2" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>前端多线程大文件下载实践，提速10倍(拿捏百度云盘)</p>
+<p><a href="https://mp.weixin.qq.com/s/xlXpOVk-W-HbxvYITE_nAQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/xlXpOVk-W-HbxvYITE_nAQ</a><br>一文带你层层解锁「文件下载」的奥秘<br><a href="https://mp.weixin.qq.com/s/72KP0b5V1aJGUMB1vh9F1g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/72KP0b5V1aJGUMB1vh9F1g</a></p>
+</li>
+<li><p>写好 JS 条件语句的 5 条守则</p>
+<p><a href="https://mp.weixin.qq.com/s/CEIg_JxE_YC94Uu9uRtpMg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/CEIg_JxE_YC94Uu9uRtpMg</a></p>
+</li>
+<li><p>跨域（CORS）产生原因分析与解决方案，这一次彻底搞懂它</p>
+<p><a href="https://mp.weixin.qq.com/s/YatTtyrs_NgcvU5CThctLQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/YatTtyrs_NgcvU5CThctLQ</a></p>
+</li>
+</ul>
+<h3 id="拓展-1"><a href="#拓展-1" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>CommonJS 和 ES6 Module 究竟有什么区别？</p>
+<p><a href="https://mp.weixin.qq.com/s/X422Q5U8A4r-uNAPGp7gtw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/X422Q5U8A4r-uNAPGp7gtw</a></p>
+</li>
+</ul>
+<h2 id="2020-09-24"><a href="#2020-09-24" class="headerlink" title="2020/09/24"></a>2020/09/24</h2><h3 id="前端知识类-3"><a href="#前端知识类-3" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>Git命令行记不住？备忘录帮你搞定</p>
+<p><a href="https://mp.weixin.qq.com/s/QpWcJgdbGJ_X85FZFqet0Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/QpWcJgdbGJ_X85FZFqet0Q</a></p>
+</li>
+<li><p>从一道面试题谈谈对 EventLoop 的理解</p>
+<p><a href="https://mp.weixin.qq.com/s/ahIxhHWz4xTEEgEfdp_Pnw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ahIxhHWz4xTEEgEfdp_Pnw</a></p>
+<p><a href="https://juejin.im/post/6868849475008331783" target="_blank" rel="noopener">https://juejin.im/post/6868849475008331783</a></p>
+</li>
+<li><p>JavaScript 里的奇葩知识</p>
+<p><a href="https://mp.weixin.qq.com/s/sMKiQy4BeLCSGILvxArUDw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/sMKiQy4BeLCSGILvxArUDw</a></p>
+</li>
+</ul>
+<h2 id="2020-09-25"><a href="#2020-09-25" class="headerlink" title="2020/09/25"></a>2020/09/25</h2><h3 id="前端知识类-4"><a href="#前端知识类-4" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>如何实现H5可视化编辑器的实时预览和真机扫码预览功能</p>
+<p><a href="https://mp.weixin.qq.com/s/SDegBMDBrfR3kWNgZTMQEQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/SDegBMDBrfR3kWNgZTMQEQ</a></p>
+</li>
+<li><p>全面分析toString与valueOf，并随手解决掉几道大厂必备面试题</p>
+<p><a href="https://mp.weixin.qq.com/s/K6phtv3oqnSL0bGRCNbm1w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/K6phtv3oqnSL0bGRCNbm1w</a></p>
+</li>
+<li><p>【通俗易懂】前端需要掌握的设计模式</p>
+<p><a href="https://mp.weixin.qq.com/s/x9384J-TTg1iFLC63ON1bw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/x9384J-TTg1iFLC63ON1bw</a></p>
+</li>
+<li><p>从 4 个面试题了解「浏览器的垃圾回收」</p>
+<p><a href="https://mp.weixin.qq.com/s/hpMGNtHPN_T-Upg9V4L_Jg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/hpMGNtHPN_T-Upg9V4L_Jg</a></p>
+</li>
+</ul>
+<h3 id="拓展-2"><a href="#拓展-2" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>一口气搞懂「文件系统」，就靠这 25 张图了</p>
+<p><a href="https://mp.weixin.qq.com/s/Ljzm4oLHhum0K4guoZRT-A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Ljzm4oLHhum0K4guoZRT-A</a></p>
+</li>
+<li><p>手机浏览器中，h5唤起微信分享你学会了吗?</p>
+<p><a href="https://mp.weixin.qq.com/s/-oZAEoHo_7h_nh7an-zTJg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/-oZAEoHo_7h_nh7an-zTJg</a></p>
+</li>
+<li><p>前端赋能业务 - Node实现自动化部署平台</p>
+<p><a href="https://mp.weixin.qq.com/s/X8D0mFyIYAXwxI4i9UWB3Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/X8D0mFyIYAXwxI4i9UWB3Q</a></p>
+</li>
+</ul>
+<h2 id="2020-09-26"><a href="#2020-09-26" class="headerlink" title="2020/09/26"></a>2020/09/26</h2><h3 id="前端知识类-5"><a href="#前端知识类-5" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>Vue 项目中各种痛点问题及方案</p>
+<p><a href="https://mp.weixin.qq.com/s/FT8Z99ZkD41CsJV82JebRA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/FT8Z99ZkD41CsJV82JebRA</a></p>
+</li>
+<li><p>小程序如何生成海报分享朋友圈</p>
+<p><a href="https://mp.weixin.qq.com/s/MFqRrYfl0sgmPqzNteCdlw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/MFqRrYfl0sgmPqzNteCdlw</a></p>
+</li>
+</ul>
+<h3 id="拓展-3"><a href="#拓展-3" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>如何制定企业级代码规范与检查</p>
+<p><a href="https://mp.weixin.qq.com/s/RL6uCgDcIvtWvn2kmyDDkQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/RL6uCgDcIvtWvn2kmyDDkQ</a></p>
+</li>
+<li><p>面试官：你了解数据安全传输吗？</p>
+<p><a href="https://mp.weixin.qq.com/s/a-Vnbu5bBk3Od43CExm6Iw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/a-Vnbu5bBk3Od43CExm6Iw</a></p>
+</li>
+</ul>
+<h3 id="github项目"><a href="#github项目" class="headerlink" title="github项目"></a>github项目</h3><ul>
+<li><p>这 6 个 Spring Boot 项目够经典</p>
+<p><a href="https://mp.weixin.qq.com/s/YNQE4NUxyu6SWtAHXc0UhA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/YNQE4NUxyu6SWtAHXc0UhA</a></p>
+</li>
+</ul>
+<h2 id="2020-09-27"><a href="#2020-09-27" class="headerlink" title="2020/09/27"></a>2020/09/27</h2><h3 id="前端知识类-6"><a href="#前端知识类-6" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>浏览器、ESM规范、模块化、webpack和vite之间联系？</p>
+<p><a href="https://mp.weixin.qq.com/s/_Q3dwd3Z9RVlhTHO_tls3Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/_Q3dwd3Z9RVlhTHO_tls3Q</a></p>
+</li>
+</ul>
+<h3 id="拓展-4"><a href="#拓展-4" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>简单又好用的前端深色模式和主题化开发方案</p>
+<p><a href="https://mp.weixin.qq.com/s/yMov0wBCzNfKyOjeJKsD8Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/yMov0wBCzNfKyOjeJKsD8Q</a></p>
+</li>
+<li><p>Lodash 严重安全漏洞背后 你不得不知道的 JavaScript 知识</p>
+<p><a href="https://mp.weixin.qq.com/s/anI6KCYZqPwRr2xdyhoEcg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/anI6KCYZqPwRr2xdyhoEcg</a></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B9%9D%EF%BC%89%20/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-每日公众号阅读（二）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89/">每日公众号阅读（一）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-07-03T17:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="2020-7-21"><a href="#2020-7-21" class="headerlink" title="2020/7/21"></a>2020/7/21</h2><h3 id="软件工具类"><a href="#软件工具类" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p>【软件名称】：迅雷绿色版</p>
+<p>【适用平台】：PC</p>
+<p>【软件优势】：<strong>纯净、精简、清爽、私人定制版</strong>。这一款由<strong>kkocdko</strong>大神，亲自操刀，<strong>融合xùn雷9界面+xùn雷X内核为一体！</strong></p>
+<p>【来源】： 【ONE6】</p>
+</li>
+<li><p>【软件名称】：网盘搜索  （提示风险）</p>
+</li>
+</ul>
+<p>​       【适用平台】：安卓</p>
+<p>​       【软件优势】：内置了包括<strong>盘搜搜、58网盘、大力盘</strong>等在内的8个搜索源，我们只需要搜索自己需要的资源即可，软件还会帮我们**检测资源的可用性。</p>
+<p>​        【来源】： 【ONE6】</p>
+<ul>
+<li>【软件名称】：FolderIcon</li>
+</ul>
+<p>​       【适用平台】：PC</p>
+<p>​       【软件优势】：FolderIcon是一款可以改变文件夹颜色、UI界面的软件，它的体积只有 45M，且适用于Windows系统。</p>
+<p>​        【来源】： 【晓技术】</p>
+<h3 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h3><ul>
+<li><p>网站名称：PiANKU（全平台适用）和市面上的影视APP类似，有<strong>首页推荐</strong>、也有<strong>电影、剧集、动漫推荐！</strong>然后就是<strong>各大视频网站V1P解析</strong>了</p>
+<p><a href="https://www.pianku.tv/" target="_blank" rel="noopener">https://www.pianku.tv/</a></p>
+</li>
+</ul>
+<h3 id="前端知识类"><a href="#前端知识类" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>玩转前端文件上传</p>
+<p><a href="https://mp.weixin.qq.com/s/ymeF-TvL_Za1GzyXSDaX_A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ymeF-TvL_Za1GzyXSDaX_A</a></p>
+</li>
+<li><p>12 个提高JavaScript编码效率的 NPM 技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/WIXwlkoWt8YzKCRalGUcvw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/WIXwlkoWt8YzKCRalGUcvw</a></p>
+</li>
+<li><p>CSS 控制动画的行进</p>
+<p><a href="https://mp.weixin.qq.com/s/MjHQ4CQ2eDxKOrIGw3freQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/MjHQ4CQ2eDxKOrIGw3freQ</a></p>
+</li>
+<li><p>前端存储（高级前端进阶）</p>
+<p><a href="https://mp.weixin.qq.com/s/CLmGR-8SJTdl4ZjvvoLyOA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/CLmGR-8SJTdl4ZjvvoLyOA</a></p>
+</li>
+<li><p>前端优化术语</p>
+<p><a href="https://mp.weixin.qq.com/s/NX4T7pj-JVcIj4MmcCDVOQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NX4T7pj-JVcIj4MmcCDVOQ</a></p>
+</li>
+</ul>
+<h2 id="2020-7-22"><a href="#2020-7-22" class="headerlink" title="2020/7/22"></a>2020/7/22</h2><h3 id="前端知识类-1"><a href="#前端知识类-1" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>玩转混合加密</p>
+<p><a href="https://mp.weixin.qq.com/s/3e04GSbp6FW82KE8NMSrVQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3e04GSbp6FW82KE8NMSrVQ</a></p>
+</li>
+<li><p>超实用的前端提效 shell 命令</p>
+<p><a href="https://mp.weixin.qq.com/s/3z5i14e7T7A41SrkE-1leA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3z5i14e7T7A41SrkE-1leA</a></p>
+</li>
+</ul>
+<h3 id="github资源推荐"><a href="#github资源推荐" class="headerlink" title="github资源推荐"></a>github资源推荐</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s/Huqlpvxs_KtVYsVegkV7hw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Huqlpvxs_KtVYsVegkV7hw</a></li>
+</ul>
+<h3 id="软件工具类-1"><a href="#软件工具类-1" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li>【软件名称】：<strong>XMind</strong></li>
+</ul>
+<p>​       【适用平台】：PC</p>
+<p>​       【软件优势】：破解版</p>
+<p>​       【来源】： 【轻安卓】</p>
+<p>​       【注意】：在软件的安装目录里找到<strong>resources</strong>文件夹并将其打开，将小编提供的破解补丁<strong>复制</strong>到该文件夹内，由于文件夹内有该文件所以这里要选择<strong>替换目录中的文件</strong></p>
+<h2 id="2020-7-23"><a href="#2020-7-23" class="headerlink" title="2020/7/23"></a>2020/7/23</h2><h3 id="前端知识类-2"><a href="#前端知识类-2" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>什么时候适合使用 Map 而不是 Object</p>
+<p><a href="https://mp.weixin.qq.com/s/s2XG4Ly1V5lov1ZciWF0xg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/s2XG4Ly1V5lov1ZciWF0xg</a></p>
+</li>
+<li><p>《CSS揭秘》实用技巧总结</p>
+<p><a href="https://juejin.im/post/5e0fef935188253a624a6a72" target="_blank" rel="noopener">https://juejin.im/post/5e0fef935188253a624a6a72</a></p>
+</li>
+<li><p>妙用CSS变量</p>
+<p><a href="https://mp.weixin.qq.com/s/whtfxJFea-mel00Cw3fZ5g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/whtfxJFea-mel00Cw3fZ5g</a></p>
+</li>
+<li><p>二种前端截图方式</p>
+<p><a href="https://mp.weixin.qq.com/s/uoMzbIMcWqehSPkmBqK9pg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/uoMzbIMcWqehSPkmBqK9pg</a></p>
+</li>
+<li><p>从Vue源码角度深挖Watch、Computed</p>
+<p><a href="https://mp.weixin.qq.com/s/sC50AgoyPMVrKWB2ObvdHw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/sC50AgoyPMVrKWB2ObvdHw</a></p>
+</li>
+</ul>
+<h3 id="软件工具类-2"><a href="#软件工具类-2" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li>【软件名称】：XMind</li>
+</ul>
+<p>​       【适用平台】：PC</p>
+<p>​       【软件优势】：破解版</p>
+<p>​       【来源】： 【轻安卓】</p>
+<p>​       【注意】：在软件的安装目录里找到<strong>resources</strong>文件夹并将其打开，将小编提供的破解补丁<strong>复制</strong>到该文件夹内，由于文件夹内有该文件所以这里要选择<strong>替换目录中的文件</strong></p>
+<h2 id="2020-7-26"><a href="#2020-7-26" class="headerlink" title="2020/7/26"></a>2020/7/26</h2><h3 id="前端知识类-3"><a href="#前端知识类-3" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>如何开发跨框架的组件</p>
+<p><a href="https://mp.weixin.qq.com/s/T4xgdGHmfDq-2NVNi_nKNw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/T4xgdGHmfDq-2NVNi_nKNw</a></p>
+</li>
+<li><p>JavaScript 设计模式学习总结与感悟</p>
+<p><a href="https://mp.weixin.qq.com/s/eiGqmTIMWtGVLtskKUHF3g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/eiGqmTIMWtGVLtskKUHF3g</a></p>
+</li>
+<li><p>JS代码被执行中间发生了什么</p>
+<p><a href="https://mp.weixin.qq.com/s/4TevnODKlvTvPml4slHsZg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/4TevnODKlvTvPml4slHsZg</a></p>
+</li>
+</ul>
+<h3 id="软件工具类-3"><a href="#软件工具类-3" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li>【软件名称】：剧汇TV</li>
+</ul>
+<p>​       【适用平台】：安卓</p>
+<p>​       【软件优势】：画质高清，软件功能齐全，还支持发送弹幕和评论，电影，电视剧，动漫，综艺也都有。</p>
+<p>​       【来源】： 【悦美兮】</p>
+<h2 id="2020-7-27"><a href="#2020-7-27" class="headerlink" title="2020/7/27"></a>2020/7/27</h2><h3 id="前端知识类-4"><a href="#前端知识类-4" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>前端框架的插件机制全梳理（axios、koa、redux、vuex）</p>
+<p><a href="https://mp.weixin.qq.com/s/JKMKlCXop-gyFDe7HgT5sw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/JKMKlCXop-gyFDe7HgT5sw</a></p>
+</li>
+<li><p>「牛客网」45道JS能力测评经典题总结</p>
+<p><a href="https://juejin.im/post/5f032fe3f265da22c75734b8" target="_blank" rel="noopener">https://juejin.im/post/5f032fe3f265da22c75734b8</a></p>
+</li>
+</ul>
+<h3 id="github资源推荐-1"><a href="#github资源推荐-1" class="headerlink" title="github资源推荐"></a>github资源推荐</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s/fzaevSXo88TcDgvGz3-G6g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/fzaevSXo88TcDgvGz3-G6g</a></li>
+</ul>
+<h2 id="2020-7-28"><a href="#2020-7-28" class="headerlink" title="2020/7/28"></a>2020/7/28</h2><h3 id="前端知识类-5"><a href="#前端知识类-5" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>十五张图带你彻底搞懂从URL到页面展示发生的故事</p>
+<p><a href="https://mp.weixin.qq.com/s/JbsJO2GCDBFjJztmhPMrcg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/JbsJO2GCDBFjJztmhPMrcg</a></p>
+</li>
+<li><p>手写async await的 20 行最简实现</p>
+<p><a href="https://mp.weixin.qq.com/s/lUQGeVPiLEQDvUv6M90tRg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/lUQGeVPiLEQDvUv6M90tRg</a></p>
+</li>
+<li><p>手写Promise最简20行版本</p>
+<p><a href="https://mp.weixin.qq.com/s/ek41c2qoWg7WCCNyVvd2eA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ek41c2qoWg7WCCNyVvd2eA</a></p>
+</li>
+<li><p>处理好前后端配置和请求库封装(koa/axios版)</p>
+<p><a href="https://mp.weixin.qq.com/s/PQi4wSCZrWyZsvtHEUauAw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/PQi4wSCZrWyZsvtHEUauAw</a></p>
+</li>
+</ul>
+<h3 id="网址-1"><a href="#网址-1" class="headerlink" title="网址"></a>网址</h3><ul>
+<li><p>万能命令</p>
+<p>在你浏览任意网页时，在网址前面输入这个万能命令 wn.run/ 就会展示出用于该网页的各种附加在线工具，方便快捷，一行命令搞定</p>
+<p><a href="https://wanneng.run/cn/" target="_blank" rel="noopener">https://wanneng.run/cn/</a></p>
+</li>
+<li><p>影视网站</p>
+<p> <strong>低端影视 ** **<a href="https://ddrk.me/" target="_blank" rel="noopener">https://ddrk.me/</a></strong></p>
+<p> <strong>完美看看</strong> <strong><a href="https://www.wanmeikk.me/" target="_blank" rel="noopener">https://www.wanmeikk.me/</a></strong></p>
+<p> <strong>黑白影视</strong> <strong><a href="http://www.heibaiys.com/" target="_blank" rel="noopener">http://www.heibaiys.com/</a></strong></p>
+<p> <strong>策驰影院</strong> <strong><a href="http://www.5nj.com/" target="_blank" rel="noopener">http://www.5nj.com/</a></strong></p>
+<p> <strong>西瓜追剧</strong> <strong><a href="https://www.78zhuiju.com/" target="_blank" rel="noopener">https://www.78zhuiju.com/</a></strong></p>
+</li>
+<li><p>动漫网站</p>
+<p> <strong>哈哩哈哩</strong> <strong><a href="http://www.halihali.li/" target="_blank" rel="noopener">http://www.halihali.li/</a></strong></p>
+<p> <strong>哔咪哔咪</strong> <strong><a href="http://www.bimibimi.me/" target="_blank" rel="noopener">http://www.bimibimi.me/</a></strong></p>
+<p> <strong>ZzzFun</strong> <strong><a href="http://www.zzzfun.com/" target="_blank" rel="noopener">http://www.zzzfun.com/</a></strong></p>
+<p> <strong>兜兜动漫网</strong> <strong><a href="http://www.zzzfun.com/" target="_blank" rel="noopener">http://www.zzzfun.com/</a></strong></p>
+<p> <strong>妮可动漫</strong> <strong><a href="http://www.nicotv.me/" target="_blank" rel="noopener">http://www.nicotv.me/</a></strong></p>
+<p> <strong>动漫岛</strong> <strong><a href="http://www.dmd8.com/" target="_blank" rel="noopener">http://www.dmd8.com/</a></strong></p>
+<p> <strong>樱花动漫</strong> <strong><a href="http://www.yhdm.tv/" target="_blank" rel="noopener">http://www.yhdm.tv/</a></strong></p>
+<p> <strong>怡萱动漫</strong> <strong><a href="http://www.yxdm.tv/" target="_blank" rel="noopener">http://www.yxdm.tv/</a></strong></p>
+<p> <strong>喔喔动漫</strong> <strong><a href="https://www.wowodm.net/" target="_blank" rel="noopener">https://www.wowodm.net/</a></strong></p>
+</li>
+</ul>
+<h3 id="软件工具类-4"><a href="#软件工具类-4" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li>【软件名称】：局域网共享精灵</li>
+</ul>
+<p>​       【适用平台】：Windows</p>
+<p>​       【软件优势】：局域网共享工具仅<strong>2.6MB</strong>，却包含<strong>一键修复共享</strong>、<strong>共享文件</strong>、<strong>共享打印机</strong>、<strong>权限控制</strong>。</p>
+<p>​       【来源】： 【ONE6】</p>
+<p>​       【注意】：软件文档</p>
+<h2 id="2020-7-29"><a href="#2020-7-29" class="headerlink" title="2020/7/29"></a>2020/7/29</h2><h3 id="前端知识类-6"><a href="#前端知识类-6" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>你不知道的 WebSocket</p>
+<p><a href="https://mp.weixin.qq.com/s/28FSBp4lj2l1H0caMNrjrw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/28FSBp4lj2l1H0caMNrjrw</a></p>
+</li>
+<li><p>如何修改 node_modules 里的文件</p>
+<p><a href="https://mp.weixin.qq.com/s/tjbgWCsRLXfoIQ7gPpTaEQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/tjbgWCsRLXfoIQ7gPpTaEQ</a></p>
+</li>
+<li><p>为什么 Vue 中不要用 index 作为 key</p>
+<p><a href="https://mp.weixin.qq.com/s/V64bNWcWSEq12RYrcTWV3Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/V64bNWcWSEq12RYrcTWV3Q</a></p>
+</li>
+<li><p>实现一个专属于你的babel-loader</p>
+<p><a href="https://mp.weixin.qq.com/s/deOOvLQcqAlp1Ard-ZrTcQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/deOOvLQcqAlp1Ard-ZrTcQ</a></p>
+</li>
+</ul>
+<h3 id="软件工具类-5"><a href="#软件工具类-5" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li>【软件名称】：蒲公英</li>
+</ul>
+<p>​       【适用平台】：PC</p>
+<p>​       【软件优势】：手机电脑在局域网或者异地互传文件</p>
+<p>​       【来源】： 【ONE6】</p>
+<p>​       【注意】：<a href="https://mp.weixin.qq.com/s/fNAy8PpaXPyGo0tPDQUKsg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/fNAy8PpaXPyGo0tPDQUKsg</a></p>
+<h3 id="github资源推荐-2"><a href="#github资源推荐-2" class="headerlink" title="github资源推荐"></a>github资源推荐</h3><ul>
+<li><p>简易的 logo 生成器</p>
+<p><a href="https://github.com/bestony/logoly" target="_blank" rel="noopener">https://github.com/bestony/logoly</a></p>
+</li>
+</ul>
+<h2 id="2020-7-31"><a href="#2020-7-31" class="headerlink" title="2020/7/31"></a>2020/7/31</h2><h3 id="前端知识类-7"><a href="#前端知识类-7" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>现代浏览器高级API</p>
+<p><a href="https://mp.weixin.qq.com/s/md5NCsmTXZ66A9aR5AbFFw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/md5NCsmTXZ66A9aR5AbFFw</a></p>
+</li>
+<li><p>开始用 CSS 自定义属性</p>
+<p><a href="https://mp.weixin.qq.com/s/jS6d-cEdQUU_6lZ4G_tAWg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/jS6d-cEdQUU_6lZ4G_tAWg</a></p>
+</li>
+<li><p>写出符合 Promise/A+ 规范 Promise 的源码</p>
+<p><a href="https://mp.weixin.qq.com/s/UFjYIjmFO-tvu-aDZj3UNQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/UFjYIjmFO-tvu-aDZj3UNQ</a></p>
+</li>
+<li><p>CSR、SSR、NSR、ESR傻傻分不清楚，一文帮你理清前端渲染方案！</p>
+<p><a href="https://mp.weixin.qq.com/s/Sfztp7NON5my4W_A3r3JRQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Sfztp7NON5my4W_A3r3JRQ</a></p>
+</li>
+<li><p>40 个 CSS 布局技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/6jZibuthus7l5PlhAbpHEQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/6jZibuthus7l5PlhAbpHEQ</a></p>
+</li>
+<li><p>大规格文件的上传优化</p>
+<p><a href="https://mp.weixin.qq.com/s/af-F2goqnfMEo_yT_yFUMw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/af-F2goqnfMEo_yT_yFUMw</a></p>
+</li>
+</ul>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
+<li>还不懂这八大算法思想，刷再多题也白搭<br><a href="https://mp.weixin.qq.com/s/VZ0WqO1FMc6fRrKCSIussA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/VZ0WqO1FMc6fRrKCSIussA</a></li>
+</ul>
+<h3 id="软件工具类-6"><a href="#软件工具类-6" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li>【软件名称】：蒲公英</li>
+</ul>
+<p>​       【适用平台】：PC</p>
+<p>​       【软件优势】：手机电脑在局域网或者异地互传文件</p>
+<p>​       【来源】： 【ONE6】</p>
+<p>​       【注意】：<a href="https://mp.weixin.qq.com/s/fNAy8PpaXPyGo0tPDQUKsg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/fNAy8PpaXPyGo0tPDQUKsg</a></p>
+<h3 id="github资源推荐-3"><a href="#github资源推荐-3" class="headerlink" title="github资源推荐"></a>github资源推荐</h3><ul>
+<li><p>简易的 logo 生成器</p>
+<p><a href="https://github.com/bestony/logoly" target="_blank" rel="noopener">https://github.com/bestony/logoly</a></p>
+</li>
+</ul>
+<h3 id="工具推荐"><a href="#工具推荐" class="headerlink" title="工具推荐"></a>工具推荐</h3><ul>
+<li><p>写作类</p>
+<p><strong>语雀</strong></p>
+<blockquote>
+<p>语雀是一个蚂蚁金服孵化出来的专业的云端知识库，类似wiki，目前已经覆盖了10 万阿里员工的使用，来进行文档编写及知识沉淀 官方链接🔗</p>
+</blockquote>
+<h4 id="Process-On"><a href="#Process-On" class="headerlink" title="Process On"></a>Process On</h4><blockquote>
+<p>ProcessOn是一个在线协作绘图平台,为用户提供最强大、易用的作图工具。支持在线创作流程图、思维导图、组织结构图、网络拓扑图、BPMN、UML图、UI界面原型设计等</p>
+</blockquote>
+<h4 id="Carbon"><a href="#Carbon" class="headerlink" title="Carbon"></a>Carbon</h4><blockquote>
+<p>Carbon 用来创建美化版的代码片段，可筛选多种主题切换，然后生成你想要效果的代码片段图 官方链接🔗</p>
+</blockquote>
+<h4 id="Mdnice"><a href="#Mdnice" class="headerlink" title="Mdnice"></a>Mdnice</h4><blockquote>
+<p>mdnicde全名为Markdown Nice，支持给markdown添加“主题元素”，有点像换肤的感觉，支持多种主观，让你的文章仿佛披上了嫁衣，最重要的是支持微信公众号、知乎、还有掘金！官方链接🔗</p>
+</blockquote>
+<h4 id="封面模版"><a href="#封面模版" class="headerlink" title="封面模版"></a>封面模版</h4><blockquote>
+<p>很多童鞋很好奇，我每次文章都会附上一张主题图，是不是自己P的，虽然我是做UI出身的前端，但是设计还是蛮琐碎和耗时的活，时间应该用在更宝贵的地方，这里介绍的就是我使用的模版在线编辑工具 - 凡科快图 官方链接🔗 或者 canva 官方链接🔗</p>
+</blockquote>
+<h4 id="Shields"><a href="#Shields" class="headerlink" title="Shields"></a>Shields</h4><blockquote>
+<p>shields.io 主要是用来可以生成 在Markdown 文档中的徽章，我们经常在github的项目上看到这些徽章，来表述比如单元测试覆盖率、打包的大小、版本信息、认证信息等 官方链接🔗</p>
+</blockquote>
+<h4 id="Gif生成"><a href="#Gif生成" class="headerlink" title="Gif生成"></a>Gif生成</h4><blockquote>
+<p>有时候图片无法去表达我们想要阐述的内容，这个时候动态图就起了很重要的作用，可以更直观的描述整个过程</p>
+</blockquote>
+<h4 id="网页截屏"><a href="#网页截屏" class="headerlink" title="网页截屏"></a>网页截屏</h4><blockquote>
+<p>文章素材需要网页截图？很长时间我要给当前网页截图，我还在用微信的截图工具，其实强大的chrome内置了截屏的功能，那如何使用呢</p>
+<ul>
+<li>首先打开chrome控制台（然后打开快捷方式 Option+Command+i）</li>
+<li>其次在命令行输入“capture”可以看到如下</li>
+</ul>
+<blockquote>
+<p>❝</p>
+<p>注意：capture full size screenshoot和capture screenshoot的区别在于前者是整个页面完整信息的截图，后者只是当前页面的截图</p>
+</blockquote>
+</blockquote>
+</li>
+<li><h3 id="效率篇"><a href="#效率篇" class="headerlink" title="效率篇"></a>效率篇</h3><h4 id="Iconfont-图标库"><a href="#Iconfont-图标库" class="headerlink" title="Iconfont 图标库"></a>Iconfont 图标库</h4><blockquote>
+<p>Iconfont Icon库方便个人开发者找到自己需要的图标，节省图标设计和查找的时间，不香吗～ 官方链接🔗</p>
+</blockquote>
+<h4 id="Regexr-正则可视化工具"><a href="#Regexr-正则可视化工具" class="headerlink" title="Regexr 正则可视化工具"></a>Regexr 正则可视化工具</h4><blockquote>
+<p>RegExr是一款在线编辑测试正则表达式的工具,它拥有一个简洁的界面,提供了一个可以实时查看查找与替换正则表达式的文本框 官方链接🔗</p>
+</blockquote>
+<h4 id="Postwoman-接口调试利器"><a href="#Postwoman-接口调试利器" class="headerlink" title="Postwoman 接口调试利器"></a>Postwoman 接口调试利器</h4><blockquote>
+<p>你听说过Postman，现在来了postwoman，Postman的情敌！它不仅免费开源、轻量级、快速，而且还有美观的API调试工具。能帮助我们节省时间，提升工作效率。官方链接🔗</p>
+</blockquote>
+<h4 id="CanIuse-兼容性查询"><a href="#CanIuse-兼容性查询" class="headerlink" title="CanIuse 兼容性查询"></a>CanIuse 兼容性查询</h4><blockquote>
+<p>can I use? 顾名思义：我能使用吗，能快速让我们查看浏览器对某个属性语法的兼容情况，场景应用当前在某个浏览器可以正常使用，可是换了另一个浏览器之后就不支持了，这个时候就得我们防患于未然，在对某个属性使用前，做好足够得调研，而不是等到上线才发现问题官方链接🔗</p>
+</blockquote>
+<h4 id="Prettier-Playground-代码在线格式化"><a href="#Prettier-Playground-代码在线格式化" class="headerlink" title="Prettier Playground 代码在线格式化"></a>Prettier Playground 代码在线格式化</h4><blockquote>
+<p>应用场景：当我使用的电脑没有安装IDE,但是我又需要看别人写的代码，这个时候 Prettier Playground可以帮我将原本凌乱的代码改头换面，大大提高可读性 官方链接🔗</p>
+</blockquote>
+<h4 id="SwitchHosts-host管理工具"><a href="#SwitchHosts-host管理工具" class="headerlink" title="SwitchHosts host管理工具"></a>SwitchHosts host管理工具</h4><blockquote>
+<p>SwitchHosts 可以帮助我们快速切换不同的 hosts 设置、并进行hosts编辑 官方链接🔗</p>
+</blockquote>
+</li>
+<li><h3 id="命令行工具篇"><a href="#命令行工具篇" class="headerlink" title="命令行工具篇"></a>命令行工具篇</h3><h4 id="n-node-版本切换工具"><a href="#n-node-版本切换工具" class="headerlink" title="n - node 版本切换工具"></a><code>n</code> - node 版本切换工具</h4><blockquote>
+<p>用来进行 node 版本的切换，方便轻量  官方链接🔗</p>
+</blockquote>
+<h4 id="nrm-npm镜像管理工具"><a href="#nrm-npm镜像管理工具" class="headerlink" title="nrm - npm镜像管理工具"></a><code>nrm</code> - npm镜像管理工具</h4><blockquote>
+<p>nrm是npm的镜像源管理工具,有时候因为访问国外资源原因导致速度太慢,使用nrm可以快速地在npm源间切换,也可以管理你内部的npm来源</p>
+</blockquote>
+<h4 id="caniuse-cmd-兼容性测试工具"><a href="#caniuse-cmd-兼容性测试工具" class="headerlink" title="caniuse-cmd - 兼容性测试工具"></a><code>caniuse-cmd</code> - 兼容性测试工具</h4><blockquote>
+<p>上文提到web版本的caniuse,这里介绍下它的命令行工具，如何使用？<code>npm install -g caniuse-cmd</code> 下面是一个关于websocket浏览器兼容性测试的例子👇</p>
+</blockquote>
+</li>
+<li><p>前端开发工具、组件库集合</p>
+<p><a href="https://mp.weixin.qq.com/s/n5euDIDopUCSkDA4Rt_lsQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/n5euDIDopUCSkDA4Rt_lsQ</a></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-每日公众号阅读（五）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%BA%94%EF%BC%89/">每日公众号阅读（五）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%BA%94%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-07-03T17:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="2020-08-24"><a href="#2020-08-24" class="headerlink" title="2020/08/24"></a>2020/08/24</h2><h3 id="前端知识类"><a href="#前端知识类" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>SASS的知识体系构建</p>
+<p><a href="https://mp.weixin.qq.com/s/8c9GBIcvOmGG_wRIqH5H3w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/8c9GBIcvOmGG_wRIqH5H3w</a></p>
+</li>
+<li><p>初中级前端面试题目汇总和答案解析</p>
+<p><a href="https://mp.weixin.qq.com/s/G4MZdh1oauZ3opiXV21Q_g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/G4MZdh1oauZ3opiXV21Q_g</a></p>
+</li>
+<li><p>微前端框架 之 single-spa 从入门到精通</p>
+<p><a href="https://mp.weixin.qq.com/s/n6tGVy30kqdBoovFUWVWEQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/n6tGVy30kqdBoovFUWVWEQ</a></p>
+</li>
+<li><p>浅谈攻击技术</p>
+<p><a href="https://mp.weixin.qq.com/s/mktvwMRN_fL6qJkVEahTEQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/mktvwMRN_fL6qJkVEahTEQ</a></p>
+</li>
+<li><p>七夕将至，教你用代码画个爱心来给师妹表白，千万别错过。</p>
+<p><a href="https://mp.weixin.qq.com/s/9FT5g3J0JWjDu4rlktEgzw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/9FT5g3J0JWjDu4rlktEgzw</a></p>
+</li>
+<li><p>CSS 实用技巧：伪元素&amp;伪类的妙用</p>
+<p><a href="https://mp.weixin.qq.com/s/9uZ_NmQkF_OvTuFQNy5D8A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/9uZ_NmQkF_OvTuFQNy5D8A</a></p>
+</li>
+</ul>
+<h2 id="2020-08-25"><a href="#2020-08-25" class="headerlink" title="2020/08/25"></a>2020/08/25</h2><h3 id="前端知识类-1"><a href="#前端知识类-1" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>七夕，当然少不了纯CSS的点缀啦</p>
+<p><a href="https://mp.weixin.qq.com/s/pGAVZYvm3YGqnsJuc41shw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/pGAVZYvm3YGqnsJuc41shw</a></p>
+</li>
+<li><p>一道价值25k的腾讯递归组件面试题（Vue3 + TS 实现）</p>
+<p><a href="https://mp.weixin.qq.com/s/avIk7N-ax31yHPFKZx162g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/avIk7N-ax31yHPFKZx162g</a></p>
+</li>
+<li><p>如何制定企业级代码规范与检查</p>
+<p><a href="https://mp.weixin.qq.com/s/Mzbk8GLaiUaGqvAAmyg1Sg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Mzbk8GLaiUaGqvAAmyg1Sg</a></p>
+</li>
+<li><p>Vue模板编译原理</p>
+<p><a href="https://mp.weixin.qq.com/s/3sFlZF8uFvXKgCdGHj5odQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3sFlZF8uFvXKgCdGHj5odQ</a></p>
+</li>
+<li><p>12道优秀的CSS面试题【附答案】</p>
+<p><a href="https://mp.weixin.qq.com/s/9dt_OA9gGAMYbqccXHTdRA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/9dt_OA9gGAMYbqccXHTdRA</a></p>
+</li>
+<li><p>一步步从头搭建 Vue 开发环境</p>
+<p><a href="https://mp.weixin.qq.com/s/bl5nHiRz7rGc5TbVbk-4rQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/bl5nHiRz7rGc5TbVbk-4rQ</a></p>
+</li>
+<li><p>轻松理解 JS 中的面向对象，顺便搞懂 prototype 和 <strong>proto</strong></p>
+<p><a href="https://mp.weixin.qq.com/s/o6L-NOMDsaaSI3uyCyHMrA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/o6L-NOMDsaaSI3uyCyHMrA</a></p>
+</li>
+<li><p>详解 JS 压缩图片</p>
+<p><a href="https://mp.weixin.qq.com/s/MN2BPNVODUyWa-1IT_QoPw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/MN2BPNVODUyWa-1IT_QoPw</a></p>
+</li>
+</ul>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>如何优雅的实现消息通信？</p>
+<p><a href="https://mp.weixin.qq.com/s/NGrkTBIidrcxX-FvH0mSng" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NGrkTBIidrcxX-FvH0mSng</a></p>
+</li>
+</ul>
+<h2 id="2020-08-26"><a href="#2020-08-26" class="headerlink" title="2020/08/26"></a>2020/08/26</h2><h3 id="前端知识类-2"><a href="#前端知识类-2" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>18个有用的JavaScript片段</p>
+<p><a href="https://mp.weixin.qq.com/s/3EcRMEWwgQmUcDOPPiuQ8w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3EcRMEWwgQmUcDOPPiuQ8w</a></p>
+</li>
+<li><p>看了就懂的 AST 和 Babel 工作流程</p>
+<p><a href="https://mp.weixin.qq.com/s/PjJGbe7ocpxm2ku6BfpYSw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/PjJGbe7ocpxm2ku6BfpYSw</a></p>
+</li>
+<li><p>如何优雅的在 vue 中添加权限控制</p>
+<p><a href="https://mp.weixin.qq.com/s/LRQIBVFphr_iABO8Csnbzg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/LRQIBVFphr_iABO8Csnbzg</a></p>
+</li>
+</ul>
+<h3 id="拓展-1"><a href="#拓展-1" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>分享 Flutter 学习总结</p>
+<p><a href="https://mp.weixin.qq.com/s/BxH26uuh1XfYEE3vcZM_Bg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/BxH26uuh1XfYEE3vcZM_Bg</a><br><a href="https://juejin.im/post/6863353616473063437" target="_blank" rel="noopener">https://juejin.im/post/6863353616473063437</a></p>
+</li>
+<li><p>如何正确地给开源项目提交pr？</p>
+<p><a href="https://mp.weixin.qq.com/s/pcMeFsPb4You6_sg_TXpkw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/pcMeFsPb4You6_sg_TXpkw</a></p>
+</li>
+</ul>
+<h2 id="2020-08-27"><a href="#2020-08-27" class="headerlink" title="2020/08/27"></a>2020/08/27</h2><h3 id="前端知识类-3"><a href="#前端知识类-3" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>理解装饰器是怎么使用的</p>
+<p><a href="https://mp.weixin.qq.com/s/28LI9PutQJbXM0P2WLBf3w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/28LI9PutQJbXM0P2WLBf3w</a></p>
+</li>
+</ul>
+<h3 id="拓展-2"><a href="#拓展-2" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>如何进阶成公司 Git 小能手(常见问题总结)</p>
+<p><a href="https://mp.weixin.qq.com/s/0pk7v2MqkS0nb7NYPZrjgA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/0pk7v2MqkS0nb7NYPZrjgA</a></p>
+</li>
+<li><p>聊一聊视频编辑背后的原理与技术</p>
+<p><a href="https://mp.weixin.qq.com/s/BEJTQfyoGfgZoysfoJwEFA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/BEJTQfyoGfgZoysfoJwEFA</a></p>
+</li>
+<li><p>前端知识体系思维导图</p>
+<p><a href="https://www.processon.com/view/5ea2c9b47d9c0869daa35531#map" target="_blank" rel="noopener">https://www.processon.com/view/5ea2c9b47d9c0869daa35531#map</a></p>
+</li>
+</ul>
+<h2 id="2020-08-28"><a href="#2020-08-28" class="headerlink" title="2020/08/28"></a>2020/08/28</h2><h3 id="前端知识类-4"><a href="#前端知识类-4" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>js垃圾回收机制原理给你聊的明明白白</p>
+<p><a href="https://mp.weixin.qq.com/s/phhyqNQ68Q-1xt7NhKIxiA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/phhyqNQ68Q-1xt7NhKIxiA</a></p>
+</li>
+<li><p>Vue源码解析，keep-alive是如何实现缓存的？</p>
+<p><a href="https://mp.weixin.qq.com/s/z5kAkyAzsj6erfWUQSN3UA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/z5kAkyAzsj6erfWUQSN3UA</a></p>
+</li>
+<li><p>JS开发必须知道的41个技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/7L3nrex1N_x6naNI1zOklw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/7L3nrex1N_x6naNI1zOklw</a></p>
+</li>
+</ul>
+<h3 id="拓展-3"><a href="#拓展-3" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>Node.js结合ProtoBuffer,从零实现一个redis! [一万字]</p>
+<p><a href="https://mp.weixin.qq.com/s/fAqCyV7e3HqFPkdBuTyHuw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/fAqCyV7e3HqFPkdBuTyHuw</a></p>
+</li>
+</ul>
+<h3 id="github项目"><a href="#github项目" class="headerlink" title="github项目"></a>github项目</h3><ul>
+<li><p>基于React SSR实现的仿MOO音乐风格的音乐网站，支持PWA</p>
+<p><a href="https://github.com/mbaxszy7/pika-music" target="_blank" rel="noopener">https://github.com/mbaxszy7/pika-music</a><br><a href="https://juejin.im/post/6864204617152987150" target="_blank" rel="noopener">https://juejin.im/post/6864204617152987150</a></p>
+</li>
+</ul>
+<h2 id="2020-08-29"><a href="#2020-08-29" class="headerlink" title="2020/08/29"></a>2020/08/29</h2><h3 id="前端知识类-5"><a href="#前端知识类-5" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>网站优化，这些工具你一定用得着</p>
+<p><a href="https://mp.weixin.qq.com/s/olrFz3nrgCPSbQff-L_SlQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/olrFz3nrgCPSbQff-L_SlQ</a></p>
+</li>
+</ul>
+<h3 id="拓展-4"><a href="#拓展-4" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>一起来玩玩WebGL</p>
+<p><a href="https://mp.weixin.qq.com/s/IMaSzNOUNU4-QHU7nc_9cw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/IMaSzNOUNU4-QHU7nc_9cw</a></p>
+</li>
+<li><p>性能优化是权衡的哲学</p>
+<p><a href="https://mp.weixin.qq.com/s/3fKEPHIckyHt2y4XsydE0Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3fKEPHIckyHt2y4XsydE0Q</a></p>
+</li>
+<li><p>你可能不知道的字体应用技术细节</p>
+<p><a href="https://mp.weixin.qq.com/s/CJQYHSGe1CJwIqJAPV3yIw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/CJQYHSGe1CJwIqJAPV3yIw</a></p>
+</li>
+<li><p>前端组件设计原则</p>
+<p><a href="https://mp.weixin.qq.com/s/-6pWNGHrYnV8o7-7lXXuQQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/-6pWNGHrYnV8o7-7lXXuQQ</a></p>
+</li>
+<li><p>MVVM模式理解</p>
+<p><a href="https://mp.weixin.qq.com/s/q8im1nv0SxxZd7AWvBDGbA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/q8im1nv0SxxZd7AWvBDGbA</a></p>
+</li>
+</ul>
+<h2 id="2020-08-30"><a href="#2020-08-30" class="headerlink" title="2020/08/30"></a>2020/08/30</h2><h3 id="前端知识类-6"><a href="#前端知识类-6" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>从 10 多秒到 1.05 秒！前端性能优化实践</p>
+<p><a href="https://mp.weixin.qq.com/s/cHfIXOyOJ5Ig1tE4tmFvAw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/cHfIXOyOJ5Ig1tE4tmFvAw</a></p>
+</li>
+<li><p>完全理解Vue的渲染watcher、computed和user watcher</p>
+<p><a href="https://mp.weixin.qq.com/s/Hurz3XC0x-2VACxYfYAyRw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Hurz3XC0x-2VACxYfYAyRw</a></p>
+</li>
+</ul>
+<h3 id="拓展-5"><a href="#拓展-5" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>前端工程师不可不知的 Nginx 知识</p>
+<p><a href="https://mp.weixin.qq.com/s/zlq-KhyuAbp8bRpPtRp0IQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/zlq-KhyuAbp8bRpPtRp0IQ</a></p>
+</li>
+<li><p>前端需知：CDN 加速原理</p>
+<p><a href="https://mp.weixin.qq.com/s/zGH24ItRBju5dgcL-Z_feA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/zGH24ItRBju5dgcL-Z_feA</a></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%BA%94%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-每日公众号阅读（八）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E5%85%AB%EF%BC%89/">每日公众号阅读（八）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E5%85%AB%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-07-03T17:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="2020-09-14"><a href="#2020-09-14" class="headerlink" title="2020/09/14"></a>2020/09/14</h2><h3 id="前端知识类"><a href="#前端知识类" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>20+Vue面试题常规回答</p>
+<p><a href="https://mp.weixin.qq.com/s/QgsLicwKCdmHJWC7FEG7cw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/QgsLicwKCdmHJWC7FEG7cw</a></p>
+</li>
+<li><p>这些Vue常见面试题，看看你都会了吗？</p>
+<p><a href="https://mp.weixin.qq.com/s/ZMr2-V1vWDZLtR1p5Xkczw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ZMr2-V1vWDZLtR1p5Xkczw</a></p>
+</li>
+<li><p>网站图标开发指南（精）</p>
+<p><a href="https://mp.weixin.qq.com/s/2wTQsFmJdlrzFn6y_CkEtA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/2wTQsFmJdlrzFn6y_CkEtA</a></p>
+</li>
+<li><p>落魄前端，整理给自己的前端知识体系复习大纲（第一篇，上百知识点，2W字+）</p>
+<p><a href="https://mp.weixin.qq.com/s/AmSEUCVNIzhAdhCGaCjTUQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/AmSEUCVNIzhAdhCGaCjTUQ</a></p>
+<p><a href="https://juejin.im/post/6867715946941775885" target="_blank" rel="noopener">https://juejin.im/post/6867715946941775885</a></p>
+</li>
+</ul>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
+<li><p>面试官：说一说递归如何优化-尾递归优化</p>
+<p><a href="https://mp.weixin.qq.com/s/I-QIsLhykupreVKBHNmbwg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/I-QIsLhykupreVKBHNmbwg</a></p>
+</li>
+</ul>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>从零开始实现VS Code基金插件</p>
+<p><a href="https://mp.weixin.qq.com/s/eokc7Q38EzOV82ZybltI-w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/eokc7Q38EzOV82ZybltI-w</a></p>
+</li>
+<li><p>Vue 项目性能优化实践</p>
+<p><a href="https://mp.weixin.qq.com/s/zOgx6HmI2tK06vHlWOp4Mw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/zOgx6HmI2tK06vHlWOp4Mw</a></p>
+</li>
+<li><p>前端性能优化【进阶篇】</p>
+<p><a href="https://mp.weixin.qq.com/s/ZsYVjzwZm9dG20f3OjMAWw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ZsYVjzwZm9dG20f3OjMAWw</a></p>
+</li>
+<li><p>如何写技术文章</p>
+<p><a href="https://mp.weixin.qq.com/s/jLLda54-4T-PmLOVQWo9Kg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/jLLda54-4T-PmLOVQWo9Kg</a></p>
+</li>
+</ul>
+<h3 id="鸡汤"><a href="#鸡汤" class="headerlink" title="鸡汤"></a>鸡汤</h3><ul>
+<li><p>经验分享：写给入职2~3年同学的一封信 </p>
+<p><a href="https://juejin.im/post/5ebd607e6fb9a0433e52d070" target="_blank" rel="noopener">https://juejin.im/post/5ebd607e6fb9a0433e52d070</a></p>
+</li>
+</ul>
+<h2 id="2020-09-15"><a href="#2020-09-15" class="headerlink" title="2020/09/15"></a>2020/09/15</h2><h3 id="前端知识类-1"><a href="#前端知识类-1" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>相见恨晚的 Git 命令动画演示，一看就懂！</p>
+<p><a href="https://mp.weixin.qq.com/s/4vfifX-UkhrfpZjHycthOA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/4vfifX-UkhrfpZjHycthOA</a></p>
+</li>
+<li><p>「一劳永逸」一张脑图带你全面掌握 Git 命令</p>
+<p><a href="https://mp.weixin.qq.com/s/z-dSqK4eS1HWzodYYr94cA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/z-dSqK4eS1HWzodYYr94cA</a></p>
+</li>
+<li><p>什么是时间分片（Time Slicing）？</p>
+<p><a href="https://mp.weixin.qq.com/s/Zbe0EaSvkXjGqP6A_3pHow" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Zbe0EaSvkXjGqP6A_3pHow</a></p>
+</li>
+</ul>
+<h2 id="2020-09-16"><a href="#2020-09-16" class="headerlink" title="2020/09/16"></a>2020/09/16</h2><h3 id="前端知识类-2"><a href="#前端知识类-2" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>15 张精美动图全面讲解 CORS</p>
+<p><a href="https://mp.weixin.qq.com/s/MhIQNBIU5bIefi_tKZA4cw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/MhIQNBIU5bIefi_tKZA4cw</a></p>
+</li>
+<li><p>Service Worker初探</p>
+<p><a href="https://mp.weixin.qq.com/s/75sGozxSUWJOieSevbvEng" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/75sGozxSUWJOieSevbvEng</a></p>
+</li>
+<li><p>前端如何实现惯性滚动动效</p>
+<p><a href="https://mp.weixin.qq.com/s/1fCCc1pmcDu9LtqHIe8OlA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/1fCCc1pmcDu9LtqHIe8OlA</a></p>
+</li>
+</ul>
+<h2 id="2020-09-17"><a href="#2020-09-17" class="headerlink" title="2020/09/17"></a>2020/09/17</h2><h3 id="前端知识类-3"><a href="#前端知识类-3" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>KFC我知道，BFC是什么鬼，你知道吗?</p>
+<p><a href="https://mp.weixin.qq.com/s/EuwX9hPkAsXD0C-UbhoO1g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/EuwX9hPkAsXD0C-UbhoO1g</a></p>
+<p><a href="https://juejin.im/post/6844903655468957704" target="_blank" rel="noopener">https://juejin.im/post/6844903655468957704</a></p>
+</li>
+<li><p>前端模块化的前世</p>
+<p><a href="https://mp.weixin.qq.com/s/bqijpcITC4c_PM9zqfeqTA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/bqijpcITC4c_PM9zqfeqTA</a></p>
+</li>
+<li><p>Wireshark抓包使用指南</p>
+<p><a href="https://mp.weixin.qq.com/s/_s-2D-T5K1lx64zgdtdLSw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/_s-2D-T5K1lx64zgdtdLSw</a></p>
+</li>
+</ul>
+<h2 id="2020-09-18"><a href="#2020-09-18" class="headerlink" title="2020/09/18"></a>2020/09/18</h2><h3 id="前端知识类-4"><a href="#前端知识类-4" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>通过 Node.js 小示例学习浏览器缓存策略</p>
+<p><a href="https://mp.weixin.qq.com/s/6Cmwf9pd6zEccc7iVF55rA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/6Cmwf9pd6zEccc7iVF55rA</a></p>
+</li>
+<li><p>【面试篇】HTML、CSS面试知识点集锦，一文就够了</p>
+<p><a href="https://mp.weixin.qq.com/s/II2HabkSsI4OLqqieir4jw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/II2HabkSsI4OLqqieir4jw</a></p>
+</li>
+<li><p>前端模块化的今生</p>
+<p><a href="https://mp.weixin.qq.com/s/hFBqfIAN_mN0FbBtoKai-w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/hFBqfIAN_mN0FbBtoKai-w</a></p>
+</li>
+</ul>
+<h2 id="2020-09-19"><a href="#2020-09-19" class="headerlink" title="2020/09/19"></a>2020/09/19</h2><h3 id="前端知识类-5"><a href="#前端知识类-5" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>15个必须知道的JavaScript数组方法</p>
+<p><a href="https://mp.weixin.qq.com/s/tI2mzwtwIaIuUNDGY2WHig" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/tI2mzwtwIaIuUNDGY2WHig</a></p>
+</li>
+</ul>
+<h2 id="2020-09-20"><a href="#2020-09-20" class="headerlink" title="2020/09/20"></a>2020/09/20</h2><h3 id="前端知识类-6"><a href="#前端知识类-6" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>JavaScript 事件循环：从起源到浏览器再到 Node.js</p>
+<p><a href="https://mp.weixin.qq.com/s/IhaHIh-G1wQg8Tdc0nxP4Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/IhaHIh-G1wQg8Tdc0nxP4Q</a></p>
+</li>
+<li><p>你不知道的浏览器渲染原理</p>
+<p><a href="https://mp.weixin.qq.com/s/AHphHFIFGdCab4Qm293QXw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/AHphHFIFGdCab4Qm293QXw</a></p>
+</li>
+<li><p>编写高效 TS 代码的一些建议</p>
+<p><a href="https://mp.weixin.qq.com/s/XriG_dou9Iz_lvRG-Jo4gQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/XriG_dou9Iz_lvRG-Jo4gQ</a></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E5%85%AB%EF%BC%89/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-每日公众号阅读（六）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E5%85%AD%EF%BC%89/">每日公众号阅读（六）</a>
+    </h1>
+  
+
+        
+        <a href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E5%85%AD%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-07-03T17:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="2020-08-31"><a href="#2020-08-31" class="headerlink" title="2020/08/31"></a>2020/08/31</h2><h3 id="前端知识类"><a href="#前端知识类" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>8月最新：4个前端精选面试题（含答案&amp;解析）</p>
+<p><a href="https://mp.weixin.qq.com/s/FqXqqs1RANG4aGQ4ld0z1Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/FqXqqs1RANG4aGQ4ld0z1Q</a></p>
+</li>
+<li><p>基于Vue实现一个有点意思的拼拼乐小游戏</p>
+<p><a href="https://mp.weixin.qq.com/s/HmQHaOF0tNRSoQshKqGVvQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/HmQHaOF0tNRSoQshKqGVvQ</a></p>
+</li>
+<li><p>这些手写代码会了吗？少年</p>
+<p><a href="https://mp.weixin.qq.com/s/3NKeWNxeZS_aaYYtGfjxqg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3NKeWNxeZS_aaYYtGfjxqg</a></p>
+</li>
+</ul>
+<h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>从0到1，Vue大牛的前端搭建——异常监控系统</p>
+<p><a href="https://mp.weixin.qq.com/s/S7m8-ZQPNKfFHu0826CmZg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/S7m8-ZQPNKfFHu0826CmZg</a></p>
+</li>
+<li><p>SourceMap知多少：介绍与实践</p>
+<p><a href="https://mp.weixin.qq.com/s/Q4ZzldpRdY1L94rm6lKjtw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Q4ZzldpRdY1L94rm6lKjtw</a></p>
+</li>
+</ul>
+<h2 id="2020-09-01"><a href="#2020-09-01" class="headerlink" title="2020/09/01"></a>2020/09/01</h2><h3 id="前端知识类-1"><a href="#前端知识类-1" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>滚动条无限滚动</p>
+<p><a href="https://mp.weixin.qq.com/s/4PiXoxeAyTQn9brfWsck5g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/4PiXoxeAyTQn9brfWsck5g</a></p>
+</li>
+<li><p>1000+个项目的10大JavaScript错误</p>
+<p><a href="https://mp.weixin.qq.com/s/0nf8_I14WSWINdLQE7AhtA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/0nf8_I14WSWINdLQE7AhtA</a></p>
+</li>
+<li><p>面试必考：真的理解 $nextTick 么</p>
+<p><a href="https://mp.weixin.qq.com/s/utc9iE5J0ojj18AKYg_MSQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/utc9iE5J0ojj18AKYg_MSQ</a></p>
+</li>
+<li><p>快速搞定响应式布局</p>
+<p><a href="https://mp.weixin.qq.com/s/aaP2EY5XO9xjF9eVKVM8Fg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/aaP2EY5XO9xjF9eVKVM8Fg</a></p>
+</li>
+</ul>
+<h3 id="拓展-1"><a href="#拓展-1" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>前端性能优化——图片篇（工具）</p>
+<p><a href="https://mp.weixin.qq.com/s/yZ9ypkYpCXzVot9J9M0RNw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/yZ9ypkYpCXzVot9J9M0RNw</a></p>
+</li>
+<li><p>关于JavaScript计时器，你需要知道的全部知识【翻译】</p>
+<p><a href="https://mp.weixin.qq.com/s/198muoOXn6EL19QRTi154g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/198muoOXn6EL19QRTi154g</a></p>
+</li>
+<li><p>CSS背景看这篇文章就够了【案例讲解】【翻译】</p>
+<p><a href="https://mp.weixin.qq.com/s/oDLe4WPtuvjAiWxbyyobAw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/oDLe4WPtuvjAiWxbyyobAw</a></p>
+</li>
+<li><p>组件库主题设计方案</p>
+<p><a href="https://mp.weixin.qq.com/s/B4Qin6oPbTyC07VNB3UH-w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/B4Qin6oPbTyC07VNB3UH-w</a></p>
+</li>
+</ul>
+<h2 id="2020-09-02"><a href="#2020-09-02" class="headerlink" title="2020/09/02"></a>2020/09/02</h2><h3 id="前端知识类-2"><a href="#前端知识类-2" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>浏览器中的跨域问题与 CORS</p>
+<p><a href="https://mp.weixin.qq.com/s/PUPQo2FgQuujKzvUvRiJQg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/PUPQo2FgQuujKzvUvRiJQg</a></p>
+</li>
+<li><p>细数这些年被困扰过的 TS 问题</p>
+<p><a href="https://mp.weixin.qq.com/s/9_MpFTiI8Zsi9IAe50_iuQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/9_MpFTiI8Zsi9IAe50_iuQ</a></p>
+</li>
+</ul>
+<h3 id="拓展-2"><a href="#拓展-2" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>写React Hooks前必读</p>
+<p><a href="https://mp.weixin.qq.com/s/bUcsqBYdK0DHhvbJ_yTyqQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/bUcsqBYdK0DHhvbJ_yTyqQ</a></p>
+</li>
+<li><p>NPM 包安装你以为没坑么？</p>
+<p><a href="https://mp.weixin.qq.com/s/NnwdTh2X2L1wmIqEImiJFQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NnwdTh2X2L1wmIqEImiJFQ</a></p>
+</li>
+<li><p>Vue Composition API 陷阱</p>
+<p><a href="https://mp.weixin.qq.com/s/Ki7kgyuqkvErCgqqWzPBhA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Ki7kgyuqkvErCgqqWzPBhA</a></p>
+</li>
+</ul>
+<h2 id="2020-09-03"><a href="#2020-09-03" class="headerlink" title="2020/09/03"></a>2020/09/03</h2><h3 id="前端知识类-3"><a href="#前端知识类-3" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>（几乎）完美实现 el-table 列宽自适应</p>
+<p><a href="https://mp.weixin.qq.com/s/6bun0bK-2XDv8z52mLsWMQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/6bun0bK-2XDv8z52mLsWMQ</a></p>
+</li>
+<li><p>如何防止重复发送ajax请求</p>
+<p><a href="https://mp.weixin.qq.com/s/v7ku2KYAVW0r4Lmui4JNGA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/v7ku2KYAVW0r4Lmui4JNGA</a></p>
+</li>
+<li><p>可能是最全的 “文本溢出截断省略” 方案合集</p>
+<p><a href="https://mp.weixin.qq.com/s/mLz4CgmownHnteuzb45Qig" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/mLz4CgmownHnteuzb45Qig</a></p>
+</li>
+</ul>
+<h3 id="拓展-3"><a href="#拓展-3" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>完善的前端异常监控解决方案</p>
+<p><a href="https://mp.weixin.qq.com/s/mUyKGGWHWTzn_iht-HCXFA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/mUyKGGWHWTzn_iht-HCXFA</a></p>
+</li>
+</ul>
+<h2 id="2020-09-04"><a href="#2020-09-04" class="headerlink" title="2020/09/04"></a>2020/09/04</h2><h3 id="前端知识类-4"><a href="#前端知识类-4" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>Babel是如何读懂JS代码的</p>
+<p><a href="https://mp.weixin.qq.com/s/sxNLBYjUxAV3rHITVsGaOg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/sxNLBYjUxAV3rHITVsGaOg</a></p>
+</li>
+<li><p>如何优雅处理前端异常？</p>
+<p><a href="https://mp.weixin.qq.com/s/02-QJToWiGrNCUVXS7GR9A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/02-QJToWiGrNCUVXS7GR9A</a></p>
+</li>
+<li><p>「译」这样写的 JS 代码看着就很舒服</p>
+<p><a href="https://mp.weixin.qq.com/s/ZZWtNaANyIyIX1EXDqDXXg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ZZWtNaANyIyIX1EXDqDXXg</a></p>
+</li>
+<li><p>移动端实现自适应缩放界面的方法汇总</p>
+<p><a href="https://mp.weixin.qq.com/s/TgDpINMAGkMt5ggpx8vXsg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/TgDpINMAGkMt5ggpx8vXsg</a></p>
+</li>
+<li><p>创建对象的最佳方式是什么？【工厂模式】</p>
+<p><a href="https://mp.weixin.qq.com/s/ppxWe3ML9TrOCe_ympXdIQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ppxWe3ML9TrOCe_ympXdIQ</a></p>
+</li>
+</ul>
+<h3 id="拓展-4"><a href="#拓展-4" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>「干货」你需要了解的六种渲染模式</p>
+<p><a href="https://mp.weixin.qq.com/s/NJ-yDMN2q-C4FfVg0HWkZg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NJ-yDMN2q-C4FfVg0HWkZg</a></p>
+</li>
+<li><p>【拓展阅读】一文读懂什么是中台？什么是数据中台？</p>
+<p><a href="https://mp.weixin.qq.com/s/R8MIv1OERqLbeC3qtmlumw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/R8MIv1OERqLbeC3qtmlumw</a></p>
+</li>
+</ul>
+<h2 id="2020-09-05"><a href="#2020-09-05" class="headerlink" title="2020/09/05"></a>2020/09/05</h2><h3 id="前端知识类-5"><a href="#前端知识类-5" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>花式解说防抖函数debounce的实现</p>
+<p><a href="https://mp.weixin.qq.com/s/rSyatT6k7NBBfUfuvB76_A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/rSyatT6k7NBBfUfuvB76_A</a></p>
+</li>
+<li><p>JavaScript 中使用 Class 的正确姿势</p>
+<p><a href="https://mp.weixin.qq.com/s/Nr8dLb9DkuqKRchosFEdQg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Nr8dLb9DkuqKRchosFEdQg</a></p>
+</li>
+</ul>
+<h3 id="拓展-5"><a href="#拓展-5" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>脚本错误量极致优化-让脚本错误一目了然</p>
+<p><a href="https://mp.weixin.qq.com/s/c89tb-tNBk4x2VWEbmtZwQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/c89tb-tNBk4x2VWEbmtZwQ</a></p>
+</li>
+</ul>
+<h2 id="2020-09-06"><a href="#2020-09-06" class="headerlink" title="2020/09/06"></a>2020/09/06</h2><h3 id="前端知识类-6"><a href="#前端知识类-6" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>恭喜你获得治疗this“皮”的详细药方</p>
+<p><a href="https://mp.weixin.qq.com/s/VUw8rndSutxLukOk5dIFiQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/VUw8rndSutxLukOk5dIFiQ</a></p>
+</li>
+<li><p>20个 CSS 快速提升技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/5WKhynruzfFdF1pcuc02nA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5WKhynruzfFdF1pcuc02nA</a></p>
+</li>
+<li><p>《CSS揭秘》实用技巧总结</p>
+<p><a href="https://mp.weixin.qq.com/s/OvyYCQ5lK0QS_AVBWEqeRw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/OvyYCQ5lK0QS_AVBWEqeRw</a></p>
+</li>
+<li><p>我是如何将业务代码写优雅的</p>
+<p><a href="https://mp.weixin.qq.com/s/klVZubMtkZHJN733p1HZmg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/klVZubMtkZHJN733p1HZmg</a></p>
+</li>
+<li><p>Promise 你可能真的还没用明白</p>
+<p><a href="https://mp.weixin.qq.com/s/VfP9_8kUx6hyrII7LVae6g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/VfP9_8kUx6hyrII7LVae6g</a></p>
+</li>
+</ul>
+<h3 id="拓展-6"><a href="#拓展-6" class="headerlink" title="拓展"></a>拓展</h3><ul>
+<li><p>网站优化，这些工具你一定用得着</p>
+<p><a href="https://mp.weixin.qq.com/s/puLFZ4UvZ3d8PDBwdXfShA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/puLFZ4UvZ3d8PDBwdXfShA</a></p>
+</li>
+<li><h5 style="color: red;">【工具】25 个实用前端网站工具推荐</h5>
+
+<p><a href="https://mp.weixin.qq.com/s/jeEwUWUd2VYj6FCo1gvPVg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/jeEwUWUd2VYj6FCo1gvPVg</a></p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E5%85%AD%EF%BC%89/">展开全文 >></a>
         </p>
       
 
@@ -1164,7 +2294,7 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &gt;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &gt;</a>
     </nav>
   
 
@@ -1176,7 +2306,7 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Tiger
+    		&copy; 2021 Tiger
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1271,6 +2401,18 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">暂定</a>
               </li>
              
@@ -1283,10 +2425,6 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jquery</a>
               </li>
              
@@ -1295,11 +2433,23 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+                <a href="javascript:void(0)" class="js-tag color3">待定</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂项</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">概念</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1315,7 +2465,7 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+                <a href="javascript:void(0)" class="js-tag color3">JQ</a>
               </li>
             
             <div class="clearfix"></div>

@@ -151,57 +151,101 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-JS关闭窗口" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-vue之表单元素的一些事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/25/JS%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3/">js之关闭窗口</a>
+      <a class="article-title" href="/2020/01/02/vue%E4%B9%8B%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%E4%BB%B6/">vue之表单元素的一些事件</a>
     </h1>
   
 
         
-        <a href="/2019/11/25/JS%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3/" class="archive-article-date">
-  	<time datetime="2019-11-25T15:42:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
+        <a href="/2020/01/02/vue%E4%B9%8B%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%E4%BB%B6/" class="archive-article-date">
+  	<time datetime="2020-01-02T14:47:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在实现一个协议页面时，用户不同意会关闭页面，在google直接使用<code>window.close</code>方法会提示<code>Scripts may close only the windows that were opened by it.</code></p>
-<p>给出的原因很简单就是由于当前页面不是用脚本打开的，所以不能被关闭。</p>
-<h3 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h3><h4 id="一-在本页面打开一个窗口再关闭"><a href="#一-在本页面打开一个窗口再关闭" class="headerlink" title="一.在本页面打开一个窗口再关闭"></a>一.在本页面打开一个窗口再关闭</h4><h3 id="二-直接跳转到另一个页面"><a href="#二-直接跳转到另一个页面" class="headerlink" title="二.直接跳转到另一个页面"></a>二.直接跳转到另一个页面</h3><p>主页面test.html，两个按钮aaa和 bbb，aaa在自身Tab打开test1.html页面；bbb在新Tab打开test2.html页面。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HHH<span class="tag">&lt;/<span class="name">title</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btn1"</span> <span class="attr">value</span>=<span class="string">"aaa"</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"btn2"</span> <span class="attr">value</span>=<span class="string">"bbb"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        $(<span class="string">"#btn1"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.open(<span class="string">"test1.html"</span>,<span class="string">"_self"</span>);</span></span><br><span class="line">        &#125;);</span><br><span class="line"><span class="javascript">        $(<span class="string">"#btn2"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.open(<span class="string">"test2.html"</span>,<span class="string">"_blank"</span>);</span></span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>总结下这几天vue中使用不同input标签的一些对应的事件。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>ｉｎｐｕｔ标签的各种事件<a href="https://www.jianshu.com/p/2f1933de55ad" target="_blank" rel="noopener">https://www.jianshu.com/p/2f1933de55ad</a></p>
+<p>select实现二级联动<a href="https://www.cnblogs.com/beileixinqing/p/8252153.html" target="_blank" rel="noopener">https://www.cnblogs.com/beileixinqing/p/8252153.html</a></p>
+<p>select</p>
+<p>@change<br><a href="https://segmentfault.com/q/1010000015933375/a-1020000015933837" target="_blank" rel="noopener">https://segmentfault.com/q/1010000015933375/a-1020000015933837</a></p>
+<p>透传到select的v-model指令中<br><a href="https://blog.csdn.net/yunhuaikong/article/details/96868171" target="_blank" rel="noopener">https://blog.csdn.net/yunhuaikong/article/details/96868171</a></p>
+<p>[select设置默认选中]<a href="https://www.cnblogs.com/till-the-end/p/8473738.html" target="_blank" rel="noopener">https://www.cnblogs.com/till-the-end/p/8473738.html</a></p>
+<p>vue中@change兼容问题<a href="https://www.jianshu.com/p/4334f6a40fb7" target="_blank" rel="noopener">https://www.jianshu.com/p/4334f6a40fb7</a></p>
+<p>vue-输入框change事件并获取值<a href="https://www.cnblogs.com/zhizou/p/10648513.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhizou/p/10648513.html</a><br>vue获取input值<a href="https://blog.csdn.net/qq_39043923/article/details/88688420" target="_blank" rel="noopener">https://blog.csdn.net/qq_39043923/article/details/88688420</a><br><a href="https://blog.csdn.net/qq_38188485/article/details/80587420" target="_blank" rel="noopener">https://blog.csdn.net/qq_38188485/article/details/80587420</a><br>vue中获取file数据<br><a href="https://www.cnblogs.com/sunday123/p/11504885.html" target="_blank" rel="noopener">https://www.cnblogs.com/sunday123/p/11504885.html</a><br>vue.js如何获取当前元素的文字信息<br><a href="https://www.php.cn/js-tutorial-388081.html" target="_blank" rel="noopener">https://www.php.cn/js-tutorial-388081.html</a></p>
+<p>js获取option中的文本<a href="https://blog.csdn.net/foreverlanlan/article/details/23033571" target="_blank" rel="noopener">https://blog.csdn.net/foreverlanlan/article/details/23033571</a></p>
+<p><a href="https://www.cnblogs.com/xiaoniuniu886/p/11047795.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaoniuniu886/p/11047795.html</a></p>
 
-<p>test1.html页面的代码如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HHH<span class="tag">&lt;/<span class="name">title</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">h1</span>&gt;</span>test1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"closeBtn"</span> <span class="attr">value</span>=<span class="string">"close"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        $(<span class="string">"#closeBtn"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">           <span class="built_in">window</span>.location.href=<span class="string">"about:blank"</span>;</span></span><br><span class="line"><span class="javascript">           <span class="built_in">window</span>.close();</span></span><br><span class="line">        &#125;);</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
 
-<p>test2.html页面的代码如下：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">title</span>&gt;</span>HHH<span class="tag">&lt;/<span class="name">title</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">            <span class="tag">&lt;<span class="name">h1</span>&gt;</span>test2<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">id</span>=<span class="string">"closeBtn"</span> <span class="attr">value</span>=<span class="string">"close"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            $(<span class="string">"#closeBtn"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">window</span>.close();</span></span><br><span class="line">            &#125;);</span><br><span class="line">        <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
 
-<p>上面的测试都是基于js脚本的，一旦你是直接通过文件路径的方式在地址栏输入访问，还是会报错。</p>
-<p>上面的测试还是与实际情况有差异。。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">将test页面与test2页面代码结合，再以地址栏方式打开，会出现空白页的代价</span><br><span class="line">$(<span class="string">"#closeBtn"</span>).on(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            	<span class="built_in">window</span>.open(<span class="string">''</span>,<span class="string">'_blank'</span>)</span><br><span class="line">                <span class="built_in">window</span>.close();</span><br><span class="line">            &#125;);</span><br></pre></td></tr></table></figure>
+      
 
-<p>页面打开方式：</p>
-<p>一、test1页面通过地址栏打开，可以关闭，不过会出现blank页。</p>
-<p>二、通过test页面打开，可以关闭，不过会出现blank页。</p>
-<p>三、还有一种打开方式就是直接在这个html文件右键在浏览器打开，会直接关闭，没有blank。这种打开方式下test2页面效果一致。</p>
-<h3 id="reload-、href-replace-差异"><a href="#reload-、href-replace-差异" class="headerlink" title="reload()、href /replace()差异"></a>reload()、href /replace()差异</h3><ul>
-<li><p>在实际应用的时候，重新刷新页面的时候，我们通常使用： window.location.reload() 或者是 window.history.go(0) 来做。因为这种做法就像是客户端点F5刷新页面</p>
-</li>
-<li><p>对于href 和replace ，都是重定向的作用</p>
-<p>1、location.href=’<a href="http://www.xxx.com/&#39;" target="_blank" rel="noopener">http://www.xxx.com/&#39;</a>;</p>
-<p>2、location.replace(‘<a href="http://www.xxx.com/&#39;" target="_blank" rel="noopener">http://www.xxx.com/&#39;</a>);</p>
-<p>两者的不同之处是前者会在浏览器的历史浏览记录（history对象）中增加一条新的记录，而后者则是相当于用replace中的url代替了现有的页面url，并把history中的url也替换为重定向后的url。</p>
-<p>window.location.replace(url)将目前浏览器的地址替换掉，调用这个方法的网页，将不会被写入浏览记录。</p>
-<p><a href="https://blog.csdn.net/github_37483541/article/details/59481084" target="_blank" rel="noopener">https://blog.csdn.net/github_37483541/article/details/59481084</a></p>
-<p><a href="https://www.cnblogs.com/lina6251125/p/6392299.html" target="_blank" rel="noopener">https://www.cnblogs.com/lina6251125/p/6392299.html</a></p>
-</li>
-</ul>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/02/vue%E4%B9%8B%E8%A1%A8%E5%8D%95%E5%85%83%E7%B4%A0%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BA%8B%E4%BB%B6/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-JS之几种请求方式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/31/JS%E4%B9%8B%E5%87%A0%E7%A7%8D%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/">JS之几种请求方式</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/31/JS%E4%B9%8B%E5%87%A0%E7%A7%8D%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+  	<time datetime="2019-12-30T17:17:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A23-187:<br><a href="https://www.cnblogs.com/bester-ace/articles/9234229.html" target="_blank" rel="noopener">https://www.cnblogs.com/bester-ace/articles/9234229.html</a></p>
+<p>A23-187:<br><a href="https://www.cnblogs.com/limeiky/p/5266492.html" target="_blank" rel="noopener">https://www.cnblogs.com/limeiky/p/5266492.html</a></p>
+<p>A23-187:<br><a href="https://www.cnblogs.com/wushifeng/p/6707248.html" target="_blank" rel="noopener">https://www.cnblogs.com/wushifeng/p/6707248.html</a></p>
 
       
 
@@ -225,7 +269,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/25/JS%E5%85%B3%E9%97%AD%E7%AA%97%E5%8F%A3/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/31/JS%E4%B9%8B%E5%87%A0%E7%A7%8D%E8%AF%B7%E6%B1%82%E6%96%B9%E5%BC%8F/">展开全文 >></a>
         </p>
       
 
@@ -243,27 +287,30 @@
 
 
   
-    <article id="post-A_vue之store" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-vue之axios的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/25/A_vue%E4%B9%8Bstore/">vue之store</a>
+      <a class="article-title" href="/2019/12/31/vue%E4%B9%8Baxios%E7%9A%84%E4%BD%BF%E7%94%A8/">vue之axios的使用</a>
     </h1>
   
 
         
-        <a href="/2019/11/25/A_vue%E4%B9%8Bstore/" class="archive-article-date">
-  	<time datetime="2019-11-25T15:39:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
+        <a href="/2019/12/31/vue%E4%B9%8Baxios%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2019-12-30T17:17:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <p>A23-187:<br><a href="https://www.jianshu.com/p/fd7bf46d4412" target="_blank" rel="noopener">https://www.jianshu.com/p/fd7bf46d4412</a></p>
+<p>A23-187:<br><a href="https://www.jianshu.com/p/affdd9fa6a2a" target="_blank" rel="noopener">https://www.jianshu.com/p/affdd9fa6a2a</a></p>
+<p>A23-187:<br><a href="https://www.jianshu.com/p/d771bbc61dab" target="_blank" rel="noopener">https://www.jianshu.com/p/d771bbc61dab</a></p>
+
       
 
       
@@ -286,7 +333,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/25/A_vue%E4%B9%8Bstore/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/31/vue%E4%B9%8Baxios%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
         </p>
       
 
@@ -304,96 +351,27 @@
 
 
   
-    <article id="post-A_vue之计算属性" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-CSS之多行文本溢出显示省略号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/25/A_vue%E4%B9%8B%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">vue之计算属性</a>
+      <a class="article-title" href="/2019/12/31/CSS%E4%B9%8B%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7/">CSS之多行文本溢出显示省略号</a>
     </h1>
   
 
         
-        <a href="/2019/11/25/A_vue%E4%B9%8B%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/" class="archive-article-date">
-  	<time datetime="2019-11-25T15:37:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
+        <a href="/2019/12/31/CSS%E4%B9%8B%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7/" class="archive-article-date">
+  	<time datetime="2019-12-30T16:59:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/25/A_vue%E4%B9%8B%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-项目术语" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/25/%E9%A1%B9%E7%9B%AE%E6%9C%AF%E8%AF%AD/">xx</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/25/%E9%A1%B9%E7%9B%AE%E6%9C%AF%E8%AF%AD/" class="archive-article-date">
-  	<time datetime="2019-11-25T15:34:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="开发环境、测试环境、生产环境、UAT环境、仿真环境"><a href="#开发环境、测试环境、生产环境、UAT环境、仿真环境" class="headerlink" title="开发环境、测试环境、生产环境、UAT环境、仿真环境"></a>开发环境、测试环境、生产环境、UAT环境、仿真环境</h2><p><strong>开发环境</strong>：开发环境是程序猿们专门用于开发的服务器，配置可以比较随意， 为了开发调试方便，一般打开全部错误报告。</p>
-<p><strong>测试环境</strong>：一般是克隆一份生产环境的配置，一个程序在测试环境工作不正常，那么肯定不能把它发布到生产机上。</p>
-<p><strong>生产环境</strong>：是指正式提供对外服务的，一般会关掉错误报告，打开错误日志。可以理解为包含所有的功能的环境，任何项目所使用的环境都以这个为基础，然后根据客户的个性化需求来做调整或者修改。</p>
-<p>三个环境也可以说是系统开发的三个阶段：开发-&gt;测试-&gt;上线，其中生产环境也就是通常说的真实环境。</p>
-<p><strong>UAT环境</strong>：UAT，(User Acceptance Test),用户接受度测试 即验收测试，所以UAT环境主要是用来作为客户体验的环境。</p>
-<p><strong>仿真环境</strong>：顾名思义是和真正使用的环境一样的环境（即已经出售给客户的系统所在环境，也成为商用环境），所有的配置，页面展示等都应该和商家正在使用的一样，差别只在环境的性能方面。</p>
-<p>系统内部<a href="https://www.baidu.com/s?wd=集成测试&tn=44039180_cpr&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1YLnWnLnAcsmWTvmHKbrHmv0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EPHnLnHTznHDL" target="_blank" rel="noopener">集成测试</a>(System Integration Testing) SIT<br>用户<a href="https://www.baidu.com/s?wd=验收测试&tn=44039180_cpr&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1YLnWnLnAcsmWTvmHKbrHmv0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EPHnLnHTznHDL" target="_blank" rel="noopener">验收测试</a>(User Acceptance Testing) UAT<br>SIT在前，UAT在后，UAT测完才可以上线。</p>
-<p>SIT是<a href="https://www.baidu.com/s?wd=集成测试&tn=44039180_cpr&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1YLnWnLnAcsmWTvmHKbrHmv0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EPHnLnHTznHDL" target="_blank" rel="noopener">集成测试</a>UAT是<a href="https://www.baidu.com/s?wd=验收测试&tn=44039180_cpr&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1YLnWnLnAcsmWTvmHKbrHmv0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EPHnLnHTznHDL" target="_blank" rel="noopener">验收测试</a>从时间上看，UAT要在SIT后面，<a href="https://www.baidu.com/s?wd=UAT测试&tn=44039180_cpr&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1YLnWnLnAcsmWTvmHKbrHmv0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EPHnLnHTznHDL" target="_blank" rel="noopener">UAT测试</a>要在<a href="https://www.baidu.com/s?wd=系统测试&tn=44039180_cpr&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1YLnWnLnAcsmWTvmHKbrHmv0ZwV5Hcvrjm3rH6sPfKWUMw85HfYnjn4nH6sgvPsT6KdThsqpZwYTjCEQLGCpyw9Uz4Bmy-bIi4WUvYETgN-TLwGUv3EPHnLnHTznHDL" target="_blank" rel="noopener">系统测试</a>完成后才开始。从测试人员看，SIT由公司的测试员来测试，而UAT一般是由用户来测试。</p>
-<h2 id="PM-SM"><a href="#PM-SM" class="headerlink" title="PM SM"></a>PM SM</h2><p><a href="https://blog.csdn.net/bamboolsu/article/details/45313899" target="_blank" rel="noopener">https://blog.csdn.net/bamboolsu/article/details/45313899</a></p>
+        <p><a href="https://www.html.cn/archives/5206/" target="_blank" rel="noopener">https://www.html.cn/archives/5206/</a></p>
 
       
 
@@ -407,7 +385,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">开发相关</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">css</a>
         		</li>
       		
 		</ul>
@@ -417,7 +395,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/25/%E9%A1%B9%E7%9B%AE%E6%9C%AF%E8%AF%AD/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/31/CSS%E4%B9%8B%E5%A4%9A%E8%A1%8C%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E6%98%BE%E7%A4%BA%E7%9C%81%E7%95%A5%E5%8F%B7/">展开全文 >></a>
         </p>
       
 
@@ -435,33 +413,74 @@
 
 
   
-    <article id="post-JS文件选择框" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS之select选中option触发事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/25/JS%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E6%A1%86/">js打开对话框</a>
+      <a class="article-title" href="/2019/12/26/JS%E4%B9%8Bselect%E9%80%89%E4%B8%ADoption%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6/">JS之select选中option触发事件</a>
     </h1>
   
 
         
-        <a href="/2019/11/25/JS%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E6%A1%86/" class="archive-article-date">
-  	<time datetime="2019-11-25T13:05:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
+        <a href="/2019/12/26/JS%E4%B9%8Bselect%E9%80%89%E4%B8%ADoption%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6/" class="archive-article-date">
+  	<time datetime="2019-12-26T13:57:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
-<p>只需要在页面内放一个file标签，可以将其display设置为none，再使用图片、按钮及链接来触发file的单击事件。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在做一个二级联动选择框时，想要获取到当前点击的option的值，发现给option绑定click事件没得用，给select添加呢，又会发现还没点option就已经触发了。</p>
+<p>百度来的说option没有可以触发的事件,需要在select中加onchange事件。</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>onchange事件的触发，是改变了option选项时，如果是一直选择某一个这个事件不会触发。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id=<span class="string">"myselect"</span>&gt;</span><br><span class="line">  &lt;option value=<span class="string">"opt1"</span>&gt;选项<span class="number">1</span>&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">  &lt;option value="opt2"&gt;选项2&lt;/</span>option&gt;</span><br><span class="line">  &lt;option value=<span class="string">"opt3"</span>&gt;选项<span class="number">3</span>&lt;<span class="regexp">/option&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>select&gt;</span><br><span class="line">$(<span class="string">"#myselect"</span>).change(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="keyword">this</span>)<span class="comment">//这里的this不是当前jq对象，而是select这个dom对象。</span></span><br><span class="line">  <span class="keyword">var</span> opt=$(<span class="string">"#myselect"</span>).val()<span class="comment">//获取的是当前选择的option的value</span></span><br><span class="line">  <span class="keyword">var</span> opt=$(<span class="string">"#myselect"</span>).text()<span class="comment">//获取的是选项1，2，3</span></span><br><span class="line">  <span class="keyword">var</span> opt=$(<span class="string">"#myselect"</span>).html()<span class="comment">//获取的是整个标签&lt;select&gt;&lt;/select&gt;</span></span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><p>  <strong>一. 使用原生js获取select标签下属性有selected的option项。</strong></p>
+<ul>
+<li><p>先写一个select标签如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">"selectBox"</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"value-aaa"</span> <span class="attr">selected</span>&gt;</span></span><br><span class="line">              aaaaa</span><br><span class="line">     <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">option</span> <span class="attr">value</span>=<span class="string">"value-bbb"</span>&gt;</span></span><br><span class="line">              bbbbb</span><br><span class="line">     <span class="tag">&lt;/<span class="name">option</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>原生js获取select标签这个 <strong>对象</strong> :</p>
+<p> var selectTest = document.getElementById(“selectBox”);</p>
+</li>
+<li><p>然后找到 <strong>selected</strong> 的option标签的 <strong>索引值:</strong> </p>
+<p>var selectIndex = selectTest.selectedIndex;</p>
+</li>
+<li><p>这样就可以通过索引来获取选中项的 <strong>选中值和文本值:</strong> </p>
+<p>var selectValue = selectTest.options[selectIndex].value;<br>var selectText = selectTest.options[selectIndex].text;</p>
+<blockquote>
+<p>注意：不能获取到自定义属性的值，或者是标签具有的属性但是没有直接在标签上书写属性值（即通过js添加的方式）。</p>
+<p>需要借助getAttrbute和setAttrbute方法二个原生DOM方法的。或者是jq的attr()方法。</p>
 </blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">title</span>&gt;</span> New Document <span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"#"</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">id</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"file"</span> <span class="attr">style</span>=<span class="string">"display:none"</span> 	<span class="attr">mce_style</span>=<span class="string">"display:none"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"打开文件对话框"</span> <span class="attr">onClick</span>=<span class="string">"ok()"</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">value</span>=<span class="string">"提交"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>详情可见：JS之自定义属性的几种方式[xxxxxx]</p>
+<hr>
+<p><strong>二. 当然这样写可能会比较麻烦，jquery为我们提供了更加方便的方法</strong></p>
+<ul>
+<li>主要是用到了jquery中的 <strong>选择器:</strong> </li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> selectedOption = $(<span class="string">"#selectBox option: selected"</span>);</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script language=<span class="string">"JavaScript"</span>&gt;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">ok</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="keyword">var</span> s = <span class="built_in">document</span>.getElementById(<span class="string">"file"</span>);</span><br><span class="line">		s.click();</span><br><span class="line">		<span class="keyword">var</span> str = s.value;<span class="comment">//获取文件路径</span></span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">1</span>);<span class="comment">//在这里你可以进行自己的工作</span></span><br><span class="line">	&#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>然后直接使用val() 和 text() 方法：</li>
+</ul>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">console</span><span class="selector-class">.log</span>(<span class="selector-tag">selectedOption</span><span class="selector-class">.val</span>(), <span class="selector-tag">selectedOption</span><span class="selector-class">.text</span>()  );</span><br></pre></td></tr></table></figure>
 
+<ul>
+<li>注意使用jQuery的方法，记得 <strong>引入jquery库文件</strong>。</li>
+</ul>
+<p>在jQuery中选择select标签的方法有：</p>
+<p>$(“#selectId”) 和 $(“select[name=’selectName’]”)</p>
+<p><strong>1.获取select选择的值</strong>,选择了select之后直接用val()：</p>
+<p>例如：$(“#selectId”).val()或者$(“select[name=’selectName’]”).val();</p>
+<p><strong>2.获取select的文本值</strong>，选择了select之后，用find()：</p>
+<p>例如：$(“#selectId”).find(“option:selected”).text();或者$(“select[name=’selectName’]”).find(“option:selected”).text();</p>
+<p><strong>3.获取select选中的索引</strong></p>
+<p>例如：$(“#selectId”).get(0).selectedindex;</p>
 
       
 
@@ -485,7 +504,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/25/JS%E6%96%87%E4%BB%B6%E9%80%89%E6%8B%A9%E6%A1%86/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/26/JS%E4%B9%8Bselect%E9%80%89%E4%B8%ADoption%E8%A7%A6%E5%8F%91%E4%BA%8B%E4%BB%B6/">展开全文 >></a>
         </p>
       
 
@@ -503,28 +522,183 @@
 
 
   
-    <article id="post-vue实战之饿了吗-二" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS之forEach、$.each()、$().each()的用法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/25/vue%E5%AE%9E%E6%88%98%E4%B9%8B%E9%A5%BF%E4%BA%86%E5%90%97-%E4%BA%8C/">vue实战之饿了吗(二)</a>
+      <a class="article-title" href="/2019/12/26/JS%E4%B9%8BforEach%E3%80%81$.each()%E3%80%81$().each()%E7%9A%84%E7%94%A8%E6%B3%95/">JS之forEach、$.each()、$().each()的用法</a>
     </h1>
   
 
         
-        <a href="/2019/10/25/vue%E5%AE%9E%E6%88%98%E4%B9%8B%E9%A5%BF%E4%BA%86%E5%90%97-%E4%BA%8C/" class="archive-article-date">
-  	<time datetime="2019-10-25T14:00:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-25</time>
+        <a href="/2019/12/26/JS%E4%B9%8BforEach%E3%80%81$.each()%E3%80%81$().each()%E7%9A%84%E7%94%A8%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2019-12-26T12:25:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>###</p>
-<p><img src="vue%E5%AE%9E%E6%88%98%E4%B9%8B%E9%A5%BF%E4%BA%86%E5%90%97-%E4%BA%8C%5C1572012226742.png" alt="1572012226742"></p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>数组的遍历是我们在开发中十分常见的操作。本文针对原生数组的forEach，jquery的each()方法做出总结。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="forEach方法"><a href="#forEach方法" class="headerlink" title="forEach方法"></a>forEach方法</h3><p><code>forEach</code>方法是ES5中的数组方法，用于遍历、循环。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array.forEach(callback,[ thisObject])</span><br></pre></td></tr></table></figure>
+
+<p><code>forEach</code>方法中的callback（回调函数）支持3个参数，第一个是遍历的数组内容（当前项），第二个是对应的数组索引，第三个是数组本身。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[].forEach(<span class="function"><span class="keyword">function</span>(<span class="params">value,index,array</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>对比jQuery中的<code>$.each</code>方法二者index,vaule顺序：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.each([], <span class="function"><span class="keyword">function</span>(<span class="params">index, value</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>再下面，更进一步，<code>forEach</code>除了接受一个必须的回调函数参数，还可以接受一个可选的上下文参数（改变回调函数里面的<code>this</code>指向）（第2个参数）。如果这第2个可选参数不指定，则使用全局对象代替（在浏览器是为<code>window</code>），严格模式下甚至是<code>undefined</code>.</p>
+<p>另外，<code>forEach</code>不会遍历空元素的。</p>
+<h3 id="each-方法"><a href="#each-方法" class="headerlink" title="$.each()方法"></a>$.each()方法</h3><p><code>$.each()</code>方法是jquery的类方法，用于遍历数组，对象。</p>
+<p>第一个参数是要遍历的数组，第二个参数是个回调函数，回调函数里面有2个参数，第一个代表当前数组索引，第二个代表当前数组索引对应值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.each([], <span class="function"><span class="keyword">function</span>(<span class="params">index, value</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="each-方法-1"><a href="#each-方法-1" class="headerlink" title="$().each()方法"></a>$().each()方法</h3><p><code>$().each()</code>方法多用于遍历jq对象数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'selector'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">index,value</span>)</span>&#123;</span><br><span class="line">   <span class="comment">// ...</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>实例：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>forEach与each用法比较<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://cdn.bootcss.com/jquery/1.12.1/jquery.js"</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  <span class="comment">&lt;!-- 需要引入jq --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>4<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span>&gt;</span>5<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> group = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">5</span>];</span></span><br><span class="line"><span class="actionscript">    <span class="comment">//forEach()只有一个参数function时：</span></span></span><br><span class="line"><span class="actionscript">    group.forEach(<span class="function"><span class="keyword">function</span><span class="params">(value,index,array)</span></span>&#123; <span class="comment">//function()中有三个参数</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(value); <span class="comment">//对应数组中每个参数的值；输出三次，依次为1,3,5</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(index); <span class="comment">//对应数组下标（从0开始计算）；输出三次，依次为0,1,2</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(array); <span class="comment">//数组本身，即是-&gt;group；输出三次，每次都输出整个grounp数组</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);  <span class="comment">//window对象</span></span></span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line"><span class="actionscript">    <span class="comment">//forEach()有两个参数function和thisArg（即改变this指向的参数）:</span></span></span><br><span class="line"><span class="actionscript">    group.forEach(<span class="function"><span class="keyword">function</span><span class="params">(value,index,array)</span></span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(value);</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(index);</span></span><br><span class="line"><span class="vbscript">        console.<span class="built_in">log</span>(<span class="built_in">array</span>);</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="keyword">this</span>);  <span class="comment">//输出同console.log(array)，因为第二个参数指向了该group数组本身</span></span></span><br><span class="line">    &#125;,group);</span><br><span class="line"> </span><br><span class="line"><span class="actionscript"> <span class="comment">//----------------------$.each()---------------------</span></span></span><br><span class="line">    </span><br><span class="line"><span class="javascript">    $.each(group,<span class="function"><span class="keyword">function</span>(<span class="params">index,value</span>)</span>&#123; <span class="comment">//$.each()是jq中的方法，function()中有两个参数</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(index); <span class="comment">//对应数组下标（从0开始计算）；输出三次，依次为0,1,2</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(value); <span class="comment">//对应数组中每个参数的值；输出三次，依次为1,3,5</span></span></span><br><span class="line">     &#125;);</span><br><span class="line"> </span><br><span class="line">    </span><br><span class="line"><span class="actionscript"><span class="comment">//----------------------$().each()-------------------------    </span></span></span><br><span class="line"><span class="javascript">    $(<span class="string">'li'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params">index,value</span>)</span>&#123; <span class="comment">//$().each()对象方法</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(index+<span class="string">": "</span>+$(<span class="keyword">this</span>).text());</span></span><br><span class="line">    &#125;);</span><br><span class="line"> 	</span><br><span class="line"><span class="actionscript"><span class="comment">//------------------$.each()与$().each()效果一致--------------</span></span></span><br><span class="line">    </span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> g_li = $(<span class="string">'li'</span>);</span></span><br><span class="line"><span class="javascript">    $.each(g_li,<span class="function"><span class="keyword">function</span>(<span class="params">index,value</span>)</span>&#123; <span class="comment">//$.each()类方法，该结果与上面结果相同，即证明$.each即是jq中对象方法，又是jq的类方法</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(index+<span class="string">": "</span>+$(<span class="keyword">this</span>).text());</span></span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line"><span class="actionscript"><span class="comment">//--------------------数组map()方法------------------------- </span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">var</span> result = group.map(<span class="function"><span class="keyword">function</span><span class="params">(value,index,array)</span></span>&#123; <span class="comment">//function()中有三个参数</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(index); <span class="comment">//对应数组下标（从0开始计算）</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(value); <span class="comment">//对应数组中每个参数的值</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(array); <span class="comment">//数组本身</span></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> value + <span class="number">1</span>; <span class="comment">//支持返回值（与forEach的不同之处，forEach不支持返回值）</span></span></span><br><span class="line">    &#125;);</span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(<span class="string">'map函数返回值'</span>+result); <span class="comment">//result为数组，输出2,4,6,8,10 </span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">console</span>.log(group)<span class="comment">//map方法产生一个新数组，不会改变原数组。</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><p>数组原生方法<code>forEach()</code>里面二个参数，第一个必备参数，是一个回调函数，其第一个参数是值，第二个是索引，第三个是数组本身。第二个是改变this指向的参数。</p>
+</li>
+<li><p>jq的<code>$.each()</code>方法第一个参数是要遍历的数组，第二个才是回调函数，其只有二个参数，第一个是索引，第二个是值。而<code>$(&#39;selector&#39;).each()</code>方法里只有一个回调函数，第一个参数是索引，第二个是值。</p>
+</li>
+<li><p>注意点：回调函数中value,index的顺序。</p>
+</li>
+</ul>
+<h2 id="更多数组方法"><a href="#更多数组方法" class="headerlink" title="更多数组方法"></a>更多数组方法</h2><p>参考数组方法总结。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>ES5中新增的Array方法详细说明:<a href="https://www.zhangxinxu.com/wordpress/2013/04/es5新增数组方法/" target="_blank" rel="noopener">https://www.zhangxinxu.com/wordpress/2013/04/es5%E6%96%B0%E5%A2%9E%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/26/JS%E4%B9%8BforEach%E3%80%81$.each()%E3%80%81$().each()%E7%9A%84%E7%94%A8%E6%B3%95/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-google插件问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/24/google%E6%8F%92%E4%BB%B6%E9%97%AE%E9%A2%98/">google插件问题</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/24/google%E6%8F%92%E4%BB%B6%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2019-12-24T14:30:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>谷歌插件提示<a href="https://blog.csdn.net/Helloo_jerry/article/details/91872752" target="_blank" rel="noopener">https://blog.csdn.net/Helloo_jerry/article/details/91872752</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">暂定</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/24/google%E6%8F%92%E4%BB%B6%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-vue组件三大概念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/24/vue%E7%BB%84%E4%BB%B6%E4%B8%89%E5%A4%A7%E6%A6%82%E5%BF%B5/">vue组件三大概念</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/24/vue%E7%BB%84%E4%BB%B6%E4%B8%89%E5%A4%A7%E6%A6%82%E5%BF%B5/" class="archive-article-date">
+  	<time datetime="2019-12-24T14:28:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-24</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://www.jianshu.com/p/78c8fcbf749a" target="_blank" rel="noopener">https://www.jianshu.com/p/78c8fcbf749a</a></p>
+<p>vue-resource <a href="https://www.cnblogs.com/chenhuichao/p/8308993.html与$.ajax" target="_blank" rel="noopener">https://www.cnblogs.com/chenhuichao/p/8308993.html与$.ajax</a></p>
 
       
 
@@ -548,7 +722,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/25/vue%E5%AE%9E%E6%88%98%E4%B9%8B%E9%A5%BF%E4%BA%86%E5%90%97-%E4%BA%8C/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/24/vue%E7%BB%84%E4%BB%B6%E4%B8%89%E5%A4%A7%E6%A6%82%E5%BF%B5/">展开全文 >></a>
         </p>
       
 
@@ -566,57 +740,28 @@
 
 
   
-    <article id="post-vue实战之饿了吗-一" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS数组方法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/25/vue%E5%AE%9E%E6%88%98%E4%B9%8B%E9%A5%BF%E4%BA%86%E5%90%97-%E4%B8%80/">vue实战之饿了吗(一)</a>
+      <a class="article-title" href="/2019/12/24/JS%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">JS数组方法总结</a>
     </h1>
   
 
         
-        <a href="/2019/10/25/vue%E5%AE%9E%E6%88%98%E4%B9%8B%E9%A5%BF%E4%BA%86%E5%90%97-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2019-10-25T10:52:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-25</time>
+        <a href="/2019/12/24/JS%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/" class="archive-article-date">
+  	<time datetime="2019-12-24T14:26:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Vue介绍"><a href="#Vue介绍" class="headerlink" title="Vue介绍"></a>Vue介绍</h2><ul>
-<li><p>前端趋势—交互越来越多，从页面的整个刷新到利用Ajax的局部刷新，架构从传统后台MVC向前端MV*迁移。</p>
-<ul>
-<li><p>MV*即以下</p>
-<p>​            MVC</p>
-<p>​            MVP</p>
-<p>​            MVVM (Vue.js，Angular.js，react.js)</p>
-</li>
-<li><p>MVVC框架</p>
-<ul>
-<li>View(视图，DOM)—ViewModel(通讯,观察者)—Model(数据,Javascript对象)</li>
-<li>争对具有复杂交互逻辑的前端应用</li>
-<li>提供基础的架构抽象</li>
-<li>通过Ajax使数据持久化，保证前端用户体验</li>
-<li>SPA单页应用</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p>轻量级MVVM框架</p>
-</li>
-<li><p>数据驱动+组件化的前端开发模式</p>
-</li>
-<li><p>技术选型—&gt;社区，学习曲线，</p>
-</li>
-<li><p>vue借鉴了angular的指令，react的组件化</p>
-</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/10/25/vue%E5%AE%9E%E6%88%98%E4%B9%8B%E9%A5%BF%E4%BA%86%E5%90%97-%E4%B8%80/#more">more >></a>
-        
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>数组如何删除指定位置的元素<a href="https://www.php.cn/js-tutorial-412053.html" target="_blank" rel="noopener">https://www.php.cn/js-tutorial-412053.html</a><br>数组方法与字符串方法indexOf <a href="https://www.w3cschool.cn/jsref/jsref-lastindexof-array.html" target="_blank" rel="noopener">https://www.w3cschool.cn/jsref/jsref-lastindexof-array.html</a></p>
+
       
 
       
@@ -629,7 +774,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -639,7 +784,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/25/vue%E5%AE%9E%E6%88%98%E4%B9%8B%E9%A5%BF%E4%BA%86%E5%90%97-%E4%B8%80/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/24/JS%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/">展开全文 >></a>
         </p>
       
 
@@ -657,40 +802,30 @@
 
 
   
-    <article id="post-vue打包" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-JS数组方法总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/24/vue%E6%89%93%E5%8C%85/">vue打包</a>
+      <a class="article-title" href="/2019/12/24/JS%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">JS数组方法总结</a>
     </h1>
   
 
         
-        <a href="/2019/10/24/vue%E6%89%93%E5%8C%85/" class="archive-article-date">
-  	<time datetime="2019-10-24T11:45:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-24</time>
+        <a href="/2019/12/24/JS%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  	<time datetime="2019-12-24T14:26:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="webpack打包"><a href="#webpack打包" class="headerlink" title="webpack打包"></a>webpack打包</h3><p>npm run build</p>
-<p>hs -o -p 9999</p>
-<p><a href="http://127.0.0.1:9999/index.html#/home" target="_blank" rel="noopener">http://127.0.0.1:9999/index.html#/home</a></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用build的前提，配置了package.json文件</span><br><span class="line"><span class="string">"scripts"</span>: &#123;</span><br><span class="line">    <span class="string">"dev"</span>: <span class="string">".\\node_modules\\.bin\\webpack-dev-server --inline --hot --open --port 9999"</span>,</span><br><span class="line">    <span class="string">"build"</span>: <span class="string">"webpack"</span></span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>数组如何删除指定位置的元素<a href="https://www.php.cn/js-tutorial-412053.html" target="_blank" rel="noopener">https://www.php.cn/js-tutorial-412053.html</a><br>数组方法与字符串方法indexOf <a href="https://www.w3cschool.cn/jsref/jsref-lastindexof-array.html" target="_blank" rel="noopener">https://www.w3cschool.cn/jsref/jsref-lastindexof-array.html</a></p>
+<p><a href="https://www.zhangxinxu.com/wordpress/2013/04/es5%E6%96%B0%E5%A2%9E%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/" target="_blank" rel="noopener">https://www.zhangxinxu.com/wordpress/2013/04/es5%E6%96%B0%E5%A2%9E%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95/</a></p>
+<p>arr.filter(callback(item,index,arr))与arr.map(callback(item,index,arr))都是返回新数组，前者通过return true来过滤出一个符合true条件的新数组，后者则是通过return 某种操作，对数组的每一项进行操作得到一个新数组。</p>
 
-<p>补充.安装http server服务</p>
-<ul>
-<li>npm install http-server -g全局安装</li>
-<li>在要打开的项目文件夹处打开命令窗口，输入 hs -o回车</li>
-<li>将对应的网址复制到浏览器打开<br>注意点：一次只能运行一个项目，当要运行另外一个项目时要先结束前面项目的服务在命令窗口按住ctrl+c即可，再到另外一个项目文件运行服务。遇到端口被占用的情况，可以用指令：hs -o -p 新端口号，来修改端口。</li>
-</ul>
-        
-          <a class="article-more-a" href="/2019/10/24/vue%E6%89%93%E5%8C%85/#more">more >></a>
-        
       
 
       
@@ -703,7 +838,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -713,143 +848,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/24/vue%E6%89%93%E5%8C%85/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-vue第二天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/19/vue%E7%AC%AC%E4%BA%8C%E5%A4%A9/">vue第二天</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/19/vue%E7%AC%AC%E4%BA%8C%E5%A4%A9/" class="archive-article-date">
-  	<time datetime="2019-10-19T14:23:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/19/vue%E7%AC%AC%E4%BA%8C%E5%A4%A9/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-vue第一天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/18/vue%E7%AC%AC%E4%B8%80%E5%A4%A9/">vue第一天</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/18/vue%E7%AC%AC%E4%B8%80%E5%A4%A9/" class="archive-article-date">
-  	<time datetime="2019-10-18T10:14:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Node-js与webpack的配置"><a href="#Node-js与webpack的配置" class="headerlink" title="Node.js与webpack的配置"></a>Node.js与webpack的配置</h1><h3 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><p>1.Node.js介绍</p>
-<p>简单的说 <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a> 就是运行在服务端的 JavaScript。</p>
-<p>Node.js是一个基于 Chrome V8 引擎的 JavaScript 运行环境；</p>
-<p>Node.js使用一个事件驱动、非阻塞式 I/O 的模型，使其轻量且高效；</p>
-<p>Node.js的软件包生态系统<a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm</a>是全球最大的开源库生态系统。</p>
-<p>补充：npm:Nodejs的包管理工具(package management),简称npm。一般安装nodejs会一起安装对应的npm工具。</p>
-<p>cnpm:淘宝为npm开发了一个镜像站并将镜像站相关操作封装进cnpm。</p>
-<p>nvm:mac平台上专门用于管理node.js和npm版本的工具.使用它可以下载指定版本的node.并且使用nvm可以在同一个电脑上安装多个版本的node,并且可以很容易切换版本. windows平台可以使用<a href="https://github.com/coreybutler/nvm-windows" target="_blank" rel="noopener">nvm-windows</a>.默认每个node版本中的module是相互隔离的。</p>
-        
-          <a class="article-more-a" href="/2019/10/18/vue%E7%AC%AC%E4%B8%80%E5%A4%A9/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Node</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">环境配置</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/18/vue%E7%AC%AC%E4%B8%80%E5%A4%A9/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/12/24/JS%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E6%80%BB%E7%BB%93/">展开全文 >></a>
         </p>
       
 
@@ -869,7 +868,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&lt; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/6/">Next &gt;</a>
+      <a class="extend prev" rel="prev" href="/page/4/">&lt; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">Next &gt;</a>
     </nav>
   
 
@@ -881,7 +880,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Tiger
+    		&copy; 2021 Tiger
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -976,6 +975,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">暂定</a>
               </li>
              
@@ -988,10 +999,6 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jquery</a>
               </li>
              
@@ -1000,11 +1007,23 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+                <a href="javascript:void(0)" class="js-tag color3">待定</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂项</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">概念</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1020,7 +1039,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+                <a href="javascript:void(0)" class="js-tag color3">JQ</a>
               </li>
             
             <div class="clearfix"></div>

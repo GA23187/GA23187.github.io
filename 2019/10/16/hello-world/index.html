@@ -21,7 +21,7 @@
 <meta property="og:image" content="d:%5CWorkSpace%5CinitHexo.png">
 <meta property="og:image" content="d:%5CWorkSpace%5Chexo-g.png">
 <meta property="og:image" content="d:%5CWorkSpace%5Chexo-d.png">
-<meta property="og:updated_time" content="2020-06-22T17:07:04.164Z">
+<meta property="og:updated_time" content="2021-05-11T17:01:28.934Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="d:%5CWorkSpace%5Chexo%5Csource_posts%5Cimages%5C1571228851188.png">
   
@@ -289,12 +289,17 @@ fatal: Could not read from remote repository.
 </code></pre></li>
 </ul>
 <p>Please make sure you have the correct access rights<br>and the repository exists.</p>
-<pre><code>
-- 错误原因，本地SSH与远端不一致。
-- 查看本地有没有，有则把这个ssh添加到github上。没有则通过`ssh-keygen -t rsa -C &quot;邮件地址&quot;`生成。</code></pre></li>
-<li><p>本地仓库与远程仓库建立连接命令</p>
-<p><code>git remote add orgin git@github.com:xxx</code></p>
-</li>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  - 错误原因，本地SSH与远端不一致。</span><br><span class="line">  - 查看本地有没有，有则把这个ssh添加到github上。没有则通过`ssh-keygen -t rsa -C &quot;邮件地址&quot;`生成。</span><br><span class="line"></span><br><span class="line">- 本地仓库与远程仓库建立连接命令</span><br><span class="line"></span><br><span class="line">  `git remote add orgin git@github.com:xxx`</span><br><span class="line">  </span><br><span class="line">-</span><br></pre></td></tr></table></figure>
+<p>$ hexo d<br>(node:6384) Warning: Accessing non-existent property ‘lineno’ of module exports inside circular dependency<br>(Use <code>node --trace-warnings ...</code> to show where the warning was created)<br>(node:6384) Warning: Accessing non-existent property ‘column’ of module exports inside circular dependency<br>(node:6384) Warning: Accessing non-existent property ‘filename’ of module exports inside circular dependency<br>(node:6384) Warning: Accessing non-existent property ‘lineno’ of module exports inside circular dependency<br>(node:6384) Warning: Accessing non-existent property ‘column’ of module exports inside circular dependency<br>(node:6384) Warning: Accessing non-existent property ‘filename’ of module exports inside circular dependency<br>INFO  Deploying: git<br>INFO  Clearing .deploy_git folder…<br>INFO  Copying files from public folder…<br>FATAL Something’s wrong. Maybe you can find the solution here: <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">https://hexo.io/docs/troubleshooting.html</a><br>TypeError [ERR_INVALID_ARG_TYPE]: The “mode” argument must be integer. Received an instance of Object</p>
+<pre><code>at copyFile (fs.js:1972:10)
+at tryCatcher </code></pre><p>参考链接：<a href="https://zhuanlan.zhihu.com/p/136552969" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/136552969</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  错误原因：node版本太高，切换成低版本的node来安装Hexo就可以了。</span><br><span class="line">  </span><br><span class="line">- 报错一</span><br><span class="line"></span><br><span class="line">  &gt; FATAL Something&apos;s wrong. Maybe you can find the solution here: https://hexo.io/docs/troubleshooting.html</span><br><span class="line">  &gt; Nunjucks Error:  [Line 344, Column 63] unexpected token: &#125;&#125;</span><br><span class="line"></span><br><span class="line">   转义内容 Hexo使用Nunjucks渲染帖子（较早的版本使用Swig，它们具有相似的语法）。用&#123; &#123; &#125; &#125;或&#123; ％ ％ &#125;包装的内容将被解析，并可能导致问题。您可以使用原始标签插件包装敏感内容。</span><br><span class="line">  找到正文里面&#123; &#123;、&#125; &#125;、&#123; %、% &#125;这样的语句，作如下修改：</span><br></pre></td></tr></table></figure>
+	//敏感内容前加上这个
+    Hello {{ sensitive }}	l/敏感内容被包装在中间
+        //敏感内容后加上这个
+
+<p>参考链接：<a href="https://blog.csdn.net/weixin_45333934/article/details/108274320" target="_blank" rel="noopener">https://blog.csdn.net/weixin_45333934/article/details/108274320</a></p>
+<pre><code></code></pre></li>
 </ul>
 </li>
 </ul>
@@ -448,7 +453,7 @@ fatal: Could not read from remote repository.
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2020 Tiger
+    		&copy; 2021 Tiger
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -543,6 +548,18 @@ fatal: Could not read from remote repository.
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">暂定</a>
               </li>
              
@@ -555,10 +572,6 @@ fatal: Could not read from remote repository.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">jquery</a>
               </li>
              
@@ -567,11 +580,23 @@ fatal: Could not read from remote repository.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+                <a href="javascript:void(0)" class="js-tag color3">待定</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂项</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">概念</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,7 +612,7 @@ fatal: Could not read from remote repository.
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+                <a href="javascript:void(0)" class="js-tag color3">JQ</a>
               </li>
             
             <div class="clearfix"></div>
