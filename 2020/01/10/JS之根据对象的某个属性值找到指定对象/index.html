@@ -6,17 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JS之根据对象的某个属性值找到指定对象 | 渡口迷津</title>
+  <title>JS之根据对象的某个属性值找到指定对象的key | 渡口迷津</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="123456789101112131415161718192021var arr = &amp;#123;  1267: &amp;apos;成都大学附属医院&amp;apos;,  1272: &amp;apos;成都军区机关医院&amp;apos;,  1206: &amp;apos;成都市第二人民医院&amp;apos;,  1256: &amp;apos;成都市第六人民医院&amp;apos;,&amp;#125; function findKey(obj, value, compare = (a, b) =&amp;gt; a === b) &amp;#123">
+  <meta name="description" content="1234567891011121314151617181920var arr = &amp;#123;  1267: &amp;apos;成都大学附属医院&amp;apos;,  1272: &amp;apos;成都军区机关医院&amp;apos;,  1206: &amp;apos;成都市第二人民医院&amp;apos;,  1256: &amp;apos;成都市第六人民医院&amp;apos;,&amp;#125;  &#x2F;&#x2F; function findKey(obj,value)&amp;#123;&#x2F;&#x2F;   return Object.keys(obj).fi">
 <meta name="keywords" content="js">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JS之根据对象的某个属性值找到指定对象">
+<meta property="og:title" content="JS之根据对象的某个属性值找到指定对象的key">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;10&#x2F;JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1&#x2F;index.html">
 <meta property="og:site_name" content="渡口迷津">
-<meta property="og:description" content="123456789101112131415161718192021var arr = &amp;#123;  1267: &amp;apos;成都大学附属医院&amp;apos;,  1272: &amp;apos;成都军区机关医院&amp;apos;,  1206: &amp;apos;成都市第二人民医院&amp;apos;,  1256: &amp;apos;成都市第六人民医院&amp;apos;,&amp;#125; function findKey(obj, value, compare = (a, b) =&amp;gt; a === b) &amp;#123">
+<meta property="og:description" content="1234567891011121314151617181920var arr = &amp;#123;  1267: &amp;apos;成都大学附属医院&amp;apos;,  1272: &amp;apos;成都军区机关医院&amp;apos;,  1206: &amp;apos;成都市第二人民医院&amp;apos;,  1256: &amp;apos;成都市第六人民医院&amp;apos;,&amp;#125;  &#x2F;&#x2F; function findKey(obj,value)&amp;#123;&#x2F;&#x2F;   return Object.keys(obj).fi">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-06-22T13:48:17.651Z">
+<meta property="og:updated_time" content="2021-05-12T12:23:54.212Z">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="渡口迷津" type="application/atom+xml">
@@ -160,7 +160,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      JS之根据对象的某个属性值找到指定对象
+      JS之根据对象的某个属性值找到指定对象的key
     </h1>
   
 
@@ -173,7 +173,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = &#123;</span><br><span class="line">  <span class="number">1267</span>: <span class="string">'成都大学附属医院'</span>,</span><br><span class="line">  <span class="number">1272</span>: <span class="string">'成都军区机关医院'</span>,</span><br><span class="line">  <span class="number">1206</span>: <span class="string">'成都市第二人民医院'</span>,</span><br><span class="line">  <span class="number">1256</span>: <span class="string">'成都市第六人民医院'</span>,</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findKey</span>(<span class="params">obj, value, compare = (a, b</span>) =&gt; <span class="title">a</span> === <span class="title">b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.keys(obj).find(<span class="function"><span class="params">k</span> =&gt;</span> compare(obj[k], value))</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">// function findKey(obj,value)&#123;</span></span><br><span class="line"><span class="comment">//   return Object.keys(obj).find((k)=&gt;&#123;</span></span><br><span class="line"><span class="comment">//     return obj[k]==value</span></span><br><span class="line"><span class="comment">//   &#125;)</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.log(findKey(arr, <span class="string">'成都大学附属医院'</span>));</span><br><span class="line"></span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/TCF_JingFeng/article/details/89881305</span></span><br></pre></td></tr></table></figure>
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = &#123;</span><br><span class="line">  <span class="number">1267</span>: <span class="string">'成都大学附属医院'</span>,</span><br><span class="line">  <span class="number">1272</span>: <span class="string">'成都军区机关医院'</span>,</span><br><span class="line">  <span class="number">1206</span>: <span class="string">'成都市第二人民医院'</span>,</span><br><span class="line">  <span class="number">1256</span>: <span class="string">'成都市第六人民医院'</span>,</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment">// function findKey(obj,value)&#123;</span></span><br><span class="line"><span class="comment">//   return Object.keys(obj).find((k)=&gt;&#123;</span></span><br><span class="line"><span class="comment">//     return obj[k]=== value</span></span><br><span class="line"><span class="comment">//   &#125;)</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findKey</span>(<span class="params">obj, value, compare = (a, b</span>) =&gt; <span class="title">a</span> === <span class="title">b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.keys(obj).find(<span class="function"><span class="params">k</span> =&gt;</span> compare(obj[k], value))</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.log(findKey(arr, <span class="string">'成都大学附属医院'</span>));</span><br><span class="line"></span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/TCF_JingFeng/article/details/89881305</span></span><br></pre></td></tr></table></figure>
 
 
       
@@ -289,8 +289,8 @@
     </a>
   
   
-    <a href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JS之根据数组中对象的某个属性值找到指定对象</div>
+    <a href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1%E7%9A%84key/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JS之根据对象的某个属性值找到指定对象的key</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -394,11 +394,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -450,11 +450,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">概念</a>
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+                <a href="javascript:void(0)" class="js-tag color3">概念</a>
               </li>
              
               <li class="article-tag-list-item">

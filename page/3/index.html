@@ -151,6 +151,210 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-jQuery之ajax的beforeSend" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/14/jQuery%E4%B9%8Bajax%E7%9A%84beforeSend/">jQuery之ajax的beforeSend</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/14/jQuery%E4%B9%8Bajax%E7%9A%84beforeSend/" class="archive-article-date">
+  	<time datetime="2020-01-14T10:17:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>jQuery是经常使用的一个开源js框架，其中的$.ajax请求中有一个beforeSend方法，用于在向服务器发送请求前执行一些动作。<br>具体可参考jQuery官方文档：<a href="http://api.jquery.com/Ajax_Events/" target="_blank" rel="noopener">http://api.jquery.com/Ajax_Events/</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    beforeSend: function()&#123;</span><br><span class="line">     // Handle the beforeSend event</span><br><span class="line">    &#125;,</span><br><span class="line">    complete: function()&#123;</span><br><span class="line">     // Handle the complete event</span><br><span class="line">    &#125;</span><br><span class="line">    // ......</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="防止重复数据"><a href="#防止重复数据" class="headerlink" title="防止重复数据"></a>防止重复数据</h2><p>在实际项目开发中，提交表单时常常由于网络或者其原因，用户点击提交按钮误认为自己没有操作成功，进而会重复提交按钮操作次数，如果页面前端代码没有做一些相应的处理，通常会导致多条同样的数据插入数据库，导致脏数据的增加。要避免这种现象，在$.ajax请求中的beforeSend方法中把提交按钮禁用掉，等到Ajax请求执行完毕，在恢复按钮的可用状态。</p>
+<p>举个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">// 提交表单数据到后台处理</span><br><span class="line">$.ajax(&#123;</span><br><span class="line">    type: &quot;post&quot;,</span><br><span class="line">    data: studentInfo,</span><br><span class="line">    contentType: &quot;application/json&quot;,</span><br><span class="line">    url: &quot;/Home/Submit&quot;,</span><br><span class="line">    beforeSend: function () &#123;</span><br><span class="line">        // 禁用按钮防止重复提交</span><br><span class="line">        $(&quot;#submit&quot;).attr(&#123; disabled: &quot;disabled&quot; &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    success: function (data) &#123;</span><br><span class="line">        if (data == &quot;Success&quot;) &#123;</span><br><span class="line">            //清空输入框</span><br><span class="line">            clearBox();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    complete: function () &#123;</span><br><span class="line">        $(&quot;#submit&quot;).removeAttr(&quot;disabled&quot;);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: function (data) &#123;</span><br><span class="line">        console.info(&quot;error: &quot; + data.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="模拟Toast效果"><a href="#模拟Toast效果" class="headerlink" title="模拟Toast效果"></a>模拟Toast效果</h2><p>ajax请求服务器加载数据列表时提示loading(“加载中，请稍后…”),</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;</span><br><span class="line">    type: &quot;post&quot;,</span><br><span class="line">    contentType: &quot;application/json&quot;,</span><br><span class="line">    url: &quot;/Home/GetList&quot;,</span><br><span class="line">    beforeSend: function () &#123;</span><br><span class="line">        $(&quot;loading&quot;).show();</span><br><span class="line">    &#125;,</span><br><span class="line">    success: function (data) &#123;</span><br><span class="line">        if (data == &quot;Success&quot;) &#123;</span><br><span class="line">            // ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    complete: function () &#123;</span><br><span class="line">        $(&quot;loading&quot;).hide();</span><br><span class="line">    &#125;,</span><br><span class="line">    error: function (data) &#123;</span><br><span class="line">        console.info(&quot;error: &quot; + data.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="原文地址"><a href="#原文地址" class="headerlink" title="原文地址"></a>原文地址</h2><p><a href="https://www.cnblogs.com/hnsongbiao/p/8966312.html" target="_blank" rel="noopener">https://www.cnblogs.com/hnsongbiao/p/8966312.html</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">jquery</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/14/jQuery%E4%B9%8Bajax%E7%9A%84beforeSend/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-前端处理token" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/14/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86token/">前端处理token</a>
+    </h1>
+  
+
+        
+        <a href="/2020/01/14/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86token/" class="archive-article-date">
+  	<time datetime="2020-01-14T07:52:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近，做一个后台管理项目，对于用户身份划分有要求，首先遇到的问题就是登陆权限认证。这里主要讲解基于token的身份验证方法。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><h3 id="一、HTTP基本认证"><a href="#一、HTTP基本认证" class="headerlink" title="一、HTTP基本认证"></a>一、HTTP基本认证</h3><p>Basic Authentication——当浏览器访问使用基本认证的网站的时候， 浏览器会提示你输入用户名和密码。</p>
+<p>http auth的过程：</p>
+<ul>
+<li>客户端发送http请求</li>
+<li>服务器发现配置了http auth，于是检查request里面有没有”Authorization”的http header</li>
+<li>如果有，则判断Authorization里面的内容是否在用户列表里面，Authorization header的典型数据为”Authorization: Basic jdhaHY0=”，其中Basic表示基础认证， jdhaHY0=是base64编码的”user:passwd”字符串。</li>
+<li>如果没有，或者用户密码不对，则返回http code 401页面给客户端</li>
+<li>标准的http浏览器在收到401页面之后，应该弹出一个对话框让用户输入帐号密码；并在用户点确认的时候再次发出请求，这次请求里面将带上Authorization header</li>
+</ul>
+<p>一次典型的访问场景是：</p>
+<ul>
+<li>浏览器发送http请求（没有Authorization header）</li>
+<li>服务器端返回401页面</li>
+<li>浏览器弹出认证对话框</li>
+<li>用户输入帐号密码，并点确认</li>
+<li>浏览器再次发出http请求（带着Authorization header）</li>
+<li>服务器端认证通过，并返回页面</li>
+<li>浏览器显示页面</li>
+</ul>
+<h3 id="二、JWT鉴权"><a href="#二、JWT鉴权" class="headerlink" title="二、JWT鉴权"></a>二、JWT鉴权</h3><p><a href="https://jwt.io/" target="_blank" rel="noopener">JWT</a>是一种token based auth的标准。</p>
+<p>其工作流程是这样的</p>
+<ol>
+<li>用户使用用户名和密码进行鉴权</li>
+<li>服务端进行鉴权</li>
+<li>服务端给客户端分配一个加密的token</li>
+<li>客户端保存这个token，以后的每个请求，客户端都会发送这个token</li>
+<li>服务端通过token判断是否是鉴权过的用户，并返回请求的响应数据</li>
+</ol>
+<h4 id="JWT的特点"><a href="#JWT的特点" class="headerlink" title="JWT的特点"></a>JWT的特点</h4><ul>
+<li>简洁：可以通过URL，POST参数或者在HTTP header发送，因为数据量小，传输速度也很快</li>
+<li>自包含：payload中包含了所有用户所需要的信息，避免了多次查询数据库</li>
+</ul>
+<h4 id="JWT的应用场景"><a href="#JWT的应用场景" class="headerlink" title="JWT的应用场景"></a>JWT的应用场景</h4><ul>
+<li>身份认证</li>
+<li>安全要求的信息交换</li>
+</ul>
+<h4 id="JWT的结构"><a href="#JWT的结构" class="headerlink" title="JWT的结构"></a>JWT的结构</h4><p>JWT包含了使用.分隔的三部分：</p>
+<ul>
+<li>Header 头部：Base64Url（token类型+加密算法）</li>
+<li>Payload 负载：Base64Url（用户信息）</li>
+<li>Signature 签名：算法（  base64UrlEncode(header) + “.” +  base64UrlEncode(payload),  密钥）</li>
+</ul>
+<p>其结构看起来是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xxxxx.yyyyy.zzzzz</span><br></pre></td></tr></table></figure>
+
+<p>签名用于验证消息的发送者以及消息是没有经过篡改的。如果黑客获取到了payload中的用户信息，并进行了篡改，那么经过Base64编码后也会发生变化，而签名是根据Header和Payload共同决定的，签名也会不一样，服务器就会判断出不一致。</p>
+<h4 id="如何使用JWT"><a href="#如何使用JWT" class="headerlink" title="如何使用JWT?"></a>如何使用JWT?</h4><p>1）用户在客户端输入用户名和密码登录服务器；</p>
+<p>2）服务器认证通过后，返回给用户一个JWT</p>
+<p>3）客户端只需要本地保存该token（通常使用local storage，也可以使用cookie）即可。</p>
+<p>4）当用户下次访问时，在Authorization头部使用Bearer模式添加JWT，格式<code>Authorization: Bearer &lt;token&gt;</code></p>
+<p>5）服务端检查请求头<code>Authorization</code>中的JWT信息，如果合法，则允许用户的行为。</p>
+<p>由于JWT是自包含的，因此减少了需要查询数据库的需要。</p>
+<p><img src="https://img2018.cnblogs.com/blog/803751/201811/803751-20181130221550124-398375266.png" alt="img"></p>
+<h4 id="前端使用token"><a href="#前端使用token" class="headerlink" title="前端使用token"></a>前端使用token</h4><h5 id="大概流程"><a href="#大概流程" class="headerlink" title="大概流程"></a>大概流程</h5><ul>
+<li>客户端使用用户名跟密码请求登录</li>
+<li>服务端收到请求，去验证用户名与密码</li>
+<li>验证成功后，服务端会签发一个 Token，再把这个 Token 发送给客户端</li>
+<li>客户端收到 Token 以后可以把它存储起来，比如放在 Cookie 里或者 Local Storage 里</li>
+<li>客户端每次向服务端请求资源的时候需要带着服务端签发的 Token</li>
+<li>服务端收到请求，然后去验证客户端请求里面带着的 Token，如果验证成功，就向客户端返回请求的数据</li>
+</ul>
+<h5 id="vue中处理token"><a href="#vue中处理token" class="headerlink" title="vue中处理token"></a>vue中处理token</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 请求拦截</span></span><br><span class="line">axios.interceptors.request.use(<span class="function"><span class="params">config</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 判断是否有token</span></span><br><span class="line">  <span class="keyword">if</span> (localStorage.loginToken) &#123;</span><br><span class="line">    config.headers.Authorization = localStorage.loginToken;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> config;</span><br><span class="line">&#125;, err =&gt; &#123;</span><br><span class="line">  <span class="comment">// 请求错误</span></span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err);</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 响应拦截（不用每次请求都写一遍catch）</span></span><br><span class="line">axios.interceptors.response.use(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;,</span><br><span class="line">  err =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; status &#125; = err.response;</span><br><span class="line">    <span class="keyword">if</span> (status == <span class="number">401</span>) &#123;</span><br><span class="line">      <span class="comment">// 后台定义401为过期</span></span><br><span class="line">      alert(<span class="string">"token过期,请重新登录!"</span>)</span><br><span class="line">      <span class="comment">// 清楚token</span></span><br><span class="line">      localStorage.removeItem(<span class="string">"loginToken"</span>);</span><br><span class="line">      router.push(<span class="string">"/login"</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      alert(err.response.data)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Promise</span>.reject(err);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>前后端分离使用 Token 登录解决方案：<a href="http://www.yyyweb.com/5144.html" target="_blank" rel="noopener">http://www.yyyweb.com/5144.html</a></p>
+<p>http基本认证与JWT鉴权：<a href="https://www.cnblogs.com/loveapple/p/10046835.html" target="_blank" rel="noopener">https://www.cnblogs.com/loveapple/p/10046835.html</a></p>
+<p>web前端处理token：<a href="https://blog.csdn.net/weixin_42265852/article/details/87771101" target="_blank" rel="noopener">https://blog.csdn.net/weixin_42265852/article/details/87771101</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">暂定</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/01/14/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86token/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-GIT相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -827,7 +1031,7 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/">JS之根据对象的某个属性值找到指定对象</a>
+      <a class="article-title" href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/">JS之根据对象的某个属性值找到指定对象的key</a>
     </h1>
   
 
@@ -840,7 +1044,7 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
     
     <div class="article-entry" itemprop="articleBody">
       
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = &#123;</span><br><span class="line">  <span class="number">1267</span>: <span class="string">'成都大学附属医院'</span>,</span><br><span class="line">  <span class="number">1272</span>: <span class="string">'成都军区机关医院'</span>,</span><br><span class="line">  <span class="number">1206</span>: <span class="string">'成都市第二人民医院'</span>,</span><br><span class="line">  <span class="number">1256</span>: <span class="string">'成都市第六人民医院'</span>,</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findKey</span>(<span class="params">obj, value, compare = (a, b</span>) =&gt; <span class="title">a</span> === <span class="title">b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.keys(obj).find(<span class="function"><span class="params">k</span> =&gt;</span> compare(obj[k], value))</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="comment">// function findKey(obj,value)&#123;</span></span><br><span class="line"><span class="comment">//   return Object.keys(obj).find((k)=&gt;&#123;</span></span><br><span class="line"><span class="comment">//     return obj[k]==value</span></span><br><span class="line"><span class="comment">//   &#125;)</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.log(findKey(arr, <span class="string">'成都大学附属医院'</span>));</span><br><span class="line"></span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/TCF_JingFeng/article/details/89881305</span></span><br></pre></td></tr></table></figure>
+        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = &#123;</span><br><span class="line">  <span class="number">1267</span>: <span class="string">'成都大学附属医院'</span>,</span><br><span class="line">  <span class="number">1272</span>: <span class="string">'成都军区机关医院'</span>,</span><br><span class="line">  <span class="number">1206</span>: <span class="string">'成都市第二人民医院'</span>,</span><br><span class="line">  <span class="number">1256</span>: <span class="string">'成都市第六人民医院'</span>,</span><br><span class="line">&#125;</span><br><span class="line">  </span><br><span class="line"><span class="comment">// function findKey(obj,value)&#123;</span></span><br><span class="line"><span class="comment">//   return Object.keys(obj).find((k)=&gt;&#123;</span></span><br><span class="line"><span class="comment">//     return obj[k]=== value</span></span><br><span class="line"><span class="comment">//   &#125;)</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">findKey</span>(<span class="params">obj, value, compare = (a, b</span>) =&gt; <span class="title">a</span> === <span class="title">b</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">Object</span>.keys(obj).find(<span class="function"><span class="params">k</span> =&gt;</span> compare(obj[k], value))</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="built_in">console</span>.log(findKey(arr, <span class="string">'成都大学附属医院'</span>));</span><br><span class="line"></span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/TCF_JingFeng/article/details/89881305</span></span><br></pre></td></tr></table></figure>
 
 
       
@@ -866,132 +1070,6 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-JS之根据数组中对象的某个属性值找到指定对象" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/">JS之根据数组中对象的某个属性值找到指定对象</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/" class="archive-article-date">
-  	<time datetime="2020-01-10T07:21:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">现在有一个数组对象,也就是数组元素是对象类型,现在的需求是根据对象的某个属性值,找到该数组对应的元素(对象),比如根据<span class="string">"bianma"</span>==<span class="string">"11"</span>,找到对应的<span class="string">"name"</span>为<span class="string">"商品房"</span> : </span><br><span class="line"></span><br><span class="line">该数组对象数据如下: </span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> datas = [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"name"</span>: <span class="string">"商品房"</span>,</span><br><span class="line">      <span class="string">"bianma"</span>: <span class="string">"11"</span></span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="string">"name"</span>: <span class="string">"商铺"</span>,</span><br><span class="line">      <span class="string">"bianma"</span>: <span class="string">"12"</span></span><br><span class="line">    &#125;</span><br><span class="line"> ]</span><br><span class="line">我们可以通过对数组进行筛选操作:</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data= datas.filter(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>)</span>&#123;</span><br><span class="line">     <span class="keyword">return</span> item.bianma == <span class="string">"12"</span>; </span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(data); <span class="comment">// [&#123;name: "商铺", bianma: "12"&#125;]</span></span><br><span class="line">filter() 方法将匹配元素集合缩减为匹配指定选择器的元素.该方法不改变原数组,返回的是筛选后满足条件的数组.</span><br><span class="line"></span><br><span class="line">转载于:https:<span class="comment">//www.cnblogs.com/stella1024/p/7919231.html</span></span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/10/JS%E4%B9%8B%E6%A0%B9%E6%8D%AE%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%9F%90%E4%B8%AA%E5%B1%9E%E6%80%A7%E5%80%BC%E6%89%BE%E5%88%B0%E6%8C%87%E5%AE%9A%E5%AF%B9%E8%B1%A1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-JS之判断数组中对象是否存在某个数值" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/01/10/JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC/">JS之判断数组中对象是否存在某个数值</a>
-    </h1>
-  
-
-        
-        <a href="/2020/01/10/JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC/" class="archive-article-date">
-  	<time datetime="2020-01-10T07:20:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-01-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [&#123;</span><br><span class="line">    name: <span class="string">"回锅肉"</span>,</span><br><span class="line">    value: <span class="string">"0"</span></span><br><span class="line">&#125;, &#123;</span><br><span class="line">    name: <span class="string">"小炒肉"</span>,</span><br><span class="line">    value: <span class="string">"1"</span></span><br><span class="line">&#125;]</span><br><span class="line"><span class="keyword">var</span> result = arr.some(<span class="function"><span class="keyword">function</span>(<span class="params">item</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (item.name == <span class="string">"小炒肉"</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"><span class="built_in">console</span>.log(result);</span><br><span class="line"></span><br><span class="line">原文链接：https:<span class="comment">//blog.csdn.net/weixin_40687883/article/details/86502766</span></span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/01/10/JS%E4%B9%8B%E5%88%A4%E6%96%AD%E6%95%B0%E7%BB%84%E4%B8%AD%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E5%9C%A8%E6%9F%90%E4%B8%AA%E6%95%B0%E5%80%BC/">展开全文 >></a>
         </p>
       
 
@@ -1102,11 +1180,11 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1158,11 +1236,11 @@ Vuex 的仓库是store.js，将 axios 引入，并在 action 添加新的方法<
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">概念</a>
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+                <a href="javascript:void(0)" class="js-tag color3">概念</a>
               </li>
              
               <li class="article-tag-list-item">

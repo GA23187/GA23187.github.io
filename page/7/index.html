@@ -151,6 +151,306 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-A_vue之store" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/25/A_vue%E4%B9%8Bstore/">vue之store</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/25/A_vue%E4%B9%8Bstore/" class="archive-article-date">
+  	<time datetime="2019-11-25T15:39:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/25/A_vue%E4%B9%8Bstore/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-Node.js安装及环境配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/25/Node.js%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">Node.js安装及环境配置</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/25/Node.js%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" class="archive-article-date">
+  	<time datetime="2019-11-25T15:39:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Node-js安装及环境配置"><a href="#Node-js安装及环境配置" class="headerlink" title="Node.js安装及环境配置"></a>Node.js安装及环境配置</h1><h2 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h2><ul>
+<li><p>Node.js介绍</p>
+<p>简单的说 Node.js 就是运行在服务端的 JavaScript。Node.js 是一个基于 <a href="https://developers.google.com/v8/" target="_blank" rel="noopener">Chrome V8</a> 引擎的 JavaScript 运行环境。Node.js 使用了一个事件驱动、非阻塞式 I/O 的模型，使其轻量又高效。Node.js 的包管理器 <a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm</a>，是全球最大的开源库生态系统。</p>
+</li>
+<li><p>下载Node.js</p>
+<p>打开官网下载链接:<a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">https://nodejs.org/en/download/</a> </p>
+<blockquote>
+<p>LTS: 长期支持版</p>
+<p>Current：最新特性版</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><p>一路<code>next</code>即可。</p>
+</li>
+<li><p>有个选择安装目录的地，个人喜好选择吧。</p>
+</li>
+<li><p>中间有个Tools for Native Modules（本机模块工具），是一个构建工具，推荐安装。</p>
+<blockquote>
+<p>这是在告诉会给你自动安装2个工具：</p>
+<ul>
+<li>构建工具(Python 2和Visual Studio构建工具)</li>
+<li>Chocolatey</li>
+</ul>
+<p>构建工具是因为一些npm模块需要使用C/C++编译，如果想要编译这些模块，则需要安装这个工具。如果不安装这个构建工具，在之后使用 npm 安装模块的时候，会报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gyp ERR! find Python</span><br></pre></td></tr></table></figure>
+
+<p>如果见到这个错误，知道是因为没有安装 构建工具。</p>
+<p>构建工具和 Chocolatey 都是必装的，如果现在没有安装，可以之后再手动安装，提示里已经给出了相关解释：<a href="https://github.com/nodejs/node-gyp#on-windows" target="_blank" rel="noopener">https://github.com/nodejs/node-gyp#on-windows</a></p>
+<p>该提示还告诉你 Chocolatey 会在后面弹出一个 cmd 来安装。</p>
+</blockquote>
+</li>
+<li><p>安装完成后，可以在cmd下测试下安装是否成功。</p>
+<ul>
+<li>【win+R】键，输入cmd，然后回车，打开cmd窗口</li>
+<li><code>node -v</code>显示node的版本号</li>
+<li><code>npm -v</code>显示npm的版本号</li>
+</ul>
+<blockquote>
+<p>如果直接在cmd中输入以上命令报错，可能是系统环境变量配置失败，默认在安装时会添加的。</p>
+<p>右键此电脑，点击属性，进入系统页面，点击高级系统设置，点击环境变量，在里面有个系统变量中选择变量名为Path的点击选中后再点击编辑按钮，新建一个你的node.js的安装位置路径。如D:\Program Files\nodejs\</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><blockquote>
+<p>此处的环境配置不是必须的，只是为了配置npm安装全局模块的所在路径，以及缓存cache的路径，之所以要配置，是因为以后在执行类似：npm install express [-g] （后面的可选参数-g，g代表global全局安装的意思）的安装语句时，会将安装的模块安装到【C:\Users\用户名\AppData\Roaming\npm】路径中，占C盘空间。</p>
+</blockquote>
+<ul>
+<li><p>希望将全模块所在路径和缓存路径放在我node.js安装的文件夹中，则在我安装的文件夹【D:\Program Files\nodejs】下创建两个文件夹【node_global】及【node_cache】</p>
+</li>
+<li><p>创建完两个空文件夹之后，打开cmd命令窗口，输入</p>
+</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config set prefix "D:\Program Files\nodejs\node_global"</span><br><span class="line">npm config set cache "D:\Program Files\nodejs\node_cache"</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>设置环境变量，“我的电脑”-右键-“属性”-“高级系统设置”-“高级”-“环境变量”。</p>
+<ul>
+<li>进入环境变量对话框，在【系统变量】下新建【NODE_PATH】，输入【D:\Program Files\nodejs\node_global\node_modules】，</li>
+<li>在【用户变量】下的【Path】修改为【D:\Program Files\nodejs\node_global】</li>
+</ul>
+</li>
+<li><p>测试配置。</p>
+<ul>
+<li><p>安装个module测试下，我们就安装最常用的express模块，打开cmd窗口</p>
+</li>
+<li><pre><code class="shell"><span class="meta">#</span><span class="bash">1.输入如下命令进行模块的全局安装：</span>
+npm install express -g     # -g是全局安装的意思
+<span class="meta">#</span><span class="bash">2.node进入repl环境</span>
+node
+<span class="meta">#</span><span class="bash">3.import express</span>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">  &gt; 注意：如果安装模块时，不添加-g参数，则安装的模块就会在当前目录下的node_modules中。</span><br><span class="line"></span><br><span class="line">### npm下载源配置</span><br><span class="line"></span><br><span class="line">&gt; 由于墙的原因，npm命令自带的下载源会不稳定，所以可以换用淘宝大哥的源。</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line"># 查看配置</span><br><span class="line">npm config list</span><br><span class="line"># 设置源为淘宝的</span><br><span class="line">npm config set registry https://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="npm常用命令"><a href="#npm常用命令" class="headerlink" title="npm常用命令"></a>npm常用命令</h3><ul>
+<li><p><code>npm install xxx -g -save -dev</code>:安装xxx模块</p>
+<ul>
+<li><code>-g</code>:全局安装，默认没修改模块安装位置时都在<code>C:\Users\用户名\AppData\Roaming\npm</code>,<code>window 地址框输入“%appdata%”</code> 回车即可进入。全局安装的模块可以通过命令行在任何地方调用它。</li>
+<li><code>-save</code>:将保存配置信息至package.json（nodejs项目配置文件）</li>
+<li><code>-dev</code>：将保存至package.json的devDependencies节点，不指定-dev将保存至dependencies节点</li>
+</ul>
+</li>
+<li><p><code>npm list</code>:查看当前目录已安装插件</p>
+</li>
+<li><p><code>npm uninstall [-g –save -dev]</code>:使用npm卸载插件</p>
+<ul>
+<li>[]表示可选参数</li>
+</ul>
+</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="https://www.cnblogs.com/liuqiyun/p/8133904.html" target="_blank" rel="noopener">https://www.cnblogs.com/liuqiyun/p/8133904.html</a></li>
+<li><a href="https://www.cnblogs.com/luciolu/p/11993802.html" target="_blank" rel="noopener">https://www.cnblogs.com/luciolu/p/11993802.html</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">环境配置</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/25/Node.js%E5%AE%89%E8%A3%85%E5%8F%8A%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-概念" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/11/25/%E6%A6%82%E5%BF%B5/">概念</a>
+    </h1>
+  
+
+        
+        <a href="/2019/11/25/%E6%A6%82%E5%BF%B5/" class="archive-article-date">
+  	<time datetime="2019-11-25T15:39:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="JS"><a href="#JS" class="headerlink" title="JS"></a>JS</h2><p>原型：<a href="https://blog.csdn.net/cc18868876837/article/details/81211729" target="_blank" rel="noopener">https://blog.csdn.net/cc18868876837/article/details/81211729</a></p>
+<p>伪数组：<a href="https://segmentfault.com/a/1190000019363686?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000019363686?utm_source=tag-newest</a></p>
+<p>随机数的生产：<a href="https://www.cnblogs.com/mq0036/p/9139231.html" target="_blank" rel="noopener">https://www.cnblogs.com/mq0036/p/9139231.html</a></p>
+<p>[js的 new Date()日期格式化显示以及js获取时间戳]<a href="https://www.cnblogs.com/linJie1930906722/p/6343337.html" target="_blank" rel="noopener">https://www.cnblogs.com/linJie1930906722/p/6343337.html</a></p>
+<p>自定义事件的触发dispatchEvent：<a href="https://www.jianshu.com/p/5f9027722204" target="_blank" rel="noopener">https://www.jianshu.com/p/5f9027722204</a></p>
+<p>submit()与onsubmit：<a href="https://blog.csdn.net/lhjuejiang/article/details/81391561" target="_blank" rel="noopener">https://blog.csdn.net/lhjuejiang/article/details/81391561</a></p>
+<p>onsubmit只能表单上使用,提交表单前会触发, onclick是按钮等控件使用, 用来触发点击事件。</p>
+<p>在提交表单前，一般都会进行数据验证，可以选择在submit按钮上的onclick中验证,也可以在onsubmit中验证。</p>
+<p>但是onclick比onsubmit更早的被触发。<a href="https://blog.csdn.net/Dongguabai/article/details/79487166" target="_blank" rel="noopener">https://blog.csdn.net/Dongguabai/article/details/79487166</a></p>
+<p>模拟表单提交的几种方式: <a href="https://blog.csdn.net/dengjili/article/details/83689141" target="_blank" rel="noopener">https://blog.csdn.net/dengjili/article/details/83689141</a></p>
+<p>HTML5</p>
+<p>HTML5 拖放（Drag 和 Drop）功能开发——基础实战:<a href="https://www.cnblogs.com/ijjyo/p/4300717.html" target="_blank" rel="noopener">https://www.cnblogs.com/ijjyo/p/4300717.html</a><br>不阻止ondragover默认事件就无法触发ondrop函数:<a href="https://blog.csdn.net/qq_38926062/article/details/84707568" target="_blank" rel="noopener">https://blog.csdn.net/qq_38926062/article/details/84707568</a><br>FileReader 文件操作：<a href="https://blog.csdn.net/feifanzhuli/article/details/96132615" target="_blank" rel="noopener">https://blog.csdn.net/feifanzhuli/article/details/96132615</a></p>
+<h2 id="CSS"><a href="#CSS" class="headerlink" title="CSS"></a>CSS</h2><p>行内块元素之间默认间距问题:<a href="https://blog.csdn.net/qq_29319817/article/details/76222145" target="_blank" rel="noopener">https://blog.csdn.net/qq_29319817/article/details/76222145</a></p>
+<p>CSS background-size contain 与cover的区别<a href="https://blog.csdn.net/qq_36770641/article/details/79593556" target="_blank" rel="noopener">https://blog.csdn.net/qq_36770641/article/details/79593556</a></p>
+<p>背景图片充满整个屏幕： <a href="https://blog.csdn.net/u011846249/article/details/78283844" target="_blank" rel="noopener">https://blog.csdn.net/u011846249/article/details/78283844</a></p>
+<h2 id="vue"><a href="#vue" class="headerlink" title="vue"></a>vue</h2><p>vue三种常用获取input值写法:<a href="https://blog.csdn.net/qq_39043923/article/details/88688420" target="_blank" rel="noopener">https://blog.csdn.net/qq_39043923/article/details/88688420</a><br>vue.js如何获取当前元素的文字信息:<a href="https://www.php.cn/js-tutorial-388081.html" target="_blank" rel="noopener">https://www.php.cn/js-tutorial-388081.html</a><br>vue中获取file数据 ：<a href="https://www.cnblogs.com/sunday123/p/11504885.html" target="_blank" rel="noopener">https://www.cnblogs.com/sunday123/p/11504885.html</a></p>
+<h2 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a>工具类</h2><p>window update block:<a href="https://www.sordum.org/9470/windows-update-blocker-v1-5/" target="_blank" rel="noopener">https://www.sordum.org/9470/windows-update-blocker-v1-5/</a></p>
+<p>#8086fa</p>
+<p>Greasy Fork，这里是一个提供用户脚本的网站:<a href="https://greasyfork.org/zh-CN" target="_blank" rel="noopener">https://greasyfork.org/zh-CN</a></p>
+<h2 id="软件优化"><a href="#软件优化" class="headerlink" title="软件优化"></a>软件优化</h2><p>#禁用Chrome的“请停用以开发者模式运行的扩展程序”提示。【已更新V79最新方法】：<a href="https://blog.csdn.net/Helloo_jerry/article/details/91872752" target="_blank" rel="noopener">https://blog.csdn.net/Helloo_jerry/article/details/91872752</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">概念</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/11/25/%E6%A6%82%E5%BF%B5/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-JQ学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1830,221 +2130,6 @@
 
 
   
-    <article id="post-vue第二天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/19/vue%E7%AC%AC%E4%BA%8C%E5%A4%A9/">vue第二天</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/19/vue%E7%AC%AC%E4%BA%8C%E5%A4%A9/" class="archive-article-date">
-  	<time datetime="2019-10-19T14:23:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <a id="more"></a>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/19/vue%E7%AC%AC%E4%BA%8C%E5%A4%A9/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-vue第一天" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/18/vue%E7%AC%AC%E4%B8%80%E5%A4%A9/">vue第一天</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/18/vue%E7%AC%AC%E4%B8%80%E5%A4%A9/" class="archive-article-date">
-  	<time datetime="2019-10-18T10:14:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Node-js与webpack的配置"><a href="#Node-js与webpack的配置" class="headerlink" title="Node.js与webpack的配置"></a>Node.js与webpack的配置</h1><h3 id="Node-js安装"><a href="#Node-js安装" class="headerlink" title="Node.js安装"></a>Node.js安装</h3><p>1.Node.js介绍</p>
-<p>简单的说 <a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js</a> 就是运行在服务端的 JavaScript。</p>
-<p>Node.js是一个基于 Chrome V8 引擎的 JavaScript 运行环境；</p>
-<p>Node.js使用一个事件驱动、非阻塞式 I/O 的模型，使其轻量且高效；</p>
-<p>Node.js的软件包生态系统<a href="https://www.npmjs.com/" target="_blank" rel="noopener">npm</a>是全球最大的开源库生态系统。</p>
-<p>补充：npm:Nodejs的包管理工具(package management),简称npm。一般安装nodejs会一起安装对应的npm工具。</p>
-<p>cnpm:淘宝为npm开发了一个镜像站并将镜像站相关操作封装进cnpm。</p>
-<p>nvm:mac平台上专门用于管理node.js和npm版本的工具.使用它可以下载指定版本的node.并且使用nvm可以在同一个电脑上安装多个版本的node,并且可以很容易切换版本. windows平台可以使用<a href="https://github.com/coreybutler/nvm-windows" target="_blank" rel="noopener">nvm-windows</a>.默认每个node版本中的module是相互隔离的。</p>
-        
-          <a class="article-more-a" href="/2019/10/18/vue%E7%AC%AC%E4%B8%80%E5%A4%A9/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">环境配置</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Node</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/18/vue%E7%AC%AC%E4%B8%80%E5%A4%A9/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-关于ajax中post与get发送请求的相关问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/17/%E5%85%B3%E4%BA%8Eajax%E4%B8%ADpost%E4%B8%8Eget%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">关于ajax中post与get发送请求的相关问题</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/17/%E5%85%B3%E4%BA%8Eajax%E4%B8%ADpost%E4%B8%8Eget%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2019-10-17T13:42:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-17</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>在学习ajax有关，发送请求时，就一直在思考，get方式与post方式提交请求时，分别设置下在请求体里传参数与在url地址里传参数的瞎几把组合。</p>
-<p>组合1:post方式+?id=1(url方式？传参)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">xhr.open(<span class="string">'post'</span>, <span class="string">'07-users.php?id=1'</span>)</span><br><span class="line">xhr.send(<span class="literal">null</span>)</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.readyState !== <span class="number">4</span>) <span class="keyword">return</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.responseText)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以传参，但是服务端要用$_GET接受</p>
-<p>组合2：post方式+send（请求体传参）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> xhr = <span class="keyword">new</span> XMLHttpRequest()</span><br><span class="line">xhr.open(<span class="string">'post'</span>, <span class="string">'07-users.php'</span>)</span><br><span class="line">xhr.send(<span class="string">'id=1'</span>)</span><br><span class="line">xhr.onreadystatechange = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.readyState !== <span class="number">4</span>) <span class="keyword">return</span></span><br><span class="line">  <span class="built_in">console</span>.log(<span class="keyword">this</span>.responseText)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>注意：设置了请求体就一定要设置请求体格式</p>
-<p>对于上面代码要在send前添加一句代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xhr.setRequestHeader(<span class="string">'Content-Type:application/x-www-form-urlencoded'</span>)<span class="comment">//这种是post提交的默认格式</span></span><br></pre></td></tr></table></figure>
-
-<p>还有种”multipart/form-data”用于文件提交</p>
-        
-          <a class="article-more-a" href="/2019/10/17/%E5%85%B3%E4%BA%8Eajax%E4%B8%ADpost%E4%B8%8Eget%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">ajax</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/17/%E5%85%B3%E4%BA%8Eajax%E4%B8%ADpost%E4%B8%8Eget%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82%E7%9A%84%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/6/">&lt; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">Next &gt;</a>
@@ -2138,11 +2223,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2194,11 +2279,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">概念</a>
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+                <a href="javascript:void(0)" class="js-tag color3">概念</a>
               </li>
              
               <li class="article-tag-list-item">
