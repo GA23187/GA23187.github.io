@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <link rel="dns-prefetch" href="http://yoursite.com">
+  <title>每日公众号阅读（一） | 渡口迷津</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="2020&#x2F;7&#x2F;21软件工具类 【软件名称】：迅雷绿色版 【适用平台】：PC 【软件优势】：纯净、精简、清爽、私人定制版。这一款由kkocdko大神，亲自操刀，融合xùn雷9界面+xùn雷X内核为一体！ 【来源】： 【ONE6】  【软件名称】：网盘搜索  （提示风险）   ​       【适用平台】：安卓 ​       【软件优势】：内置了包括盘搜搜、58网盘、大力盘等在内的8个搜索源，我们只">
+<meta name="keywords" content="杂项">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日公众号阅读（一）">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;07&#x2F;04&#x2F;%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89&#x2F;index.html">
+<meta property="og:site_name" content="渡口迷津">
+<meta property="og:description" content="2020&#x2F;7&#x2F;21软件工具类 【软件名称】：迅雷绿色版 【适用平台】：PC 【软件优势】：纯净、精简、清爽、私人定制版。这一款由kkocdko大神，亲自操刀，融合xùn雷9界面+xùn雷X内核为一体！ 【来源】： 【ONE6】  【软件名称】：网盘搜索  （提示风险）   ​       【适用平台】：安卓 ​       【软件优势】：内置了包括盘搜搜、58网盘、大力盘等在内的8个搜索源，我们只">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-08-02T16:58:34.000Z">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternative" href="/atom.xml" title="渡口迷津" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" type="text/css" href="/./main.2d7529.css">
+  <style type="text/css">
+  
+    #container.show {
+      background: linear-gradient(200deg,#a0cfe4,#e8c37e);
+    }
+  </style>
+  
+
+  
+
+</head>
+
+<body>
+  <div id="container" q-class="show:isCtnShow">
+    <canvas id="anm-canvas" class="anm-canvas"></canvas>
+    <div class="left-col" q-class="show:isShow">
+      
+<div class="overlay" style="background: #4d4d4d"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="" class="js-avatar">
+		</a>
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Tiger</a></h1>
+		</hgroup>
+		
+
+		<nav class="header-menu">
+			<ul>
+			
+				<li><a href="/">主页</a></li>
+	        
+				<li><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+	        
+			</ul>
+		</nav>
+		<nav class="header-smart-menu">
+    		
+    			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有文章</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友链</a>
+    			
+            
+    			
+    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
+    			
+            
+		</nav>
+		<nav class="header-nav">
+			<div class="social">
+				
+					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+		        
+					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+		        
+					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+		        
+					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+		        
+			</div>
+		</nav>
+	</header>		
+</div>
+
+    </div>
+    <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
+      
+<nav id="mobile-nav">
+  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+	<div class="btnctn js-mobile-btnctn">
+  		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
+	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="" class="js-avatar">
+			</div>
+			<hgroup>
+			  <h1 class="header-author js-header-author">Tiger</h1>
+			</hgroup>
+			
+			
+			
+				
+			
+				
+			
+			
+			
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+			        
+						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+			        
+						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+			        
+						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+			        
+				</div>
+			</nav>
+
+			<nav class="header-menu js-header-menu">
+				<ul style="width: 50%">
+				
+				
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+		        
+				</ul>
+			</nav>
+		</header>				
+	</div>
+	<div class="mobile-mask" style="display:none" q-show="isShow"></div>
+</nav>
+
+      <div id="wrapper" class="body-wrap">
+        <div class="menu-l">
+          <div class="canvas-wrap">
+            <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
+          </div>
+          <div id="js-content" class="content-ll">
+            <article id="post-每日公众号阅读（二）" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      每日公众号阅读（一）
+    </h1>
+  
+
+        
+        <a href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89/" class="archive-article-date">
+  	<time datetime="2020-07-03T17:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="2020-7-21"><a href="#2020-7-21" class="headerlink" title="2020/7/21"></a>2020/7/21</h2><h3 id="软件工具类"><a href="#软件工具类" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li><p>【软件名称】：迅雷绿色版</p>
+<p>【适用平台】：PC</p>
+<p>【软件优势】：<strong>纯净、精简、清爽、私人定制版</strong>。这一款由<strong>kkocdko</strong>大神，亲自操刀，<strong>融合xùn雷9界面+xùn雷X内核为一体！</strong></p>
+<p>【来源】： 【ONE6】</p>
+</li>
+<li><p>【软件名称】：网盘搜索  （提示风险）</p>
+</li>
+</ul>
+<p>​       【适用平台】：安卓</p>
+<p>​       【软件优势】：内置了包括<strong>盘搜搜、58网盘、大力盘</strong>等在内的8个搜索源，我们只需要搜索自己需要的资源即可，软件还会帮我们**检测资源的可用性。</p>
+<p>​        【来源】： 【ONE6】</p>
+<ul>
+<li>【软件名称】：FolderIcon</li>
+</ul>
+<p>​       【适用平台】：PC</p>
+<p>​       【软件优势】：FolderIcon是一款可以改变文件夹颜色、UI界面的软件，它的体积只有 45M，且适用于Windows系统。</p>
+<p>​        【来源】： 【晓技术】</p>
+<h3 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h3><ul>
+<li><p>网站名称：PiANKU（全平台适用）和市面上的影视APP类似，有<strong>首页推荐</strong>、也有<strong>电影、剧集、动漫推荐！</strong>然后就是<strong>各大视频网站V1P解析</strong>了</p>
+<p><a href="https://www.pianku.tv/" target="_blank" rel="noopener">https://www.pianku.tv/</a></p>
+</li>
+</ul>
+<h3 id="前端知识类"><a href="#前端知识类" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>玩转前端文件上传</p>
+<p><a href="https://mp.weixin.qq.com/s/ymeF-TvL_Za1GzyXSDaX_A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ymeF-TvL_Za1GzyXSDaX_A</a></p>
+</li>
+<li><p>12 个提高JavaScript编码效率的 NPM 技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/WIXwlkoWt8YzKCRalGUcvw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/WIXwlkoWt8YzKCRalGUcvw</a></p>
+</li>
+<li><p>CSS 控制动画的行进</p>
+<p><a href="https://mp.weixin.qq.com/s/MjHQ4CQ2eDxKOrIGw3freQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/MjHQ4CQ2eDxKOrIGw3freQ</a></p>
+</li>
+<li><p>前端存储（高级前端进阶）</p>
+<p><a href="https://mp.weixin.qq.com/s/CLmGR-8SJTdl4ZjvvoLyOA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/CLmGR-8SJTdl4ZjvvoLyOA</a></p>
+</li>
+<li><p>前端优化术语</p>
+<p><a href="https://mp.weixin.qq.com/s/NX4T7pj-JVcIj4MmcCDVOQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/NX4T7pj-JVcIj4MmcCDVOQ</a></p>
+</li>
+</ul>
+<h2 id="2020-7-22"><a href="#2020-7-22" class="headerlink" title="2020/7/22"></a>2020/7/22</h2><h3 id="前端知识类-1"><a href="#前端知识类-1" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>玩转混合加密</p>
+<p><a href="https://mp.weixin.qq.com/s/3e04GSbp6FW82KE8NMSrVQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3e04GSbp6FW82KE8NMSrVQ</a></p>
+</li>
+<li><p>超实用的前端提效 shell 命令</p>
+<p><a href="https://mp.weixin.qq.com/s/3z5i14e7T7A41SrkE-1leA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/3z5i14e7T7A41SrkE-1leA</a></p>
+</li>
+</ul>
+<h3 id="github资源推荐"><a href="#github资源推荐" class="headerlink" title="github资源推荐"></a>github资源推荐</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s/Huqlpvxs_KtVYsVegkV7hw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Huqlpvxs_KtVYsVegkV7hw</a></li>
+</ul>
+<h3 id="软件工具类-1"><a href="#软件工具类-1" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li>【软件名称】：<strong>XMind</strong></li>
+</ul>
+<p>​       【适用平台】：PC</p>
+<p>​       【软件优势】：破解版</p>
+<p>​       【来源】： 【轻安卓】</p>
+<p>​       【注意】：在软件的安装目录里找到<strong>resources</strong>文件夹并将其打开，将小编提供的破解补丁<strong>复制</strong>到该文件夹内，由于文件夹内有该文件所以这里要选择<strong>替换目录中的文件</strong></p>
+<h2 id="2020-7-23"><a href="#2020-7-23" class="headerlink" title="2020/7/23"></a>2020/7/23</h2><h3 id="前端知识类-2"><a href="#前端知识类-2" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>什么时候适合使用 Map 而不是 Object</p>
+<p><a href="https://mp.weixin.qq.com/s/s2XG4Ly1V5lov1ZciWF0xg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/s2XG4Ly1V5lov1ZciWF0xg</a></p>
+</li>
+<li><p>《CSS揭秘》实用技巧总结</p>
+<p><a href="https://juejin.im/post/5e0fef935188253a624a6a72" target="_blank" rel="noopener">https://juejin.im/post/5e0fef935188253a624a6a72</a></p>
+</li>
+<li><p>妙用CSS变量</p>
+<p><a href="https://mp.weixin.qq.com/s/whtfxJFea-mel00Cw3fZ5g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/whtfxJFea-mel00Cw3fZ5g</a></p>
+</li>
+<li><p>二种前端截图方式</p>
+<p><a href="https://mp.weixin.qq.com/s/uoMzbIMcWqehSPkmBqK9pg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/uoMzbIMcWqehSPkmBqK9pg</a></p>
+</li>
+<li><p>从Vue源码角度深挖Watch、Computed</p>
+<p><a href="https://mp.weixin.qq.com/s/sC50AgoyPMVrKWB2ObvdHw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/sC50AgoyPMVrKWB2ObvdHw</a></p>
+</li>
+</ul>
+<h3 id="软件工具类-2"><a href="#软件工具类-2" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li>【软件名称】：XMind</li>
+</ul>
+<p>​       【适用平台】：PC</p>
+<p>​       【软件优势】：破解版</p>
+<p>​       【来源】： 【轻安卓】</p>
+<p>​       【注意】：在软件的安装目录里找到<strong>resources</strong>文件夹并将其打开，将小编提供的破解补丁<strong>复制</strong>到该文件夹内，由于文件夹内有该文件所以这里要选择<strong>替换目录中的文件</strong></p>
+<h2 id="2020-7-26"><a href="#2020-7-26" class="headerlink" title="2020/7/26"></a>2020/7/26</h2><h3 id="前端知识类-3"><a href="#前端知识类-3" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>如何开发跨框架的组件</p>
+<p><a href="https://mp.weixin.qq.com/s/T4xgdGHmfDq-2NVNi_nKNw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/T4xgdGHmfDq-2NVNi_nKNw</a></p>
+</li>
+<li><p>JavaScript 设计模式学习总结与感悟</p>
+<p><a href="https://mp.weixin.qq.com/s/eiGqmTIMWtGVLtskKUHF3g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/eiGqmTIMWtGVLtskKUHF3g</a></p>
+</li>
+<li><p>JS代码被执行中间发生了什么</p>
+<p><a href="https://mp.weixin.qq.com/s/4TevnODKlvTvPml4slHsZg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/4TevnODKlvTvPml4slHsZg</a></p>
+</li>
+</ul>
+<h3 id="软件工具类-3"><a href="#软件工具类-3" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li>【软件名称】：剧汇TV</li>
+</ul>
+<p>​       【适用平台】：安卓</p>
+<p>​       【软件优势】：画质高清，软件功能齐全，还支持发送弹幕和评论，电影，电视剧，动漫，综艺也都有。</p>
+<p>​       【来源】： 【悦美兮】</p>
+<h2 id="2020-7-27"><a href="#2020-7-27" class="headerlink" title="2020/7/27"></a>2020/7/27</h2><h3 id="前端知识类-4"><a href="#前端知识类-4" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>前端框架的插件机制全梳理（axios、koa、redux、vuex）</p>
+<p><a href="https://mp.weixin.qq.com/s/JKMKlCXop-gyFDe7HgT5sw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/JKMKlCXop-gyFDe7HgT5sw</a></p>
+</li>
+<li><p>「牛客网」45道JS能力测评经典题总结</p>
+<p><a href="https://juejin.im/post/5f032fe3f265da22c75734b8" target="_blank" rel="noopener">https://juejin.im/post/5f032fe3f265da22c75734b8</a></p>
+</li>
+</ul>
+<h3 id="github资源推荐-1"><a href="#github资源推荐-1" class="headerlink" title="github资源推荐"></a>github资源推荐</h3><ul>
+<li><a href="https://mp.weixin.qq.com/s/fzaevSXo88TcDgvGz3-G6g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/fzaevSXo88TcDgvGz3-G6g</a></li>
+</ul>
+<h2 id="2020-7-28"><a href="#2020-7-28" class="headerlink" title="2020/7/28"></a>2020/7/28</h2><h3 id="前端知识类-5"><a href="#前端知识类-5" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>十五张图带你彻底搞懂从URL到页面展示发生的故事</p>
+<p><a href="https://mp.weixin.qq.com/s/JbsJO2GCDBFjJztmhPMrcg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/JbsJO2GCDBFjJztmhPMrcg</a></p>
+</li>
+<li><p>手写async await的 20 行最简实现</p>
+<p><a href="https://mp.weixin.qq.com/s/lUQGeVPiLEQDvUv6M90tRg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/lUQGeVPiLEQDvUv6M90tRg</a></p>
+</li>
+<li><p>手写Promise最简20行版本</p>
+<p><a href="https://mp.weixin.qq.com/s/ek41c2qoWg7WCCNyVvd2eA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ek41c2qoWg7WCCNyVvd2eA</a></p>
+</li>
+<li><p>处理好前后端配置和请求库封装(koa/axios版)</p>
+<p><a href="https://mp.weixin.qq.com/s/PQi4wSCZrWyZsvtHEUauAw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/PQi4wSCZrWyZsvtHEUauAw</a></p>
+</li>
+</ul>
+<h3 id="网址-1"><a href="#网址-1" class="headerlink" title="网址"></a>网址</h3><ul>
+<li><p>万能命令</p>
+<p>在你浏览任意网页时，在网址前面输入这个万能命令 wn.run/ 就会展示出用于该网页的各种附加在线工具，方便快捷，一行命令搞定</p>
+<p><a href="https://wanneng.run/cn/" target="_blank" rel="noopener">https://wanneng.run/cn/</a></p>
+</li>
+<li><p>影视网站</p>
+<p> <strong>低端影视 ** **<a href="https://ddrk.me/" target="_blank" rel="noopener">https://ddrk.me/</a></strong></p>
+<p> <strong>完美看看</strong> <strong><a href="https://www.wanmeikk.me/" target="_blank" rel="noopener">https://www.wanmeikk.me/</a></strong></p>
+<p> <strong>黑白影视</strong> <strong><a href="http://www.heibaiys.com/" target="_blank" rel="noopener">http://www.heibaiys.com/</a></strong></p>
+<p> <strong>策驰影院</strong> <strong><a href="http://www.5nj.com/" target="_blank" rel="noopener">http://www.5nj.com/</a></strong></p>
+<p> <strong>西瓜追剧</strong> <strong><a href="https://www.78zhuiju.com/" target="_blank" rel="noopener">https://www.78zhuiju.com/</a></strong></p>
+</li>
+<li><p>动漫网站</p>
+<p> <strong>哈哩哈哩</strong> <strong><a href="http://www.halihali.li/" target="_blank" rel="noopener">http://www.halihali.li/</a></strong></p>
+<p> <strong>哔咪哔咪</strong> <strong><a href="http://www.bimibimi.me/" target="_blank" rel="noopener">http://www.bimibimi.me/</a></strong></p>
+<p> <strong>ZzzFun</strong> <strong><a href="http://www.zzzfun.com/" target="_blank" rel="noopener">http://www.zzzfun.com/</a></strong></p>
+<p> <strong>兜兜动漫网</strong> <strong><a href="http://www.zzzfun.com/" target="_blank" rel="noopener">http://www.zzzfun.com/</a></strong></p>
+<p> <strong>妮可动漫</strong> <strong><a href="http://www.nicotv.me/" target="_blank" rel="noopener">http://www.nicotv.me/</a></strong></p>
+<p> <strong>动漫岛</strong> <strong><a href="http://www.dmd8.com/" target="_blank" rel="noopener">http://www.dmd8.com/</a></strong></p>
+<p> <strong>樱花动漫</strong> <strong><a href="http://www.yhdm.tv/" target="_blank" rel="noopener">http://www.yhdm.tv/</a></strong></p>
+<p> <strong>怡萱动漫</strong> <strong><a href="http://www.yxdm.tv/" target="_blank" rel="noopener">http://www.yxdm.tv/</a></strong></p>
+<p> <strong>喔喔动漫</strong> <strong><a href="https://www.wowodm.net/" target="_blank" rel="noopener">https://www.wowodm.net/</a></strong></p>
+</li>
+</ul>
+<h3 id="软件工具类-4"><a href="#软件工具类-4" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li>【软件名称】：局域网共享精灵</li>
+</ul>
+<p>​       【适用平台】：Windows</p>
+<p>​       【软件优势】：局域网共享工具仅<strong>2.6MB</strong>，却包含<strong>一键修复共享</strong>、<strong>共享文件</strong>、<strong>共享打印机</strong>、<strong>权限控制</strong>。</p>
+<p>​       【来源】： 【ONE6】</p>
+<p>​       【注意】：软件文档</p>
+<h2 id="2020-7-29"><a href="#2020-7-29" class="headerlink" title="2020/7/29"></a>2020/7/29</h2><h3 id="前端知识类-6"><a href="#前端知识类-6" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>你不知道的 WebSocket</p>
+<p><a href="https://mp.weixin.qq.com/s/28FSBp4lj2l1H0caMNrjrw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/28FSBp4lj2l1H0caMNrjrw</a></p>
+</li>
+<li><p>如何修改 node_modules 里的文件</p>
+<p><a href="https://mp.weixin.qq.com/s/tjbgWCsRLXfoIQ7gPpTaEQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/tjbgWCsRLXfoIQ7gPpTaEQ</a></p>
+</li>
+<li><p>为什么 Vue 中不要用 index 作为 key</p>
+<p><a href="https://mp.weixin.qq.com/s/V64bNWcWSEq12RYrcTWV3Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/V64bNWcWSEq12RYrcTWV3Q</a></p>
+</li>
+<li><p>实现一个专属于你的babel-loader</p>
+<p><a href="https://mp.weixin.qq.com/s/deOOvLQcqAlp1Ard-ZrTcQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/deOOvLQcqAlp1Ard-ZrTcQ</a></p>
+</li>
+</ul>
+<h3 id="软件工具类-5"><a href="#软件工具类-5" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li>【软件名称】：蒲公英</li>
+</ul>
+<p>​       【适用平台】：PC</p>
+<p>​       【软件优势】：手机电脑在局域网或者异地互传文件</p>
+<p>​       【来源】： 【ONE6】</p>
+<p>​       【注意】：<a href="https://mp.weixin.qq.com/s/fNAy8PpaXPyGo0tPDQUKsg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/fNAy8PpaXPyGo0tPDQUKsg</a></p>
+<h3 id="github资源推荐-2"><a href="#github资源推荐-2" class="headerlink" title="github资源推荐"></a>github资源推荐</h3><ul>
+<li><p>简易的 logo 生成器</p>
+<p><a href="https://github.com/bestony/logoly" target="_blank" rel="noopener">https://github.com/bestony/logoly</a></p>
+</li>
+</ul>
+<h2 id="2020-7-31"><a href="#2020-7-31" class="headerlink" title="2020/7/31"></a>2020/7/31</h2><h3 id="前端知识类-7"><a href="#前端知识类-7" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
+<li><p>现代浏览器高级API</p>
+<p><a href="https://mp.weixin.qq.com/s/md5NCsmTXZ66A9aR5AbFFw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/md5NCsmTXZ66A9aR5AbFFw</a></p>
+</li>
+<li><p>开始用 CSS 自定义属性</p>
+<p><a href="https://mp.weixin.qq.com/s/jS6d-cEdQUU_6lZ4G_tAWg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/jS6d-cEdQUU_6lZ4G_tAWg</a></p>
+</li>
+<li><p>写出符合 Promise/A+ 规范 Promise 的源码</p>
+<p><a href="https://mp.weixin.qq.com/s/UFjYIjmFO-tvu-aDZj3UNQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/UFjYIjmFO-tvu-aDZj3UNQ</a></p>
+</li>
+<li><p>CSR、SSR、NSR、ESR傻傻分不清楚，一文帮你理清前端渲染方案！</p>
+<p><a href="https://mp.weixin.qq.com/s/Sfztp7NON5my4W_A3r3JRQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Sfztp7NON5my4W_A3r3JRQ</a></p>
+</li>
+<li><p>40 个 CSS 布局技巧</p>
+<p><a href="https://mp.weixin.qq.com/s/6jZibuthus7l5PlhAbpHEQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/6jZibuthus7l5PlhAbpHEQ</a></p>
+</li>
+<li><p>大规格文件的上传优化</p>
+<p><a href="https://mp.weixin.qq.com/s/af-F2goqnfMEo_yT_yFUMw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/af-F2goqnfMEo_yT_yFUMw</a></p>
+</li>
+</ul>
+<h3 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h3><ul>
+<li>还不懂这八大算法思想，刷再多题也白搭<br><a href="https://mp.weixin.qq.com/s/VZ0WqO1FMc6fRrKCSIussA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/VZ0WqO1FMc6fRrKCSIussA</a></li>
+</ul>
+<h3 id="软件工具类-6"><a href="#软件工具类-6" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
+<li>【软件名称】：蒲公英</li>
+</ul>
+<p>​       【适用平台】：PC</p>
+<p>​       【软件优势】：手机电脑在局域网或者异地互传文件</p>
+<p>​       【来源】： 【ONE6】</p>
+<p>​       【注意】：<a href="https://mp.weixin.qq.com/s/fNAy8PpaXPyGo0tPDQUKsg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/fNAy8PpaXPyGo0tPDQUKsg</a></p>
+<h3 id="github资源推荐-3"><a href="#github资源推荐-3" class="headerlink" title="github资源推荐"></a>github资源推荐</h3><ul>
+<li><p>简易的 logo 生成器</p>
+<p><a href="https://github.com/bestony/logoly" target="_blank" rel="noopener">https://github.com/bestony/logoly</a></p>
+</li>
+</ul>
+<h3 id="工具推荐"><a href="#工具推荐" class="headerlink" title="工具推荐"></a>工具推荐</h3><ul>
+<li><p>写作类</p>
+<p><strong>语雀</strong></p>
+<blockquote>
+<p>语雀是一个蚂蚁金服孵化出来的专业的云端知识库，类似wiki，目前已经覆盖了10 万阿里员工的使用，来进行文档编写及知识沉淀 官方链接🔗</p>
+</blockquote>
+<h4 id="Process-On"><a href="#Process-On" class="headerlink" title="Process On"></a>Process On</h4><blockquote>
+<p>ProcessOn是一个在线协作绘图平台,为用户提供最强大、易用的作图工具。支持在线创作流程图、思维导图、组织结构图、网络拓扑图、BPMN、UML图、UI界面原型设计等</p>
+</blockquote>
+<h4 id="Carbon"><a href="#Carbon" class="headerlink" title="Carbon"></a>Carbon</h4><blockquote>
+<p>Carbon 用来创建美化版的代码片段，可筛选多种主题切换，然后生成你想要效果的代码片段图 官方链接🔗</p>
+</blockquote>
+<h4 id="Mdnice"><a href="#Mdnice" class="headerlink" title="Mdnice"></a>Mdnice</h4><blockquote>
+<p>mdnicde全名为Markdown Nice，支持给markdown添加“主题元素”，有点像换肤的感觉，支持多种主观，让你的文章仿佛披上了嫁衣，最重要的是支持微信公众号、知乎、还有掘金！官方链接🔗</p>
+</blockquote>
+<h4 id="封面模版"><a href="#封面模版" class="headerlink" title="封面模版"></a>封面模版</h4><blockquote>
+<p>很多童鞋很好奇，我每次文章都会附上一张主题图，是不是自己P的，虽然我是做UI出身的前端，但是设计还是蛮琐碎和耗时的活，时间应该用在更宝贵的地方，这里介绍的就是我使用的模版在线编辑工具 - 凡科快图 官方链接🔗 或者 canva 官方链接🔗</p>
+</blockquote>
+<h4 id="Shields"><a href="#Shields" class="headerlink" title="Shields"></a>Shields</h4><blockquote>
+<p>shields.io 主要是用来可以生成 在Markdown 文档中的徽章，我们经常在github的项目上看到这些徽章，来表述比如单元测试覆盖率、打包的大小、版本信息、认证信息等 官方链接🔗</p>
+</blockquote>
+<h4 id="Gif生成"><a href="#Gif生成" class="headerlink" title="Gif生成"></a>Gif生成</h4><blockquote>
+<p>有时候图片无法去表达我们想要阐述的内容，这个时候动态图就起了很重要的作用，可以更直观的描述整个过程</p>
+</blockquote>
+<h4 id="网页截屏"><a href="#网页截屏" class="headerlink" title="网页截屏"></a>网页截屏</h4><blockquote>
+<p>文章素材需要网页截图？很长时间我要给当前网页截图，我还在用微信的截图工具，其实强大的chrome内置了截屏的功能，那如何使用呢</p>
+<ul>
+<li>首先打开chrome控制台（然后打开快捷方式 Option+Command+i）</li>
+<li>其次在命令行输入“capture”可以看到如下</li>
+</ul>
+<blockquote>
+<p>❝</p>
+<p>注意：capture full size screenshoot和capture screenshoot的区别在于前者是整个页面完整信息的截图，后者只是当前页面的截图</p>
+</blockquote>
+</blockquote>
+</li>
+<li><h3 id="效率篇"><a href="#效率篇" class="headerlink" title="效率篇"></a>效率篇</h3><h4 id="Iconfont-图标库"><a href="#Iconfont-图标库" class="headerlink" title="Iconfont 图标库"></a>Iconfont 图标库</h4><blockquote>
+<p>Iconfont Icon库方便个人开发者找到自己需要的图标，节省图标设计和查找的时间，不香吗～ 官方链接🔗</p>
+</blockquote>
+<h4 id="Regexr-正则可视化工具"><a href="#Regexr-正则可视化工具" class="headerlink" title="Regexr 正则可视化工具"></a>Regexr 正则可视化工具</h4><blockquote>
+<p>RegExr是一款在线编辑测试正则表达式的工具,它拥有一个简洁的界面,提供了一个可以实时查看查找与替换正则表达式的文本框 官方链接🔗</p>
+</blockquote>
+<h4 id="Postwoman-接口调试利器"><a href="#Postwoman-接口调试利器" class="headerlink" title="Postwoman 接口调试利器"></a>Postwoman 接口调试利器</h4><blockquote>
+<p>你听说过Postman，现在来了postwoman，Postman的情敌！它不仅免费开源、轻量级、快速，而且还有美观的API调试工具。能帮助我们节省时间，提升工作效率。官方链接🔗</p>
+</blockquote>
+<h4 id="CanIuse-兼容性查询"><a href="#CanIuse-兼容性查询" class="headerlink" title="CanIuse 兼容性查询"></a>CanIuse 兼容性查询</h4><blockquote>
+<p>can I use? 顾名思义：我能使用吗，能快速让我们查看浏览器对某个属性语法的兼容情况，场景应用当前在某个浏览器可以正常使用，可是换了另一个浏览器之后就不支持了，这个时候就得我们防患于未然，在对某个属性使用前，做好足够得调研，而不是等到上线才发现问题官方链接🔗</p>
+</blockquote>
+<h4 id="Prettier-Playground-代码在线格式化"><a href="#Prettier-Playground-代码在线格式化" class="headerlink" title="Prettier Playground 代码在线格式化"></a>Prettier Playground 代码在线格式化</h4><blockquote>
+<p>应用场景：当我使用的电脑没有安装IDE,但是我又需要看别人写的代码，这个时候 Prettier Playground可以帮我将原本凌乱的代码改头换面，大大提高可读性 官方链接🔗</p>
+</blockquote>
+<h4 id="SwitchHosts-host管理工具"><a href="#SwitchHosts-host管理工具" class="headerlink" title="SwitchHosts host管理工具"></a>SwitchHosts host管理工具</h4><blockquote>
+<p>SwitchHosts 可以帮助我们快速切换不同的 hosts 设置、并进行hosts编辑 官方链接🔗</p>
+</blockquote>
+</li>
+<li><h3 id="命令行工具篇"><a href="#命令行工具篇" class="headerlink" title="命令行工具篇"></a>命令行工具篇</h3><h4 id="n-node-版本切换工具"><a href="#n-node-版本切换工具" class="headerlink" title="n - node 版本切换工具"></a><code>n</code> - node 版本切换工具</h4><blockquote>
+<p>用来进行 node 版本的切换，方便轻量  官方链接🔗</p>
+</blockquote>
+<h4 id="nrm-npm镜像管理工具"><a href="#nrm-npm镜像管理工具" class="headerlink" title="nrm - npm镜像管理工具"></a><code>nrm</code> - npm镜像管理工具</h4><blockquote>
+<p>nrm是npm的镜像源管理工具,有时候因为访问国外资源原因导致速度太慢,使用nrm可以快速地在npm源间切换,也可以管理你内部的npm来源</p>
+</blockquote>
+<h4 id="caniuse-cmd-兼容性测试工具"><a href="#caniuse-cmd-兼容性测试工具" class="headerlink" title="caniuse-cmd - 兼容性测试工具"></a><code>caniuse-cmd</code> - 兼容性测试工具</h4><blockquote>
+<p>上文提到web版本的caniuse,这里介绍下它的命令行工具，如何使用？<code>npm install -g caniuse-cmd</code> 下面是一个关于websocket浏览器兼容性测试的例子👇</p>
+</blockquote>
+</li>
+<li><p>前端开发工具、组件库集合</p>
+<p><a href="https://mp.weixin.qq.com/s/n5euDIDopUCSkDA4Rt_lsQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/n5euDIDopUCSkDA4Rt_lsQ</a></p>
+</li>
+</ul>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%BA%8C%EF%BC%89/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%89%EF%BC%89/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          每日公众号阅读（三）
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%BA%94%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">每日公众号阅读（五）</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+  
+    <div class="duoshuo"></div>
+  
+
+
+
+
+          </div>
+        </div>
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2022 Tiger
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    <script>
+	var yiliaConfig = {
+		mathjax: false,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false,
+		root: "/",
+		innerArchive: true,
+		showTags: false
+	}
+</script>
+
+<script>!function(t){function n(r){if(e[r])return e[r].exports;var o=e[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,n),o.loaded=!0,o.exports}var e={};return n.m=t,n.c=e,n.p="./",n(0)}([function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}function o(t,n){var e=/\/|index.html/g;return t.replace(e,"")===n.replace(e,"")}function i(){for(var t=document.querySelectorAll(".js-header-menu li a"),n=window.location.pathname,e=0,r=t.length;e<r;e++){var i=t[e];o(n,i.getAttribute("href"))&&(0,d.default)(i,"active")}}function u(t){for(var n=t.offsetLeft,e=t.offsetParent;null!==e;)n+=e.offsetLeft,e=e.offsetParent;return n}function f(t){for(var n=t.offsetTop,e=t.offsetParent;null!==e;)n+=e.offsetTop,e=e.offsetParent;return n}function c(t,n,e,r,o){var i=u(t),c=f(t)-n;if(c-e<=o){var a=t.$newDom;a||(a=t.cloneNode(!0),(0,h.default)(t,a),t.$newDom=a,a.style.position="fixed",a.style.top=(e||c)+"px",a.style.left=i+"px",a.style.zIndex=r||2,a.style.width="100%",a.style.color="#fff"),a.style.visibility="visible",t.style.visibility="hidden"}else{t.style.visibility="visible";var s=t.$newDom;s&&(s.style.visibility="hidden")}}function a(){var t=document.querySelector(".js-overlay"),n=document.querySelector(".js-header-menu");c(t,document.body.scrollTop,-63,2,0),c(n,document.body.scrollTop,1,3,0)}function s(){document.querySelector("#container").addEventListener("scroll",function(t){a()}),window.addEventListener("scroll",function(t){a()}),a()}function l(){x.default.versions.mobile&&window.screen.width<800&&(i(),s())}var p=e(71),d=r(p),v=e(72),y=(r(v),e(84)),h=r(y),b=e(69),x=r(b),m=e(75),g=r(m),w=e(70);l(),(0,w.addLoadEvent)(function(){g.default.init()}),t.exports={}},function(t,n){var e=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=e)},function(t,n){var e={}.hasOwnProperty;t.exports=function(t,n){return e.call(t,n)}},function(t,n,e){var r=e(49),o=e(15);t.exports=function(t){return r(o(t))}},function(t,n,e){t.exports=!e(8)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,n,e){var r=e(6),o=e(12);t.exports=e(4)?function(t,n,e){return r.f(t,n,o(1,e))}:function(t,n,e){return t[n]=e,t}},function(t,n,e){var r=e(10),o=e(30),i=e(24),u=Object.defineProperty;n.f=e(4)?Object.defineProperty:function(t,n,e){if(r(t),n=i(n,!0),r(e),o)try{return u(t,n,e)}catch(t){}if("get"in e||"set"in e)throw TypeError("Accessors not supported!");return"value"in e&&(t[n]=e.value),t}},function(t,n,e){var r=e(22)("wks"),o=e(13),i=e(1).Symbol,u="function"==typeof i,f=t.exports=function(t){return r[t]||(r[t]=u&&i[t]||(u?i:o)("Symbol."+t))};f.store=r},function(t,n){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,n,e){var r=e(35),o=e(16);t.exports=Object.keys||function(t){return r(t,o)}},function(t,n,e){var r=e(11);t.exports=function(t){if(!r(t))throw TypeError(t+" is not an object!");return t}},function(t,n){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,n){t.exports=function(t,n){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:n}}},function(t,n){var e=0,r=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++e+r).toString(36))}},function(t,n){var e=t.exports={version:"2.4.0"};"number"==typeof __e&&(__e=e)},function(t,n){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,n){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,n){t.exports={}},function(t,n){t.exports=!0},function(t,n){n.f={}.propertyIsEnumerable},function(t,n,e){var r=e(6).f,o=e(2),i=e(7)("toStringTag");t.exports=function(t,n,e){t&&!o(t=e?t:t.prototype,i)&&r(t,i,{configurable:!0,value:n})}},function(t,n,e){var r=e(22)("keys"),o=e(13);t.exports=function(t){return r[t]||(r[t]=o(t))}},function(t,n,e){var r=e(1),o="__core-js_shared__",i=r[o]||(r[o]={});t.exports=function(t){return i[t]||(i[t]={})}},function(t,n){var e=Math.ceil,r=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?r:e)(t)}},function(t,n,e){var r=e(11);t.exports=function(t,n){if(!r(t))return t;var e,o;if(n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;if("function"==typeof(e=t.valueOf)&&!r(o=e.call(t)))return o;if(!n&&"function"==typeof(e=t.toString)&&!r(o=e.call(t)))return o;throw TypeError("Can't convert object to primitive value")}},function(t,n,e){var r=e(1),o=e(14),i=e(18),u=e(26),f=e(6).f;t.exports=function(t){var n=o.Symbol||(o.Symbol=i?{}:r.Symbol||{});"_"==t.charAt(0)||t in n||f(n,t,{value:u.f(t)})}},function(t,n,e){n.f=e(7)},function(t,n,e){var r=e(1),o=e(14),i=e(46),u=e(5),f="prototype",c=function(t,n,e){var a,s,l,p=t&c.F,d=t&c.G,v=t&c.S,y=t&c.P,h=t&c.B,b=t&c.W,x=d?o:o[n]||(o[n]={}),m=x[f],g=d?r:v?r[n]:(r[n]||{})[f];d&&(e=n);for(a in e)s=!p&&g&&void 0!==g[a],s&&a in x||(l=s?g[a]:e[a],x[a]=d&&"function"!=typeof g[a]?e[a]:h&&s?i(l,r):b&&g[a]==l?function(t){var n=function(n,e,r){if(this instanceof t){switch(arguments.length){case 0:return new t;case 1:return new t(n);case 2:return new t(n,e)}return new t(n,e,r)}return t.apply(this,arguments)};return n[f]=t[f],n}(l):y&&"function"==typeof l?i(Function.call,l):l,y&&((x.virtual||(x.virtual={}))[a]=l,t&c.R&&m&&!m[a]&&u(m,a,l)))};c.F=1,c.G=2,c.S=4,c.P=8,c.B=16,c.W=32,c.U=64,c.R=128,t.exports=c},function(t,n){var e={}.toString;t.exports=function(t){return e.call(t).slice(8,-1)}},function(t,n,e){var r=e(11),o=e(1).document,i=r(o)&&r(o.createElement);t.exports=function(t){return i?o.createElement(t):{}}},function(t,n,e){t.exports=!e(4)&&!e(8)(function(){return 7!=Object.defineProperty(e(29)("div"),"a",{get:function(){return 7}}).a})},function(t,n,e){"use strict";var r=e(18),o=e(27),i=e(36),u=e(5),f=e(2),c=e(17),a=e(51),s=e(20),l=e(58),p=e(7)("iterator"),d=!([].keys&&"next"in[].keys()),v="@@iterator",y="keys",h="values",b=function(){return this};t.exports=function(t,n,e,x,m,g,w){a(e,n,x);var O,S,_,j=function(t){if(!d&&t in A)return A[t];switch(t){case y:return function(){return new e(this,t)};case h:return function(){return new e(this,t)}}return function(){return new e(this,t)}},P=n+" Iterator",E=m==h,M=!1,A=t.prototype,T=A[p]||A[v]||m&&A[m],L=T||j(m),N=m?E?j("entries"):L:void 0,C="Array"==n?A.entries||T:T;if(C&&(_=l(C.call(new t)),_!==Object.prototype&&(s(_,P,!0),r||f(_,p)||u(_,p,b))),E&&T&&T.name!==h&&(M=!0,L=function(){return T.call(this)}),r&&!w||!d&&!M&&A[p]||u(A,p,L),c[n]=L,c[P]=b,m)if(O={values:E?L:j(h),keys:g?L:j(y),entries:N},w)for(S in O)S in A||i(A,S,O[S]);else o(o.P+o.F*(d||M),n,O);return O}},function(t,n,e){var r=e(10),o=e(55),i=e(16),u=e(21)("IE_PROTO"),f=function(){},c="prototype",a=function(){var t,n=e(29)("iframe"),r=i.length,o="<",u=">";for(n.style.display="none",e(48).appendChild(n),n.src="javascript:",t=n.contentWindow.document,t.open(),t.write(o+"script"+u+"document.F=Object"+o+"/script"+u),t.close(),a=t.F;r--;)delete a[c][i[r]];return a()};t.exports=Object.create||function(t,n){var e;return null!==t?(f[c]=r(t),e=new f,f[c]=null,e[u]=t):e=a(),void 0===n?e:o(e,n)}},function(t,n,e){var r=e(35),o=e(16).concat("length","prototype");n.f=Object.getOwnPropertyNames||function(t){return r(t,o)}},function(t,n){n.f=Object.getOwnPropertySymbols},function(t,n,e){var r=e(2),o=e(3),i=e(45)(!1),u=e(21)("IE_PROTO");t.exports=function(t,n){var e,f=o(t),c=0,a=[];for(e in f)e!=u&&r(f,e)&&a.push(e);for(;n.length>c;)r(f,e=n[c++])&&(~i(a,e)||a.push(e));return a}},function(t,n,e){t.exports=e(5)},function(t,n,e){var r=e(15);t.exports=function(t){return Object(r(t))}},function(t,n,e){t.exports={default:e(41),__esModule:!0}},function(t,n,e){t.exports={default:e(42),__esModule:!0}},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}n.__esModule=!0;var o=e(39),i=r(o),u=e(38),f=r(u),c="function"==typeof f.default&&"symbol"==typeof i.default?function(t){return typeof t}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":typeof t};n.default="function"==typeof f.default&&"symbol"===c(i.default)?function(t){return"undefined"==typeof t?"undefined":c(t)}:function(t){return t&&"function"==typeof f.default&&t.constructor===f.default&&t!==f.default.prototype?"symbol":"undefined"==typeof t?"undefined":c(t)}},function(t,n,e){e(65),e(63),e(66),e(67),t.exports=e(14).Symbol},function(t,n,e){e(64),e(68),t.exports=e(26).f("iterator")},function(t,n){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,n){t.exports=function(){}},function(t,n,e){var r=e(3),o=e(61),i=e(60);t.exports=function(t){return function(n,e,u){var f,c=r(n),a=o(c.length),s=i(u,a);if(t&&e!=e){for(;a>s;)if(f=c[s++],f!=f)return!0}else for(;a>s;s++)if((t||s in c)&&c[s]===e)return t||s||0;return!t&&-1}}},function(t,n,e){var r=e(43);t.exports=function(t,n,e){if(r(t),void 0===n)return t;switch(e){case 1:return function(e){return t.call(n,e)};case 2:return function(e,r){return t.call(n,e,r)};case 3:return function(e,r,o){return t.call(n,e,r,o)}}return function(){return t.apply(n,arguments)}}},function(t,n,e){var r=e(9),o=e(34),i=e(19);t.exports=function(t){var n=r(t),e=o.f;if(e)for(var u,f=e(t),c=i.f,a=0;f.length>a;)c.call(t,u=f[a++])&&n.push(u);return n}},function(t,n,e){t.exports=e(1).document&&document.documentElement},function(t,n,e){var r=e(28);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==r(t)?t.split(""):Object(t)}},function(t,n,e){var r=e(28);t.exports=Array.isArray||function(t){return"Array"==r(t)}},function(t,n,e){"use strict";var r=e(32),o=e(12),i=e(20),u={};e(5)(u,e(7)("iterator"),function(){return this}),t.exports=function(t,n,e){t.prototype=r(u,{next:o(1,e)}),i(t,n+" Iterator")}},function(t,n){t.exports=function(t,n){return{value:n,done:!!t}}},function(t,n,e){var r=e(9),o=e(3);t.exports=function(t,n){for(var e,i=o(t),u=r(i),f=u.length,c=0;f>c;)if(i[e=u[c++]]===n)return e}},function(t,n,e){var r=e(13)("meta"),o=e(11),i=e(2),u=e(6).f,f=0,c=Object.isExtensible||function(){return!0},a=!e(8)(function(){return c(Object.preventExtensions({}))}),s=function(t){u(t,r,{value:{i:"O"+ ++f,w:{}}})},l=function(t,n){if(!o(t))return"symbol"==typeof t?t:("string"==typeof t?"S":"P")+t;if(!i(t,r)){if(!c(t))return"F";if(!n)return"E";s(t)}return t[r].i},p=function(t,n){if(!i(t,r)){if(!c(t))return!0;if(!n)return!1;s(t)}return t[r].w},d=function(t){return a&&v.NEED&&c(t)&&!i(t,r)&&s(t),t},v=t.exports={KEY:r,NEED:!1,fastKey:l,getWeak:p,onFreeze:d}},function(t,n,e){var r=e(6),o=e(10),i=e(9);t.exports=e(4)?Object.defineProperties:function(t,n){o(t);for(var e,u=i(n),f=u.length,c=0;f>c;)r.f(t,e=u[c++],n[e]);return t}},function(t,n,e){var r=e(19),o=e(12),i=e(3),u=e(24),f=e(2),c=e(30),a=Object.getOwnPropertyDescriptor;n.f=e(4)?a:function(t,n){if(t=i(t),n=u(n,!0),c)try{return a(t,n)}catch(t){}if(f(t,n))return o(!r.f.call(t,n),t[n])}},function(t,n,e){var r=e(3),o=e(33).f,i={}.toString,u="object"==typeof window&&window&&Object.getOwnPropertyNames?Object.getOwnPropertyNames(window):[],f=function(t){try{return o(t)}catch(t){return u.slice()}};t.exports.f=function(t){return u&&"[object Window]"==i.call(t)?f(t):o(r(t))}},function(t,n,e){var r=e(2),o=e(37),i=e(21)("IE_PROTO"),u=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=o(t),r(t,i)?t[i]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?u:null}},function(t,n,e){var r=e(23),o=e(15);t.exports=function(t){return function(n,e){var i,u,f=String(o(n)),c=r(e),a=f.length;return c<0||c>=a?t?"":void 0:(i=f.charCodeAt(c),i<55296||i>56319||c+1===a||(u=f.charCodeAt(c+1))<56320||u>57343?t?f.charAt(c):i:t?f.slice(c,c+2):(i-55296<<10)+(u-56320)+65536)}}},function(t,n,e){var r=e(23),o=Math.max,i=Math.min;t.exports=function(t,n){return t=r(t),t<0?o(t+n,0):i(t,n)}},function(t,n,e){var r=e(23),o=Math.min;t.exports=function(t){return t>0?o(r(t),9007199254740991):0}},function(t,n,e){"use strict";var r=e(44),o=e(52),i=e(17),u=e(3);t.exports=e(31)(Array,"Array",function(t,n){this._t=u(t),this._i=0,this._k=n},function(){var t=this._t,n=this._k,e=this._i++;return!t||e>=t.length?(this._t=void 0,o(1)):"keys"==n?o(0,e):"values"==n?o(0,t[e]):o(0,[e,t[e]])},"values"),i.Arguments=i.Array,r("keys"),r("values"),r("entries")},function(t,n){},function(t,n,e){"use strict";var r=e(59)(!0);e(31)(String,"String",function(t){this._t=String(t),this._i=0},function(){var t,n=this._t,e=this._i;return e>=n.length?{value:void 0,done:!0}:(t=r(n,e),this._i+=t.length,{value:t,done:!1})})},function(t,n,e){"use strict";var r=e(1),o=e(2),i=e(4),u=e(27),f=e(36),c=e(54).KEY,a=e(8),s=e(22),l=e(20),p=e(13),d=e(7),v=e(26),y=e(25),h=e(53),b=e(47),x=e(50),m=e(10),g=e(3),w=e(24),O=e(12),S=e(32),_=e(57),j=e(56),P=e(6),E=e(9),M=j.f,A=P.f,T=_.f,L=r.Symbol,N=r.JSON,C=N&&N.stringify,k="prototype",F=d("_hidden"),q=d("toPrimitive"),I={}.propertyIsEnumerable,B=s("symbol-registry"),D=s("symbols"),W=s("op-symbols"),H=Object[k],K="function"==typeof L,R=r.QObject,J=!R||!R[k]||!R[k].findChild,U=i&&a(function(){return 7!=S(A({},"a",{get:function(){return A(this,"a",{value:7}).a}})).a})?function(t,n,e){var r=M(H,n);r&&delete H[n],A(t,n,e),r&&t!==H&&A(H,n,r)}:A,G=function(t){var n=D[t]=S(L[k]);return n._k=t,n},$=K&&"symbol"==typeof L.iterator?function(t){return"symbol"==typeof t}:function(t){return t instanceof L},z=function(t,n,e){return t===H&&z(W,n,e),m(t),n=w(n,!0),m(e),o(D,n)?(e.enumerable?(o(t,F)&&t[F][n]&&(t[F][n]=!1),e=S(e,{enumerable:O(0,!1)})):(o(t,F)||A(t,F,O(1,{})),t[F][n]=!0),U(t,n,e)):A(t,n,e)},Y=function(t,n){m(t);for(var e,r=b(n=g(n)),o=0,i=r.length;i>o;)z(t,e=r[o++],n[e]);return t},Q=function(t,n){return void 0===n?S(t):Y(S(t),n)},X=function(t){var n=I.call(this,t=w(t,!0));return!(this===H&&o(D,t)&&!o(W,t))&&(!(n||!o(this,t)||!o(D,t)||o(this,F)&&this[F][t])||n)},V=function(t,n){if(t=g(t),n=w(n,!0),t!==H||!o(D,n)||o(W,n)){var e=M(t,n);return!e||!o(D,n)||o(t,F)&&t[F][n]||(e.enumerable=!0),e}},Z=function(t){for(var n,e=T(g(t)),r=[],i=0;e.length>i;)o(D,n=e[i++])||n==F||n==c||r.push(n);return r},tt=function(t){for(var n,e=t===H,r=T(e?W:g(t)),i=[],u=0;r.length>u;)!o(D,n=r[u++])||e&&!o(H,n)||i.push(D[n]);return i};K||(L=function(){if(this instanceof L)throw TypeError("Symbol is not a constructor!");var t=p(arguments.length>0?arguments[0]:void 0),n=function(e){this===H&&n.call(W,e),o(this,F)&&o(this[F],t)&&(this[F][t]=!1),U(this,t,O(1,e))};return i&&J&&U(H,t,{configurable:!0,set:n}),G(t)},f(L[k],"toString",function(){return this._k}),j.f=V,P.f=z,e(33).f=_.f=Z,e(19).f=X,e(34).f=tt,i&&!e(18)&&f(H,"propertyIsEnumerable",X,!0),v.f=function(t){return G(d(t))}),u(u.G+u.W+u.F*!K,{Symbol:L});for(var nt="hasInstance,isConcatSpreadable,iterator,match,replace,search,species,split,toPrimitive,toStringTag,unscopables".split(","),et=0;nt.length>et;)d(nt[et++]);for(var nt=E(d.store),et=0;nt.length>et;)y(nt[et++]);u(u.S+u.F*!K,"Symbol",{for:function(t){return o(B,t+="")?B[t]:B[t]=L(t)},keyFor:function(t){if($(t))return h(B,t);throw TypeError(t+" is not a symbol!")},useSetter:function(){J=!0},useSimple:function(){J=!1}}),u(u.S+u.F*!K,"Object",{create:Q,defineProperty:z,defineProperties:Y,getOwnPropertyDescriptor:V,getOwnPropertyNames:Z,getOwnPropertySymbols:tt}),N&&u(u.S+u.F*(!K||a(function(){var t=L();return"[null]"!=C([t])||"{}"!=C({a:t})||"{}"!=C(Object(t))})),"JSON",{stringify:function(t){if(void 0!==t&&!$(t)){for(var n,e,r=[t],o=1;arguments.length>o;)r.push(arguments[o++]);return n=r[1],"function"==typeof n&&(e=n),!e&&x(n)||(n=function(t,n){if(e&&(n=e.call(this,t,n)),!$(n))return n}),r[1]=n,C.apply(N,r)}}}),L[k][q]||e(5)(L[k],q,L[k].valueOf),l(L,"Symbol"),l(Math,"Math",!0),l(r.JSON,"JSON",!0)},function(t,n,e){e(25)("asyncIterator")},function(t,n,e){e(25)("observable")},function(t,n,e){e(62);for(var r=e(1),o=e(5),i=e(17),u=e(7)("toStringTag"),f=["NodeList","DOMTokenList","MediaList","StyleSheetList","CSSRuleList"],c=0;c<5;c++){var a=f[c],s=r[a],l=s&&s.prototype;l&&!l[u]&&o(l,u,a),i[a]=i.Array}},function(t,n){"use strict";var e={versions:function(){var t=window.navigator.userAgent;return{trident:t.indexOf("Trident")>-1,presto:t.indexOf("Presto")>-1,webKit:t.indexOf("AppleWebKit")>-1,gecko:t.indexOf("Gecko")>-1&&t.indexOf("KHTML")==-1,mobile:!!t.match(/AppleWebKit.*Mobile.*/),ios:!!t.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),android:t.indexOf("Android")>-1||t.indexOf("Linux")>-1,iPhone:t.indexOf("iPhone")>-1||t.indexOf("Mac")>-1,iPad:t.indexOf("iPad")>-1,webApp:t.indexOf("Safari")==-1,weixin:t.indexOf("MicroMessenger")==-1}}()};t.exports=e},function(t,n,e){"use strict";function r(t){return t&&t.__esModule?t:{default:t}}var o=e(40),i=r(o),u=function(){function t(t,n,e){return n||e?String.fromCharCode(n||e):o[t]||t}function n(t){return l[t]}var e=/&quot;|&lt;|&gt;|&amp;|&nbsp;|&apos;|&#(\d+);|&#(\d+)/g,r=/['<> "&]/g,o={"&quot;":'"',"&lt;":"<","&gt;":">","&amp;":"&","&nbsp;":" "},f=/\u00a0/g,c=/<br\s*\/?>/gi,a=/\r?\n/g,s=/\s/g,l={};for(var p in o)l[o[p]]=p;return o["&apos;"]="'",l["'"]="&#39;",{encode:function(t){return t?(""+t).replace(r,n).replace(a,"<br/>").replace(s,"&nbsp;"):""},decode:function(n){return n?(""+n).replace(c,"\n").replace(e,t).replace(f," "):""},encodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},encodeBase16forJSON:function(t){if(!t)return t;t=t.replace(/[\u4E00-\u9FBF]/gi,function(t){return escape(t).replace("%u","\\u")});for(var n=[],e=0,r=t.length;r>e;e++)n.push(t.charCodeAt(e).toString(16).toUpperCase());return n.join("")},decodeBase16:function(t){if(!t)return t;t+="";for(var n=[],e=0,r=t.length;r>e;e+=2)n.push(String.fromCharCode("0x"+t.slice(e,e+2)));return n.join("")},encodeObject:function(t){if(t instanceof Array)for(var n=0,e=t.length;e>n;n++)t[n]=u.encodeObject(t[n]);else if("object"==("undefined"==typeof t?"undefined":(0,i.default)(t)))for(var r in t)t[r]=u.encodeObject(t[r]);else if("string"==typeof t)return u.encode(t);return t},loadScript:function(t){var n=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(n),n.setAttribute("src",t)},addLoadEvent:function(t){var n=window.onload;"function"!=typeof window.onload?window.onload=t:window.onload=function(){n(),t()}}}}();t.exports=u},function(t,n){function e(t,n){t.classList?t.classList.add(n):t.className+=" "+n}t.exports=e},function(t,n){function e(t,n){if(t.classList)t.classList.remove(n);else{var e=new RegExp("(^|\\b)"+n.split(" ").join("|")+"(\\b|$)","gi");t.className=t.className.replace(e," ")}}t.exports=e},,,function(t,n){"use strict";function e(){var t=document.querySelector("#page-nav");if(t&&!document.querySelector("#page-nav .extend.prev")&&(t.innerHTML='<a class="extend prev disabled" rel="prev"> < Prev</a>'+t.innerHTML),t&&!document.querySelector("#page-nav .extend.next")&&(t.innerHTML=t.innerHTML+'<a class="extend next disabled" rel="next">Next > </a>'),yiliaConfig&&yiliaConfig.open_in_new){var n=document.querySelectorAll(".article-entry a:not(.article-more-a)");n.forEach(function(t){t.setAttribute("target","_blank")})}var e=document.querySelector("#js-aboutme");e&&0!==e.length&&(e.innerHTML=e.innerText)}t.exports={init:e}},,,,,,,,,function(t,n){function e(t,n){if("string"==typeof n)return t.insertAdjacentHTML("afterend",n);var e=t.nextSibling;return e?t.parentNode.insertBefore(n,e):t.parentNode.appendChild(n)}t.exports=e}])</script><script src="/./main.2d7529.js"></script><script>!function(){var e=function(e){var t=document.createElement("script");document.getElementsByTagName("body")[0].appendChild(t),t.setAttribute("src",e)};e("/slider.885efe.js")}()</script>
+
+
+    
+<div class="tools-col" q-class="show:isShow,hide:isShow|isFalse" q-on="click:stop(e)">
+  <div class="tools-nav header-menu">
+    
+    
+      
+      
+      
+    
+      
+      
+      
+    
+      
+      
+      
+    
+    
+
+    <ul style="width: 70%">
+    
+    
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有文章</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友链</a></li>
+      
+        
+      
+      <li style="width: 33.333333333333336%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
+      
+        
+    </ul>
+  </div>
+  <div class="tools-wrap">
+    
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">暂定</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">环境配置</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">博客搭建</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">jquery</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Node</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">待定</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">概念</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂项</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发工具</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">开发相关</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">B站</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">前端面试</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">JQ</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            2、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: true
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接1</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接2</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接3</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接4</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接5</a>
+            </li>
+          
+            <li class="search-li">
+              <a href="http://localhost:4000/" target="_blank" class="search-title"><i class="icon-quo-left icon"></i>友情链接6</a>
+            </li>
+          
+        </ul>
+  		
+    	</section>
+    
+
+    
+    	<section class="tools-section tools-section-me" q-show="aboutme">
+  	  	
+  	  		<div class="aboutme-wrap" id="js-aboutme">很惭愧&lt;br&gt;&lt;br&gt;只做了一点微小的工作&lt;br&gt;谢谢大家</div>
+  	  	
+    	</section>
+    
+  </div>
+  
+</div>
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+  </div>
+</body>
+</html>
