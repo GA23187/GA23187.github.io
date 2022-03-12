@@ -151,6 +151,91 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JS之事件委托" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/13/JS%E4%B9%8B%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">JS之事件委托</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/13/JS%E4%B9%8B%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/" class="archive-article-date">
+  	<time datetime="2021-05-13T15:05:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>文章来源： <a href="https://www.huaweicloud.com/articles/blog.csdn.net" target="_blank" rel="noopener">blog.csdn.net</a>， 作者：ღ故里᭄ꦿ࿐，版权归原作者所有，如需转载，请联系作者。</p>
+<p>源文链接： <a href="https://blog.csdn.net/Hunt_bo/article/details/107600998" target="_blank" rel="noopener">https://blog.csdn.net/Hunt_bo/article/details/107600998</a></p>
+</blockquote>
+<p><strong>事件捕获（event capturing）：</strong> 当鼠标点击或者触发dom事件时（被触发dom事件的这个元素被叫作事件源），浏览器会从根节点到事件源（由外到内）进行事件传播。</p>
+<p><strong>事件冒泡（dubbed bubbling）：</strong>事件冒泡刚好相反，事件源到根节点（由内到外）进行事件传播。</p>
+<p>无论是事件捕获还是事件冒泡，它们都有一个共同的行为，就是事件传播。<strong>dom标准事件流</strong>的触发的先后顺序为：先捕获再冒泡。即当触发dom事件时，会先进行事件捕获，捕获到事件源之后通过事件传播进行事件冒泡。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">element.addEventListener(event, <span class="function"><span class="keyword">function</span>, <span class="title">useCapture</span>);</span></span><br></pre></td></tr></table></figure>
+
+<p>在我们平常用的<code>addEventListener</code>方法中，一般只会用到两个参数，一个是需要绑定的事件，另一个是触发事件后要执行的函数，然而，<code>addEventListener</code>还可以传入第三个参数，第三个参数默认值是false，表示在事件冒泡阶段调用事件处理函数;如果参数为true，则表示在事件捕获阶段调用处理函数。</p>
+<p>举个例子：在页面中 <strong>DIV &gt; Ul &gt; Li</strong> ,那么添加下列事件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> parent = <span class="built_in">document</span>.getElementById(<span class="string">"parent"</span>);</span><br><span class="line"><span class="keyword">var</span> brother = <span class="built_in">document</span>.getElementById(<span class="string">"brother"</span>);</span><br><span class="line"><span class="keyword">var</span> child = <span class="built_in">document</span>.getElementById(<span class="string">"child"</span>);</span><br><span class="line">parent.addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123; <span class="built_in">console</span>.log(<span class="string">"1"</span>); &#125;,<span class="literal">false</span></span><br><span class="line">);</span><br><span class="line">brother.addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123; <span class="built_in">console</span>.log(<span class="string">"2"</span>); &#125;,<span class="literal">false</span></span><br><span class="line">);</span><br><span class="line">child.addEventListener(<span class="string">"click"</span>,<span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123; <span class="built_in">console</span>.log(<span class="string">"3"</span>); &#125;,<span class="literal">false</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>当我们点击里边的LI的时候，那么触发的顺序为123，但是当我们把false改为true的时候，顺序就会反过来，这就是我们所说的事件的捕获和冒泡。</p>
+<p>下面我们来说一下什么是事件委托。用别人那个通俗易懂的例子来说：</p>
+<p>有三个同事预计会在周一收到快递。为签收快递，有两种办法：一是三个人在公司门口等快递；二是委托给前台MM代为签收。现实当中，我们大都采用委托的方案（公司也不会容忍那么多员工站在门口就为了等快递）。前台MM收到快递后，她会判断收件人是谁，然后按照收件人的要求签收，甚至代为付款。这种方案还有一个优势，那就是即使公司里来了新员工（不管多少），前台MM也会在收到寄给新员工的快递后核实并代为签收。</p>
+<p>这里其实还有2层意思的：</p>
+<p>1、现在委托前台的同事是可以代为签收的，即程序中的现有的dom节点是有事件的；</p>
+<p>2、新员工也是可以被前台MM代为签收的，即程序中新添加的dom节点也是有事件的。</p>
+<p>一般来说，dom需要有事件处理程序，我们都会直接给它设事件处理程序就好了，那如果是很多的dom需要添加事件处理呢？比如我们有100个li，每个li都有相同的click点击事件，可能我们会用for循环的方法，来遍历所有的li。这样的话会出现很多的交互，使页面变慢，而且每个函数都是一个对象，是对象就会占用内存，对象越多，内存占用率就越大，而且我还只是说了一百个，成千上万个呢，只会更加糟糕。</p>
+<p>所以这时候我们会用到事件委托，把相同的事件添加到父元素上，通过冒泡触发：（ <strong>Ul &gt; 5 * li</strong> ）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; <span class="keyword">var</span> oUl = <span class="built_in">document</span>.getElementById(<span class="string">"ul1"</span>); oUl.onclick = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123; alert(<span class="number">123</span>); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个时候点击任何一个li都会触发弹出123，相对于给每一个li添加一个点击事件是不是就简单了很多呢。如果非要监听li的点击才触发弹出的话，也是可以解决的。只需要检测点击的元素标签名是不是li即可：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">　　<span class="keyword">var</span> oUl = <span class="built_in">document</span>.getElementById(<span class="string">"ul1"</span>);</span><br><span class="line">　　oUl.onclick = <span class="function"><span class="keyword">function</span>(<span class="params">ev</span>)</span>&#123; <span class="keyword">var</span> ev = ev || <span class="built_in">window</span>.event; <span class="keyword">var</span> target = ev.target || ev.srcElement; <span class="keyword">if</span>(target.nodeName.toLowerCase() == <span class="string">'li'</span>)&#123; alert(<span class="number">123</span>); alert(target.innerHTML); &#125;</span><br><span class="line">　　&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/13/JS%E4%B9%8B%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-架构之前后端分离" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -943,347 +1028,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2020/07/26/github%E6%8F%90%E9%80%9F/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-每日公众号阅读（一）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/">每日公众号阅读（一）</a>
-    </h1>
-  
-
-        
-        <a href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/" class="archive-article-date">
-  	<time datetime="2020-07-03T17:09:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="2020-07-07"><a href="#2020-07-07" class="headerlink" title="2020/07/07"></a>2020/07/07</h2><h3 id="软件工具类"><a href="#软件工具类" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
-<li><p><strong>PDF转换或者编辑的工具</strong> </p>
-<p> <a href="javascript:void(0);">ONE6</a> 公众号</p>
-<p> <a href="https://mp.weixin.qq.com/s/8t5vXi92pXInaNg_eXI-4g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/8t5vXi92pXInaNg_eXI-4g</a></p>
-</li>
-<li><p><strong>浏览器</strong></p>
-<ul>
-<li><p><strong>荟萃浏览器（安卓）</strong></p>
-</li>
-<li><p><strong><a href="https://apps.apple.com/cn/app/%E6%9C%80%E5%A5%BD%E6%B5%8F%E8%A7%88%E5%99%A8/id1396859063" target="_blank" rel="noopener">最好浏览器</a>（iOS）</strong></p>
-</li>
-</ul>
-<p>App搜罗君</p>
-<p><a href="https://mp.weixin.qq.com/s/C10U1mjT6giwjWElXoj-xg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/C10U1mjT6giwjWElXoj-xg</a></p>
-</li>
-</ul>
-<h3 id="前端知识类"><a href="#前端知识类" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
-<li><p>css动画</p>
-<p><a href="https://juejin.im/post/5d99b706e51d4577f9285c33" target="_blank" rel="noopener">https://juejin.im/post/5d99b706e51d4577f9285c33</a></p>
-</li>
-</ul>
-<h2 id="2020-07-08"><a href="#2020-07-08" class="headerlink" title="2020/07/08"></a>2020/07/08</h2><h3 id="软件工具类-1"><a href="#软件工具类-1" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
-<li><p>【软件名称】：猎影下载器</p>
-<p>【适用平台】：windows</p>
-<p>【软件优势】：目前实现爱优腾视频的下载兼自动转成MP4格式</p>
-<p>【来源】： <a href="https://mp.weixin.qq.com/s/FPPtnpbPBDaE7IJKb-Cq4g" target="_blank" rel="noopener">悦美兮</a></p>
-</li>
-</ul>
-<h3 id="前端知识类-1"><a href="#前端知识类-1" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
-<li><p>一些前端知识点（重点一些js手写方法）</p>
-<p><a href="https://mp.weixin.qq.com/s/xVVP_Uk8rLBhHJaMqMMJoA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/xVVP_Uk8rLBhHJaMqMMJoA</a></p>
-</li>
-<li><p>docker容器介绍</p>
-<p><a href="https://mp.weixin.qq.com/s/cp1JlSUb4QZPyDmXwYyQyw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/cp1JlSUb4QZPyDmXwYyQyw</a></p>
-</li>
-<li><p>前端异常处理</p>
-<p><a href="https://mp.weixin.qq.com/s/QEkzv237s3ZSfiIqcpBowQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/QEkzv237s3ZSfiIqcpBowQ</a></p>
-</li>
-</ul>
-<h3 id="项目类"><a href="#项目类" class="headerlink" title="项目类"></a>项目类</h3><ul>
-<li><p>某马电商项目</p>
-<p><strong>来源</strong></p>
-<p>MarkerHub</p>
-<p><a href="https://mp.weixin.qq.com/s/48cZn0BMjZ6-oEa63ZwAmw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/48cZn0BMjZ6-oEa63ZwAmw</a></p>
-<p><strong>项目技术栈</strong></p>
-<p>基于springBoot2.x、springCloud采用前后端分离的架构；利用FastDFS作为分布式文件存储系统，Canal实现数据同步，监控数据变化；Elasticsearch+IK+Kibana实现商品搜索功能；Spring Security Oauth2 JWT实现微服务统一认证和资源授权；利用RabbitMq实现异步解耦；Seata实现分布式事务等，从而打造一个高可用的分布式电商系统。</p>
-<p><strong>技术架构</strong></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/eukZ9J6BEiafZu1tvankdUrCCQVb4jU7aiaG3jCkNXB4yDQb9nAibQTEOKB5L9K2AfsibMiaIxojNFicoYgUSHy6yxKw/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="avatar"></p>
-</li>
-</ul>
-<p>  <strong>系统架构</strong></p>
-<p>  <img src="https://mmbiz.qpic.cn/mmbiz_png/eukZ9J6BEiafZu1tvankdUrCCQVb4jU7aibRUU5XAJOURbiaOUo604RMd6YA3yCNgsicibK7Rj33ZdZsKMujeSC7NEQ/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" alt="avatar"></p>
-<p>  <strong>文档地址</strong></p>
-<p>  <a href="https://www.kancloud.cn/laopaojava/mallguide2020/1801356" target="_blank" rel="noopener">https://www.kancloud.cn/laopaojava/mallguide2020/1801356</a></p>
-<h2 id="2020-7-11"><a href="#2020-7-11" class="headerlink" title="2020/7/11"></a>2020/7/11</h2><p><strong>JavaScript高级程序设计（第3版）</strong></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRAR3CCKWuBYXJH5iaKbckllfE7D6m0YVcUwrBZlduIFCPnSOBfYn9nTlxw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>JavaScript Dom编程艺术（第2版）</strong></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARRJdPNF1V7HkFXmTgc7BEDiaQ5L91GSLrm9rYMDnD3tBoiclgR9ESmH2g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>JavaScript设计模式与开发实践</strong></p>
-<blockquote>
-<p>本书在尊重《设计模式》原意的同时，针对 JavaScript 语言特性全面介绍了更适合 JavaScript 程序员的了 16 个常用的设计模式，讲解了 JavaScript 面向对象和函数式编程方面的基础知识，介绍了面向对象的设计原则及其在设计模式中的体现，还分享了面向对象编程技巧和日常开发中的代码重构。本书将教会你如何把经典的设计模式应用到 JavaScript 语言中，编写出优美高效、结构化和可维护的代码。</p>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARbCy2JDnKpibV6pIS0wtpmjE67H6iceiauwA4ZkzBg4KuTEicmSJzY9ZO9w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>Head First JavaScript程序设计</strong></p>
-<blockquote>
-<p>史上最轻松 JavaScript 入门书，全彩印刷，本书从 JavaScript 的基础知识逐渐深入到高阶话题，包括对象、函数、浏览器的文档对象模型、类型、数组、原型、闭包等。读者会在阅读的过程中玩游戏、解谜题，并且以你想象不到的方式与 JavaScript 交互。此外，读者还会写大量的代码，以便构建自己的 Web 应用。</p>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARibzicX4zyN1HTENeAURG8XZpORUNuGNxgmzAhQosQdwf8mtpgicQ89I7Q/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>学习JavaScript数据结构与算法（第3版）</strong></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARaaXhDvytBu1NQAxo3ueQ99NEblBUEXxL82ddYEQwugDXKiafkgrsAkg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>你不知道的JavaScript（上卷）</strong></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRAR0pX6UibU85iaHRbwaiaDYXRyiaPCqQ2yk1JyHQIjrj0It6vxvmU67Oh7PA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>你不知道的JavaScript（中卷）</strong></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARRjGvK70Xkiaz8B0gXjXDPulYhegDFfSFicZia0kAqBpnxyYu6b2iafTW9g/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>深入理解JavaScript特性</strong></p>
-<blockquote>
-<p>待补充</p>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARvmk7sdt6aianB2hTN08daw3HkpricrCXU7y6AmibNCWONuzzibre8OOseA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>HTML5权威指南</strong></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARunbpXia1o2mic7Kn0IW5Lb070DdwPcicRFZNicNDITjEGia3vSgPbPhkgww/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>CSS揭秘</strong></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARocEu1Jt40eEvJjyt0KV1dl4WA27qjicYy7iaXdqyojAuPK9G54eiceJVA/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>深入浅出Node.js</strong></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARiaOIuaUibUic77TlaQopJe3wlkCsDduIBoIwnA1eXp64Rz64HgcBlG79w/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>深入浅出Vue.js</strong></p>
-<blockquote>
-<p>待补充</p>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARNMJeSzu2O6XbrzHeWG9WmlTwFKZr75GDMtvasGw2AACOwatnxyTEdw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>Web性能权威指南</strong></p>
-<blockquote>
-<p>Google 高性能团队核心成员的权威之作，堪称实战经验与规范解读完美结合的产物。本书涵盖 Web 开发者技术体系中应该掌握的所有网络及性能优化知识。全书以性能优化为主线，从TCP、UDP 和 TLS 协议讲起，解释了如何针对这几种协议和基础设施来优化应用。然后深入探讨了无线和移动网络的工作机制。最后，揭示了 HTTP 协议的底层细节，同时详细介绍了 HTTP 2.0、 XHR、SSE、WebSocket、WebRTC 和 DataChannel 等现代浏览器新增的具有革命性的新能力。</p>
-</blockquote>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/riafuBXuN2hoXUSvxLzk8UnD0BDlbWRARQM047pQWSh1La6r3Z2lYQNicf7xyIIXgTaOT5gDXNuyCAznbibSr4VvQ/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<h2 id="2020-7-12"><a href="#2020-7-12" class="headerlink" title="2020/7/12"></a>2020/7/12</h2><h3 id="软件工具类-2"><a href="#软件工具类-2" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
-<li><p>【软件名称】：搜索重复文件</p>
-<p>【适用平台】：安卓</p>
-<p>【软件优势】：手机文件的查重神器，仅仅1.4M</p>
-<p>【来源】： 【轻安卓】</p>
-</li>
-<li><p>【软件名称】：全网音乐免费解析</p>
-<p>【适用平台】：安卓</p>
-<p>【软件优势】：只需要在输入框输入自己想要下载的音乐，然后点击解析音乐，该软件就会自动在5个平台中解析这个音乐</p>
-<p>【来源】： 【效率为王】</p>
-</li>
-</ul>
-<h3 id="前端知识类-2"><a href="#前端知识类-2" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
-<li><p>转场动画特效</p>
-<p><a href="https://mp.weixin.qq.com/s/rW0GmvF4GfKXjqKmoU_IFQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/rW0GmvF4GfKXjqKmoU_IFQ</a></p>
-</li>
-<li><p>Vue组件之间的8种通信方式</p>
-<p><a href="https://mp.weixin.qq.com/s/s24xpSo8tpsqRDtUewS9QA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/s24xpSo8tpsqRDtUewS9QA</a></p>
-</li>
-<li><p>15条高效JS技巧</p>
-<p><a href="https://mp.weixin.qq.com/s/nZXwIm9gcd_iyP11v6tfkQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/nZXwIm9gcd_iyP11v6tfkQ</a></p>
-</li>
-<li><p>this关键字</p>
-<p><a href="https://mp.weixin.qq.com/s/5c05RjdRbtAjlHG6HRcIJQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/5c05RjdRbtAjlHG6HRcIJQ</a></p>
-</li>
-<li><p>34道Vue面试题系列</p>
-<p><a href="https://mp.weixin.qq.com/s/6l8dCMKsnEiZHCh_6AvY0g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/6l8dCMKsnEiZHCh_6AvY0g</a></p>
-</li>
-<li><p>从零实现webpack热更新HMR</p>
-<p><a href="https://juejin.im/post/5df36ffd518825124d6c1765" target="_blank" rel="noopener">https://juejin.im/post/5df36ffd518825124d6c1765</a></p>
-</li>
-<li><p>小恐龙</p>
-<p><a href="https://mp.weixin.qq.com/s/laCs7EpKXlvvYAKrJ44gAA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/laCs7EpKXlvvYAKrJ44gAA</a></p>
-</li>
-</ul>
-<h2 id="2020-7-13"><a href="#2020-7-13" class="headerlink" title="2020/7/13"></a>2020/7/13</h2><h3 id="软件工具类-3"><a href="#软件工具类-3" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
-<li><p>【软件名称】：奇奇动画</p>
-<p>【适用平台】：安卓</p>
-<p>【软件优势】：这是一款无ad、时效性强的APP。资源丰富、加载速度快</p>
-<p>【来源】： 【轻安卓】</p>
-</li>
-</ul>
-<h3 id="前端知识类-3"><a href="#前端知识类-3" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
-<li><p>前端代码规范</p>
-<p><a href="https://mp.weixin.qq.com/s/u7hp-Plw_H2fZg6tmKFJQQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/u7hp-Plw_H2fZg6tmKFJQQ</a></p>
-</li>
-<li><p>OAuth2.0 的四种授权方式</p>
-<p><a href="https://mp.weixin.qq.com/s/in_E1pKqQc8wkPXT61g8gQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/in_E1pKqQc8wkPXT61g8gQ</a></p>
-</li>
-<li><p>Github 做授权登录就是这么简单！（OAuth2.0实战）</p>
-<p><a href="https://mp.weixin.qq.com/s/KzWE4EtZ6F4_-2fYnVA5QA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/KzWE4EtZ6F4_-2fYnVA5QA</a></p>
-</li>
-</ul>
-<h3 id="项目类-1"><a href="#项目类-1" class="headerlink" title="项目类"></a>项目类</h3><ul>
-<li><p>github上35K的SpringBoot实战电商项目<code>mall</code></p>
-<p><strong>来源</strong></p>
-<p>程序员闪充宝</p>
-<p><a href="https://mp.weixin.qq.com/s/DguQefH2ZjaEcOOF_S1zFg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/DguQefH2ZjaEcOOF_S1zFg</a></p>
-<p><strong>项目地址</strong></p>
-<p><strong><a href="https://github.com/macrozheng/mall" target="_blank" rel="noopener">https://github.com/macrozheng/mall</a></strong></p>
-<p><strong>系统架构图</strong></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_png/CKvMdchsUwm6J06fUyzKicPAfGEzcIiciaR4I1naxIVbELRPM8ceTlIhVqIFqKRKxkOBj1sSMZZUNz7X62iaC0fZXg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
-<p><strong>项目演示</strong></p>
-<p><img src="https://mmbiz.qpic.cn/mmbiz_gif/CKvMdchsUwm6J06fUyzKicPAfGEzcIiciaR4uJ7mhkkUowXAYNM2VKf66B1c2FpO0yP8icmNicX6lqtrcicBT3kExF2w/640?wx_fmt=gif&tp=webp&wxfrom=5&wx_lazy=1" alt="img"></p>
-</li>
-</ul>
-<h2 id="2020-7-15"><a href="#2020-7-15" class="headerlink" title="2020/7/15"></a>2020/7/15</h2><h3 id="软件工具类-4"><a href="#软件工具类-4" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
-<li><p>【软件名称】：秋秋下载器</p>
-<p>【适用平台】：安卓</p>
-<p>【软件优势】：下载器大小只有不到300kb，图片，网页、文本、音乐、动画、视频！同时，它还支持<strong>批量网页下载、定时下载</strong>等高级功能。</p>
-<p>【来源】： 【效率为王】</p>
-</li>
-</ul>
-<h3 id="网址"><a href="#网址" class="headerlink" title="网址"></a>网址</h3><ul>
-<li><p>Fatkun是一款内嵌到浏览器的工具；可以帮你方便地从任意网站上批量采集喜欢的图片并迅速完成筛选和保存</p>
-<p><a href="http://fatkun.yueding168.com/?noexe#" target="_blank" rel="noopener">http://fatkun.yueding168.com/?noexe#</a></p>
-</li>
-</ul>
-<h3 id="前端知识类-4"><a href="#前端知识类-4" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
-<li><p>前端如何玩转 Word 文档</p>
-<p><a href="https://mp.weixin.qq.com/s/1ztZLSCEhBpBuTEdqJSS2w" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/1ztZLSCEhBpBuTEdqJSS2w</a></p>
-</li>
-<li><p>图片处理</p>
-<p><a href="https://mp.weixin.qq.com/s/AK5T0_xUD8qNp8qtvHPUUA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/AK5T0_xUD8qNp8qtvHPUUA</a></p>
-</li>
-</ul>
-<h2 id="2020-7-16"><a href="#2020-7-16" class="headerlink" title="2020/7/16"></a>2020/7/16</h2><h3 id="软件工具类-5"><a href="#软件工具类-5" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
-<li><p>【软件名称】：政府版WPS</p>
-<p>【适用平台】：PC</p>
-<p>【软件优势】：<strong>安装简单</strong>，<strong>使用强大的PRO专业增强版</strong></p>
-<p>【来源】： 【ONE6】</p>
-<p>【补充】: 可以在软件的安装目录中找到如下<strong>“companylogo.png”</strong>图片！然后将它删除,也可以自行修改png图片。</p>
-</li>
-</ul>
-<h3 id="前端知识类-5"><a href="#前端知识类-5" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
-<li><p>玩转前端 Video 播放器</p>
-<p><a href="https://mp.weixin.qq.com/s/tgiHiint3iTfPnr318kuFg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/tgiHiint3iTfPnr318kuFg</a></p>
-</li>
-</ul>
-<h2 id="2020-7-18"><a href="#2020-7-18" class="headerlink" title="2020/7/18"></a>2020/7/18</h2><h3 id="前端知识类-6"><a href="#前端知识类-6" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
-<li><p>再谈防抖和节流</p>
-<p><a href="https://mp.weixin.qq.com/s/1dlmD8Va62-KCj9fbpwp_g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/1dlmD8Va62-KCj9fbpwp_g</a></p>
-</li>
-<li><p>文件上传全过程</p>
-<p><a href="https://mp.weixin.qq.com/s/hRAw_eiDF2sVg7J1GzRCiw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/hRAw_eiDF2sVg7J1GzRCiw</a></p>
-</li>
-<li><p>CSS 渲染原理以及优化策略深剖析</p>
-<p><a href="https://mp.weixin.qq.com/s/EJZmCi1m0fPK2zxJuHlECw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/EJZmCi1m0fPK2zxJuHlECw</a></p>
-</li>
-</ul>
-<h3 id="项目类-2"><a href="#项目类-2" class="headerlink" title="项目类"></a>项目类</h3><p><a href="https://juejin.im/post/5c622fb5e51d457f9f2c2381" target="_blank" rel="noopener">https://juejin.im/post/5c622fb5e51d457f9f2c2381</a></p>
-<h3 id="网址-1"><a href="#网址-1" class="headerlink" title="网址"></a>网址</h3><ul>
-<li><p>谷歌插件下载</p>
-<p><a href="https://www.ggfwzs.com/" target="_blank" rel="noopener">https://www.ggfwzs.com/</a></p>
-</li>
-</ul>
-<h3 id="谷歌插件"><a href="#谷歌插件" class="headerlink" title="谷歌插件"></a>谷歌插件</h3><ul>
-<li><p>一键视频下载</p>
-<p>  一键视频下载是一款可以下载<strong>「微信视频，百度视频，好看视频，微博视频，知乎视频」</strong>的神奇插件。</p>
-<p>  测试：百度可以，知乎不行</p>
-</li>
-<li><p>CocoCut<br>这是一款超级厉害的<strong>「视频音频解析下载插件，支持海量国外的视频音频平台」</strong></p>
-<p>测试：可以下载知乎</p>
-</li>
-</ul>
-<h2 id="2020-7-20"><a href="#2020-7-20" class="headerlink" title="2020/7/20"></a>2020/7/20</h2><h3 id="前端知识类-7"><a href="#前端知识类-7" class="headerlink" title="前端知识类"></a>前端知识类</h3><ul>
-<li><p>Vue 开发必须知道的 36 个技巧</p>
-<p><a href="https://mp.weixin.qq.com/s/ettUDlfNGjdpDTlPrbxbGQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ettUDlfNGjdpDTlPrbxbGQ</a></p>
-</li>
-<li><p>如何实现单点登录功能 </p>
-<p><a href="https://mp.weixin.qq.com/s/O6A_BqyQPjJBrRt9o6fSvw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/O6A_BqyQPjJBrRt9o6fSvw</a></p>
-</li>
-<li><p>前端登录方案</p>
-<p><a href="https://mp.weixin.qq.com/s/Dv5HEXVTX5r0RxfDvoWt6A" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Dv5HEXVTX5r0RxfDvoWt6A</a></p>
-</li>
-<li><p>前端常用的工具方法</p>
-<p><a href="https://mp.weixin.qq.com/s/9VvaLdgKmDaQXnd_upWA2g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/9VvaLdgKmDaQXnd_upWA2g</a></p>
-</li>
-<li><p>理解websocket的原理</p>
-<p><a href="https://mp.weixin.qq.com/s/OKiVeiAtdZvSG5ZC8jYOzg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/OKiVeiAtdZvSG5ZC8jYOzg</a></p>
-</li>
-<li><p>写给初中级前端的高级进阶指南（万字路线）</p>
-<p><a href="https://mp.weixin.qq.com/s/MgC41d3X7T1k3Daq_UiLIw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/MgC41d3X7T1k3Daq_UiLIw</a></p>
-</li>
-<li><p>TS 不要错过的八个工具 </p>
-<p><a href="https://mp.weixin.qq.com/s/0EqUsQLsCR7_PUwg1Cq7NQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/0EqUsQLsCR7_PUwg1Cq7NQ</a></p>
-</li>
-<li><p>深度解析bind原理、使用场景及模拟实现</p>
-<p><a href="https://mp.weixin.qq.com/s/fq66ljxVN_2Oz3ZOS6vNXA" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/fq66ljxVN_2Oz3ZOS6vNXA</a></p>
-</li>
-<li><p>15条JS技巧</p>
-<p><a href="https://mp.weixin.qq.com/s/pWtYolrUcNHE24YfvpkDhg" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/pWtYolrUcNHE24YfvpkDhg</a></p>
-</li>
-<li><p>教你用好 Javascript 数组</p>
-<p><a href="https://mp.weixin.qq.com/s/lep5mh1cd8zE0YVi8ZR5Dw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/lep5mh1cd8zE0YVi8ZR5Dw</a></p>
-</li>
-</ul>
-<h3 id="软件工具类-6"><a href="#软件工具类-6" class="headerlink" title="软件工具类"></a>软件工具类</h3><ul>
-<li><p>【软件名称】：Sandboxie </p>
-<p>【适用平台】：PC</p>
-<p>【软件优势】：Windows平台上的一款功能强大的老牌沙盘工具，能够在系统中制造另一个虚拟的程序运行环境，与用户本身的系统完全隔离开来。</p>
-<p>【来源】： 【潮软件]】</p>
-</li>
-<li><p>【软件名称】：星雨视频</p>
-<p>【适用平台】：安卓</p>
-<p>【软件优势】：<strong>完全无广告</strong>，画面基本<strong>高清</strong>以上，支持投屏、缓存、倍数。</p>
-<p>【缺点】：有一点点缺陷，那就是这款App<strong>不支持弹幕</strong>，</p>
-<p>【来源】： 【ONE6】</p>
-</li>
-<li><p>【软件名称】：番茄影视</p>
-<p>【适用平台】：安卓</p>
-<p>【来源】： 【ONE6】</p>
-</li>
-<li><p>【软件名称】：南瓜影视 V1.3.8.0</p>
-<p>【适用平台】：安卓</p>
-<p>【来源】： 【ONE6】</p>
-</li>
-<li><p>【软件名称】：Foobox</p>
-<p>【适用平台】：PC</p>
-<p>【软件优势】：这是一款<strong>原版</strong>的音乐播放器，软件<strong>简洁、无ad</strong>，内置了<strong>主题和音乐下载插件</strong>，支持<strong>在线试听和下载</strong>，支持<strong>LRC显示</strong></p>
-<p>【来源】： 【KeyApps】</p>
-<p>【补充】: 点击上方<strong>“搜索框”</strong>就改为<strong>网络模式</strong>，就可以进行自定义搜索想听的音乐了，</p>
-<p>同样的位置，点击“<strong>搜索来源</strong>”，你会发现，此软件有<strong>3个</strong> 搜索源，分别是：<strong>酷我、千千、咪咕</strong>。</p>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂项</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2020/07/04/%E6%AF%8F%E6%97%A5%E5%85%AC%E4%BC%97%E5%8F%B7%E9%98%85%E8%AF%BB%EF%BC%88%E4%B8%80%EF%BC%89/">展开全文 >></a>
         </p>
       
 

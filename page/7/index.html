@@ -151,6 +151,70 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vue之axios的使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/12/31/vue%E4%B9%8Baxios%E7%9A%84%E4%BD%BF%E7%94%A8/">vue之axios的使用</a>
+    </h1>
+  
+
+        
+        <a href="/2019/12/31/vue%E4%B9%8Baxios%E7%9A%84%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+  	<time datetime="2019-12-30T17:17:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>A23-187:<br><a href="https://www.jianshu.com/p/fd7bf46d4412" target="_blank" rel="noopener">https://www.jianshu.com/p/fd7bf46d4412</a></p>
+<p>A23-187:<br><a href="https://www.jianshu.com/p/affdd9fa6a2a" target="_blank" rel="noopener">https://www.jianshu.com/p/affdd9fa6a2a</a></p>
+<p>A23-187:<br><a href="https://www.jianshu.com/p/d771bbc61dab" target="_blank" rel="noopener">https://www.jianshu.com/p/d771bbc61dab</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/12/31/vue%E4%B9%8Baxios%E7%9A%84%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-CSS之多行文本溢出显示省略号" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -782,97 +846,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/12/24/CSS%E4%B9%8B%E7%BB%A7%E6%89%BF%E6%80%A7/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-vue之props属性的使用问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/12/24/vue%E4%B9%8Bprops%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/">vue之props属性的使用问题</a>
-    </h1>
-  
-
-        
-        <a href="/2019/12/24/vue%E4%B9%8Bprops%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2019-12-24T14:18:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-24</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="vue中直接修改props中的值并未给出警告"><a href="#vue中直接修改props中的值并未给出警告" class="headerlink" title="[vue中直接修改props中的值并未给出警告]"></a>[vue中直接修改props中的值并未给出警告]</h3><blockquote>
-<p>父组件</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;child :data=&quot;data&quot; :obj=&quot;obj&quot;/&gt;</span><br><span class="line">        &lt;h1&gt;data: &#123;&#123;data&#125;&#125;&lt;/h1&gt;</span><br><span class="line">        &lt;h1&gt;objData: &#123;&#123;obj.data&#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import child from &apos;./child&apos;</span><br><span class="line">export default &#123;</span><br><span class="line">    data()&#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            data: &apos;&apos;,</span><br><span class="line">            obj: &#123;</span><br><span class="line">                data: &apos;&apos;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    components: &#123; child &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>子组件</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;button @click=&quot;change&quot;&gt;click to change prop data&lt;/button&gt;</span><br><span class="line">        &lt;button @click=&quot;changeObjData&quot;&gt;click to chnage prop objData&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">    props: [&apos;data&apos;, &apos;obj&apos;],</span><br><span class="line">    methods: &#123;</span><br><span class="line">        change()&#123;</span><br><span class="line">            this.data = Math.random()</span><br><span class="line">        &#125;,</span><br><span class="line">        changeObjData()&#123;</span><br><span class="line">            this.obj.data = Math.random()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>两个按钮，一个是改变<strong>值类型的prop</strong>，一个是改变<strong>引用类型的prop</strong>，你会发现，第一个按钮按了会报错，值不会被改变，但是按了第二个，值改变了，并且没有报错，那是因为你父组件传递过去的只是一个引用，说白了就是传了一个内存地址(指针)过去，子组件改变上面的值，并没有改变指针，所以系统认为他没有引起父组件的值改变，于是就没有报错提示了。</p>
-<p><a href="https://segmentfault.com/q/1010000015952520" target="_blank" rel="noopener">https://segmentfault.com/q/1010000015952520</a></p>
-<p>Vue中props的详解<a href="https://www.jb51.net/article/161367.htm" target="_blank" rel="noopener">https://www.jb51.net/article/161367.htm</a></p>
-<p>在vue中子组件修改props引发的对js深拷贝和浅拷贝的思考<a href="https://www.cnblogs.com/hutuzhu/p/10119698.html" target="_blank" rel="noopener">https://www.cnblogs.com/hutuzhu/p/10119698.html</a></p>
-<p>[js的对象和数组，引用类型的理解]<a href="https://segmentfault.com/a/1190000011155881" target="_blank" rel="noopener">https://segmentfault.com/a/1190000011155881</a></p>
-<h3 id="vue-关于vue-set的学习笔记"><a href="#vue-关于vue-set的学习笔记" class="headerlink" title="[vue 关于vue.set的学习笔记]"></a>[vue 关于vue.set的学习笔记]</h3><p>vue新手小白，在看vue文档的时候 发现vue关于 数组，对象值改变的与 ng有那么点不同。</p>
-<p>官方表示</p>
-<p>由于 JavaScript 的限制，Vue 不能检测以下变动的数组：</p>
-<ol>
-<li>当你利用索引直接设置一个项时，例如：<code>vm.items[indexOfItem] = newValue</code></li>
-<li>当你修改数组的长度时，例如：<code>vm.items.length = newLength</code></li>
-</ol>
-<p>但是对于曾经使用ng的我来说，是不一样的。</p>
-<p>比如：</p>
-<p>vue 不能检测你直接根据数组的索引对数组的某个值修改。</p>
-<p>Vue 不能检测对象属性的添加或删除。</p>
-<p>但是它提供了另外的方法vue.set ,可以修改数组的值喝对象新增删除属性。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt; </span><br><span class="line">export default &#123;</span><br><span class="line">      data()&#123;</span><br><span class="line">            return &#123;</span><br><span class="line">                list:[1,2,3,4,5,6],</span><br><span class="line">                userProfile: &#123;</span><br><span class="line">                    name: &apos;Anika&apos;</span><br><span class="line">                &#125;</span><br><span class="line">                user: &#123;</span><br><span class="line">                   name: &quot;hea&quot;,</span><br><span class="line">                   age: 12</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">     &#125;,</span><br><span class="line">     mounted() &#123;</span><br><span class="line">           this.$set(this.list, 1, 27)</span><br><span class="line">           this.$set(this.userProfile, &apos;age&apos;, 27)</span><br><span class="line">           this.user = Object.assign(&#123;&#125;, this.user, &#123;</span><br><span class="line">                                     age: 22,</span><br><span class="line">                                     name: &quot;huangenai&quot;</span><br><span class="line">           &#125;);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-
-<p>(<a href="https://www.cnblogs.com/huangenai/p/9678172.html" target="_blank" rel="noopener">https://www.cnblogs.com/huangenai/p/9678172.html</a>)</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/12/24/vue%E4%B9%8Bprops%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%BF%E7%94%A8%E9%97%AE%E9%A2%98/">展开全文 >></a>
         </p>
       
 
